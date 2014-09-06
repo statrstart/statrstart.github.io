@@ -5,36 +5,36 @@
   
   <title>対応のない場合のt検定 | 統計ソフトRの備忘録２</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="ｔ検定（その１）
+  <meta name="description" content="放送大学「心理統計法」第7章
 12x&lt;-c(85,90,82,96,84,95)y&lt;-c(88,74,82,87,73,79)
 
 二群の等分散性の検定
 1var.test(x,y, alternative='two.sided', conf.level=.95)
 
 F test to compare two variances
-data:  x and yF = 0.8701, num df =">
+data:  x and yF = 0.8701, num">
 <meta property="og:type" content="article">
 <meta property="og:title" content="対応のない場合のt検定">
 <meta property="og:url" content="http://yoursite.com/2014/09/06/t検定１/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
-<meta property="og:description" content="ｔ検定（その１）
+<meta property="og:description" content="放送大学「心理統計法」第7章
 12x&lt;-c(85,90,82,96,84,95)y&lt;-c(88,74,82,87,73,79)
 
 二群の等分散性の検定
 1var.test(x,y, alternative='two.sided', conf.level=.95)
 
 F test to compare two variances
-data:  x and yF = 0.8701, num df =">
+data:  x and yF = 0.8701, num">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="対応のない場合のt検定">
-<meta name="twitter:description" content="ｔ検定（その１）
+<meta name="twitter:description" content="放送大学「心理統計法」第7章
 12x&lt;-c(85,90,82,96,84,95)y&lt;-c(88,74,82,87,73,79)
 
 二群の等分散性の検定
 1var.test(x,y, alternative='two.sided', conf.level=.95)
 
 F test to compare two variances
-data:  x and yF = 0.8701, num df =">
+data:  x and yF = 0.8701, num">
 
   
     <link rel="alternative" href="/atom.xml" title="統計ソフトRの備忘録２" type="application/atom+xml">
@@ -84,7 +84,7 @@ data:  x and yF = 0.8701, num df =">
         <section id="main"><article id="post-t検定１" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/09/06/t検定１/" class="article-date">
-  <time datetime="2014-09-06T04:21:41.000Z" itemprop="datePublished">Sep 6 2014</time>
+  <time datetime="2014-09-06T06:14:12.000Z" itemprop="datePublished">Sep 6 2014</time>
 </a>
     
   </div>
@@ -103,15 +103,15 @@ data:  x and yF = 0.8701, num df =">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="ｔ検定（その１）">ｔ検定（その１）</h1>
+        <h1 id="放送大学「心理統計法」第7章">放送大学「心理統計法」第7章</h1>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">x&lt;-<span class="built_in">c</span>(<span class="number">85</span>,<span class="number">90</span>,<span class="number">82</span>,<span class="number">96</span>,<span class="number">84</span>,<span class="number">95</span>)</div><div class="line">y&lt;-<span class="built_in">c</span>(<span class="number">88</span>,<span class="number">74</span>,<span class="number">82</span>,<span class="number">87</span>,<span class="number">73</span>,<span class="number">79</span>)</div></pre></td></tr></table></figure>
 
-<p>二群の等分散性の検定</p>
+<h3 id="二群の等分散性の検定">二群の等分散性の検定</h3>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag"><span class="attribute">var.test</span>(<span class="attribute">x</span>,<span class="attribute">y</span>, <span class="attribute">alternative</span>=<span class="value">'two.sided'</span><span class="value">,</span> <span class="attribute">conf.level</span>=<span class="value">.95)</span></span></span></div></pre></td></tr></table></figure>
 
 <p>F test to compare two variances</p>
 <p>data:  x and y<br>F = 0.8701, num df = 5, denom df = 5, p-value = 0.8824<br>alternative hypothesis: true ratio of variances is not equal to 1<br>95 percent confidence interval:<br> 0.1217596 6.2183571<br>sample estimates:<br>ratio of variances<br>         0.8701406 </p>
-<p>二標本t検定（分散が等しいと仮定できるとき）</p>
+<h3 id="二標本t検定（分散が等しいと仮定できるとき）">二標本t検定（分散が等しいと仮定できるとき）</h3>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag"><span class="attribute">t.test</span>(<span class="attribute">x</span>,<span class="attribute">y</span>, <span class="attribute">alternative</span>=<span class="value">'two.sided'</span><span class="value">,</span> <span class="attribute">conf.level</span>=<span class="value">.95,</span> <span class="attribute">var.equal</span>=<span class="value">TRUE)</span></span></span></div></pre></td></tr></table></figure>
 
 <p>Two Sample t-test</p>
@@ -135,6 +135,15 @@ data:  x and yF = 0.8701, num df =">
     
 <nav id="article-nav">
   
+    <a href="/2014/09/06/t検定2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          対応のある場合のt検定
+        
+      </div>
+    </a>
+  
   
     <a href="/2014/09/06/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
@@ -156,7 +165,7 @@ data:  x and yF = 0.8701, num df =">
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -165,7 +174,7 @@ data:  x and yF = 0.8701, num df =">
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/HEXO/" style="font-size: NaNpx;">HEXO</a><a href="/tags/心理統計法/" style="font-size: NaNpx;">心理統計法</a>
+      <a href="/tags/HEXO/" style="font-size: 10.00px;">HEXO</a><a href="/tags/心理統計法/" style="font-size: 20.00px;">心理統計法</a>
     </div>
   </div>
 
@@ -174,7 +183,7 @@ data:  x and yF = 0.8701, num df =">
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 
@@ -184,6 +193,14 @@ data:  x and yF = 0.8701, num df =">
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2014/09/06/t検定補足/">t検定補足</a>
+          </li>
+        
+          <li>
+            <a href="/2014/09/06/t検定2/">対応のある場合のt検定</a>
+          </li>
         
           <li>
             <a href="/2014/09/06/t検定１/">対応のない場合のt検定</a>
