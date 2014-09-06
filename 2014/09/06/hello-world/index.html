@@ -3,17 +3,35 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives | 統計ソフトRの備忘録２</title>
+  <title>HEXOを使ってGithub Pagesにブログを作成しました。 | 統計ソフトRの備忘録２</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="統計ソフトRの備忘録２">
-<meta property="og:url" content="http://yoursite.com/archives/">
+  <meta name="description" content="次の３つの記事のとおりにやったらできました。感謝です。
+Node.jsの環境を整える
+いまアツいJavaScript！ゼロから始めるNode.js入門〜5分で環境構築編〜 
+Githubのアカウントを取得し、Github Pages用のリポジトリを作成
+Git初心者でも大丈夫！完全無料でGithub PagesにWebページを公開する方法  
+HEXOをインストールし、ブログを作成、公開
+所要時間">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HEXOを使ってGithub Pagesにブログを作成しました。">
+<meta property="og:url" content="http://yoursite.com/2014/09/06/hello-world/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
-<meta property="og:description">
+<meta property="og:description" content="次の３つの記事のとおりにやったらできました。感謝です。
+Node.jsの環境を整える
+いまアツいJavaScript！ゼロから始めるNode.js入門〜5分で環境構築編〜 
+Githubのアカウントを取得し、Github Pages用のリポジトリを作成
+Git初心者でも大丈夫！完全無料でGithub PagesにWebページを公開する方法  
+HEXOをインストールし、ブログを作成、公開
+所要時間">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="統計ソフトRの備忘録２">
-<meta name="twitter:description">
+<meta name="twitter:title" content="HEXOを使ってGithub Pagesにブログを作成しました。">
+<meta name="twitter:description" content="次の３つの記事のとおりにやったらできました。感謝です。
+Node.jsの環境を整える
+いまアツいJavaScript！ゼロから始めるNode.js入門〜5分で環境構築編〜 
+Githubのアカウントを取得し、Github Pages用のリポジトリを作成
+Git初心者でも大丈夫！完全無料でGithub PagesにWebページを公開する方法  
+HEXOをインストールし、ブログを作成、公開
+所要時間">
 
   
     <link rel="alternative" href="/atom.xml" title="統計ソフトRの備忘録２" type="application/atom+xml">
@@ -60,64 +78,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-t検定１" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/09/06/t検定１/" class="article-date">
-  <time datetime="2014-09-06T04:21:41.000Z" itemprop="datePublished">Sep 6 2014</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/06/t検定１/">対応のない場合のt検定</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="ｔ検定（その１）">ｔ検定（その１）</h1>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">x&lt;-<span class="built_in">c</span>(<span class="number">85</span>,<span class="number">90</span>,<span class="number">82</span>,<span class="number">96</span>,<span class="number">84</span>,<span class="number">95</span>)</div><div class="line">y&lt;-<span class="built_in">c</span>(<span class="number">88</span>,<span class="number">74</span>,<span class="number">82</span>,<span class="number">87</span>,<span class="number">73</span>,<span class="number">79</span>)</div></pre></td></tr></table></figure>
-
-<p>二群の等分散性の検定</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag"><span class="attribute">var.test</span>(<span class="attribute">x</span>,<span class="attribute">y</span>, <span class="attribute">alternative</span>=<span class="value">'two.sided'</span><span class="value">,</span> <span class="attribute">conf.level</span>=<span class="value">.95)</span></span></span></div></pre></td></tr></table></figure>
-
-<p>F test to compare two variances</p>
-<p>data:  x and y<br>F = 0.8701, num df = 5, denom df = 5, p-value = 0.8824<br>alternative hypothesis: true ratio of variances is not equal to 1<br>95 percent confidence interval:<br> 0.1217596 6.2183571<br>sample estimates:<br>ratio of variances<br>         0.8701406 </p>
-<p>二標本t検定（分散が等しいと仮定できるとき）</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag"><span class="attribute">t.test</span>(<span class="attribute">x</span>,<span class="attribute">y</span>, <span class="attribute">alternative</span>=<span class="value">'two.sided'</span><span class="value">,</span> <span class="attribute">conf.level</span>=<span class="value">.95,</span> <span class="attribute">var.equal</span>=<span class="value">TRUE)</span></span></span></div></pre></td></tr></table></figure>
-
-<p>Two Sample t-test</p>
-<p>data:  x and y<br>t = 2.3043, df = 10, p-value = 0.04393<br>alternative hypothesis: true difference in means is not equal to 0<br>95 percent confidence interval:<br>  0.2697732 16.0635601<br>sample estimates:<br>mean of x mean of y<br> 88.66667  80.50000   </p>
-<h2 id="Ｒコマンダーのメニューから行うには">Ｒコマンダーのメニューから行うには</h2>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="title">d</span>&lt;-<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(<span class="title">x</span>,<span class="title">y</span>)</span></span></div><div class="line"><span class="title">d1</span>&lt;-stack(d)</div></pre></td></tr></table></figure>
-
-<p>Ｒコマンダーのアクティブデータセットをd1に変更<br>以下はメニューで操作<br>統計量～分散～F検定<br>統計量～平均～独立サンプルｔ検定  </p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/09/06/t検定１/" data-id="6ebvkg78s1htu5pv" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心理統計法/">心理統計法</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/09/06/hello-world/" class="article-date">
   <time datetime="2014-09-06T04:21:37.000Z" itemprop="datePublished">Sep 6 2014</time>
@@ -130,8 +91,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/06/hello-world/">HEXOを使ってGithub Pagesにブログを作成しました。</a>
+    <h1 class="article-title" itemprop="name">
+      HEXOを使ってGithub Pagesにブログを作成しました。
     </h1>
   
 
@@ -179,11 +140,24 @@
     </footer>
   </div>
   
+    
+<nav id="article-nav">
+  
+    <a href="/2014/09/06/t検定１/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          対応のない場合のt検定
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
 </article>
 
-
-  
-  
 </section>
         
           <aside id="sidebar">
