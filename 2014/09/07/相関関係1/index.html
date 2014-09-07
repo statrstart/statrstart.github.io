@@ -3,27 +3,42 @@
 <head>
   <meta charset="utf-8">
   
-  <title>t検定補足 | 統計ソフトRの備忘録２</title>
+  <title>相関関係1 | 統計ソフトRの備忘録２</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本来、ｔ検定を採用するには正規性を満たしていることが必要
-確認してみる
-ヒストグラムを描く
-123456x&lt;-c(85,90,82,96,84,95)y&lt;-c(88,74,82,87,73,79)par(mfrow=c(2,1))Hist(x,scale='frequency', breaks='Sturges', col='darkgray')Hist(y,scale='freque">
+  <meta name="description" content="放送大学「心理統計法」第8章
+12x&lt;-c(10,9,9,8,7,7,6,5,5,4)y&lt;-c(8,7,6,7,6,6,5,4,3,6)
+
+散布図
+1scatterplot(x,y, reg.line=lm, smooth=FALSE, spread=FALSE, boxplots='xy',span=0.5)
+
+
+ピアソンの積率相関係数
+1cor.test(x, y, alterna">
 <meta property="og:type" content="article">
-<meta property="og:title" content="t検定補足">
-<meta property="og:url" content="http://yoursite.com/2014/09/06/t検定補足/">
+<meta property="og:title" content="相関関係1">
+<meta property="og:url" content="http://yoursite.com/2014/09/07/相関関係1/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
-<meta property="og:description" content="本来、ｔ検定を採用するには正規性を満たしていることが必要
-確認してみる
-ヒストグラムを描く
-123456x&lt;-c(85,90,82,96,84,95)y&lt;-c(88,74,82,87,73,79)par(mfrow=c(2,1))Hist(x,scale='frequency', breaks='Sturges', col='darkgray')Hist(y,scale='freque">
-<meta property="og:image" content="http://blog-imgs-61.fc2.com/s/t/a/statrstart/hist1.jpg">
+<meta property="og:description" content="放送大学「心理統計法」第8章
+12x&lt;-c(10,9,9,8,7,7,6,5,5,4)y&lt;-c(8,7,6,7,6,6,5,4,3,6)
+
+散布図
+1scatterplot(x,y, reg.line=lm, smooth=FALSE, spread=FALSE, boxplots='xy',span=0.5)
+
+
+ピアソンの積率相関係数
+1cor.test(x, y, alterna">
+<meta property="og:image" content="http://blog-imgs-61.fc2.com/s/t/a/statrstart/scatter1.jpg">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="t検定補足">
-<meta name="twitter:description" content="本来、ｔ検定を採用するには正規性を満たしていることが必要
-確認してみる
-ヒストグラムを描く
-123456x&lt;-c(85,90,82,96,84,95)y&lt;-c(88,74,82,87,73,79)par(mfrow=c(2,1))Hist(x,scale='frequency', breaks='Sturges', col='darkgray')Hist(y,scale='freque">
+<meta name="twitter:title" content="相関関係1">
+<meta name="twitter:description" content="放送大学「心理統計法」第8章
+12x&lt;-c(10,9,9,8,7,7,6,5,5,4)y&lt;-c(8,7,6,7,6,6,5,4,3,6)
+
+散布図
+1scatterplot(x,y, reg.line=lm, smooth=FALSE, spread=FALSE, boxplots='xy',span=0.5)
+
+
+ピアソンの積率相関係数
+1cor.test(x, y, alterna">
 
   
     <link rel="alternative" href="/atom.xml" title="統計ソフトRの備忘録２" type="application/atom+xml">
@@ -70,10 +85,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-t検定補足" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-相関関係1" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/09/06/t検定補足/" class="article-date">
-  <time datetime="2014-09-06T06:21:05.000Z" itemprop="datePublished">Sep 6 2014</time>
+    <a href="/2014/09/07/相関関係1/" class="article-date">
+  <time datetime="2014-09-07T02:02:15.000Z" itemprop="datePublished">Sep 7 2014</time>
 </a>
     
   </div>
@@ -84,7 +99,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      t検定補足
+      相関関係1
     </h1>
   
 
@@ -92,29 +107,28 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="本来、ｔ検定を採用するには正規性を満たしていることが必要">本来、ｔ検定を採用するには正規性を満たしていることが必要</h3>
-<h3 id="確認してみる">確認してみる</h3>
-<h3 id="ヒストグラムを描く">ヒストグラムを描く</h3>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">x&lt;-c(<span class="number">85</span>,<span class="number">90</span>,<span class="number">82</span>,<span class="number">96</span>,<span class="number">84</span>,<span class="number">95</span>)</div><div class="line">y&lt;-c(<span class="number">88</span>,<span class="number">74</span>,<span class="number">82</span>,<span class="number">87</span>,<span class="number">73</span>,<span class="number">79</span>)</div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">2</span>,<span class="number">1</span>))</div><div class="line">Hist(x,<span class="variable">scale=</span><span class="string">"frequency"</span>, <span class="variable">breaks=</span><span class="string">"Sturges"</span>, <span class="variable">col=</span><span class="string">"darkgray"</span>)</div><div class="line">Hist(y,<span class="variable">scale=</span><span class="string">"frequency"</span>, <span class="variable">breaks=</span><span class="string">"Sturges"</span>, <span class="variable">col=</span><span class="string">"darkgray"</span>)</div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">1</span>,<span class="number">1</span>))</div></pre></td></tr></table></figure>
+        <h1 id="放送大学「心理統計法」第8章">放送大学「心理統計法」第8章</h1>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">x&lt;-<span class="built_in">c</span>(<span class="number">10</span>,<span class="number">9</span>,<span class="number">9</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">4</span>)</div><div class="line">y&lt;-<span class="built_in">c</span>(<span class="number">8</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">6</span>)</div></pre></td></tr></table></figure>
 
-<p><img src="http://blog-imgs-61.fc2.com/s/t/a/statrstart/hist1.jpg" alt=""></p>
-<h3 id="シャピロ・ウィルクの正規性検定">シャピロ・ウィルクの正規性検定</h3>
-<h4 id="帰無仮説は「変数の分布は正規分布にしたがう」">帰無仮説は「変数の分布は正規分布にしたがう」</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">shapiro.test(x)</div></pre></td></tr></table></figure>
+<h4 id="散布図">散布図</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scatterplot(x,y, reg.<span class="variable">line=</span>lm, <span class="variable">smooth=</span>FALSE, <span class="variable">spread=</span>FALSE, <span class="variable">boxplots=</span>'xy',<span class="variable">span=</span><span class="number">0.5</span>)</div></pre></td></tr></table></figure>
 
-<p>Shapiro-Wilk normality test</p>
-<p>data:  x<br>W = 0.8955, p-value = 0.3482</p>
-<p>p-value = 0.3482であり、0.05を越えることから正規性を否定することはできず、正規分布を仮定する</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">shapiro.test(y)</div></pre></td></tr></table></figure>
+<p><img src="http://blog-imgs-61.fc2.com/s/t/a/statrstart/scatter1.jpg" alt=""></p>
+<h4 id="ピアソンの積率相関係数">ピアソンの積率相関係数</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cor.test(x, y, alternative=<span class="string">"two.sided"</span>, <span class="keyword">method</span>=<span class="string">"pearson"</span>)</div></pre></td></tr></table></figure>
 
-<p>Shapiro-Wilk normality test</p>
-<p>data:  y<br>W = 0.9123, p-value = 0.4519</p>
-<p>p-value = 0.4519であり、0.05を越えることから正規性を否定することはできず、正規分布を仮定する</p>
+<p>Pearson’s product-moment correlation  </p>
+<p>data:  x and y<br>t = 3.2359, df = 8, p-value = 0.01195<br>alternative hypothesis: true correlation is not equal to 0<br>95 percent confidence interval:<br> 0.2344317 0.9379193<br>sample estimates:<br>      cor<br>0.7529233   </p>
+<p>相関係数 0.7529233<br>無相関検定　t値 = 3.2359, 自由度 = 8, P値 = 0.01195<br> 母相関は，0ではない<br>95 パーセント信頼区間: 0.2344317 0.9379193  </p>
+<h3 id="Rコマンダーのメニュー操作">Rコマンダーのメニュー操作</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">d</span>&lt;-<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(<span class="title">x</span>,<span class="title">y</span>)</span></span></div></pre></td></tr></table></figure>
+
+<p>アクティブデータセットをdに変更<br>グラフ～散布図<br>統計量～要約～相関の検定  </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/09/06/t検定補足/" data-id="uf5d43nx0ppi94qv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/09/07/相関関係1/" data-id="035369ai41d2yqjv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心理統計法/">心理統計法</a></li></ul>
@@ -125,19 +139,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2014/09/07/相関関係1/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2014/09/07/相関関係2/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          相関関係1
+          相関関係2
         
       </div>
     </a>
   
   
-    <a href="/2014/09/06/t検定2/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2014/09/06/t検定補足/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">対応のある場合のt検定</div>
+      <div class="article-nav-title">t検定補足</div>
     </a>
   
 </nav>

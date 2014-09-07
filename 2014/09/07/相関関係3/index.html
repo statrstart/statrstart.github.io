@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>相関関係3 | 統計ソフトRの備忘録２</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="放送大学「心理統計法」第9章
+質的なデータの相関
+ピアソンのカイ二乗検定（連続性補正なし）
+123456.Table &lt;- matrix(c(7,0,1,6,4,2,3,5,1,1,5,2,2,2,9),3,5, byrow=F)  colnames(.Table) &lt;- c('A', 'B', 'C', 'D', 'E')  rownames(.Table) &lt;- c('甲',">
+<meta property="og:type" content="article">
+<meta property="og:title" content="相関関係3">
+<meta property="og:url" content="http://yoursite.com/2014/09/07/相関関係3/">
+<meta property="og:site_name" content="統計ソフトRの備忘録２">
+<meta property="og:description" content="放送大学「心理統計法」第9章
+質的なデータの相関
+ピアソンのカイ二乗検定（連続性補正なし）
+123456.Table &lt;- matrix(c(7,0,1,6,4,2,3,5,1,1,5,2,2,2,9),3,5, byrow=F)  colnames(.Table) &lt;- c('A', 'B', 'C', 'D', 'E')  rownames(.Table) &lt;- c('甲',">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="相関関係3">
+<meta name="twitter:description" content="放送大学「心理統計法」第9章
+質的なデータの相関
+ピアソンのカイ二乗検定（連続性補正なし）
+123456.Table &lt;- matrix(c(7,0,1,6,4,2,3,5,1,1,5,2,2,2,9),3,5, byrow=F)  colnames(.Table) &lt;- c('A', 'B', 'C', 'D', 'E')  rownames(.Table) &lt;- c('甲',">
+
+  
+    <link rel="alternative" href="/atom.xml" title="統計ソフトRの備忘録２" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">統計ソフトRの備忘録２</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-相関関係3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/09/07/相関関係3/" class="article-date">
+  <time datetime="2014-09-07T03:05:27.000Z" itemprop="datePublished">Sep 7 2014</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      相関関係3
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="放送大学「心理統計法」第9章">放送大学「心理統計法」第9章</h1>
+<h4 id="質的なデータの相関">質的なデータの相関</h4>
+<h3 id="ピアソンのカイ二乗検定（連続性補正なし）">ピアソンのカイ二乗検定（連続性補正なし）</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.<span class="keyword">Table</span> &lt;- matrix(c(<span class="number">7</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">6</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">9</span>),<span class="number">3</span>,<span class="number">5</span>, byrow=F)  </div><div class="line">colnames(.<span class="keyword">Table</span>) &lt;- c(<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>, <span class="string">'D'</span>, <span class="string">'E'</span>)  </div><div class="line">rownames(.<span class="keyword">Table</span>) &lt;- c(<span class="string">'甲'</span>, <span class="string">'乙'</span>, <span class="string">'丙'</span>)  </div><div class="line">.<span class="keyword">Table</span>  # Counts</div><div class="line">res&lt;-chisq.test(.<span class="keyword">Table</span>, correct=FALSE)</div><div class="line">res</div></pre></td></tr></table></figure>
+
+<p>Pearson’s Chi-squared test</p>
+<p>data:  .Table<br>X-squared = 25.6918, df = 8, p-value = 0.001186  </p>
+<h3 id="期待値を出力する">期待値を出力する</h3>
+<p>res$expected</p>
+<p>A    B    C    D    E<br>甲 3.04 4.56 3.42 3.04 4.94<br>乙 2.56 3.84 2.88 2.56 4.16<br>丙 2.40 3.60 2.70 2.40 3.90  </p>
+<h3 id="クラメールの連関係数">クラメールの連関係数</h3>
+<h4 id="計算する">計算する</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sqrt</span>(<span class="keyword">res</span>$statistic/(<span class="built_in">min</span>(nrow(.Table),ncol(.Table))-<span class="number">1</span>)/sum(.Table))</div></pre></td></tr></table></figure>
+
+<p>X-squared<br>0.5068711</p>
+<h4 id="vcdパッケージを使う">vcdパッケージを使う</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">library</span><span class="params">(vcd)</span></span></div><div class="line"><span class="title">assocstats</span><span class="params">(.<span class="variable">Table</span>)</span></div></pre></td></tr></table></figure>
+
+<p>X^2 df   P(&gt; X^2)<br>Likelihood Ratio 26.186  8 0.00097613<br>Pearson          25.692  8 0.00118568  </p>
+<p>Phi-Coefficient   : 0.717<br>Contingency Coeff.: 0.583<br>Cramer’s V        : 0.507  </p>
+<h3 id="おまけ（xtableパッケージを利用して、表をhtmlで出力）">おまけ（xtableパッケージを利用して、表をhtmlで出力）</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">library(xtable)</div><div class="line"><span class="keyword">print</span>(xtable(.Table),<span class="built_in">type</span>=<span class="string">"html"</span>)</div><div class="line"><span class="keyword">print</span>(xtable(<span class="keyword">res</span>$expected),<span class="built_in">type</span>=<span class="string">"html"</span>)</div></pre></td></tr></table></figure>
+
+<p><!-- html table generated in R 3.1.1 by xtable 1.7-3 package --><br><!-- Sun Sep  7 12:03:37 2014 --></p>
+<table border="1"><br><tr> <th>  </th> <th> A </th> <th> B </th> <th> C </th> <th> D </th> <th> E </th>  </tr><br>  <tr> <td align="right"> 甲 </td> <td align="right"> 7.00 </td> <td align="right"> 6.00 </td> <td align="right"> 3.00 </td> <td align="right"> 1.00 </td> <td align="right"> 2.00 </td> </tr><br>  <tr> <td align="right"> 乙 </td> <td align="right"> 0.00 </td> <td align="right"> 4.00 </td> <td align="right"> 5.00 </td> <td align="right"> 5.00 </td> <td align="right"> 2.00 </td> </tr><br>  <tr> <td align="right"> 丙 </td> <td align="right"> 1.00 </td> <td align="right"> 2.00 </td> <td align="right"> 1.00 </td> <td align="right"> 2.00 </td> <td align="right"> 9.00 </td> </tr><br>   </table>
+
+
+<p><!-- html table generated in R 3.1.1 by xtable 1.7-3 package --><br><!-- Sun Sep  7 12:03:37 2014 --></p>
+<table border="1"><br><tr> <th>  </th> <th> A </th> <th> B </th> <th> C </th> <th> D </th> <th> E </th>  </tr><br>  <tr> <td align="right"> 甲 </td> <td align="right"> 3.04 </td> <td align="right"> 4.56 </td> <td align="right"> 3.42 </td> <td align="right"> 3.04 </td> <td align="right"> 4.94 </td> </tr><br>  <tr> <td align="right"> 乙 </td> <td align="right"> 2.56 </td> <td align="right"> 3.84 </td> <td align="right"> 2.88 </td> <td align="right"> 2.56 </td> <td align="right"> 4.16 </td> </tr><br>  <tr> <td align="right"> 丙 </td> <td align="right"> 2.40 </td> <td align="right"> 3.60 </td> <td align="right"> 2.70 </td> <td align="right"> 2.40 </td> <td align="right"> 3.90 </td> </tr><br>   </table>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2014/09/07/相関関係3/" data-id="5mgkgxcec90bagpu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心理統計法/">心理統計法</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2014/09/07/相関関係2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">相関関係2</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/HEXO/" style="font-size: 10.00px;">HEXO</a><a href="/tags/心理統計法/" style="font-size: 20.00px;">心理統計法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2014/09/07/相関関係3/">相関関係3</a>
+          </li>
+        
+          <li>
+            <a href="/2014/09/07/相関関係2/">相関関係2</a>
+          </li>
+        
+          <li>
+            <a href="/2014/09/07/相関関係1/">相関関係1</a>
+          </li>
+        
+          <li>
+            <a href="/2014/09/06/t検定補足/">t検定補足</a>
+          </li>
+        
+          <li>
+            <a href="/2014/09/06/t検定2/">対応のある場合のt検定</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2014 統計ソフトRの備忘録２<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
