@@ -65,7 +65,7 @@
     <article id="post-データからの知識発見第５章" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/09/14/データからの知識発見第５章/" class="article-date">
-  <time datetime="2014-09-13T21:22:11.000Z" itemprop="datePublished">Sep 14 2014</time>
+  <time datetime="2014-09-13T21:25:02.000Z" itemprop="datePublished">Sep 14 2014</time>
 </a>
     
   </div>
@@ -101,7 +101,7 @@
 
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">plot(w2<span class="variable">$x</span>,<span class="built_in">type</span>=<span class="string">"n"</span>)</div><div class="line">text(w2<span class="variable">$x</span>,rownames(w1))</div></pre></td></tr></table></figure>
 
-<p><img src="http://statrstart.github.io/prcomp01.png" alt=""></p>
+<p><img src="prcomp01.png" alt=""></p>
 <h3 id="標準化してから分析（scale=T）">標準化してから分析（scale=T）</h3>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">w2&lt;-prcomp(w1,<span class="variable">scale=</span>T)</div><div class="line">print(xtable(summary(w2)$importance[,<span class="number">1</span>:<span class="number">2</span>],<span class="variable">digits=</span><span class="number">4</span>),<span class="variable">type=</span><span class="string">"html"</span>)</div></pre></td></tr></table></figure>
 
