@@ -62,6 +62,61 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-分散分析4" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/09/09/分散分析4/" class="article-date">
+  <time datetime="2014-09-09T13:06:19.000Z" itemprop="datePublished">Sep 9 2014</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/09/分散分析4/">分散分析(個人差を考える)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="放送大学「心理統計法」第11章">放送大学「心理統計法」第11章</h1>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="type">A</span>&lt;-c(<span class="number">5</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">3</span>)</div><div class="line"><span class="type">B</span>&lt;-c(<span class="number">3</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">1</span>)</div><div class="line"><span class="type">C</span>&lt;-c(<span class="number">3</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">3</span>)</div><div class="line"><span class="type">D</span>&lt;-c(<span class="number">5</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">5</span>)</div><div class="line"><span class="title">d</span>&lt;-<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(<span class="type">A</span>,<span class="type">B</span>,<span class="type">C</span>,<span class="type">D</span>)</span></span></div><div class="line"><span class="title">d1</span>&lt;-stack(d)</div><div class="line"><span class="title">d1</span>$<span class="type">S</span>&lt;-c(rep(<span class="number">1</span>:<span class="number">10</span>,<span class="number">4</span>))</div></pre></td></tr></table></figure>
+
+<p>アクティブデータセットをd1に変更<br>d1$S 数値変数を因子に変換</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">d1$S &lt;- <span class="keyword">as</span>.factor(d1$S)</div><div class="line">library(xtable)</div><div class="line"><span class="keyword">print</span>(xtable(summary(aov( <span class="built_in">values</span> ~ ind + S ,data= d1 ))),<span class="built_in">type</span>=<span class="string">"html"</span>)</div></pre></td></tr></table></figure>
+
+<p><!-- html table generated in R 3.0.2 by xtable 1.7-3 package --><br><!-- Tue Sep 09 12:37:24 2014 --></p>
+<table border="1"><br><tr> <th>  </th> <th> Df </th> <th> Sum Sq </th> <th> Mean Sq </th> <th> F value </th> <th> Pr(&gt;F) </th>  </tr><br>  <tr> <td> ind         </td> <td align="right"> 3 </td> <td align="right"> 22.10 </td> <td align="right"> 7.37 </td> <td align="right"> 8.32 </td> <td align="right"> 0.0004 </td> </tr><br>  <tr> <td> S           </td> <td align="right"> 9 </td> <td align="right"> 11.90 </td> <td align="right"> 1.32 </td> <td align="right"> 1.49 </td> <td align="right"> 0.2004 </td> </tr><br>  <tr> <td> Residuals   </td> <td align="right"> 27 </td> <td align="right"> 23.90 </td> <td align="right"> 0.89 </td> <td align="right">  </td> <td align="right">  </td> </tr><br>   </table>
+
+<h4 id="多重比較">多重比較</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">library(xtable)</div><div class="line">print(xtable(pairwise.t.test(d1$values,d1$ind,p.adjust.<span class="keyword">method</span>=<span class="string">"bonferroni"</span>,paired=<span class="type">TRUE</span>)$p.value),<span class="keyword">type</span>=<span class="string">"html"</span>)</div></pre></td></tr></table></figure>
+
+<p><!-- html table generated in R 3.1.1 by xtable 1.7-3 package --><br><!-- Tue Sep  9 22:05:04 2014 --></p>
+<table border="1"><br><tr> <th>  </th> <th> A </th> <th> B </th> <th> C </th>  </tr><br>  <tr> <td align="right"> B </td> <td align="right"> 0.08 </td> <td align="right">  </td> <td align="right">  </td> </tr><br>  <tr> <td align="right"> C </td> <td align="right"> 0.33 </td> <td align="right"> 1.00 </td> <td align="right">  </td> </tr><br>  <tr> <td align="right"> D </td> <td align="right"> 1.00 </td> <td align="right"> 0.00 </td> <td align="right"> 0.04 </td> </tr><br>   </table>
+
+
+<p>BD間 CD間に有意差あり（有意水準５％）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2014/09/09/分散分析4/" data-id="ek03i87ziasq6onc" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心理統計法/">心理統計法</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-分散分析3" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/09/09/分散分析3/" class="article-date">
@@ -596,75 +651,9 @@
 
 
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/09/06/hello-world/" class="article-date">
-  <time datetime="2014-09-06T04:21:37.000Z" itemprop="datePublished">Sep 6 2014</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/06/hello-world/">HEXOを使ってGithub Pagesにブログを作成しました。</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="次の３つの記事のとおりにやったらできました。感謝です。">次の３つの記事のとおりにやったらできました。感謝です。</h2>
-<h4 id="Node-jsの環境を整える">Node.jsの環境を整える</h4>
-<p><a href="http://liginc.co.jp/web/programming/node-js/85318" target="_blank" rel="external">いまアツいJavaScript！ゼロから始めるNode.js入門〜5分で環境構築編〜</a> </p>
-<h4 id="Githubのアカウントを取得し、Github_Pages用のリポジトリを作成">Githubのアカウントを取得し、Github Pages用のリポジトリを作成</h4>
-<p><a href="http://liginc.co.jp/web/html-css/html/96453" target="_blank" rel="external">Git初心者でも大丈夫！完全無料でGithub PagesにWebページを公開する方法</a>  </p>
-<h4 id="HEXOをインストールし、ブログを作成、公開">HEXOをインストールし、ブログを作成、公開</h4>
-<p><a href="http://liginc.co.jp/web/programming/server/104594" target="_blank" rel="external">所要時間3分!? Github PagesとHEXOで爆速ブログ構築してみよう！</a></p>
-<h2 id="記事作成の手順">記事作成の手順</h2>
-<h3 id="記事を追加">記事を追加</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="source/_postsフォルダ内に生成されたMarkDownファイルを編集">source/_postsフォルダ内に生成されたMarkDownファイルを編集</h3>
-<h3 id="ローカルサーバー立ち上げ">ローカルサーバー立ち上げ</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="記事の内容とレイアウトを確認">記事の内容とレイアウトを確認</h3>
-<p>ブラウザから<a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a>にアクセス</p>
-<h3 id="静的HTMLをpublicフォルダ内に生成">静的HTMLをpublicフォルダ内に生成</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="デプロイ（サイトに記事をのっける）">デプロイ（サイトに記事をのっける）</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-<h3 id="自分のGithub_Pagesのページを見て最終確認。">自分のGithub Pagesのページを見て最終確認。</h3>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/09/06/hello-world/" data-id="33hdidcg8rfu9iod" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HEXO/">HEXO</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2014/09/">&laquo; Prev</a><a class="page-number" href="/archives/2014/09/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/archives/2014/09/">&laquo; Prev</a><a class="page-number" href="/archives/2014/09/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2014/09/page/3/">3</a><a class="extend next" rel="next" href="/archives/2014/09/page/3/">Next &raquo;</a>
     </nav>
   
 </section>
@@ -677,7 +666,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">13</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">13</span></li></ul>
     </div>
   </div>
 
@@ -686,7 +675,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/HEXO/" style="font-size: 10.00px;">HEXO</a><a href="/tags/心理・教育統計法特論/" style="font-size: 15.00px;">心理・教育統計法特論</a><a href="/tags/心理統計法/" style="font-size: 20.00px;">心理統計法</a>
+      <a href="/tags/HEXO/" style="font-size: 10.00px;">HEXO</a><a href="/tags/データからの知識発見/" style="font-size: 10.00px;">データからの知識発見</a><a href="/tags/心理・教育統計法特論/" style="font-size: 15.00px;">心理・教育統計法特論</a><a href="/tags/心理統計法/" style="font-size: 20.00px;">心理統計法</a>
     </div>
   </div>
 
@@ -695,7 +684,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">20</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">21</span></li></ul>
     </div>
   </div>
 
@@ -705,6 +694,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2014/09/13/データからの知識発見第５章/">主成分分析</a>
+          </li>
         
           <li>
             <a href="/2014/09/12/相関研究/">相関研究</a>
@@ -720,10 +713,6 @@
         
           <li>
             <a href="/2014/09/11/第5章分散分析/">分散分析</a>
-          </li>
-        
-          <li>
-            <a href="/2014/09/11/対応のあるt検定/">対応のあるｔ検定</a>
           </li>
         
       </ul>
