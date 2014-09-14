@@ -62,6 +62,68 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-回帰分析1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/09/10/回帰分析1/" class="article-date">
+  <time datetime="2014-09-10T14:07:28.000Z" itemprop="datePublished">Sep 10 2014</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/10/回帰分析1/">回帰分析1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="放送大学「心理統計法」第12章">放送大学「心理統計法」第12章</h1>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="title">x</span>&lt;-c(<span class="number">10</span>,<span class="number">9</span>,<span class="number">9</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">4</span>)</div><div class="line"><span class="title">y</span>&lt;-c(<span class="number">8</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">6</span>)</div><div class="line"><span class="type">Model</span> &lt;- lm(y~x)</div><div class="line"><span class="title">library</span>(xtable)</div><div class="line"><span class="title">print</span>(xtable(<span class="type">Model</span>),<span class="typedef"><span class="keyword">type</span>="html")</span></div></pre></td></tr></table></figure>
+
+<p><!-- html table generated in R 3.0.2 by xtable 1.7-3 package --><br><!-- Wed Sep 10 13:30:47 2014 --></p>
+<table border="1"><br><tr> <th>  </th> <th> Estimate </th> <th> Std. Error </th> <th> t value </th> <th> Pr(&gt;|t|) </th>  </tr><br>  <tr> <td align="right"> (Intercept) </td> <td align="right"> 1.9111 </td> <td align="right"> 1.2452 </td> <td align="right"> 1.53 </td> <td align="right"> 0.1634 </td> </tr><br>  <tr> <td align="right"> x </td> <td align="right"> 0.5556 </td> <td align="right"> 0.1717 </td> <td align="right"> 3.24 </td> <td align="right"> 0.0120 </td> </tr><br>   </table>
+
+
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">library(stargazer)</div><div class="line">stargazer(Model,<span class="variable">type=</span><span class="string">"html"</span>,single.<span class="variable">row=</span>T,<span class="variable">title=</span><span class="string">"線形回帰"</span>)</div></pre></td></tr></table></figure>
+
+<table style="text-align:center"><caption><strong>線形回帰</strong></caption><br><tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"></td><td><em>Dependent variable:</em></td></tr><br><tr><td></td><td colspan="1" style="border-bottom: 1px solid black"></td></tr><br><tr><td style="text-align:left"></td><td>y</td></tr><br><tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">x</td><td>0.556<sup><strong></strong></sup> (0.172)</td></tr><br><tr><td style="text-align:left">Constant</td><td>1.911 (1.245)</td></tr><br><tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">Observations</td><td>10</td></tr><br><tr><td style="text-align:left">R<sup>2</sup></td><td>0.567</td></tr><br><tr><td style="text-align:left">Adjusted R<sup>2</sup></td><td>0.513</td></tr><br><tr><td style="text-align:left">Residual Std. Error</td><td>1.030 (df = 8)</td></tr><br><tr><td style="text-align:left">F Statistic</td><td>10.471<sup></sup> (df = 1; 8)</td></tr><br><tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"><em>Note:</em></td><td style="text-align:right"><sup><em></em></sup>p<0.1; <sup=""><strong>p<0.05; <sup=""></0.05;></strong>p<0.01< td=""></0.01<></0.1;></td></tr><br></table>
+
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">library</span><span class="params">(texreg)</span></span></div><div class="line"><span class="title">htmlreg</span><span class="params">(<span class="variable">Model</span>,single.row =<span class="variable">T</span>)</span></div></pre></td></tr></table></figure>
+
+<p>&lt;!DOCTYPE HTML PUBLIC “-//W3C//DTD HTML 4.01 Transitional//EN” “<a href="http://www.w3.org/TR/html4/loose.dtd&quot;&gt;" target="_blank" rel="external">http://www.w3.org/TR/html4/loose.dtd&quot;&gt;</a></p>
+<table cellspacing="0" align="center" style="border: none;"><br>  <caption align="bottom" style="margin-top:0.3em;">Statistical models</caption><br>  <tr><br>    <th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"></th><br>    <th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"><b>Model 1</b></th><br>  </tr><br>  <tr><br>    <td style="padding-right: 12px; border: none;">(Intercept)</td><br>    <td style="padding-right: 12px; border: none;">1.91 (1.25)</td><br>  </tr><br>  <tr><br>    <td style="padding-right: 12px; border: none;">x</td><br>    <td style="padding-right: 12px; border: none;">0.56 (0.17)<sup style="vertical-align: 4px;"><em></em></sup></td><br>  </tr><br>  <tr><br>    <td style="border-top: 1px solid black;">R<sup style="vertical-align: 4px;">2</sup></td><br>    <td style="border-top: 1px solid black;">0.57</td><br>  </tr><br>  <tr><br>    <td style="padding-right: 12px; border: none;">Adj. R<sup style="vertical-align: 4px;">2</sup></td><br>    <td style="padding-right: 12px; border: none;">0.51</td><br>  </tr><br>  <tr><br>    <td style="border-bottom: 2px solid black;">Num. obs.</td><br>    <td style="border-bottom: 2px solid black;">10</td><br>  </tr><br>  <tr><br>    <td style="padding-right: 12px; border: none;" colspan="2"><span style="font-size:0.8em"><sup style="vertical-align: 4px;">**</sup>p &lt; 0.001, <sup style="vertical-align: 4px;"><em>*</em></sup>p &lt; 0.01, <sup style="vertical-align: 4px;"></sup>p &lt; 0.05</span></td><br>  </tr><br></table>
+
+
+<h4 id="回帰直線を描く">回帰直線を描く</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">plot(x,y,<span class="variable">xlim=</span>c(<span class="number">0</span>,<span class="number">10</span>),<span class="variable">ylim=</span>c(<span class="number">0</span>,<span class="number">10</span>),<span class="variable">xlab=</span><span class="string">"試験成績"</span>,<span class="variable">ylab=</span><span class="string">"仕事評価"</span>,<span class="variable">main=</span><span class="string">"入社試験と仕事評価の関係"</span>)</div><div class="line">abline(Model,<span class="variable">col=</span><span class="string">"red"</span>)</div></pre></td></tr></table></figure>
+
+<p><img src="http://blog-imgs-61.fc2.com/s/t/a/statrstart/lm1.jpg" alt=""></p>
+<h4 id="線形モデル(切片を0にする)">線形モデル(切片を0にする)</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Model2 &lt;- lm(y~x+ <span class="number">0</span>)</div><div class="line">plot(x,y,<span class="variable">xlim=</span>c(<span class="number">0</span>,<span class="number">10</span>),<span class="variable">ylim=</span>c(<span class="number">0</span>,<span class="number">10</span>),<span class="variable">xlab=</span><span class="string">"試験成績"</span>,<span class="variable">ylab=</span><span class="string">"仕事評価"</span>,<span class="variable">main=</span><span class="string">"入社試験と仕事評価の関係"</span>)</div><div class="line">abline(Model2,<span class="variable">col=</span><span class="string">"red"</span>)</div></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2014/09/10/回帰分析1/" data-id="rnhvf03z4zj13jkx" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心理統計法/">心理統計法</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-分散分析4" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/09/09/分散分析4/" class="article-date">
@@ -596,61 +658,6 @@
 
 
   
-    <article id="post-t検定１" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/09/06/t検定１/" class="article-date">
-  <time datetime="2014-09-06T06:14:12.000Z" itemprop="datePublished">Sep 6 2014</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/06/t検定１/">対応のない場合のt検定</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="放送大学「心理統計法」第7章">放送大学「心理統計法」第7章</h1>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">x&lt;-<span class="built_in">c</span>(<span class="number">85</span>,<span class="number">90</span>,<span class="number">82</span>,<span class="number">96</span>,<span class="number">84</span>,<span class="number">95</span>)</div><div class="line">y&lt;-<span class="built_in">c</span>(<span class="number">88</span>,<span class="number">74</span>,<span class="number">82</span>,<span class="number">87</span>,<span class="number">73</span>,<span class="number">79</span>)</div></pre></td></tr></table></figure>
-
-<h3 id="二群の等分散性の検定">二群の等分散性の検定</h3>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag"><span class="attribute">var.test</span>(<span class="attribute">x</span>,<span class="attribute">y</span>, <span class="attribute">alternative</span>=<span class="value">'two.sided'</span><span class="value">,</span> <span class="attribute">conf.level</span>=<span class="value">.95)</span></span></span></div></pre></td></tr></table></figure>
-
-<p>F test to compare two variances</p>
-<p>data:  x and y<br>F = 0.8701, num df = 5, denom df = 5, p-value = 0.8824<br>alternative hypothesis: true ratio of variances is not equal to 1<br>95 percent confidence interval:<br> 0.1217596 6.2183571<br>sample estimates:<br>ratio of variances<br>         0.8701406 </p>
-<h3 id="二標本t検定（分散が等しいと仮定できるとき）">二標本t検定（分散が等しいと仮定できるとき）</h3>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag"><span class="attribute">t.test</span>(<span class="attribute">x</span>,<span class="attribute">y</span>, <span class="attribute">alternative</span>=<span class="value">'two.sided'</span><span class="value">,</span> <span class="attribute">conf.level</span>=<span class="value">.95,</span> <span class="attribute">var.equal</span>=<span class="value">TRUE)</span></span></span></div></pre></td></tr></table></figure>
-
-<p>Two Sample t-test</p>
-<p>data:  x and y<br>t = 2.3043, df = 10, p-value = 0.04393<br>alternative hypothesis: true difference in means is not equal to 0<br>95 percent confidence interval:<br>  0.2697732 16.0635601<br>sample estimates:<br>mean of x mean of y<br> 88.66667  80.50000   </p>
-<h2 id="Ｒコマンダーのメニューから行うには">Ｒコマンダーのメニューから行うには</h2>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="title">d</span>&lt;-<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(<span class="title">x</span>,<span class="title">y</span>)</span></span></div><div class="line"><span class="title">d1</span>&lt;-stack(d)</div></pre></td></tr></table></figure>
-
-<p>Ｒコマンダーのアクティブデータセットをd1に変更<br>以下はメニューで操作<br>統計量～分散～F検定<br>統計量～平均～独立サンプルｔ検定  </p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/09/06/t検定１/" data-id="6ebvkg78s1htu5pv" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心理統計法/">心理統計法</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/archives/2014/">&laquo; Prev</a><a class="page-number" href="/archives/2014/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2014/page/3/">3</a><a class="extend next" rel="next" href="/archives/2014/page/3/">Next &raquo;</a>
@@ -666,7 +673,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">13</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">13</span></li></ul>
     </div>
   </div>
 
@@ -675,7 +682,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/HEXO/" style="font-size: 10.00px;">HEXO</a><a href="/tags/データからの知識発見/" style="font-size: 10.00px;">データからの知識発見</a><a href="/tags/心理・教育統計法特論/" style="font-size: 15.00px;">心理・教育統計法特論</a><a href="/tags/心理統計法/" style="font-size: 20.00px;">心理統計法</a>
+      <a href="/tags/HEXO/" style="font-size: 10.00px;">HEXO</a><a href="/tags/データからの知識発見/" style="font-size: 13.33px;">データからの知識発見</a><a href="/tags/心理・教育統計法特論/" style="font-size: 16.67px;">心理・教育統計法特論</a><a href="/tags/心理統計法/" style="font-size: 20.00px;">心理統計法</a>
     </div>
   </div>
 
@@ -684,7 +691,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">21</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">22</span></li></ul>
     </div>
   </div>
 
@@ -694,6 +701,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2014/09/14/データからの知識発見第６章/">回帰分析(データからの知識発見)</a>
+          </li>
         
           <li>
             <a href="/2014/09/14/データからの知識発見第５章/">主成分分析</a>
@@ -709,10 +720,6 @@
         
           <li>
             <a href="/2014/09/12/名義尺度/">名義尺度</a>
-          </li>
-        
-          <li>
-            <a href="/2014/09/11/第5章分散分析/">分散分析</a>
           </li>
         
       </ul>
