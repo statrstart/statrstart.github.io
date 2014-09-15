@@ -611,7 +611,7 @@ a.article-title:hover {
   border: none;
 }
 .article-entry table {
-  width: 100%;
+  width: 60%;
   border-collapse: collapse;
   border-spacing: 0;
 }
@@ -626,8 +626,8 @@ a.article-title:hover {
 }
 .article-entry blockquote {
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.4em;
-  margin: 1.6em 20px;
+  font-size: 1.2em;
+  margin: 1.6em 15px;
   text-align: center;
 }
 .article-entry blockquote footer {
