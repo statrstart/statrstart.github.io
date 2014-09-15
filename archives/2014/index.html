@@ -62,6 +62,108 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-データからの知識発見第9章" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/09/15/データからの知識発見第9章/" class="article-date">
+  <time datetime="2014-09-15T10:31:39.000Z" itemprop="datePublished">Sep 15 2014</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/15/データからの知識発見第9章/">アソシエーション分析</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="「データからの知識発見」第9章アソシエーション分析">「データからの知識発見」第9章アソシエーション分析</h2>
+<h3 id="arules_パッケージをインストールしておく">arules パッケージをインストールしておく</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="title">library</span>(arules) #読み込みに数秒かかる</div><div class="line"><span class="typedef"><span class="keyword">data</span><span class="container">(<span class="type">Groceries</span>)</span></span></div><div class="line"><span class="type">Groceries</span></div></pre></td></tr></table></figure>
+
+<p>transactions in sparse format with<br> 9835 transactions (rows) and<br> 169 items (columns)</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="title">g0</span>&lt;-<span class="type">Groceries</span></div><div class="line"><span class="title">gfrm0</span>&lt;-<span class="keyword">as</span>(g0,<span class="string">"data.frame"</span>)</div></pre></td></tr></table></figure>
+
+<h4 id="ファイルに保存する箇所は省略">ファイルに保存する箇所は省略</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">grule1</span>&lt;-apriori(g0)</div></pre></td></tr></table></figure>
+
+<p>parameter specification:<br> confidence minval smax arem  aval originalSupport support minlen maxlen target   ext<br>0.8    0.1    1 none FALSE            TRUE     0.1      1     10  rules FALSE</p>
+<p>algorithmic control:<br> filter tree heap memopt load sort verbose<br> 0.1 TRUE TRUE  FALSE TRUE    2    TRUE  </p>
+<p>apriori - find association rules with the apriori algorithm<br>version 4.21 (2004.05.09)        (c) 1996-2004   Christian Borgelt<br>set item appearances …[0 item(s)] done [0.00s].<br>set transactions …[169 item(s), 9835 transaction(s)] done [0.02s].<br>sorting and recoding items … [8 item(s)] done [0.00s].<br>creating transaction tree … done [0.02s].<br>checking subsets of size 1 2 done [0.00s].<br>writing … [0 rule(s)] done [0.00s].<br>creating S4 object  … done [0.00s].  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grule2&lt;-apriori(g0,<span class="variable">p=</span>list(<span class="variable">support=</span><span class="number">0.01</span>,<span class="variable">confidence=</span><span class="number">0.5</span>))</div></pre></td></tr></table></figure>
+
+<p>parameter specification:<br> confidence minval smax arem  aval originalSupport support minlen maxlen target   ext<br>0.5    0.1    1 none FALSE            TRUE    0.01      1     10  rules FALSE</p>
+<p>algorithmic control:<br> filter tree heap memopt load sort verbose<br>0.1 TRUE TRUE  FALSE TRUE    2    TRUE</p>
+<p>apriori - find association rules with the apriori algorithm<br>version 4.21 (2004.05.09)        (c) 1996-2004   Christian Borgelt<br>set item appearances …[0 item(s)] done [0.00s].<br>set transactions …[169 item(s), 9835 transaction(s)] done [0.01s].<br>sorting and recoding items … [88 item(s)] done [0.01s].<br>creating transaction tree … done [0.02s].<br>checking subsets of size 1 2 3 4 done [0.00s].<br>writing … [15 rule(s)] done [0.00s].<br>creating S4 object  … done [0.01s].  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">grule3&lt;-<span class="built_in">sort</span>(grule2,<span class="keyword">by</span>=<span class="string">"confidence"</span>) <span class="comment">#信頼度によって並び替え</span></div><div class="line">inspect(grule3)</div></pre></td></tr></table></figure>
+
+<p>lhs                     rhs                   support confidence     lift<br>1  {citrus fruit,<br>    root vegetables}    =&gt; {other vegetables} 0.01037112  0.5862069 3.029608<br>2  {tropical fruit,<br>    root vegetables}    =&gt; {other vegetables} 0.01230300  0.5845411 3.020999<br>3  {curd,<br>    yogurt}             =&gt; {whole milk}       0.01006609  0.5823529 2.279125<br>4  {other vegetables,<br>    butter}             =&gt; {whole milk}       0.01148958  0.5736041 2.244885<br>5  {tropical fruit,<br>    root vegetables}    =&gt; {whole milk}       0.01199797  0.5700483 2.230969<br>6  {root vegetables,<br>    yogurt}             =&gt; {whole milk}       0.01453991  0.5629921 2.203354<br>7  {other vegetables,<br>    domestic eggs}      =&gt; {whole milk}       0.01230300  0.5525114 2.162336<br>8  {yogurt,<br>    whipped/sour cream} =&gt; {whole milk}       0.01087951  0.5245098 2.052747<br>9  {root vegetables,<br>    rolls/buns}         =&gt; {whole milk}       0.01270971  0.5230126 2.046888<br>10 {pip fruit,<br>    other vegetables}   =&gt; {whole milk}       0.01352313  0.5175097 2.025351<br>11 {tropical fruit,<br>    yogurt}             =&gt; {whole milk}       0.01514997  0.5173611 2.024770<br>12 {other vegetables,<br>    yogurt}             =&gt; {whole milk}       0.02226741  0.5128806 2.007235<br>13 {other vegetables,<br>    whipped/sour cream} =&gt; {whole milk}       0.01464159  0.5070423 1.984385<br>14 {root vegetables,<br>    rolls/buns}         =&gt; {other vegetables} 0.01220132  0.5020921 2.594890<br>15 {root vegetables,<br>    yogurt}             =&gt; {other vegetables} 0.01291307  0.5000000 2.584078  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">grule4&lt;<span class="function">-head</span>(grule3)</div><div class="line"><span class="function">inspect</span>(grule4)</div></pre></td></tr></table></figure>
+
+<p>lhs                   rhs                   support confidence     lift<br>1 {citrus fruit,<br>   root vegetables}  =&gt; {other vegetables} 0.01037112  0.5862069 3.029608<br>2 {tropical fruit,<br>   root vegetables}  =&gt; {other vegetables} 0.01230300  0.5845411 3.020999<br>3 {curd,<br>   yogurt}           =&gt; {whole milk}       0.01006609  0.5823529 2.279125<br>4 {other vegetables,<br>   butter}           =&gt; {whole milk}       0.01148958  0.5736041 2.244885<br>5 {tropical fruit,<br>   root vegetables}  =&gt; {whole milk}       0.01199797  0.5700483 2.230969<br>6 {root vegetables,<br>   yogurt}           =&gt; {whole milk}       0.01453991  0.5629921 2.203354  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">gdat1&lt;<span class="function">-itemFrequency</span>(g0)</div><div class="line"><span class="function">itemFrequencyPlot</span>(g0)</div></pre></td></tr></table></figure>
+
+<p><img src="http://blog-imgs-61.fc2.com/s/t/a/statrstart/association01.jpg" alt=""></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">head</span><span class="params">(gdat1)</span></span></div></pre></td></tr></table></figure>
+
+<p>frankfurter           sausage        liver loaf               ham              meat finished products<br>      0.058973055       0.093950178       0.005083884       0.026029487       0.025826131       0.006507372 </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">head</span>(<span class="function">sort</span>(gdat1))</div></pre></td></tr></table></figure>
+
+<p>baby food sound storage medium preservation products kitchen utensil bags frozen chicken<br>0.0001016777 0.0001016777 0.0002033554 0.0004067107 0.0004067107 0.0006100661 </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">head(sort(gdat1,d</span>=<span class="string">T))</span></div></pre></td></tr></table></figure>
+
+<p>whole milk other vegetables rolls/buns soda yogurt bottled water<br>0.2555160 0.1934926 0.1839349 0.1743772 0.1395018 0.1105236</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">tail</span>(<span class="function">sort</span>(gdat1))</div></pre></td></tr></table></figure>
+
+<p>bottled water yogurt soda rolls/buns other vegetables whole milk<br>0.1105236 0.1395018 0.1743772 0.1839349 0.1934926 0.2555160</p>
+<h4 id="特定のアイテムを含んだルールだけを抽出">特定のアイテムを含んだルールだけを抽出</h4>
+<h4 id="結論部(rhs)にwhole_milk_を含んだルールだけを抽出">結論部(rhs)にwhole milk　を含んだルールだけを抽出</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grule5&lt;-apriori(g0,<span class="variable">p=</span>list(<span class="variable">support=</span><span class="number">0.005</span>,<span class="variable">confidence=</span><span class="number">0.7</span>),<span class="variable">appearance=</span>list(<span class="variable">rhs=</span><span class="string">"whole milk"</span>,<span class="variable">default=</span><span class="string">"lhs"</span>))</div></pre></td></tr></table></figure>
+
+<p>parameter specification:<br>confidence minval smax arem aval originalSupport support minlen maxlen targe ext<br>0.7 0.1 1 none FALSE TRUE 0.005 1 10 rules FALSE</p>
+<p>algorithmic control:<br>filter tree heap memopt load sort verbose<br>0.1 TRUE TRUE FALSE TRUE 2 TRUE  </p>
+<p>apriori - find association rules with the apriori algorithm<br>version 4.21 (2004.05.09) (c) 1996-2004 Christian Borgelt<br>set item appearances …[1 item(s)] done [0.00s].<br>set transactions …[169 item(s), 9835 transaction(s)] done [0.00s].<br>sorting and recoding items … [120 item(s)] done [0.00s].<br>creating transaction tree … done [0.00s].<br>checking subsets of size 1 2 3 4 done [0.02s].<br>writing … [1 rule(s)] done [0.00s].<br>creating S4 object … done [0.00s].  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">inspect</span><span class="params">(grule5)</span></span></div></pre></td></tr></table></figure>
+
+<p>lhs rhs support confidence lift<br>1 {tropical fruit,<br>root vegetables,<br>yogurt} =&gt; {whole milk} 0.00569395 0.7 2.739554</p>
+<h5 id="maxlenなし">maxlenなし</h5>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grule6&lt;-apriori(g0,<span class="variable">p=</span>list(<span class="variable">support=</span><span class="number">0.005</span>,<span class="variable">confidence=</span><span class="number">0.5</span>))</div></pre></td></tr></table></figure>
+
+<p>parameter specification:<br>confidence minval smax arem aval originalSupport support minlen maxlen targe ext<br>0.5 0.1 1 none FALSE TRUE 0.005 1 10 rules FALSE</p>
+<p>algorithmic control:<br>filter tree heap memopt load sort verbose<br>0.1 TRUE TRUE FALSE TRUE 2 TRUE  </p>
+<p>apriori - find association rules with the apriori algorithm<br>version 4.21 (2004.05.09) (c) 1996-2004 Christian Borgelt<br>set item appearances …[0 item(s)] done [0.00s].<br>set transactions …[169 item(s), 9835 transaction(s)] done [0.00s].<br>sorting and recoding items … [120 item(s)] done [0.00s].<br>creating transaction tree … done [0.01s].<br>checking subsets of size 1 2 3 4 done [0.00s].<br>writing … [120 rule(s)] done [0.00s].<br>creating S4 object … done [0.00s].  </p>
+<h5 id="maxlen=2としたとき">maxlen=2としたとき</h5>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grule6&lt;-apriori(g0,<span class="variable">p=</span>list(<span class="variable">support=</span><span class="number">0.005</span>,<span class="variable">confidence=</span><span class="number">0.5</span>,<span class="variable">maxlen=</span><span class="number">2</span>))</div></pre></td></tr></table></figure>
+
+<p>parameter specification:<br>confidence minval smax arem aval originalSupport support minlen maxlen targe ext<br>0.5 0.1 1 none FALSE TRUE 0.005 1 2 rules FALSE</p>
+<p>algorithmic control:<br>filter tree heap memopt load sort verbose<br>0.1 TRUE TRUE FALSE TRUE 2 TRUE</p>
+<p>apriori - find association rules with the apriori algorithm<br>version 4.21 (2004.05.09) (c) 1996-2004 Christian Borgelt<br>set item appearances …[0 item(s)] done [0.00s].<br>set transactions …[169 item(s), 9835 transaction(s)] done [0.00s].<br>sorting and recoding items … [120 item(s)] done [0.00s].<br>creating transaction tree … done [0.02s].<br>checking subsets of size 1 2 done [0.00s].<br>writing … [1 rule(s)] done [0.00s].<br>creating S4 object … done [0.00s].  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">inspect</span><span class="params">(grule6)</span></span></div></pre></td></tr></table></figure>
+
+<p>lhs rhs support confidence lift<br>1 {baking powder} =&gt; {whole milk} 0.009252669 0.5229885 2.046793</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2014/09/15/データからの知識発見第9章/" data-id="3do0irlnf58gzv6l" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-データからの知識発見第８章" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/09/15/データからの知識発見第８章/" class="article-date">
@@ -741,80 +843,6 @@
 
 
   
-    <article id="post-t検定の基礎" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/09/11/t検定の基礎/" class="article-date">
-  <time datetime="2014-09-11T13:25:48.000Z" itemprop="datePublished">Sep 11 2014</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/11/t検定の基礎/">ｔ検定の基礎</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="放送大学（院）「心理・教育統計法特論」第３章">放送大学（院）「心理・教育統計法特論」第３章</h1>
-<h4 id="ｔ検定の基礎">ｔ検定の基礎</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="type">A</span>大学&lt;-<span class="built_in">c</span>(<span class="number">9</span>,<span class="number">10</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">6</span>,<span class="number">9</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">10</span>,<span class="number">9</span>)</div><div class="line"><span class="type">B</span>大学&lt;-<span class="built_in">c</span>(<span class="number">5</span>,<span class="number">6</span>,<span class="number">9</span>,<span class="number">6</span>,<span class="number">9</span>,<span class="number">8</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">7</span>)</div></pre></td></tr></table></figure>
-
-<p>平均</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">mean</span>(<span class="tag">A</span>大学);<span class="function">mean</span>(<span class="tag">B</span>大学)</div></pre></td></tr></table></figure>
-
-<p>不偏分散</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span>(A大学);<span class="keyword">var</span>(B大学)</div></pre></td></tr></table></figure>
-
-<p>不偏標準偏差 </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">sd</span>(<span class="tag">A</span>大学);<span class="function">sd</span>(<span class="tag">B</span>大学)</div></pre></td></tr></table></figure>
-
-<p>標本分散</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var(A大学)*(<span class="built_in">length</span>(A大学)-<span class="number">1</span>)/<span class="built_in">length</span>(A大学);var(B大学)*(<span class="built_in">length</span>(B大学)-<span class="number">1</span>)/<span class="built_in">length</span>(B大学)</div></pre></td></tr></table></figure>
-
-<p>標本標準偏差(テキストP.42のSDはこっち）</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sqrt</span>(var(A大学)*(<span class="built_in">length</span>(A大学)-<span class="number">1</span>)/<span class="built_in">length</span>(A大学));<span class="built_in">sqrt</span>(var(B大学)*(<span class="built_in">length</span>(B大学)-<span class="number">1</span>)/<span class="built_in">length</span>(B大学))</div></pre></td></tr></table></figure>
-
-<p>群ごとにシャピロ・ウィルクの正規性検定</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">shapiro.test(<span class="literal">A</span>大学)<span class="comment">;shapiro.test(B大学)</span></div></pre></td></tr></table></figure>
-
-<p>Shapiro-Wilk normality test</p>
-<p>data:  A大学<br>W = 0.9288, p-value = 0.2615</p>
-<p>Shapiro-Wilk normality test</p>
-<p>data:  B大学<br>W = 0.8909, p-value = 0.06928</p>
-<p>F検定</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag"><span class="attribute">var.test</span>(<span class="attribute">A</span>大学,<span class="attribute">B</span>大学, <span class="attribute">alternative</span>=<span class="value">'two.sided'</span><span class="value">,</span> <span class="attribute">conf.level</span>=<span class="value">.95)</span></span></span></div></pre></td></tr></table></figure>
-
-<p>F test to compare two variances  </p>
-<p>data:  A大学 and B大学<br>F = 0.8023, num df = 14, denom df = 14, p-value = 0.6858<br>alternative hypothesis: true ratio of variances is not equal to 1<br>95 percent confidence interval:<br> 0.2693424 2.3896013<br>sample estimates:<br>ratio of variances<br>         0.8022599   </p>
-<p>t検定（分散が等しいと仮定できるとき）</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag"><span class="attribute">t.test</span>(<span class="attribute">A</span>大学,<span class="attribute">B</span>大学, <span class="attribute">alternative</span>=<span class="value">'two.sided'</span><span class="value">,</span> <span class="attribute">conf.level</span>=<span class="value">.95,</span> <span class="attribute">var.equal</span>=<span class="value">TRUE)</span></span></span></div></pre></td></tr></table></figure>
-
-<p>Two Sample t-test</p>
-<p>data:  A大学 and B大学<br>t = 3.7033, df = 28, p-value = 0.0009253<br>alternative hypothesis: true difference in means is not equal to 0<br>95 percent confidence interval:<br> 0.7447931 2.5885402<br>sample estimates:<br>mean of x mean of y<br> 8.266667  6.600000   </p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/09/11/t検定の基礎/" data-id="wy8n7xqf78dewq74" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/archives/2014/page/2/">2</a><a class="page-number" href="/archives/2014/page/3/">3</a><a class="extend next" rel="next" href="/archives/2014/page/2/">Next &raquo;</a>
@@ -830,7 +858,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識/">データからの知識</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">13</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識/">データからの知識</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">13</span></li></ul>
     </div>
   </div>
 
@@ -848,7 +876,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">24</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">25</span></li></ul>
     </div>
   </div>
 
@@ -858,6 +886,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2014/09/15/データからの知識発見第9章/">アソシエーション分析</a>
+          </li>
         
           <li>
             <a href="/2014/09/15/データからの知識発見第８章/">クラスター分析（１）</a>
@@ -873,10 +905,6 @@
         
           <li>
             <a href="/2014/09/14/データからの知識発見第５章/">主成分分析</a>
-          </li>
-        
-          <li>
-            <a href="/2014/09/12/相関研究/">相関研究</a>
           </li>
         
       </ul>

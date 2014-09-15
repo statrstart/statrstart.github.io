@@ -62,6 +62,61 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-相関関係1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/09/07/相関関係1/" class="article-date">
+  <time datetime="2014-09-07T02:02:15.000Z" itemprop="datePublished">Sep 7 2014</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/07/相関関係1/">相関関係1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="放送大学「心理統計法」第8章">放送大学「心理統計法」第8章</h1>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">x&lt;-<span class="built_in">c</span>(<span class="number">10</span>,<span class="number">9</span>,<span class="number">9</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">4</span>)</div><div class="line">y&lt;-<span class="built_in">c</span>(<span class="number">8</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">6</span>)</div></pre></td></tr></table></figure>
+
+<h4 id="散布図">散布図</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scatterplot(x,y, reg.<span class="variable">line=</span>lm, <span class="variable">smooth=</span>FALSE, <span class="variable">spread=</span>FALSE, <span class="variable">boxplots=</span>'xy',<span class="variable">span=</span><span class="number">0.5</span>)</div></pre></td></tr></table></figure>
+
+<p><img src="http://blog-imgs-61.fc2.com/s/t/a/statrstart/scatter1.jpg" alt=""></p>
+<h4 id="ピアソンの積率相関係数">ピアソンの積率相関係数</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cor.test(x, y, alternative=<span class="string">"two.sided"</span>, <span class="keyword">method</span>=<span class="string">"pearson"</span>)</div></pre></td></tr></table></figure>
+
+<p>Pearson’s product-moment correlation  </p>
+<p>data:  x and y<br>t = 3.2359, df = 8, p-value = 0.01195<br>alternative hypothesis: true correlation is not equal to 0<br>95 percent confidence interval:<br> 0.2344317 0.9379193<br>sample estimates:<br>      cor<br>0.7529233   </p>
+<p>相関係数 0.7529233<br>無相関検定　t値 = 3.2359, 自由度 = 8, P値 = 0.01195<br> 母相関は，0ではない<br>95 パーセント信頼区間: 0.2344317 0.9379193  </p>
+<h3 id="Rコマンダーのメニュー操作">Rコマンダーのメニュー操作</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">d</span>&lt;-<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(<span class="title">x</span>,<span class="title">y</span>)</span></span></div></pre></td></tr></table></figure>
+
+<p>アクティブデータセットをdに変更<br>グラフ～散布図<br>統計量～要約～相関の検定  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2014/09/07/相関関係1/" data-id="035369ai41d2yqjv" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心理統計法/">心理統計法</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-t検定補足" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/09/06/t検定補足/" class="article-date">
@@ -302,7 +357,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識/">データからの知識</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">13</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識/">データからの知識</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">13</span></li></ul>
     </div>
   </div>
 
@@ -320,7 +375,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">24</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">25</span></li></ul>
     </div>
   </div>
 
@@ -330,6 +385,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2014/09/15/データからの知識発見第9章/">アソシエーション分析</a>
+          </li>
         
           <li>
             <a href="/2014/09/15/データからの知識発見第８章/">クラスター分析（１）</a>
@@ -345,10 +404,6 @@
         
           <li>
             <a href="/2014/09/14/データからの知識発見第５章/">主成分分析</a>
-          </li>
-        
-          <li>
-            <a href="/2014/09/12/相関研究/">相関研究</a>
           </li>
         
       </ul>
