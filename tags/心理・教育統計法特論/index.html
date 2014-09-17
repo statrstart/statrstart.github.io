@@ -520,10 +520,80 @@
 
 
   
+    <article id="post-t検定の基礎" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/09/11/t検定の基礎/" class="article-date">
+  <time datetime="2014-09-11T13:25:48.000Z" itemprop="datePublished">Sep 11 2014</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/tags/心理・教育統計法特論/page/2/">2</a><a class="extend next" rel="next" href="/tags/心理・教育統計法特論/page/2/">Next &raquo;</a>
-    </nav>
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/11/t検定の基礎/">ｔ検定の基礎</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="放送大学（院）「心理・教育統計法特論」第３章">放送大学（院）「心理・教育統計法特論」第３章</h1>
+<h4 id="ｔ検定の基礎">ｔ検定の基礎</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="type">A</span>大学&lt;-<span class="built_in">c</span>(<span class="number">9</span>,<span class="number">10</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">6</span>,<span class="number">9</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">10</span>,<span class="number">9</span>)</div><div class="line"><span class="type">B</span>大学&lt;-<span class="built_in">c</span>(<span class="number">5</span>,<span class="number">6</span>,<span class="number">9</span>,<span class="number">6</span>,<span class="number">9</span>,<span class="number">8</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">7</span>)</div></pre></td></tr></table></figure>
+
+<p>平均</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">mean</span>(<span class="tag">A</span>大学);<span class="function">mean</span>(<span class="tag">B</span>大学)</div></pre></td></tr></table></figure>
+
+<p>不偏分散</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span>(A大学);<span class="keyword">var</span>(B大学)</div></pre></td></tr></table></figure>
+
+<p>不偏標準偏差 </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">sd</span>(<span class="tag">A</span>大学);<span class="function">sd</span>(<span class="tag">B</span>大学)</div></pre></td></tr></table></figure>
+
+<p>標本分散</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var(A大学)*(<span class="built_in">length</span>(A大学)-<span class="number">1</span>)/<span class="built_in">length</span>(A大学);var(B大学)*(<span class="built_in">length</span>(B大学)-<span class="number">1</span>)/<span class="built_in">length</span>(B大学)</div></pre></td></tr></table></figure>
+
+<p>標本標準偏差(テキストP.42のSDはこっち）</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sqrt</span>(var(A大学)*(<span class="built_in">length</span>(A大学)-<span class="number">1</span>)/<span class="built_in">length</span>(A大学));<span class="built_in">sqrt</span>(var(B大学)*(<span class="built_in">length</span>(B大学)-<span class="number">1</span>)/<span class="built_in">length</span>(B大学))</div></pre></td></tr></table></figure>
+
+<p>群ごとにシャピロ・ウィルクの正規性検定</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">shapiro.test(<span class="literal">A</span>大学)<span class="comment">;shapiro.test(B大学)</span></div></pre></td></tr></table></figure>
+
+<p>Shapiro-Wilk normality test</p>
+<p>data:  A大学<br>W = 0.9288, p-value = 0.2615</p>
+<p>Shapiro-Wilk normality test</p>
+<p>data:  B大学<br>W = 0.8909, p-value = 0.06928</p>
+<p>F検定</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag"><span class="attribute">var.test</span>(<span class="attribute">A</span>大学,<span class="attribute">B</span>大学, <span class="attribute">alternative</span>=<span class="value">'two.sided'</span><span class="value">,</span> <span class="attribute">conf.level</span>=<span class="value">.95)</span></span></span></div></pre></td></tr></table></figure>
+
+<p>F test to compare two variances  </p>
+<p>data:  A大学 and B大学<br>F = 0.8023, num df = 14, denom df = 14, p-value = 0.6858<br>alternative hypothesis: true ratio of variances is not equal to 1<br>95 percent confidence interval:<br> 0.2693424 2.3896013<br>sample estimates:<br>ratio of variances<br>         0.8022599   </p>
+<p>t検定（分散が等しいと仮定できるとき）</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag"><span class="attribute">t.test</span>(<span class="attribute">A</span>大学,<span class="attribute">B</span>大学, <span class="attribute">alternative</span>=<span class="value">'two.sided'</span><span class="value">,</span> <span class="attribute">conf.level</span>=<span class="value">.95,</span> <span class="attribute">var.equal</span>=<span class="value">TRUE)</span></span></span></div></pre></td></tr></table></figure>
+
+<p>Two Sample t-test</p>
+<p>data:  A大学 and B大学<br>t = 3.7033, df = 28, p-value = 0.0009253<br>alternative hypothesis: true difference in means is not equal to 0<br>95 percent confidence interval:<br> 0.7447931 2.5885402<br>sample estimates:<br>mean of x mean of y<br> 8.266667  6.600000   </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2014/09/11/t検定の基礎/" data-id="eruprrgghjildepg" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
   
 </section>
         
@@ -565,11 +635,11 @@
       <ul>
         
           <li>
-            <a href="/2014/09/16/データからの知識発見第12章/">バックプロパゲーション</a>
+            <a href="/2014/09/17/データからの知識発見第10章/">決定木</a>
           </li>
         
           <li>
-            <a href="/2014/09/16/データからの知識発見第10章/">決定木</a>
+            <a href="/2014/09/16/データからの知識発見第12章/">バックプロパゲーション</a>
           </li>
         
           <li>

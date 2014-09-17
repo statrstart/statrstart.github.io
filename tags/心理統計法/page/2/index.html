@@ -62,10 +62,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-分散分析2" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-t検定補足" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/09/09/分散分析2/" class="article-date">
-  <time datetime="2014-09-09T12:14:44.000Z" itemprop="datePublished">Sep 9 2014</time>
+    <a href="/2014/09/06/t検定補足/" class="article-date">
+  <time datetime="2014-09-06T06:21:05.000Z" itemprop="datePublished">Sep 6 2014</time>
 </a>
     
   </div>
@@ -76,7 +76,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/09/分散分析2/">一要因の分散分析(補足）</a>
+      <a class="article-title" href="/2014/09/06/t検定補足/">t検定補足</a>
     </h1>
   
 
@@ -84,45 +84,29 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="分散分析を厳密に行う場合、正規分布に各群が従うかを調べて、正規分布に従えば分散分析、従わなければノンパラメトリックの多群検定であるクラスカル-_ウォリス検定を使用しなくてはならない。">分散分析を厳密に行う場合、正規分布に各群が従うかを調べて、正規分布に従えば分散分析、従わなければノンパラメトリックの多群検定であるクラスカル- ウォリス検定を使用しなくてはならない。</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="type">A</span>&lt;-c(<span class="number">5</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">3</span>)</div><div class="line"><span class="type">B</span>&lt;-c(<span class="number">3</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">1</span>)</div><div class="line"><span class="type">C</span>&lt;-c(<span class="number">3</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">3</span>)</div><div class="line"><span class="type">D</span>&lt;-c(<span class="number">5</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">5</span>)</div><div class="line"><span class="title">d</span>&lt;-<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(<span class="type">A</span>,<span class="type">B</span>,<span class="type">C</span>,<span class="type">D</span>)</span></span></div><div class="line"><span class="title">d1</span>&lt;-stack(d)</div><div class="line"><span class="title">tapply</span>(d1$values,d1$ind,shapiro.test)</div></pre></td></tr></table></figure>
+        <h3 id="本来、ｔ検定を採用するには正規性を満たしていることが必要">本来、ｔ検定を採用するには正規性を満たしていることが必要</h3>
+<h3 id="確認してみる">確認してみる</h3>
+<h3 id="ヒストグラムを描く">ヒストグラムを描く</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">x&lt;-c(<span class="number">85</span>,<span class="number">90</span>,<span class="number">82</span>,<span class="number">96</span>,<span class="number">84</span>,<span class="number">95</span>)</div><div class="line">y&lt;-c(<span class="number">88</span>,<span class="number">74</span>,<span class="number">82</span>,<span class="number">87</span>,<span class="number">73</span>,<span class="number">79</span>)</div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">2</span>,<span class="number">1</span>))</div><div class="line">Hist(x,<span class="variable">scale=</span><span class="string">"frequency"</span>, <span class="variable">breaks=</span><span class="string">"Sturges"</span>, <span class="variable">col=</span><span class="string">"darkgray"</span>)</div><div class="line">Hist(y,<span class="variable">scale=</span><span class="string">"frequency"</span>, <span class="variable">breaks=</span><span class="string">"Sturges"</span>, <span class="variable">col=</span><span class="string">"darkgray"</span>)</div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">1</span>,<span class="number">1</span>))</div></pre></td></tr></table></figure>
 
-<p>$A</p>
-<p>Shapiro-Wilk normality test</p>
-<p>data:  X[[1L]]<br>W = 0.8858, p-value = 0.152</p>
-<p>$B</p>
-<p>Shapiro-Wilk normality test</p>
-<p>data:  X[[2L]]<br>W = 0.9093, p-value = 0.276</p>
-<p>$C</p>
-<p>Shapiro-Wilk normality test</p>
-<p>data:  X[[3L]]<br>W = 0.8318, p-value = 0.03521</p>
-<p>$D</p>
-<p>Shapiro-Wilk normality test</p>
-<p>data:  X[[4L]]<br>W = 0.7809, p-value = 0.008489</p>
-<p>群CとDが正規分布に従っているとはいえない(有意水準５％)</p>
-<h4 id="クラスカルウォリス検定においても厳密にはフリグナー=_キリーンの検定により「ばらつきの同等性」を検定しておく必要がある。">クラスカルウォリス検定においても厳密にはフリグナー= キリーンの検定により「ばらつきの同等性」を検定しておく必要がある。</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">fligner</span>.test(values~ind,<span class="typedef"><span class="keyword">data</span>=d1)</span></div></pre></td></tr></table></figure>
+<p><img src="http://blog-imgs-61.fc2.com/s/t/a/statrstart/hist1.jpg" alt=""></p>
+<h3 id="シャピロ・ウィルクの正規性検定">シャピロ・ウィルクの正規性検定</h3>
+<h4 id="帰無仮説は「変数の分布は正規分布にしたがう」">帰無仮説は「変数の分布は正規分布にしたがう」</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">shapiro.test(x)</div></pre></td></tr></table></figure>
 
-<p>Fligner-Killeen test of homogeneity of variances</p>
-<p>data:  values by ind<br>Fligner-Killeen:med chi-squared = 4.9286, df = 3, p-value = 0.1771</p>
-<p>Rコマンダーのメニューで行う<br>アクティブデータセットをd1にする<br>統計量～ノンパラメトリック検定～クラスカル- ウォリス検定</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tapply(d1<span class="variable">$values</span>, d1<span class="variable">$ind</span>, median, na<span class="built_in">.</span>rm<span class="subst">=</span><span class="literal">TRUE</span>)</div><div class="line">kruskal<span class="built_in">.</span>test(values ~ ind, <span class="built_in">data</span><span class="subst">=</span>d1)</div></pre></td></tr></table></figure>
+<p>Shapiro-Wilk normality test</p>
+<p>data:  x<br>W = 0.8955, p-value = 0.3482</p>
+<p>p-value = 0.3482であり、0.05を越えることから正規性を否定することはできず、正規分布を仮定する</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">shapiro.test(y)</div></pre></td></tr></table></figure>
 
-<p>Kruskal-Wallis rank sum test</p>
-<p>data:  values by ind<br>Kruskal-Wallis chi-squared = 14.8817, df = 3, p-value = 0.001921</p>
-<p>有意差あり(有意水準５％)</p>
-<h4 id="多重比較_bonferroniの方法">多重比較　bonferroniの方法</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pairwise.wilcox.test(d1$values, d1$ind, data.name=<span class="string">"d1"</span>, p.adjust.<span class="keyword">method</span>=<span class="string">"bonferroni"</span>)</div></pre></td></tr></table></figure>
-
-<p>Pairwise comparisons using Wilcoxon rank sum test </p>
-<p>data:  d1$values and d1$ind </p>
-<p>   A     B     C<br>B 0.150 -     -<br>C 0.294 1.000 -<br>D 1.000 0.022 0.015</p>
-<p>P value adjustment method: bonferroni </p>
+<p>Shapiro-Wilk normality test</p>
+<p>data:  y<br>W = 0.9123, p-value = 0.4519</p>
+<p>p-value = 0.4519であり、0.05を越えることから正規性を否定することはできず、正規分布を仮定する</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/09/09/分散分析2/" data-id="tysqtpqcxo59b8sp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/09/06/t検定補足/" data-id="20mdjffon2h1oshv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心理統計法/">心理統計法</a></li></ul>
@@ -134,10 +118,10 @@
 
 
   
-    <article id="post-分散分析1" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-t検定2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/09/07/分散分析1/" class="article-date">
-  <time datetime="2014-09-07T09:01:51.000Z" itemprop="datePublished">Sep 7 2014</time>
+    <a href="/2014/09/06/t検定2/" class="article-date">
+  <time datetime="2014-09-06T06:15:31.000Z" itemprop="datePublished">Sep 6 2014</time>
 </a>
     
   </div>
@@ -148,7 +132,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/07/分散分析1/">一要因の分散分析(一元配置分散分析）</a>
+      <a class="article-title" href="/2014/09/06/t検定2/">対応のある場合のt検定</a>
     </h1>
   
 
@@ -156,215 +140,76 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="放送大学「心理統計法」第10章">放送大学「心理統計法」第10章</h1>
-<h3 id="Rコマンダーのメニューを利用します。">Rコマンダーのメニューを利用します。</h3>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="type">A</span>&lt;-c(<span class="number">5</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">3</span>)</div><div class="line"><span class="type">B</span>&lt;-c(<span class="number">3</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">1</span>)</div><div class="line"><span class="type">C</span>&lt;-c(<span class="number">3</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">3</span>)</div><div class="line"><span class="type">D</span>&lt;-c(<span class="number">5</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">5</span>)</div><div class="line"><span class="title">d</span>&lt;-<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(<span class="type">A</span>,<span class="type">B</span>,<span class="type">C</span>,<span class="type">D</span>)</span></span></div><div class="line"><span class="title">d1</span>&lt;-stack(d)</div><div class="line"><span class="title">d</span></div></pre></td></tr></table></figure>
+        <h1 id="放送大学「心理統計法」第7章">放送大学「心理統計法」第7章</h1>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="xml">x<span class="tag">&lt;<span class="title">-c(84,74,82,87,73,79)</span></span></span></div><div class="line">y&lt;<span class="attribute">-c</span>(<span class="attribute">85</span>,<span class="attribute">90</span>,<span class="attribute">92</span>,<span class="attribute">96</span>,<span class="attribute">84</span>,<span class="attribute">95</span>)</div><div class="line"><span class="attribute">t.test</span>(<span class="attribute">x</span>,<span class="attribute">y</span>, <span class="attribute">alternative</span>=<span class="value">'two.sided'</span><span class="value">,</span> <span class="attribute">conf.level</span>=<span class="value">.95,</span> <span class="attribute">paired</span>=<span class="value">TRUE)</span></div></pre></td></tr></table></figure>
 
-<p>A B C D<br>1  5 3 3 5<br>2  4 5 4 5<br>3  5 1 2 4<br>4  3 3 2 5<br>5  4 2 4 3<br>6  2 1 3 4<br>7  5 3 3 4<br>8  4 4 2 5<br>9  4 2 4 4<br>10 3 1 3 5  </p>
-<h4 id="（おまけ）xtableパッケージを利用して、表をhtmlで出力">（おまけ）xtableパッケージを利用して、表をhtmlで出力</h4>
-<p>（小数点以下を表示させないように、digits=0）</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">library</span><span class="params">(xtable)</span></span></div><div class="line"><span class="title">print</span><span class="params">(<span class="function_name">xtable</span>(d,digits=<span class="number">0</span>),type=<span class="string">"html"</span>)</span></div></pre></td></tr></table></figure>
-
-<p><!-- html table generated in R 3.1.1 by xtable 1.7-3 package --><br><!-- Sun Sep  7 16:41:33 2014 --></p>
-<table border="1"><br><tr> <th>  </th> <th> A </th> <th> B </th> <th> C </th> <th> D </th>  </tr><br>  <tr> <td align="right"> 1 </td> <td align="right"> 5 </td> <td align="right"> 3 </td> <td align="right"> 3 </td> <td align="right"> 5 </td> </tr><br>  <tr> <td align="right"> 2 </td> <td align="right"> 4 </td> <td align="right"> 5 </td> <td align="right"> 4 </td> <td align="right"> 5 </td> </tr><br>  <tr> <td align="right"> 3 </td> <td align="right"> 5 </td> <td align="right"> 1 </td> <td align="right"> 2 </td> <td align="right"> 4 </td> </tr><br>  <tr> <td align="right"> 4 </td> <td align="right"> 3 </td> <td align="right"> 3 </td> <td align="right"> 2 </td> <td align="right"> 5 </td> </tr><br>  <tr> <td align="right"> 5 </td> <td align="right"> 4 </td> <td align="right"> 2 </td> <td align="right"> 4 </td> <td align="right"> 3 </td> </tr><br>  <tr> <td align="right"> 6 </td> <td align="right"> 2 </td> <td align="right"> 1 </td> <td align="right"> 3 </td> <td align="right"> 4 </td> </tr><br>  <tr> <td align="right"> 7 </td> <td align="right"> 5 </td> <td align="right"> 3 </td> <td align="right"> 3 </td> <td align="right"> 4 </td> </tr><br>  <tr> <td align="right"> 8 </td> <td align="right"> 4 </td> <td align="right"> 4 </td> <td align="right"> 2 </td> <td align="right"> 5 </td> </tr><br>  <tr> <td align="right"> 9 </td> <td align="right"> 4 </td> <td align="right"> 2 </td> <td align="right"> 4 </td> <td align="right"> 4 </td> </tr><br>  <tr> <td align="right"> 10 </td> <td align="right"> 3 </td> <td align="right"> 1 </td> <td align="right"> 3 </td> <td align="right"> 5 </td> </tr><br>   </table>
-
-<p>アクティブデータセットをd1 に変更<br>Rコマンダーのメニュー操作<br>統計量～平均～一元配置分散分析（多重比較にチェックを入れる）</p>
-<p>AnovaModel.1 &lt;- aov(values ~ ind, data=d1)<br>summary(AnovaModel.1)<br>numSummary(d1$values , groups=d1$ind, statistics=c(“mean”, “sd”))<br>.Pairs &lt;- glht(AnovaModel.1, linfct = mcp(ind = “Tukey”))<br>summary(.Pairs) # pairwise tests<br>confint(.Pairs) # confidence intervals<br>cld(.Pairs) # compact letter display<br>old.oma &lt;- par(oma=c(0,5,0,0))<br>plot(confint(.Pairs))<br>par(old.oma)<br>remove(.Pairs)  </p>
-<h2 id="出力された結果をここにそのまま張り付けると美しくないので一工夫してみます。">出力された結果をここにそのまま張り付けると美しくないので一工夫してみます。</h2>
-<h3 id="上の例では分散分析の結果はAnovaModel-1に入っているので">上の例では分散分析の結果はAnovaModel.1に入っているので</h3>
-<h3 id="分散分析表">分散分析表</h3>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span>(xtable(AnovaModel.<span class="number">1</span>),<span class="built_in">type</span>=<span class="string">"html"</span>)</div></pre></td></tr></table></figure>
-
-<p><!-- html table generated in R 3.1.1 by xtable 1.7-3 package --><br><!-- Sun Sep  7 17:06:46 2014 --></p>
-<table border="1"><br><tr> <th>  </th> <th> Df </th> <th> Sum Sq </th> <th> Mean Sq </th> <th> F value </th> <th> Pr(&gt;F) </th>  </tr><br>  <tr> <td> ind </td> <td align="right"> 3 </td> <td align="right"> 22.10 </td> <td align="right"> 7.37 </td> <td align="right"> 7.41 </td> <td align="right"> 0.0005 </td> </tr><br>  <tr> <td> Residuals </td> <td align="right"> 36 </td> <td align="right"> 35.80 </td> <td align="right"> 0.99 </td> <td align="right">  </td> <td align="right">  </td> </tr><br>   </table>
-
-
-<h3 id="多重比較は、TukeyHSD関数を使って">多重比較は、TukeyHSD関数を使って</h3>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">print(xtable(TukeyHSD(AnovaModel.<span class="number">1</span>)<span class="variable">$ind</span>,digits=<span class="number">4</span>),<span class="built_in">type</span>=<span class="string">"html"</span>)</div></pre></td></tr></table></figure>
-
-<p><!-- html table generated in R 3.1.1 by xtable 1.7-3 package --><br><!-- Sun Sep  7 17:54:00 2014 --></p>
-<table border="1"><br><tr> <th>  </th> <th> diff </th> <th> lwr </th> <th> upr </th> <th> p adj </th>  </tr><br>  <tr> <td align="right"> B-A </td> <td align="right"> -1.4000 </td> <td align="right"> -2.6011 </td> <td align="right"> -0.1989 </td> <td align="right"> 0.0170 </td> </tr><br>  <tr> <td align="right"> C-A </td> <td align="right"> -0.9000 </td> <td align="right"> -2.1011 </td> <td align="right"> 0.3011 </td> <td align="right"> 0.2003 </td> </tr><br>  <tr> <td align="right"> D-A </td> <td align="right"> 0.5000 </td> <td align="right"> -0.7011 </td> <td align="right"> 1.7011 </td> <td align="right"> 0.6791 </td> </tr><br>  <tr> <td align="right"> C-B </td> <td align="right"> 0.5000 </td> <td align="right"> -0.7011 </td> <td align="right"> 1.7011 </td> <td align="right"> 0.6791 </td> </tr><br>  <tr> <td align="right"> D-B </td> <td align="right"> 1.9000 </td> <td align="right"> 0.6989 </td> <td align="right"> 3.1011 </td> <td align="right"> 0.0008 </td> </tr><br>  <tr> <td align="right"> D-C </td> <td align="right"> 1.4000 </td> <td align="right"> 0.1989 </td> <td align="right"> 2.6011 </td> <td align="right"> 0.0170 </td> </tr><br>   </table>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/09/07/分散分析1/" data-id="g7l0vqv7jqz7vgzg" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心理統計法/">心理統計法</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-相関関係3" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/09/07/相関関係3/" class="article-date">
-  <time datetime="2014-09-07T03:05:27.000Z" itemprop="datePublished">Sep 7 2014</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/07/相関関係3/">相関関係3</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="放送大学「心理統計法」第9章">放送大学「心理統計法」第9章</h1>
-<h4 id="質的なデータの相関">質的なデータの相関</h4>
-<h3 id="ピアソンのカイ二乗検定（連続性補正なし）">ピアソンのカイ二乗検定（連続性補正なし）</h3>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.<span class="keyword">Table</span> &lt;- matrix(c(<span class="number">7</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">6</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">9</span>),<span class="number">3</span>,<span class="number">5</span>, byrow=F)  </div><div class="line">colnames(.<span class="keyword">Table</span>) &lt;- c(<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>, <span class="string">'D'</span>, <span class="string">'E'</span>)  </div><div class="line">rownames(.<span class="keyword">Table</span>) &lt;- c(<span class="string">'甲'</span>, <span class="string">'乙'</span>, <span class="string">'丙'</span>)  </div><div class="line">.<span class="keyword">Table</span>  # Counts</div><div class="line">res&lt;-chisq.test(.<span class="keyword">Table</span>, correct=FALSE)</div><div class="line">res</div></pre></td></tr></table></figure>
-
-<p>Pearson’s Chi-squared test</p>
-<p>data:  .Table<br>X-squared = 25.6918, df = 8, p-value = 0.001186  </p>
-<h3 id="期待値を出力する">期待値を出力する</h3>
-<p>res$expected</p>
-<p>A    B    C    D    E<br>甲 3.04 4.56 3.42 3.04 4.94<br>乙 2.56 3.84 2.88 2.56 4.16<br>丙 2.40 3.60 2.70 2.40 3.90  </p>
-<h3 id="クラメールの連関係数">クラメールの連関係数</h3>
-<h4 id="計算する">計算する</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sqrt</span>(<span class="keyword">res</span>$statistic/(<span class="built_in">min</span>(nrow(.Table),ncol(.Table))-<span class="number">1</span>)/sum(.Table))</div></pre></td></tr></table></figure>
-
-<p>X-squared<br>0.5068711</p>
-<h4 id="vcdパッケージを使う">vcdパッケージを使う</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">library</span><span class="params">(vcd)</span></span></div><div class="line"><span class="title">assocstats</span><span class="params">(.<span class="variable">Table</span>)</span></div></pre></td></tr></table></figure>
-
-<p>X^2 df   P(&gt; X^2)<br>Likelihood Ratio 26.186  8 0.00097613<br>Pearson          25.692  8 0.00118568  </p>
-<p>Phi-Coefficient   : 0.717<br>Contingency Coeff.: 0.583<br>Cramer’s V        : 0.507  </p>
-<h3 id="おまけ（xtableパッケージを利用して、表をhtmlで出力）">おまけ（xtableパッケージを利用して、表をhtmlで出力）</h3>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">library(xtable)</div><div class="line"><span class="keyword">print</span>(xtable(.Table),<span class="built_in">type</span>=<span class="string">"html"</span>)</div><div class="line"><span class="keyword">print</span>(xtable(<span class="keyword">res</span>$expected),<span class="built_in">type</span>=<span class="string">"html"</span>)</div></pre></td></tr></table></figure>
-
-<p><!-- html table generated in R 3.1.1 by xtable 1.7-3 package --><br><!-- Sun Sep  7 12:03:37 2014 --></p>
-<table border="1"><br><tr> <th>  </th> <th> A </th> <th> B </th> <th> C </th> <th> D </th> <th> E </th>  </tr><br>  <tr> <td align="right"> 甲 </td> <td align="right"> 7.00 </td> <td align="right"> 6.00 </td> <td align="right"> 3.00 </td> <td align="right"> 1.00 </td> <td align="right"> 2.00 </td> </tr><br>  <tr> <td align="right"> 乙 </td> <td align="right"> 0.00 </td> <td align="right"> 4.00 </td> <td align="right"> 5.00 </td> <td align="right"> 5.00 </td> <td align="right"> 2.00 </td> </tr><br>  <tr> <td align="right"> 丙 </td> <td align="right"> 1.00 </td> <td align="right"> 2.00 </td> <td align="right"> 1.00 </td> <td align="right"> 2.00 </td> <td align="right"> 9.00 </td> </tr><br>   </table>
-
-
-<p><!-- html table generated in R 3.1.1 by xtable 1.7-3 package --><br><!-- Sun Sep  7 12:03:37 2014 --></p>
-<table border="1"><br><tr> <th>  </th> <th> A </th> <th> B </th> <th> C </th> <th> D </th> <th> E </th>  </tr><br>  <tr> <td align="right"> 甲 </td> <td align="right"> 3.04 </td> <td align="right"> 4.56 </td> <td align="right"> 3.42 </td> <td align="right"> 3.04 </td> <td align="right"> 4.94 </td> </tr><br>  <tr> <td align="right"> 乙 </td> <td align="right"> 2.56 </td> <td align="right"> 3.84 </td> <td align="right"> 2.88 </td> <td align="right"> 2.56 </td> <td align="right"> 4.16 </td> </tr><br>  <tr> <td align="right"> 丙 </td> <td align="right"> 2.40 </td> <td align="right"> 3.60 </td> <td align="right"> 2.70 </td> <td align="right"> 2.40 </td> <td align="right"> 3.90 </td> </tr><br>   </table>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/09/07/相関関係3/" data-id="27k4k0lguf2g3pl9" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心理統計法/">心理統計法</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-相関関係2" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/09/07/相関関係2/" class="article-date">
-  <time datetime="2014-09-07T02:10:25.000Z" itemprop="datePublished">Sep 7 2014</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/07/相関関係2/">相関関係2</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="放送大学「心理統計法」第9章">放送大学「心理統計法」第9章</h1>
-<h4 id="順位付けはどの位似ているか">順位付けはどの位似ているか</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">x&lt;-<span class="built_in">c</span>(<span class="number">7</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">10</span>,<span class="number">5</span>,<span class="number">9</span>,<span class="number">6</span>,<span class="number">8</span>)</div><div class="line">y&lt;-<span class="built_in">c</span>(<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">6</span>,<span class="number">9</span>,<span class="number">1</span>,<span class="number">10</span>,<span class="number">8</span>,<span class="number">7</span>)</div></pre></td></tr></table></figure>
-
-<h3 id="スピアマンの順位相関係数">スピアマンの順位相関係数</h3>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cor.test(x, y, alternative=<span class="string">"two.sided"</span>, <span class="keyword">method</span>=<span class="string">"spearman"</span>)</div></pre></td></tr></table></figure>
-
-<p>Spearman’s rank correlation rho</p>
-<p>data:  x and y<br>S = 44, p-value = 0.02117<br>alternative hypothesis: true rho is not equal to 0<br>sample estimates:<br>      rho<br>0.7333333   </p>
-<h3 id="ケンドールの順位相関係数">ケンドールの順位相関係数</h3>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cor.test(x, y, alternative=<span class="string">"two.sided"</span>, <span class="keyword">method</span>=<span class="string">"kendall"</span>)</div></pre></td></tr></table></figure>
-
-<p>Kendall’s rank correlation tau</p>
-<p>data:  x and y<br>T = 35, p-value = 0.02861<br>alternative hypothesis: true tau is not equal to 0<br>sample estimates:<br>      tau<br>0.5555556   </p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/09/07/相関関係2/" data-id="htggztjri8j4pbvy" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心理統計法/">心理統計法</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-相関関係1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/09/07/相関関係1/" class="article-date">
-  <time datetime="2014-09-07T02:02:15.000Z" itemprop="datePublished">Sep 7 2014</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/07/相関関係1/">相関関係1</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="放送大学「心理統計法」第8章">放送大学「心理統計法」第8章</h1>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">x&lt;-<span class="built_in">c</span>(<span class="number">10</span>,<span class="number">9</span>,<span class="number">9</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">4</span>)</div><div class="line">y&lt;-<span class="built_in">c</span>(<span class="number">8</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">6</span>)</div></pre></td></tr></table></figure>
-
-<h4 id="散布図">散布図</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scatterplot(x,y, reg.<span class="variable">line=</span>lm, <span class="variable">smooth=</span>FALSE, <span class="variable">spread=</span>FALSE, <span class="variable">boxplots=</span>'xy',<span class="variable">span=</span><span class="number">0.5</span>)</div></pre></td></tr></table></figure>
-
-<p><img src="http://blog-imgs-61.fc2.com/s/t/a/statrstart/scatter1.jpg" alt=""></p>
-<h4 id="ピアソンの積率相関係数">ピアソンの積率相関係数</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cor.test(x, y, alternative=<span class="string">"two.sided"</span>, <span class="keyword">method</span>=<span class="string">"pearson"</span>)</div></pre></td></tr></table></figure>
-
-<p>Pearson’s product-moment correlation  </p>
-<p>data:  x and y<br>t = 3.2359, df = 8, p-value = 0.01195<br>alternative hypothesis: true correlation is not equal to 0<br>95 percent confidence interval:<br> 0.2344317 0.9379193<br>sample estimates:<br>      cor<br>0.7529233   </p>
-<p>相関係数 0.7529233<br>無相関検定　t値 = 3.2359, 自由度 = 8, P値 = 0.01195<br> 母相関は，0ではない<br>95 パーセント信頼区間: 0.2344317 0.9379193  </p>
-<h3 id="Rコマンダーのメニュー操作">Rコマンダーのメニュー操作</h3>
+<p>Paired t-test</p>
+<p>data:  x and y<br>t = -4.6419, df = 5,a p-value = 0.005623<br>alternative hypothesis: true difference in means is not equal to 0<br>95 percent confidence interval:<br> -16.314669  -4.685331<br>sample estimates:<br>mean of the differences<br>                  -10.5</p>
+<p>有意水準 5%で検定を行うとすれば，p-value = 0.005623&lt;0.05であるから帰無仮説を棄却する。<br>すなわち，「母平均値に差がある」</p>
+<h2 id="Ｒコマンダーのメニューから行うには">Ｒコマンダーのメニューから行うには</h2>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">d</span>&lt;-<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(<span class="title">x</span>,<span class="title">y</span>)</span></span></div></pre></td></tr></table></figure>
 
-<p>アクティブデータセットをdに変更<br>グラフ～散布図<br>統計量～要約～相関の検定  </p>
+<p>アクティブデータセットをdに変更<br>以下はメニューで操作<br>統計量～平均～対応のあるｔ検定  </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/09/07/相関関係1/" data-id="yt9ccbyyvz3j7bb8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/09/06/t検定2/" data-id="qi9j2tkl6px741fl" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心理統計法/">心理統計法</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-t検定１" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/09/06/t検定１/" class="article-date">
+  <time datetime="2014-09-06T06:14:12.000Z" itemprop="datePublished">Sep 6 2014</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/06/t検定１/">対応のない場合のt検定</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="放送大学「心理統計法」第7章">放送大学「心理統計法」第7章</h1>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">x&lt;-<span class="built_in">c</span>(<span class="number">85</span>,<span class="number">90</span>,<span class="number">82</span>,<span class="number">96</span>,<span class="number">84</span>,<span class="number">95</span>)</div><div class="line">y&lt;-<span class="built_in">c</span>(<span class="number">88</span>,<span class="number">74</span>,<span class="number">82</span>,<span class="number">87</span>,<span class="number">73</span>,<span class="number">79</span>)</div></pre></td></tr></table></figure>
+
+<h3 id="二群の等分散性の検定">二群の等分散性の検定</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag"><span class="attribute">var.test</span>(<span class="attribute">x</span>,<span class="attribute">y</span>, <span class="attribute">alternative</span>=<span class="value">'two.sided'</span><span class="value">,</span> <span class="attribute">conf.level</span>=<span class="value">.95)</span></span></span></div></pre></td></tr></table></figure>
+
+<p>F test to compare two variances</p>
+<p>data:  x and y<br>F = 0.8701, num df = 5, denom df = 5, p-value = 0.8824<br>alternative hypothesis: true ratio of variances is not equal to 1<br>95 percent confidence interval:<br> 0.1217596 6.2183571<br>sample estimates:<br>ratio of variances<br>         0.8701406 </p>
+<h3 id="二標本t検定（分散が等しいと仮定できるとき）">二標本t検定（分散が等しいと仮定できるとき）</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag"><span class="attribute">t.test</span>(<span class="attribute">x</span>,<span class="attribute">y</span>, <span class="attribute">alternative</span>=<span class="value">'two.sided'</span><span class="value">,</span> <span class="attribute">conf.level</span>=<span class="value">.95,</span> <span class="attribute">var.equal</span>=<span class="value">TRUE)</span></span></span></div></pre></td></tr></table></figure>
+
+<p>Two Sample t-test</p>
+<p>data:  x and y<br>t = 2.3043, df = 10, p-value = 0.04393<br>alternative hypothesis: true difference in means is not equal to 0<br>95 percent confidence interval:<br>  0.2697732 16.0635601<br>sample estimates:<br>mean of x mean of y<br> 88.66667  80.50000   </p>
+<h2 id="Ｒコマンダーのメニューから行うには">Ｒコマンダーのメニューから行うには</h2>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="title">d</span>&lt;-<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(<span class="title">x</span>,<span class="title">y</span>)</span></span></div><div class="line"><span class="title">d1</span>&lt;-stack(d)</div></pre></td></tr></table></figure>
+
+<p>Ｒコマンダーのアクティブデータセットをd1に変更<br>以下はメニューで操作<br>統計量～分散～F検定<br>統計量～平均～独立サンプルｔ検定  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2014/09/06/t検定１/" data-id="cf7shsu3tgnrx7xu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心理統計法/">心理統計法</a></li></ul>
@@ -378,7 +223,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/tags/心理統計法/">&laquo; Prev</a><a class="page-number" href="/tags/心理統計法/">1</a><span class="page-number current">2</span><a class="page-number" href="/tags/心理統計法/page/3/">3</a><a class="extend next" rel="next" href="/tags/心理統計法/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/tags/心理統計法/">&laquo; Prev</a><a class="page-number" href="/tags/心理統計法/">1</a><span class="page-number current">2</span>
     </nav>
   
 </section>
@@ -421,11 +266,11 @@
       <ul>
         
           <li>
-            <a href="/2014/09/16/データからの知識発見第12章/">バックプロパゲーション</a>
+            <a href="/2014/09/17/データからの知識発見第10章/">決定木</a>
           </li>
         
           <li>
-            <a href="/2014/09/16/データからの知識発見第10章/">決定木</a>
+            <a href="/2014/09/16/データからの知識発見第12章/">バックプロパゲーション</a>
           </li>
         
           <li>

@@ -62,6 +62,50 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-データからの知識発見第10章" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/09/17/データからの知識発見第10章/" class="article-date">
+  <time datetime="2014-09-17T12:33:02.000Z" itemprop="datePublished">Sep 17 2014</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/17/データからの知識発見第10章/">決定木</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="「データからの知識発見」第10章_決定木">「データからの知識発見」第10章 決定木</h2>
+
+        
+          <p class="article-more-link">
+            <a href="/2014/09/17/データからの知識発見第10章/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2014/09/17/データからの知識発見第10章/" data-id="ak844djkc8ot5l5a" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-データからの知識発見第12章" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/09/16/データからの知識発見第12章/" class="article-date">
@@ -112,71 +156,6 @@
     </div>
     <footer class="article-footer">
       <a data-url="http://yoursite.com/2014/09/16/データからの知識発見第12章/" data-id="cwrjgpbqk57ufb7x" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-データからの知識発見第10章" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/09/16/データからの知識発見第10章/" class="article-date">
-  <time datetime="2014-09-16T14:01:57.000Z" itemprop="datePublished">Sep 16 2014</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/16/データからの知識発見第10章/">決定木</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="「データからの知識発見」第10章_決定木">「データからの知識発見」第10章 決定木</h2>
-<h3 id="決定木">決定木</h3>
-<h4 id="mvpartパッケージ">mvpartパッケージ</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="title">age</span>&lt;-c(<span class="string">"Under40"</span>,<span class="string">"Under40"</span>,<span class="string">"Over40"</span>,<span class="string">"Over40"</span>,<span class="string">"Over40"</span>,<span class="string">"Under40"</span>,<span class="string">"Under40"</span>,<span class="string">"Under40"</span>,<span class="string">"Under40"</span>,<span class="string">"Under40"</span>,<span class="string">"Over40"</span>,<span class="string">"Over40"</span>,<span class="string">"Over40"</span>,<span class="string">"Over40"</span>,<span class="string">"Over40"</span>,<span class="string">"Over40"</span>,<span class="string">"Over40"</span>,<span class="string">"Under40"</span>,<span class="string">"Under40"</span>,<span class="string">"Over40"</span>,<span class="string">"Under40"</span>,<span class="string">"Over40"</span>,<span class="string">"Under40"</span>,<span class="string">"Under40"</span>,<span class="string">"Over40"</span>,<span class="string">"Over40"</span>,<span class="string">"Over40"</span>,<span class="string">"Over40"</span>,<span class="string">"Over40"</span>,<span class="string">"Under40"</span>,<span class="string">"Over40"</span>,<span class="string">"Under40"</span>,<span class="string">"Under40"</span>,<span class="string">"Under40"</span>,<span class="string">"Under40"</span>,<span class="string">"Over40"</span>,<span class="string">"Over40"</span>,<span class="string">"Under40"</span>,<span class="string">"Under40"</span>,<span class="string">"Under40"</span>,<span class="string">"Over40"</span>,<span class="string">"Under40"</span>,<span class="string">"Under40"</span>,<span class="string">"Over40"</span>,<span class="string">"Under40"</span>,<span class="string">"Over40"</span>,<span class="string">"Over40"</span>,<span class="string">"Over40"</span>,<span class="string">"Over40"</span>,<span class="string">"Under40"</span>,<span class="string">"Under40"</span>,<span class="string">"Over40"</span>,<span class="string">"Under40"</span>,<span class="string">"Under40"</span>,<span class="string">"Under40"</span>,<span class="string">"Under40"</span>,<span class="string">"Under40"</span>,<span class="string">"Under40"</span>,<span class="string">"Under40"</span>,<span class="string">"Under40"</span>,<span class="string">"Under40"</span>,<span class="string">"Over40"</span>,<span class="string">"Over40"</span>,<span class="string">"Under40"</span>,<span class="string">"Over40"</span>,<span class="string">"Under40"</span>,<span class="string">"Under40"</span>,<span class="string">"Over40"</span>,<span class="string">"Under40"</span>,<span class="string">"Over40"</span>,<span class="string">"Under40"</span>,<span class="string">"Under40"</span>,<span class="string">"Over40"</span>,<span class="string">"Under40"</span>,<span class="string">"Over40"</span>,<span class="string">"Under40"</span>,<span class="string">"Over40"</span>,<span class="string">"Over40"</span>,<span class="string">"Over40"</span>,<span class="string">"Over40"</span>,<span class="string">"Over40"</span>,<span class="string">"Over40"</span>,<span class="string">"Under40"</span>,<span class="string">"Under40"</span>,<span class="string">"Over40"</span>,<span class="string">"Under40"</span>,<span class="string">"Over40"</span>,<span class="string">"Over40"</span>,<span class="string">"Under40"</span>,<span class="string">"Under40"</span>,<span class="string">"Over40"</span>,<span class="string">"Over40"</span>,<span class="string">"Over40"</span>,<span class="string">"Under40"</span>,<span class="string">"Over40"</span>,<span class="string">"Over40"</span>,<span class="string">"Under40"</span>,<span class="string">"Under40"</span>,<span class="string">"Over40"</span>,<span class="string">"Over40"</span>)</div><div class="line"><span class="title">sex</span>&lt;-c(<span class="string">"Man"</span>,<span class="string">"Woman"</span>,<span class="string">"Woman"</span>,<span class="string">"Man"</span>,<span class="string">"Woman"</span>,<span class="string">"Man"</span>,<span class="string">"Woman"</span>,<span class="string">"Man"</span>,<span class="string">"Woman"</span>,<span class="string">"Man"</span>,<span class="string">"Man"</span>,<span class="string">"Woman"</span>,<span class="string">"Woman"</span>,<span class="string">"Man"</span>,<span class="string">"Woman"</span>,<span class="string">"Woman"</span>,<span class="string">"Woman"</span>,<span class="string">"Man"</span>,<span class="string">"Man"</span>,<span class="string">"Woman"</span>,<span class="string">"Woman"</span>,<span class="string">"Man"</span>,<span class="string">"Man"</span>,<span class="string">"Man"</span>,<span class="string">"Woman"</span>,<span class="string">"Man"</span>,<span class="string">"Man"</span>,<span class="string">"Woman"</span>,<span class="string">"Woman"</span>,<span class="string">"Man"</span>,<span class="string">"Man"</span>,<span class="string">"Man"</span>,<span class="string">"Woman"</span>,<span class="string">"Woman"</span>,<span class="string">"Woman"</span>,<span class="string">"Woman"</span>,<span class="string">"Man"</span>,<span class="string">"Man"</span>,<span class="string">"Woman"</span>,<span class="string">"Man"</span>,<span class="string">"Woman"</span>,<span class="string">"Man"</span>,<span class="string">"Woman"</span>,<span class="string">"Man"</span>,<span class="string">"Woman"</span>,<span class="string">"Woman"</span>,<span class="string">"Woman"</span>,<span class="string">"Woman"</span>,<span class="string">"Woman"</span>,<span class="string">"Man"</span>,<span class="string">"Man"</span>,<span class="string">"Man"</span>,<span class="string">"Woman"</span>,<span class="string">"Woman"</span>,<span class="string">"Man"</span>,<span class="string">"Woman"</span>,<span class="string">"Woman"</span>,<span class="string">"Woman"</span>,<span class="string">"Woman"</span>,<span class="string">"Woman"</span>,<span class="string">"Man"</span>,<span class="string">"Woman"</span>,<span class="string">"Woman"</span>,<span class="string">"Woman"</span>,<span class="string">"Woman"</span>,<span class="string">"Woman"</span>,<span class="string">"Woman"</span>,<span class="string">"Woman"</span>,<span class="string">"Man"</span>,<span class="string">"Man"</span>,<span class="string">"Woman"</span>,<span class="string">"Woman"</span>,<span class="string">"Woman"</span>,<span class="string">"Woman"</span>,<span class="string">"Man"</span>,<span class="string">"Man"</span>,<span class="string">"Woman"</span>,<span class="string">"Woman"</span>,<span class="string">"Woman"</span>,<span class="string">"Woman"</span>,<span class="string">"Man"</span>,<span class="string">"Woman"</span>,<span class="string">"Man"</span>,<span class="string">"Woman"</span>,<span class="string">"Woman"</span>,<span class="string">"Man"</span>,<span class="string">"Man"</span>,<span class="string">"Woman"</span>,<span class="string">"Woman"</span>,<span class="string">"Man"</span>,<span class="string">"Woman"</span>,<span class="string">"Woman"</span>,<span class="string">"Man"</span>,<span class="string">"Woman"</span>,<span class="string">"Man"</span>,<span class="string">"Woman"</span>,<span class="string">"Woman"</span>,<span class="string">"Woman"</span>,<span class="string">"Man"</span>,<span class="string">"Man"</span>)</div><div class="line"><span class="title">trial</span>&lt;-c(<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"Retry"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"Retry"</span>,<span class="string">"New"</span>,<span class="string">"Retry"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"Retry"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"Retry"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"Retry"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"Retry"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"Retry"</span>,<span class="string">"New"</span>,<span class="string">"Retry"</span>,<span class="string">"Retry"</span>,<span class="string">"New"</span>,<span class="string">"Retry"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"Retry"</span>,<span class="string">"New"</span>,<span class="string">"Retry"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"Retry"</span>,<span class="string">"Retry"</span>,<span class="string">"Retry"</span>,<span class="string">"New"</span>,<span class="string">"Retry"</span>,<span class="string">"New"</span>,<span class="string">"Retry"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"Retry"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"Retry"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"Retry"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"Retry"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"Retry"</span>,<span class="string">"New"</span>,<span class="string">"Retry"</span>,<span class="string">"New"</span>,<span class="string">"Retry"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"Retry"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"Retry"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"Retry"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>,<span class="string">"Retry"</span>,<span class="string">"New"</span>,<span class="string">"Retry"</span>,<span class="string">"New"</span>,<span class="string">"New"</span>)</div><div class="line"><span class="title">score</span>&lt;-c(<span class="string">"Under70"</span>,<span class="string">"Under70"</span>,<span class="string">"Under70"</span>,<span class="string">"Over70"</span>,<span class="string">"Over70"</span>,<span class="string">"Over70"</span>,<span class="string">"Under70"</span>,<span class="string">"Over70"</span>,<span class="string">"Under70"</span>,<span class="string">"Over70"</span>,<span class="string">"Under70"</span>,<span class="string">"Under70"</span>,<span class="string">"Over70"</span>,<span class="string">"Under70"</span>,<span class="string">"Over70"</span>,<span class="string">"Over70"</span>,<span class="string">"Over70"</span>,<span class="string">"Over70"</span>,<span class="string">"Over70"</span>,<span class="string">"Under70"</span>,<span class="string">"Under70"</span>,<span class="string">"Over70"</span>,<span class="string">"Over70"</span>,<span class="string">"Over70"</span>,<span class="string">"Over70"</span>,<span class="string">"Over70"</span>,<span class="string">"Under70"</span>,<span class="string">"Under70"</span>,<span class="string">"Under70"</span>,<span class="string">"Over70"</span>,<span class="string">"Over70"</span>,<span class="string">"Over70"</span>,<span class="string">"Over70"</span>,<span class="string">"Under70"</span>,<span class="string">"Under70"</span>,<span class="string">"Under70"</span>,<span class="string">"Under70"</span>,<span class="string">"Over70"</span>,<span class="string">"Over70"</span>,<span class="string">"Over70"</span>,<span class="string">"Under70"</span>,<span class="string">"Under70"</span>,<span class="string">"Over70"</span>,<span class="string">"Over70"</span>,<span class="string">"Over70"</span>,<span class="string">"Under70"</span>,<span class="string">"Under70"</span>,<span class="string">"Under70"</span>,<span class="string">"Under70"</span>,<span class="string">"Over70"</span>,<span class="string">"Under70"</span>,<span class="string">"Over70"</span>,<span class="string">"Over70"</span>,<span class="string">"Over70"</span>,<span class="string">"Over70"</span>,<span class="string">"Under70"</span>,<span class="string">"Under70"</span>,<span class="string">"Under70"</span>,<span class="string">"Over70"</span>,<span class="string">"Under70"</span>,<span class="string">"Over70"</span>,<span class="string">"Under70"</span>,<span class="string">"Under70"</span>,<span class="string">"Over70"</span>,<span class="string">"Under70"</span>,<span class="string">"Under70"</span>,<span class="string">"Over70"</span>,<span class="string">"Under70"</span>,<span class="string">"Under70"</span>,<span class="string">"Over70"</span>,<span class="string">"Over70"</span>,<span class="string">"Under70"</span>,<span class="string">"Under70"</span>,<span class="string">"Over70"</span>,<span class="string">"Under70"</span>,<span class="string">"Over70"</span>,<span class="string">"Under70"</span>,<span class="string">"Over70"</span>,<span class="string">"Under70"</span>,<span class="string">"Under70"</span>,<span class="string">"Under70"</span>,<span class="string">"Under70"</span>,<span class="string">"Over70"</span>,<span class="string">"Over70"</span>,<span class="string">"Under70"</span>,<span class="string">"Over70"</span>,<span class="string">"Under70"</span>,<span class="string">"Under70"</span>,<span class="string">"Over70"</span>,<span class="string">"Over70"</span>,<span class="string">"Under70"</span>,<span class="string">"Over70"</span>,<span class="string">"Under70"</span>,<span class="string">"Under70"</span>,<span class="string">"Under70"</span>,<span class="string">"Under70"</span>,<span class="string">"Over70"</span>,<span class="string">"Under70"</span>,<span class="string">"Under70"</span>,<span class="string">"Over70"</span>)</div><div class="line"><span class="title">s1</span>&lt;-<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(<span class="title">age</span>,<span class="title">sex</span>,<span class="title">trial</span>,<span class="title">score</span>)</span></span></div><div class="line"><span class="title">library</span>(xtable)</div><div class="line"><span class="title">print</span>(xtable(s1),<span class="typedef"><span class="keyword">type</span>="html")</span></div></pre></td></tr></table></figure>
-
-<table border="1"><br><tr> <th>  </th> <th> age </th> <th> sex </th> <th> trial </th> <th> score </th>  </tr><br>  <tr> <td align="right"> 1 </td> <td> Under40 </td> <td> Man </td> <td> New </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 2 </td> <td> Under40 </td> <td> Woman </td> <td> New </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 3 </td> <td> Over40 </td> <td> Woman </td> <td> Retry </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 4 </td> <td> Over40 </td> <td> Man </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 5 </td> <td> Over40 </td> <td> Woman </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 6 </td> <td> Under40 </td> <td> Man </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 7 </td> <td> Under40 </td> <td> Woman </td> <td> New </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 8 </td> <td> Under40 </td> <td> Man </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 9 </td> <td> Under40 </td> <td> Woman </td> <td> Retry </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 10 </td> <td> Under40 </td> <td> Man </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 11 </td> <td> Over40 </td> <td> Man </td> <td> Retry </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 12 </td> <td> Over40 </td> <td> Woman </td> <td> New </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 13 </td> <td> Over40 </td> <td> Woman </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 14 </td> <td> Over40 </td> <td> Man </td> <td> New </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 15 </td> <td> Over40 </td> <td> Woman </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 16 </td> <td> Over40 </td> <td> Woman </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 17 </td> <td> Over40 </td> <td> Woman </td> <td> Retry </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 18 </td> <td> Under40 </td> <td> Man </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 19 </td> <td> Under40 </td> <td> Man </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 20 </td> <td> Over40 </td> <td> Woman </td> <td> New </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 21 </td> <td> Under40 </td> <td> Woman </td> <td> Retry </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 22 </td> <td> Over40 </td> <td> Man </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 23 </td> <td> Under40 </td> <td> Man </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 24 </td> <td> Under40 </td> <td> Man </td> <td> Retry </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 25 </td> <td> Over40 </td> <td> Woman </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 26 </td> <td> Over40 </td> <td> Man </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 27 </td> <td> Over40 </td> <td> Man </td> <td> New </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 28 </td> <td> Over40 </td> <td> Woman </td> <td> New </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 29 </td> <td> Over40 </td> <td> Woman </td> <td> New </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 30 </td> <td> Under40 </td> <td> Man </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 31 </td> <td> Over40 </td> <td> Man </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 32 </td> <td> Under40 </td> <td> Man </td> <td> Retry </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 33 </td> <td> Under40 </td> <td> Woman </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 34 </td> <td> Under40 </td> <td> Woman </td> <td> New </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 35 </td> <td> Under40 </td> <td> Woman </td> <td> New </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 36 </td> <td> Over40 </td> <td> Woman </td> <td> New </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 37 </td> <td> Over40 </td> <td> Man </td> <td> Retry </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 38 </td> <td> Under40 </td> <td> Man </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 39 </td> <td> Under40 </td> <td> Woman </td> <td> Retry </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 40 </td> <td> Under40 </td> <td> Man </td> <td> Retry </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 41 </td> <td> Over40 </td> <td> Woman </td> <td> New </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 42 </td> <td> Under40 </td> <td> Man </td> <td> Retry </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 43 </td> <td> Under40 </td> <td> Woman </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 44 </td> <td> Over40 </td> <td> Man </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 45 </td> <td> Under40 </td> <td> Woman </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 46 </td> <td> Over40 </td> <td> Woman </td> <td> New </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 47 </td> <td> Over40 </td> <td> Woman </td> <td> New </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 48 </td> <td> Over40 </td> <td> Woman </td> <td> New </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 49 </td> <td> Over40 </td> <td> Woman </td> <td> Retry </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 50 </td> <td> Under40 </td> <td> Man </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 51 </td> <td> Under40 </td> <td> Man </td> <td> Retry </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 52 </td> <td> Over40 </td> <td> Man </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 53 </td> <td> Under40 </td> <td> Woman </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 54 </td> <td> Under40 </td> <td> Woman </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 55 </td> <td> Under40 </td> <td> Man </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 56 </td> <td> Under40 </td> <td> Woman </td> <td> Retry </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 57 </td> <td> Under40 </td> <td> Woman </td> <td> Retry </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 58 </td> <td> Under40 </td> <td> Woman </td> <td> Retry </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 59 </td> <td> Under40 </td> <td> Woman </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 60 </td> <td> Under40 </td> <td> Woman </td> <td> Retry </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 61 </td> <td> Under40 </td> <td> Man </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 62 </td> <td> Over40 </td> <td> Woman </td> <td> Retry </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 63 </td> <td> Over40 </td> <td> Woman </td> <td> New </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 64 </td> <td> Under40 </td> <td> Woman </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 65 </td> <td> Over40 </td> <td> Woman </td> <td> New </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 66 </td> <td> Under40 </td> <td> Woman </td> <td> Retry </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 67 </td> <td> Under40 </td> <td> Woman </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 68 </td> <td> Over40 </td> <td> Woman </td> <td> New </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 69 </td> <td> Under40 </td> <td> Man </td> <td> Retry </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 70 </td> <td> Over40 </td> <td> Man </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 71 </td> <td> Under40 </td> <td> Woman </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 72 </td> <td> Under40 </td> <td> Woman </td> <td> Retry </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 73 </td> <td> Over40 </td> <td> Woman </td> <td> New </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 74 </td> <td> Under40 </td> <td> Woman </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 75 </td> <td> Over40 </td> <td> Man </td> <td> Retry </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 76 </td> <td> Under40 </td> <td> Man </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 77 </td> <td> Over40 </td> <td> Woman </td> <td> New </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 78 </td> <td> Over40 </td> <td> Woman </td> <td> Retry </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 79 </td> <td> Over40 </td> <td> Woman </td> <td> New </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 80 </td> <td> Over40 </td> <td> Woman </td> <td> Retry </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 81 </td> <td> Over40 </td> <td> Man </td> <td> New </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 82 </td> <td> Over40 </td> <td> Woman </td> <td> Retry </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 83 </td> <td> Under40 </td> <td> Man </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 84 </td> <td> Under40 </td> <td> Woman </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 85 </td> <td> Over40 </td> <td> Woman </td> <td> Retry </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 86 </td> <td> Under40 </td> <td> Man </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 87 </td> <td> Over40 </td> <td> Man </td> <td> New </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 88 </td> <td> Over40 </td> <td> Woman </td> <td> Retry </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 89 </td> <td> Under40 </td> <td> Woman </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 90 </td> <td> Under40 </td> <td> Man </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 91 </td> <td> Over40 </td> <td> Woman </td> <td> New </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 92 </td> <td> Over40 </td> <td> Woman </td> <td> Retry </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 93 </td> <td> Over40 </td> <td> Man </td> <td> New </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 94 </td> <td> Under40 </td> <td> Woman </td> <td> New </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 95 </td> <td> Over40 </td> <td> Man </td> <td> New </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 96 </td> <td> Over40 </td> <td> Woman </td> <td> Retry </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 97 </td> <td> Under40 </td> <td> Woman </td> <td> New </td> <td> Over70 </td> </tr><br>  <tr> <td align="right"> 98 </td> <td> Under40 </td> <td> Woman </td> <td> Retry </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 99 </td> <td> Over40 </td> <td> Man </td> <td> New </td> <td> Under70 </td> </tr><br>  <tr> <td align="right"> 100 </td> <td> Over40 </td> <td> Man </td> <td> New </td> <td> Over70 </td> </tr><br>   </table>
-
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">library(mvpart)</div><div class="line">s2&lt;-rpart(score~.,data=s1,<span class="keyword">method</span>=<span class="string">"class"</span>)</div><div class="line">s2</div></pre></td></tr></table></figure>
-
-<p>n= 100 </p>
-<p>node), split, n, loss, yval, (yprob)</p>
-<pre><code>  <span class="keyword">*</span> denotes terminal node
-</code></pre><p> 1) root 100 48 Under70 (0.4800000 0.5200000)<br>   2) trial=New 70 29 Over70 (0.5857143 0.4142857)<br>     4) age=Under40 34  6 Over70 (0.8235294 0.1764706) <em><br>     5) age=Over40 36 13 Under70 (0.3611111 0.6388889)<br>      10) sex=Man 15  7 Over70 (0.5333333 0.4666667) </em><br>      11) sex=Woman 21  5 Under70 (0.2380952 0.7619048) <em><br>   3) trial=Retry 30  7 Under70 (0.2333333 0.7666667) </em></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">plot(s2,<span class="variable">margin=</span><span class="number">0.1</span>)</div><div class="line">text(s2,<span class="variable">pretty=</span><span class="number">0</span>,<span class="variable">all=</span>T,use.<span class="variable">n=</span>T,<span class="variable">col=</span><span class="string">"red"</span>,<span class="variable">font =</span><span class="number">2</span>,<span class="variable">cex =</span><span class="number">0.8</span>)</div></pre></td></tr></table></figure>
-
-<p><img src="http://blog-imgs-61.fc2.com/s/t/a/statrstart/tree1.jpg" alt=""></p>
-<h4 id="partykit_パッケージのplot">partykit パッケージのplot</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">library</span><span class="params">(partykit)</span></span></div><div class="line"><span class="title">plot</span><span class="params">(as.<span class="function_name">party</span>(s2))</span></div></pre></td></tr></table></figure>
-
-<p><img src="http://blog-imgs-61.fc2.com/s/t/a/statrstart/tree2.jpg" alt=""></p>
-<h4 id="(おまけ)決定木予測モデルの作成と評価">(おまけ)決定木予測モデルの作成と評価</h4>
-<h5 id="gclusパッケージのbankデータを使う">gclusパッケージのbankデータを使う</h5>
-<h6 id="本物のスイス紙幣100枚と偽物のスイス紙幣100枚の６つの測定値">本物のスイス紙幣100枚と偽物のスイス紙幣100枚の６つの測定値</h6>
-<h6 id="単位(mm)_Length:_Length_of_bill,Left:_Width_of_left_edge,Right:_Width_of_right_edge,Bottom:_Bottom_margin_width,">単位(mm) Length: Length of bill,Left: Width of left edge,Right: Width of right edge,Bottom: Bottom margin width,</h6>
-<h5 id="（注）結果はデータの分かれ方によって異なる">（注）結果はデータの分かれ方によって異なる</h5>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="title">library</span>(mvpart)</div><div class="line"><span class="title">library</span>(gclus)</div><div class="line"><span class="title">library</span>(caret)</div><div class="line"><span class="typedef"><span class="keyword">data</span><span class="container">(<span class="title">bank</span>)</span></span></div><div class="line"><span class="title">bank</span>$<span class="type">Status</span> &lt;- factor(bank$<span class="type">Status</span>, labels=c('真札','偽札'))</div><div class="line"><span class="preprocessor">#データをモデル作成用と検定用に分ける</span></div><div class="line"><span class="title">cdp</span>&lt;-createDataPartition(bank[,<span class="number">1</span>],p=<span class="number">0.5</span>)</div><div class="line"><span class="title">cdp</span></div><div class="line"><span class="preprocessor">#学習用データ</span></div><div class="line"><span class="title">training</span>&lt;-bank[cdp$<span class="type">Resample1</span>,]</div><div class="line"><span class="title">training</span></div><div class="line"><span class="preprocessor">#評価用データ</span></div><div class="line"><span class="title">test</span>&lt;-bank[-cdp$<span class="type">Resample1</span>,]</div><div class="line"><span class="title">test</span></div><div class="line"><span class="preprocessor">#テストデータで決定木</span></div><div class="line"><span class="title">tree</span>&lt;- rpart(<span class="type">Status</span>~.,<span class="typedef"><span class="keyword">data</span>=training,method="class")</span></div><div class="line"><span class="title">plot</span>(tree,margin=<span class="number">0.15</span>)</div><div class="line"><span class="title">text</span>(tree,all=<span class="type">T</span>,use.n=<span class="type">T</span>)</div><div class="line"><span class="preprocessor">##### 対角線の長さが140.6以上なら真札、140.6未満なら偽札と予測</span></div><div class="line"><span class="preprocessor">##### 検証する</span></div><div class="line"><span class="title">predict</span>&lt;-predict(tree,test,<span class="typedef"><span class="keyword">type</span>="class")</span></div><div class="line"><span class="title">predict</span></div><div class="line"><span class="title">test</span>[,<span class="number">8</span>]&lt;-predict</div><div class="line"><span class="title">test</span></div><div class="line"><span class="title">table</span>(test[,<span class="number">1</span>],predict)</div><div class="line"><span class="preprocessor">##### 1枚不正解</span></div><div class="line"><span class="title">miss</span> &lt;- subset(test, subset=(test[,<span class="number">1</span>]==<span class="string">"真札"</span> & test[,<span class="number">8</span>]==<span class="string">"偽札"</span>))</div><div class="line"><span class="title">miss</span></div></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/09/16/データからの知識発見第10章/" data-id="ak844djkc8ot5l5a" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a></li></ul>
@@ -402,9 +381,401 @@
 
 
   
+    <article id="post-データからの知識発見第６章" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/09/14/データからの知識発見第６章/" class="article-date">
+  <time datetime="2014-09-14T12:10:28.000Z" itemprop="datePublished">Sep 14 2014</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/14/データからの知識発見第６章/">回帰分析(データからの知識発見)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="放送大学「データからの知識発見」第６章_回帰分析">放送大学「データからの知識発見」第６章　回帰分析</h2>
+<h3 id="標準化していない身長と体重のデータ（テキストとは異なるデータ）">標準化していない身長と体重のデータ（テキストとは異なるデータ）</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="title">height</span>&lt;-c(<span class="number">147.3</span>,<span class="number">149.9</span>,<span class="number">152.4</span>,<span class="number">154.9</span>,<span class="number">157.5</span>,<span class="number">160</span>,<span class="number">162.6</span>,<span class="number">165.1</span>,<span class="number">167.6</span>,<span class="number">170.2</span>,<span class="number">172.7</span>,<span class="number">175.3</span>,<span class="number">177.8</span>,<span class="number">180.3</span>,<span class="number">182.9</span>)</div><div class="line"><span class="title">weight</span>&lt;-c(<span class="number">52.3</span>,<span class="number">53.2</span>,<span class="number">54.5</span>,<span class="number">55.9</span>,<span class="number">57.3</span>,<span class="number">58.6</span>,<span class="number">60</span>,<span class="number">61.4</span>,<span class="number">63.2</span>,<span class="number">64.5</span>,<span class="number">66.4</span>,<span class="number">68.2</span>,<span class="number">70</span>,<span class="number">72.3</span>,<span class="number">74.5</span>)</div><div class="line"><span class="title">w1</span>&lt;-<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(<span class="title">height</span>,<span class="title">weight</span>)</span></span></div><div class="line"><span class="title">row</span>.names(w1)&lt;-c(<span class="string">"A1"</span>,<span class="string">"A2"</span>,<span class="string">"A3"</span>,<span class="string">"A4"</span>,<span class="string">"A5"</span>,<span class="string">"A6"</span>,<span class="string">"A7"</span>,<span class="string">"A8"</span>,<span class="string">"A9"</span>,<span class="string">"A10"</span>,<span class="string">"A11"</span>,<span class="string">"A12"</span>,<span class="string">"A13"</span>,<span class="string">"A14"</span>,<span class="string">"A15"</span>)</div><div class="line"><span class="title">w2</span>&lt;-lm(weight~height,<span class="typedef"><span class="keyword">data</span>=w1)</span></div><div class="line"><span class="title">library</span>(stargazer)</div><div class="line"><span class="title">stargazer</span>(w2,<span class="typedef"><span class="keyword">type</span>="html",single.row=<span class="type">T</span>)</span></div></pre></td></tr></table></figure>
+
+<table style="text-align:center"><tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"></td><td><em>Dependent variable:</em></td></tr><br><tr><td></td><td colspan="1" style="border-bottom: 1px solid black"></td></tr><br><tr><td style="text-align:left"></td><td>weight</td></tr><br><tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">height</td><td>0.617<sup><strong><em></em></strong></sup> (0.016)</td></tr><br><tr><td style="text-align:left">Constant</td><td>-39.755<sup></sup> (2.692)</td></tr><br><tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">Observations</td><td>15</td></tr><br><tr><td style="text-align:left">R<sup>2</sup></td><td>0.991</td></tr><br><tr><td style="text-align:left">Adjusted R<sup>2</sup></td><td>0.990</td></tr><br><tr><td style="text-align:left">Residual Std. Error</td><td>0.692 (df = 13)</td></tr><br><tr><td style="text-align:left">F Statistic</td><td>1,439.108<sup><strong><em></em></strong></sup> (df = 1; 13)</td></tr><br><tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"><em>Note:</em></td><td style="text-align:right"><sup></sup>p<0.1; <sup="">p<0.05; <sup=""><em>*</em>p<0.01< td=""></0.01<></0.05;></0.1;></td></tr><br></table>
+
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">plot</span><span class="params">(w1,main=<span class="string">"回帰直線"</span>)</span></span></div><div class="line"><span class="title">abline</span><span class="params">(w2,col=<span class="string">"red"</span>)</span></div></pre></td></tr></table></figure>
+
+<p><img src="http://blog-imgs-61.fc2.com/s/t/a/statrstart/lm2.jpg" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2014/09/14/データからの知識発見第６章/" data-id="zoo43fe96dq19x4m" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-データからの知識発見第５章" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/09/14/データからの知識発見第５章/" class="article-date">
+  <time datetime="2014-09-13T21:42:51.000Z" itemprop="datePublished">Sep 14 2014</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/14/データからの知識発見第５章/">主成分分析</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="放送大学「データからの知識発見」第５章_主成分分析">放送大学「データからの知識発見」第５章　主成分分析</h1>
+<h3 id="標準化後の身長と体重のデータ">標準化後の身長と体重のデータ</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="title">height</span>&lt;-c(-<span class="number">1.565247584</span>,-<span class="number">1.341640786</span>,-<span class="number">1.118033989</span>,-<span class="number">0.894427191</span>,-<span class="number">0.670820393</span>,-<span class="number">0.447213595</span>,-<span class="number">0.223606798</span>,<span class="number">0</span>,<span class="number">0.223606798</span>,<span class="number">0.447213595</span>,<span class="number">0.670820393</span>,<span class="number">0.894427191</span>,<span class="number">1.118033989</span>,<span class="number">1.341640786</span>,<span class="number">1.565247584</span>)</div><div class="line"><span class="title">weight</span>&lt;-c(-<span class="number">1.402268666</span>,-<span class="number">1.273225538</span>,-<span class="number">1.079660844</span>,-<span class="number">0.886096151</span>,-<span class="number">0.692531458</span>,-<span class="number">0.498966765</span>,-<span class="number">0.305402072</span>,-<span class="number">0.111837378</span>,<span class="number">0.146248879</span>,<span class="number">0.339813573</span>,<span class="number">0.59789983</span>,<span class="number">0.855986088</span>,<span class="number">1.114072345</span>,<span class="number">1.436680167</span>,<span class="number">1.759287989</span>)</div><div class="line"><span class="title">w1</span>&lt;-<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(<span class="title">height</span>,<span class="title">weight</span>)</span></span></div><div class="line"><span class="title">row</span>.names(w1)&lt;-c(<span class="string">"A1"</span>,<span class="string">"A2"</span>,<span class="string">"A3"</span>,<span class="string">"A4"</span>,<span class="string">"A5"</span>,<span class="string">"A6"</span>,<span class="string">"A7"</span>,<span class="string">"A8"</span>,<span class="string">"A9"</span>,<span class="string">"A10"</span>,<span class="string">"A11"</span>,<span class="string">"A12"</span>,<span class="string">"A13"</span>,<span class="string">"A14"</span>,<span class="string">"A15"</span>)</div><div class="line"><span class="title">w2</span>&lt;-prcomp(w1)</div><div class="line"><span class="title">library</span>(xtable)</div><div class="line"><span class="title">print</span>(xtable(summary(w2)$importance[,<span class="number">1</span>:<span class="number">2</span>],digits=<span class="number">4</span>),<span class="typedef"><span class="keyword">type</span>="html")</span></div></pre></td></tr></table></figure>
+
+<p><!-- html table generated in R 3.1.1 by xtable 1.7-3 package --><br><!-- Sat Sep 13 23:14:40 2014 --></p>
+<table border="1"><br><tr> <th>  </th> <th> PC1 </th> <th> PC2 </th>  </tr><br>  <tr> <td align="right"> Standard deviation </td> <td align="right"> 1.4126 </td> <td align="right"> 0.0671 </td> </tr><br>  <tr> <td align="right"> Proportion of Variance </td> <td align="right"> 0.9978 </td> <td align="right"> 0.0022 </td> </tr><br>  <tr> <td align="right"> Cumulative Proportion </td> <td align="right"> 0.9978 </td> <td align="right"> 1.0000 </td> </tr><br>   </table>
+
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">plot(w2<span class="variable">$x</span>,<span class="built_in">type</span>=<span class="string">"n"</span>)</div><div class="line">text(w2<span class="variable">$x</span>,rownames(w1))</div></pre></td></tr></table></figure>
+
+<h3 id="標準化していない身長と体重のデータ">標準化していない身長と体重のデータ</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="title">height</span>&lt;-c(<span class="number">147.3</span>,<span class="number">149.9</span>,<span class="number">152.4</span>,<span class="number">154.9</span>,<span class="number">157.5</span>,<span class="number">160</span>,<span class="number">162.6</span>,<span class="number">165.1</span>,<span class="number">167.6</span>,<span class="number">170.2</span>,<span class="number">172.7</span>,<span class="number">175.3</span>,<span class="number">177.8</span>,<span class="number">180.3</span>,<span class="number">182.9</span>)</div><div class="line"><span class="title">weight</span>&lt;-c(<span class="number">52.3</span>,<span class="number">53.2</span>,<span class="number">54.5</span>,<span class="number">55.9</span>,<span class="number">57.3</span>,<span class="number">58.6</span>,<span class="number">60</span>,<span class="number">61.4</span>,<span class="number">63.2</span>,<span class="number">64.5</span>,<span class="number">66.4</span>,<span class="number">68.2</span>,<span class="number">70</span>,<span class="number">72.3</span>,<span class="number">74.5</span>)</div><div class="line"><span class="title">w1</span>&lt;-<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(<span class="title">height</span>,<span class="title">weight</span>)</span></span></div><div class="line"><span class="title">row</span>.names(w1)&lt;-c(<span class="string">"A1"</span>,<span class="string">"A2"</span>,<span class="string">"A3"</span>,<span class="string">"A4"</span>,<span class="string">"A5"</span>,<span class="string">"A6"</span>,<span class="string">"A7"</span>,<span class="string">"A8"</span>,<span class="string">"A9"</span>,<span class="string">"A10"</span>,<span class="string">"A11"</span>,<span class="string">"A12"</span>,<span class="string">"A13"</span>,<span class="string">"A14"</span>,<span class="string">"A15"</span>)</div><div class="line"><span class="title">w2</span>&lt;-prcomp(w1)</div><div class="line"><span class="title">print</span>(xtable(summary(w2)$importance[,<span class="number">1</span>:<span class="number">2</span>],digits=<span class="number">4</span>),<span class="typedef"><span class="keyword">type</span>="html")</span></div></pre></td></tr></table></figure>
+
+<p><!-- html table generated in R 3.1.1 by xtable 1.7-3 package --><br><!-- Sat Sep 13 23:20:05 2014 --></p>
+<table border="1"><br><tr> <th>  </th> <th> PC1 </th> <th> PC2 </th>  </tr><br>  <tr> <td align="right"> Standard deviation </td> <td align="right"> 13.3535 </td> <td align="right"> 0.5669 </td> </tr><br>  <tr> <td align="right"> Proportion of Variance </td> <td align="right"> 0.9982 </td> <td align="right"> 0.0018 </td> </tr><br>  <tr> <td align="right"> Cumulative Proportion </td> <td align="right"> 0.9982 </td> <td align="right"> 1.0000 </td> </tr><br>   </table>
+
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">plot(w2<span class="variable">$x</span>,<span class="built_in">type</span>=<span class="string">"n"</span>)</div><div class="line">text(w2<span class="variable">$x</span>,rownames(w1))</div></pre></td></tr></table></figure>
+
+<p><img src="/images/prcomp01.png" alt=""></p>
+<h3 id="標準化してから分析（scale=T）">標準化してから分析（scale=T）</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">w2&lt;-prcomp(w1,<span class="variable">scale=</span>T)</div><div class="line">print(xtable(summary(w2)$importance[,<span class="number">1</span>:<span class="number">2</span>],<span class="variable">digits=</span><span class="number">4</span>),<span class="variable">type=</span><span class="string">"html"</span>)</div></pre></td></tr></table></figure>
+
+<p><!-- html table generated in R 3.1.1 by xtable 1.7-3 package --><br><!-- Sat Sep 13 23:22:34 2014 --></p>
+<table border="1"><br><tr> <th>  </th> <th> PC1 </th> <th> PC2 </th>  </tr><br>  <tr> <td align="right"> Standard deviation </td> <td align="right"> 1.4126 </td> <td align="right"> 0.0670 </td> </tr><br>  <tr> <td align="right"> Proportion of Variance </td> <td align="right"> 0.9978 </td> <td align="right"> 0.0022 </td> </tr><br>  <tr> <td align="right"> Cumulative Proportion </td> <td align="right"> 0.9978 </td> <td align="right"> 1.0000 </td> </tr><br>   </table>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2014/09/14/データからの知識発見第５章/" data-id="ffw3h7ud91zhh37n" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-相関研究" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/09/12/相関研究/" class="article-date">
+  <time datetime="2014-09-12T11:11:13.000Z" itemprop="datePublished">Sep 12 2014</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/12/相関研究/">相関研究</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="「心理・教育統計法特論」第8章相関研究">「心理・教育統計法特論」第8章相関研究</h2>
+<h3 id="ピアソンの相関係数">ピアソンの相関係数</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="type">IQ</span>&lt;-c(<span class="number">95</span>,<span class="number">100</span>,<span class="number">100</span>,<span class="number">115</span>,<span class="number">120</span>)</div><div class="line">数学テスト&lt;-c(<span class="number">50</span>,<span class="number">45</span>,<span class="number">60</span>,<span class="number">65</span>,<span class="number">80</span>)</div><div class="line">cor.test(<span class="type">IQ</span>,数学テスト, alternative=<span class="string">"two.sided"</span>, <span class="keyword">method</span>=<span class="string">"pearson"</span>)</div></pre></td></tr></table></figure>
+
+<p>Pearson’s product-moment correlation  </p>
+<p>data:  IQ and 数学テスト<br>t = 3.2796, df = 3, p-value = 0.04644<br>alternative hypothesis: true correlation is not equal to 0<br>95 percent confidence interval:<br> 0.00906579 0.99234530<br>sample estimates:<br>      cor<br>0.8842595  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">plot(IQ,数学テスト,<span class="variable">xlim=</span>c(<span class="number">80</span>,<span class="number">130</span>),<span class="variable">ylim=</span>c(<span class="number">0</span>,<span class="number">90</span>),<span class="variable">main=</span><span class="string">"IQと数学テストの相関図"</span>)</div></pre></td></tr></table></figure>
+
+<p><img src="http://blog-imgs-61.fc2.com/s/t/a/statrstart/pearson1.jpg" alt=""></p>
+<h3 id="順位相関">順位相関</h3>
+<h4 id="スピアマンの順位祖関係数">スピアマンの順位祖関係数</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cor.test(<span class="type">IQ</span>,数学テスト, alternative=<span class="string">"two.sided"</span>, <span class="keyword">method</span>=<span class="string">"spearman"</span>)</div></pre></td></tr></table></figure>
+
+<p>Spearman’s rank correlation rho  </p>
+<p>data:  IQ and 数学テスト<br>S = 3.5843, p-value = 0.08859<br>alternative hypothesis: true rho is not equal to 0<br>sample estimates:<br>      rho<br>0.8207827   </p>
+<h3 id="点数を順位にして検定">点数を順位にして検定</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="type">IQ</span>の順位&lt;-c(<span class="number">1</span>,<span class="number">2</span>.<span class="number">5</span>,<span class="number">2</span>.<span class="number">5</span>,<span class="number">4</span>,<span class="number">5</span>)</div><div class="line">数学テストの順位&lt;-c(<span class="number">2</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)</div><div class="line">cor.test(<span class="type">IQ</span>の順位,数学テストの順位, alternative=<span class="string">"two.sided"</span>, <span class="keyword">method</span>=<span class="string">"pearson"</span>)</div></pre></td></tr></table></figure>
+
+<p>Pearson’s product-moment correlation</p>
+<p>data:  IQの順位 and 数学テストの順位<br>t = 2.4887, df = 3, p-value = 0.08859<br>alternative hypothesis: true correlation is not equal to 0<br>95 percent confidence interval:<br> -0.2228875  0.9877621<br>sample estimates:<br>      cor<br>0.8207827   </p>
+<p>スピアマンの順位相関係数の値と一致する</p>
+<h4 id="データに変更を加えた">データに変更を加えた</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="type">IQ</span>&lt;-c(<span class="number">95</span>,<span class="number">100</span>,<span class="number">100</span>,<span class="number">115</span>,<span class="number">120</span>)</div><div class="line">数学テスト&lt;-c(<span class="number">50</span>,<span class="number">45</span>,<span class="number">60</span>,<span class="number">65</span>,<span class="number">20</span>) </div><div class="line">cor.test(<span class="type">IQ</span>,数学テスト, alternative=<span class="string">"two.sided"</span>, <span class="keyword">method</span>=<span class="string">"pearson"</span>)</div></pre></td></tr></table></figure>
+
+<p>Pearson’s product-moment correlation  </p>
+<p>data:  IQ and 数学テスト<br>t = -0.7884, df = 3, p-value = 0.488<br>alternative hypothesis: true correlation is not equal to 0<br>95 percent confidence interval:<br> -0.9495011  0.7375655<br>sample estimates:<br>       cor<br>-0.4142944   </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">plot(IQ,数学テスト,<span class="variable">xlim=</span>c(<span class="number">80</span>,<span class="number">130</span>),<span class="variable">ylim=</span>c(<span class="number">0</span>,<span class="number">90</span>),<span class="variable">main=</span><span class="string">"IQと数学テストの相関図"</span>)</div></pre></td></tr></table></figure>
+
+<p><img src="http://blog-imgs-61.fc2.com/s/t/a/statrstart/pearson2.jpg" alt=""></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cor.test(<span class="type">IQ</span>,数学テスト, alternative=<span class="string">"two.sided"</span>, <span class="keyword">method</span>=<span class="string">"spearman"</span>)</div></pre></td></tr></table></figure>
+
+<p>Spearman’s rank correlation rho  </p>
+<p>data:  IQ and 数学テスト<br>S = 24.1039, p-value = 0.7406<br>alternative hypothesis: true rho is not equal to 0<br>sample estimates:<br>       rho<br>-0.2051957   </p>
+<p>（注）タイ（同順位）があるのでテキストの値（タイの補正をしていない値） -0.175 とは一致しない</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2014/09/12/相関研究/" data-id="d7858o1bnlh3v87w" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-順序尺度" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/09/12/順序尺度/" class="article-date">
+  <time datetime="2014-09-12T11:07:21.000Z" itemprop="datePublished">Sep 12 2014</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/12/順序尺度/">順序尺度</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="「心理・教育統計法特論」第7章順序尺度の検定">「心理・教育統計法特論」第7章順序尺度の検定</h2>
+<h3 id="２つの独立な場合のノンパラメトリック法">２つの独立な場合のノンパラメトリック法</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">男性&lt;-<span class="built_in">c</span>(<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</div><div class="line">女性&lt;-<span class="built_in">c</span>(<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">3</span>)</div></pre></td></tr></table></figure>
+
+<p>wilcox.test は，データ数の合計が 50 未満で，同値がない場合にのみ正確な P 値を計算するが，<br>同値がある場合にはデータ数にかかわらず正規近似による P 値しか与えない。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag"><span class="attribute">wilcox.test</span>(男性,女性, <span class="attribute">alternative</span>=<span class="value">'two.sided'</span><span class="value">,</span> <span class="attribute">paired</span>=<span class="value">F)</span></span></span></div></pre></td></tr></table></figure>
+
+<p>警告が出る<br>警告: Warning in wilcox.test.default(男性, 女性, alternative = “two.sided”, paired = F) :<br>cannot compute exact p-value with ties</p>
+<p>Wilcoxon rank sum test with continuity correction  </p>
+<p>data:  男性 and 女性<br>W = 180.5, p-value = 0.5761<br>alternative hypothesis: true location shift is not equal to 0  </p>
+<p>exactRankTests パッケージには wilcox.exact 関数があり，同値(tie)のある場合にも正確な P 値を計算できる。<br>exactRankTests パッケージをインストールしておく</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag"><span class="attribute">library</span>(<span class="attribute">exactRankTests</span>)</span></span></div><div class="line"><span class="attribute">wilcox.exact</span>(男性,女性, <span class="attribute">alternative</span>=<span class="value">'two.sided'</span><span class="value">,</span> <span class="attribute">exact</span>=<span class="value">TRUE,</span> <span class="attribute">paired</span>=<span class="value">F)</span></div></pre></td></tr></table></figure>
+
+<p>Exact Wilcoxon rank sum test  </p>
+<p>data:  男性 and 女性<br>W = 180.5, p-value = 0.606<br>alternative hypothesis: true mu is not equal to 0  </p>
+<p>テキストとU(W)値が異なっているが、20<em>20+20</em>(20+1)/2=610 から<br>男性の順位和　390.5を引く(U=219.5)か、女性の順位和429.5を引く(U=180.5)かの違い</p>
+<h3 id="２つの関連した場合のノンパラメトリック法">２つの関連した場合のノンパラメトリック法</h3>
+<h4 id="タイの補正も行うので、テキストのP値_0-011_とは値が異なる">タイの補正も行うので、テキストのP値　0.011 とは値が異なる</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">理想&lt;<span class="attribute">-c</span>(<span class="attribute">1</span>,<span class="attribute">1</span>,<span class="attribute">1</span>,<span class="attribute">1</span>,<span class="attribute">1</span>,<span class="attribute">1</span>,<span class="attribute">1</span>,<span class="attribute">1</span>,<span class="attribute">2</span>,<span class="attribute">1</span>,<span class="attribute">1</span>,<span class="attribute">3</span>,<span class="attribute">1</span>,<span class="attribute">1</span>,<span class="attribute">2</span>,<span class="attribute">1</span>,<span class="attribute">1</span>,<span class="attribute">1</span>,<span class="attribute">2</span>,<span class="attribute">2</span>)</span></span></div><div class="line">現実&lt;<span class="attribute">-c</span>(<span class="attribute">2</span>,<span class="attribute">3</span>,<span class="attribute">1</span>,<span class="attribute">3</span>,<span class="attribute">2</span>,<span class="attribute">1</span>,<span class="attribute">2</span>,<span class="attribute">2</span>,<span class="attribute">1</span>,<span class="attribute">2</span>,<span class="attribute">1</span>,<span class="attribute">3</span>,<span class="attribute">2</span>,<span class="attribute">2</span>,<span class="attribute">2</span>,<span class="attribute">1</span>,<span class="attribute">2</span>,<span class="attribute">3</span>,<span class="attribute">1</span>,<span class="attribute">3</span>)</div><div class="line"><span class="attribute">wilcox.test</span>(理想,現実, <span class="attribute">alternative</span>=<span class="value">'two.sided'</span><span class="value">,</span> <span class="attribute">paired</span>=<span class="value">T)</span></div></pre></td></tr></table></figure>
+
+<p>警告が出る<br>cannot compute exact p-value with ties<br>Warning in wilcox.test.default(理想, 現実, alternative = “two.sided”, paired = T) :<br>cannot compute exact p-value with zeroes</p>
+<p>Wilcoxon signed rank test with continuity correction</p>
+<p>data:  理想 and 現実<br>V = 12, p-value = 0.007762<br>alternative hypothesis: true location shift is not equal to 0</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag"><span class="attribute">library</span>(<span class="attribute">exactRankTests</span>)</span></span></div><div class="line"><span class="attribute">wilcox.exact</span>(理想,現実, <span class="attribute">alternative</span>=<span class="value">'two.sided'</span><span class="value">,</span> <span class="attribute">exact</span>=<span class="value">TRUE,</span> <span class="attribute">paired</span>=<span class="value">T)</span></div></pre></td></tr></table></figure>
+
+<p>Exact Wilcoxon signed rank test  </p>
+<p>data:  理想 and 現実<br>V = 12, p-value = 0.008179<br>alternative hypothesis: true mu is not equal to 0  </p>
+<h3 id="３つ以上の独立な場合のノンパラメトリック法">３つ以上の独立な場合のノンパラメトリック法</h3>
+<h4 id="タイの補正も行うので、テキストとは値が異なる">タイの補正も行うので、テキストとは値が異なる</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">家事&lt;-c(<span class="number">4</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">3</span>)</div><div class="line">育児&lt;-c(<span class="number">4</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">4</span>)</div><div class="line">個人生活&lt;-c(<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>)</div><div class="line"><span class="title">d</span>&lt;-<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(家事,育児,個人生活)</span></span></div><div class="line"><span class="title">d1</span>&lt;-stack(d)</div><div class="line"><span class="title">kruskal</span>.test(values ~ ind, <span class="typedef"><span class="keyword">data</span>=d1)</span></div></pre></td></tr></table></figure>
+
+<p>Kruskal-Wallis rank sum test</p>
+<p>data:  values by ind<br>Kruskal-Wallis chi-squared = 15.9355, df = 2, p-value = 0.0003465</p>
+<p>多重比較</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pairwise.wilcox.test(d1<span class="variable">$values</span> ,d1<span class="variable">$ind</span>,paired = <span class="keyword">FALSE</span>, exact=F)</div></pre></td></tr></table></figure>
+
+<p>Pairwise comparisons using Wilcoxon rank sum test   </p>
+<p>data:  d1$values and d1$ind   </p>
+<pre><code>     育児  家事   
+</code></pre><p>家事     0.686 -<br>個人生活 0.002 0.002  </p>
+<p>P value adjustment method: holm   </p>
+<p>ボンフェローニの検定<br>多重比較する組み合わせの数をP値に乗じる<br>この場合3を乗ずる</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag"><span class="attribute">wilcox.exact</span>(家事,育児, <span class="attribute">alternative</span>=<span class="value">'two.sided'</span><span class="value">,</span> <span class="attribute">exact</span>=<span class="value">TRUE,</span> <span class="attribute">paired</span>=<span class="value">F)</span></span></span></div><div class="line"><span class="attribute">wilcox.exact</span>(家事,個人生活, <span class="attribute">alternative</span>=<span class="value">'two.sided'</span><span class="value">,</span> <span class="attribute">exact</span>=<span class="value">TRUE,</span> <span class="attribute">paired</span>=<span class="value">F)</span></div><div class="line"><span class="attribute">wilcox.exact</span>(個人生活,育児, <span class="attribute">alternative</span>=<span class="value">'two.sided'</span><span class="value">,</span> <span class="attribute">exact</span>=<span class="value">TRUE,</span> <span class="attribute">paired</span>=<span class="value">F)</span></div></pre></td></tr></table></figure>
+
+<p>Exact Wilcoxon rank sum test　　</p>
+<p>data:  家事 and 育児　　<br>W = 55.5, p-value = 0.7385<br>alternative hypothesis: true mu is not equal to 0　　</p>
+<p>有意さなし　　</p>
+<hr>
+<p>Exact Wilcoxon rank sum test　　</p>
+<p>data:  家事 and 個人生活　　<br>W = 94, p-value = 0.0003681<br>alternative hypothesis: true mu is not equal to 0　　</p>
+<p>0.0003681*3=0.0011043&lt;0.05<br>有意差あり　　</p>
+<hr>
+<p>Exact Wilcoxon rank sum test　　</p>
+<p>data:  個人生活 and 育児　　<br>W = 6.5, p-value = 0.000433<br>alternative hypothesis: true mu is not equal to 0　　</p>
+<p>0.000433*3=0.001299&lt;0.05<br>有意差あり</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2014/09/12/順序尺度/" data-id="r6y93bd9dhzbmo8a" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-名義尺度" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/09/12/名義尺度/" class="article-date">
+  <time datetime="2014-09-12T10:59:59.000Z" itemprop="datePublished">Sep 12 2014</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/12/名義尺度/">名義尺度</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="「心理・教育統計法特論」第6章名義尺度の検定">「心理・教育統計法特論」第6章名義尺度の検定</h2>
+<h3 id="比率の差の検定">比率の差の検定</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="title">library</span>(xtable)</div><div class="line">人数&lt;-c(<span class="number">28</span>,<span class="number">12</span>)</div><div class="line"><span class="title">d</span>&lt;-<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(人数)</span></span></div><div class="line"><span class="title">row</span>.names(d)&lt;-c(<span class="string">"好き"</span>,<span class="string">"嫌い"</span>)</div><div class="line"><span class="title">print</span>(xtable(d),<span class="typedef"><span class="keyword">type</span>="html")</span></div></pre></td></tr></table></figure>
+
+<p><!-- html table generated in R 3.0.2 by xtable 1.7-3 package --><br><!-- Fri Sep 12 14:10:03 2014 --></p>
+<table border="1"><br><tr> <th>  </th> <th> 人数 </th>  </tr><br>  <tr> <td align="right"> 好き </td> <td align="right"> 28.00 </td> </tr><br>  <tr> <td align="right"> 嫌い </td> <td align="right"> 12.00 </td> </tr><br>   </table>
+
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chisq.test(d)</div></pre></td></tr></table></figure>
+
+<p>Chi-squared test for given probabilities  </p>
+<p>data:  d<br>X-squared = 6.4, df = 1, p-value = 0.01141  </p>
+<h3 id="２×２のクロス表の検定">２×２のクロス表の検定</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">被害者１３歳未満&lt;-c(<span class="number">26</span>,<span class="number">30</span>)</div><div class="line">被害者１３歳以上&lt;-c(<span class="number">13</span>,<span class="number">40</span>)</div><div class="line"><span class="title">d</span>&lt;-<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(被害者１３歳未満,被害者１３歳以上)</span></span></div><div class="line"><span class="title">row</span>.names(d)&lt;-c(<span class="string">"犯人は無職"</span>,<span class="string">"犯人は有職"</span>)</div><div class="line"><span class="title">print</span>(xtable(d),<span class="typedef"><span class="keyword">type</span>="html")</span></div></pre></td></tr></table></figure>
+
+<p><!-- html table generated in R 3.0.2 by xtable 1.7-3 package --><br><!-- Fri Sep 12 14:14:54 2014 --></p>
+<table border="1"><br><tr> <th>  </th> <th> 被害者１３歳未満 </th> <th> 被害者１３歳以上 </th>  </tr><br>  <tr> <td align="right"> 犯人は無職 </td> <td align="right"> 26.00 </td> <td align="right"> 13.00 </td> </tr><br>  <tr> <td align="right"> 犯人は有職 </td> <td align="right"> 30.00 </td> <td align="right"> 40.00 </td> </tr><br>   </table>
+
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="number">ch</span>&lt;-chisq.test(d,correct =F)</div><div class="line"><span class="number">ch</span></div></pre></td></tr></table></figure>
+
+<p>Pearson’s Chi-squared test  </p>
+<p>data:  d<br>X-squared = 5.6836, df = 1, p-value = 0.01712  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">print(xtable(ch<span class="variable">$expected</span>),<span class="built_in">type</span>=<span class="string">"html"</span>)</div></pre></td></tr></table></figure>
+
+<p><!-- html table generated in R 3.0.2 by xtable 1.7-3 package --><br><!-- Fri Sep 12 14:16:41 2014 --></p>
+<table border="1"><br><tr> <th>  </th> <th> 被害者１３歳未満 </th> <th> 被害者１３歳以上 </th>  </tr><br>  <tr> <td align="right"> 犯人は無職 </td> <td align="right"> 20.04 </td> <td align="right"> 18.96 </td> </tr><br>  <tr> <td align="right"> 犯人は有職 </td> <td align="right"> 35.96 </td> <td align="right"> 34.04 </td> </tr><br>   </table>
+
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">chisq.test(d,correct </span>=<span class="string">T)</span></div></pre></td></tr></table></figure>
+
+<p>Pearson’s Chi-squared test with Yates’ continuity correction  </p>
+<p>data:  d<br>X-squared = 4.7705, df = 1, p-value = 0.02895  </p>
+<h3 id="m×kのクロス表の検定">m×kのクロス表の検定</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">被害者１３歳未満&lt;-c(<span class="number">7</span>,<span class="number">14</span>,<span class="number">35</span>)</div><div class="line">被害者１３歳以上&lt;-c(<span class="number">5</span>,<span class="number">1</span>,<span class="number">47</span>)</div><div class="line"><span class="title">d</span>&lt;-<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(被害者１３歳未満,被害者１３歳以上)</span></span></div><div class="line"><span class="title">row</span>.names(d)&lt;-c(<span class="string">"車両なし"</span>,<span class="string">"自転車"</span>,<span class="string">"自動車・二輪車"</span>)</div><div class="line"><span class="title">print</span>(xtable(d),<span class="typedef"><span class="keyword">type</span>="html")</span></div></pre></td></tr></table></figure>
+
+<p><!-- html table generated in R 3.0.2 by xtable 1.7-3 package --><br><!-- Fri Sep 12 14:21:12 2014 --></p>
+<table border="1"><br><tr> <th>  </th> <th> 被害者１３歳未満 </th> <th> 被害者１３歳以上 </th>  </tr><br>  <tr> <td align="right"> 車両なし </td> <td align="right"> 7.00 </td> <td align="right"> 5.00 </td> </tr><br>  <tr> <td align="right"> 自転車 </td> <td align="right"> 14.00 </td> <td align="right"> 1.00 </td> </tr><br>  <tr> <td align="right"> 自動車・二輪車 </td> <td align="right"> 35.00 </td> <td align="right"> 47.00 </td> </tr><br>   </table>
+
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="number">ch</span>&lt;-chisq.test(d,correct =F)</div><div class="line"><span class="number">ch</span></div></pre></td></tr></table></figure>
+
+<p>Pearson’s Chi-squared test  </p>
+<p>data:  d<br>X-squared = 13.2836, df = 2, p-value = 0.001305  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">print(xtable(ch<span class="variable">$expected</span>),<span class="built_in">type</span>=<span class="string">"html"</span>)</div></pre></td></tr></table></figure>
+
+<p><!-- html table generated in R 3.0.2 by xtable 1.7-3 package --><br><!-- Fri Sep 12 14:23:03 2014 --></p>
+<table border="1"><br><tr> <th>  </th> <th> 被害者１３歳未満 </th> <th> 被害者１３歳以上 </th>  </tr><br>  <tr> <td align="right"> 車両なし </td> <td align="right"> 6.17 </td> <td align="right"> 5.83 </td> </tr><br>  <tr> <td align="right"> 自転車 </td> <td align="right"> 7.71 </td> <td align="right"> 7.29 </td> </tr><br>  <tr> <td align="right"> 自動車・二輪車 </td> <td align="right"> 42.13 </td> <td align="right"> 39.87 </td> </tr><br>   </table>
+
+
+<h3 id="人数の少ないセルがある場合">人数の少ないセルがある場合</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">被害者１３歳未満&lt;-c(<span class="number">41</span>,<span class="number">10</span>,<span class="number">2</span>,<span class="number">3</span>)</div><div class="line">被害者１３歳以上&lt;-c(<span class="number">28</span>,<span class="number">9</span>,<span class="number">5</span>,<span class="number">9</span>)</div><div class="line"><span class="title">d</span>&lt;-<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(被害者１３歳未満,被害者１３歳以上)</span></span></div><div class="line"><span class="title">row</span>.names(d)&lt;-c(<span class="string">"偽計"</span>,<span class="string">"急襲"</span>,<span class="string">"因縁"</span>,<span class="string">"電話・メール"</span>)</div><div class="line"><span class="title">print</span>(xtable(d),<span class="typedef"><span class="keyword">type</span>="html")</span></div></pre></td></tr></table></figure>
+
+<p><!-- html table generated in R 3.0.2 by xtable 1.7-3 package --><br><!-- Fri Sep 12 14:25:46 2014 --></p>
+<table border="1"><br><tr> <th>  </th> <th> 被害者１３歳未満 </th> <th> 被害者１３歳以上 </th>  </tr><br>  <tr> <td align="right"> 偽計 </td> <td align="right"> 41.00 </td> <td align="right"> 28.00 </td> </tr><br>  <tr> <td align="right"> 急襲 </td> <td align="right"> 10.00 </td> <td align="right"> 9.00 </td> </tr><br>  <tr> <td align="right"> 因縁 </td> <td align="right"> 2.00 </td> <td align="right"> 5.00 </td> </tr><br>  <tr> <td align="right"> 電話・メール </td> <td align="right"> 3.00 </td> <td align="right"> 9.00 </td> </tr><br>   </table>
+
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="number">ch</span>&lt;-chisq.test(d,correct =F)</div><div class="line"><span class="number">ch</span></div></pre></td></tr></table></figure>
+
+<p>[3] 警告: Warning in chisq.test(d, correct = F) :<br>Chi-squared approximation may be incorrect</p>
+<p>Pearson’s Chi-squared test  </p>
+<p>data:  d<br>X-squared = 6.5683, df = 3, p-value = 0.08701  </p>
+<p>Fisherの直接法を使う</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fisher.test(d)</div></pre></td></tr></table></figure>
+
+<p>Fisher’s Exact Test for Count Data  </p>
+<p>data:  d<br>p-value = 0.09245<br>alternative hypothesis: two.sided  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">print(xtable(ch<span class="variable">$expected</span>),<span class="built_in">type</span>=<span class="string">"html"</span>)</div></pre></td></tr></table></figure>
+
+<p><!-- html table generated in R 3.0.2 by xtable 1.7-3 package --><br><!-- Fri Sep 12 14:29:56 2014 --></p>
+<table border="1"><br><tr> <th>  </th> <th> 被害者１３歳未満 </th> <th> 被害者１３歳以上 </th>  </tr><br>  <tr> <td align="right"> 偽計 </td> <td align="right"> 36.11 </td> <td align="right"> 32.89 </td> </tr><br>  <tr> <td align="right"> 急襲 </td> <td align="right"> 9.94 </td> <td align="right"> 9.06 </td> </tr><br>  <tr> <td align="right"> 因縁 </td> <td align="right"> 3.66 </td> <td align="right"> 3.34 </td> </tr><br>  <tr> <td align="right"> 電話・メール </td> <td align="right"> 6.28 </td> <td align="right"> 5.72 </td> </tr><br>   </table>
+
+
+
+<h3 id="次元やカテゴリーが多い場合">次元やカテゴリーが多い場合</h3>
+<h4 id="例として、上記m×kのクロス表の検定">例として、上記m×kのクロス表の検定</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">被害者１３歳未満&lt;-c(<span class="number">7</span>,<span class="number">14</span>,<span class="number">35</span>)</div><div class="line">被害者１３歳以上&lt;-c(<span class="number">5</span>,<span class="number">1</span>,<span class="number">47</span>)</div><div class="line"><span class="title">d</span>&lt;-<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(被害者１３歳未満,被害者１３歳以上)</span></span></div><div class="line"><span class="title">row</span>.names(d)&lt;-c(<span class="string">"車両なし"</span>,<span class="string">"自転車"</span>,<span class="string">"自動車・二輪車"</span>)</div><div class="line"><span class="title">ch</span>&lt;-chisq.test(d,correct =<span class="type">F</span>)</div></pre></td></tr></table></figure>
+
+<p>調整済み標準化残差（adjusted standardized residual）</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">print(xtable(ch<span class="variable">$stdres</span>),<span class="built_in">type</span>=<span class="string">"html"</span>)</div></pre></td></tr></table></figure>
+
+<p><!-- html table generated in R 3.0.2 by xtable 1.7-3 package --><br><!-- Fri Sep 12 14:35:27 2014 --></p>
+<table border="1"><br><tr> <th>  </th> <th> 被害者１３歳未満 </th> <th> 被害者１３歳以上 </th>  </tr><br>  <tr> <td align="right"> 車両なし </td> <td align="right"> 0.51 </td> <td align="right"> -0.51 </td> </tr><br>  <tr> <td align="right"> 自転車 </td> <td align="right"> 3.50 </td> <td align="right"> -3.50 </td> </tr><br>  <tr> <td align="right"> 自動車・二輪車 </td> <td align="right"> -3.16 </td> <td align="right"> 3.16 </td> </tr><br>   </table>
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2014/09/12/名義尺度/" data-id="81pmm8rg1qwv70mj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/6/">6</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
     </nav>
   
 </section>
@@ -447,11 +818,11 @@
       <ul>
         
           <li>
-            <a href="/2014/09/16/データからの知識発見第12章/">バックプロパゲーション</a>
+            <a href="/2014/09/17/データからの知識発見第10章/">決定木</a>
           </li>
         
           <li>
-            <a href="/2014/09/16/データからの知識発見第10章/">決定木</a>
+            <a href="/2014/09/16/データからの知識発見第12章/">バックプロパゲーション</a>
           </li>
         
           <li>
