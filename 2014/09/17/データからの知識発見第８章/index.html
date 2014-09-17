@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>クラスター分析（１） | 統計ソフトRの備忘録２</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="階層的クラスター">
+<meta property="og:type" content="article">
+<meta property="og:title" content="クラスター分析（１）">
+<meta property="og:url" content="http://yoursite.com/2014/09/17/データからの知識発見第８章/">
+<meta property="og:site_name" content="統計ソフトRの備忘録２">
+<meta property="og:description" content="階層的クラスター">
+<meta property="og:image" content="http://blog-imgs-61.fc2.com/s/t/a/statrstart/clust01.jpg">
+<meta property="og:image" content="http://blog-imgs-61.fc2.com/s/t/a/statrstart/clust02.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="クラスター分析（１）">
+<meta name="twitter:description" content="階層的クラスター">
+
+  
+    <link rel="alternative" href="/atom.xml" title="統計ソフトRの備忘録２" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">統計ソフトRの備忘録２</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-データからの知識発見第８章" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/09/17/データからの知識発見第８章/" class="article-date">
+  <time datetime="2014-09-17T13:52:40.000Z" itemprop="datePublished">Sep 17 2014</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      クラスター分析（１）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="階層的クラスター">階層的クラスター</h3>
+<a id="more"></a>
+
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">品川&lt;-c(<span class="number">0</span>,<span class="number">7</span>,<span class="number">12</span>,<span class="number">14</span>,<span class="number">18</span>,<span class="number">22</span>,<span class="number">25</span>,<span class="number">28</span>,<span class="number">24</span>,<span class="number">21</span>,<span class="number">17</span>,<span class="number">14</span>,<span class="number">10</span>,<span class="number">7</span>)</div><div class="line">目黒&lt;-c(<span class="number">7</span>,<span class="number">0</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">11</span>,<span class="number">15</span>,<span class="number">18</span>,<span class="number">23</span>,<span class="number">31</span>,<span class="number">28</span>,<span class="number">24</span>,<span class="number">21</span>,<span class="number">17</span>,<span class="number">14</span>)</div><div class="line">渋谷&lt;-c(<span class="number">12</span>,<span class="number">5</span>,<span class="number">0</span>,<span class="number">2</span>,<span class="number">6</span>,<span class="number">10</span>,<span class="number">13</span>,<span class="number">18</span>,<span class="number">22</span>,<span class="number">25</span>,<span class="number">29</span>,<span class="number">26</span>,<span class="number">22</span>,<span class="number">19</span>)</div><div class="line">原宿&lt;-c(<span class="number">14</span>,<span class="number">7</span>,<span class="number">2</span>,<span class="number">0</span>,<span class="number">4</span>,<span class="number">8</span>,<span class="number">11</span>,<span class="number">16</span>,<span class="number">20</span>,<span class="number">23</span>,<span class="number">27</span>,<span class="number">28</span>,<span class="number">24</span>,<span class="number">21</span>)</div><div class="line">新宿&lt;-c(<span class="number">18</span>,<span class="number">11</span>,<span class="number">6</span>,<span class="number">4</span>,<span class="number">0</span>,<span class="number">4</span>,<span class="number">7</span>,<span class="number">12</span>,<span class="number">16</span>,<span class="number">19</span>,<span class="number">23</span>,<span class="number">26</span>,<span class="number">28</span>,<span class="number">25</span>)</div><div class="line">高田馬場&lt;-c(<span class="number">22</span>,<span class="number">15</span>,<span class="number">10</span>,<span class="number">8</span>,<span class="number">4</span>,<span class="number">0</span>,<span class="number">3</span>,<span class="number">8</span>,<span class="number">12</span>,<span class="number">15</span>,<span class="number">19</span>,<span class="number">22</span>,<span class="number">26</span>,<span class="number">29</span>)</div><div class="line">池袋&lt;-c(<span class="number">25</span>,<span class="number">18</span>,<span class="number">13</span>,<span class="number">11</span>,<span class="number">7</span>,<span class="number">3</span>,<span class="number">0</span>,<span class="number">5</span>,<span class="number">9</span>,<span class="number">12</span>,<span class="number">16</span>,<span class="number">19</span>,<span class="number">23</span>,<span class="number">26</span>)</div><div class="line">巣鴨&lt;-c(<span class="number">28</span>,<span class="number">23</span>,<span class="number">18</span>,<span class="number">16</span>,<span class="number">12</span>,<span class="number">8</span>,<span class="number">5</span>,<span class="number">0</span>,<span class="number">4</span>,<span class="number">7</span>,<span class="number">11</span>,<span class="number">14</span>,<span class="number">18</span>,<span class="number">21</span>)</div><div class="line">田端&lt;-c(<span class="number">24</span>,<span class="number">31</span>,<span class="number">22</span>,<span class="number">20</span>,<span class="number">16</span>,<span class="number">12</span>,<span class="number">9</span>,<span class="number">4</span>,<span class="number">0</span>,<span class="number">3</span>,<span class="number">7</span>,<span class="number">10</span>,<span class="number">14</span>,<span class="number">17</span>)</div><div class="line">日暮里&lt;-c(<span class="number">21</span>,<span class="number">28</span>,<span class="number">25</span>,<span class="number">23</span>,<span class="number">19</span>,<span class="number">15</span>,<span class="number">12</span>,<span class="number">7</span>,<span class="number">3</span>,<span class="number">0</span>,<span class="number">4</span>,<span class="number">7</span>,<span class="number">11</span>,<span class="number">14</span>)</div><div class="line">上野&lt;-c(<span class="number">17</span>,<span class="number">24</span>,<span class="number">29</span>,<span class="number">27</span>,<span class="number">23</span>,<span class="number">19</span>,<span class="number">16</span>,<span class="number">11</span>,<span class="number">7</span>,<span class="number">4</span>,<span class="number">0</span>,<span class="number">3</span>,<span class="number">7</span>,<span class="number">10</span>)</div><div class="line">秋葉原&lt;-c(<span class="number">14</span>,<span class="number">21</span>,<span class="number">26</span>,<span class="number">28</span>,<span class="number">26</span>,<span class="number">22</span>,<span class="number">19</span>,<span class="number">14</span>,<span class="number">10</span>,<span class="number">7</span>,<span class="number">3</span>,<span class="number">0</span>,<span class="number">4</span>,<span class="number">7</span>)</div><div class="line">東京&lt;-c(<span class="number">10</span>,<span class="number">17</span>,<span class="number">22</span>,<span class="number">24</span>,<span class="number">28</span>,<span class="number">26</span>,<span class="number">23</span>,<span class="number">18</span>,<span class="number">14</span>,<span class="number">11</span>,<span class="number">7</span>,<span class="number">4</span>,<span class="number">0</span>,<span class="number">3</span>)</div><div class="line">新橋&lt;-c(<span class="number">7</span>,<span class="number">14</span>,<span class="number">19</span>,<span class="number">21</span>,<span class="number">25</span>,<span class="number">29</span>,<span class="number">26</span>,<span class="number">21</span>,<span class="number">17</span>,<span class="number">14</span>,<span class="number">10</span>,<span class="number">7</span>,<span class="number">3</span>,<span class="number">0</span>)</div><div class="line">d&lt;-data.frame(品川,目黒,渋谷,原宿,新宿,高田馬場,池袋,巣鴨,田端,日暮里,上野,秋葉原,東京,新橋)</div><div class="line">row.names(d)&lt;-c(<span class="string">"品川"</span>,<span class="string">"目黒"</span>,<span class="string">"渋谷"</span>,<span class="string">"原宿"</span>,<span class="string">"新宿"</span>,<span class="string">"高田馬場"</span>,<span class="string">"池袋"</span>,<span class="string">"巣鴨"</span>,<span class="string">"田端"</span>,<span class="string">"日暮里"</span>,<span class="string">"上野"</span>,<span class="string">"秋葉原"</span>,<span class="string">"東京"</span>,<span class="string">"新橋"</span>)</div><div class="line">yamate0&lt;-<span class="keyword">as</span>.matrix(d)</div><div class="line">yamate1&lt;-<span class="keyword">as</span>.dist(yamate0)</div><div class="line">par(mfrow=c(<span class="number">3</span>,<span class="number">2</span>))</div><div class="line">yamate4&lt;-hclust(yamate1)</div><div class="line">plot(yamate4,main=<span class="string">"最長距離法"</span>)</div><div class="line">yamate4&lt;-hclust(yamate1,<span class="keyword">method</span>=<span class="string">"single"</span>)</div><div class="line">plot(yamate4,main=<span class="string">"最短距離法"</span>)</div><div class="line">yamate4&lt;-hclust(yamate1,<span class="keyword">method</span>=<span class="string">"average"</span>)</div><div class="line">plot(yamate4,main=<span class="string">"群平均法"</span>)</div><div class="line">yamate4&lt;-hclust(yamate1,<span class="keyword">method</span>=<span class="string">"centroid"</span>)</div><div class="line">plot(yamate4,main=<span class="string">"重心法"</span>)</div><div class="line">yamate4&lt;-hclust(yamate1,<span class="keyword">method</span>=<span class="string">"ward"</span>)</div><div class="line">plot(yamate4,main=<span class="string">"ウォード法"</span>)</div><div class="line">par(mfrow=c(<span class="number">1</span>,<span class="number">1</span>))</div></pre></td></tr></table></figure>
+
+<p><img src="http://blog-imgs-61.fc2.com/s/t/a/statrstart/clust01.jpg" alt=""></p>
+<h3 id="k-means法">k-means法</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="title">x</span>&lt;-c(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">5</span>)</div><div class="line"><span class="title">y</span>&lt;-c(<span class="number">1</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">3</span>)</div><div class="line"><span class="title">d</span>&lt;-<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(<span class="title">x</span>,<span class="title">y</span>)</span></span></div><div class="line"><span class="title">row</span>.names(d)&lt;-c(<span class="string">"C1"</span>,<span class="string">"C2"</span>,<span class="string">"C3"</span>,<span class="string">"C4"</span>,<span class="string">"C5"</span>,<span class="string">"C6"</span>)</div><div class="line"><span class="title">km1</span>&lt;-<span class="keyword">as</span>.matrix(d)</div><div class="line"><span class="title">km2</span>&lt;-kmeans(km1,<span class="number">2</span>)</div><div class="line"><span class="title">km2</span></div></pre></td></tr></table></figure>
+
+<p>K-means clustering with 2 clusters of sizes 3, 3  </p>
+<p>Cluster means:<br>         x        y<br>1 1.333333 1.666667<br>2 4.666667 4.333333  </p>
+<p>Clustering vector:<br>C1 C2 C3 C4 C5 C6<br> 1  1  1  2  2  2   </p>
+<p>Within cluster sum of squares by cluster:<br>3.333333 3.333333<br> (between_SS / total_SS =  80.4 %)  </p>
+<p>Available components:  </p>
+<p>“cluster”      “centers”      “totss”        “withinss”     “tot.withinss” “betweenss”    “size”         “iter”         “ifault”      </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">plot(km1,<span class="variable">pch=</span>km2$cluster,<span class="variable">col=</span>km2$cluster,<span class="variable">main=</span><span class="string">"Rでのk-means法の計算"</span>)</div><div class="line">points(km2$centers,<span class="variable">pch=</span><span class="number">8</span>,<span class="variable">col=</span><span class="string">"blue"</span>)</div></pre></td></tr></table></figure>
+
+<p><img src="http://blog-imgs-61.fc2.com/s/t/a/statrstart/clust02.jpg" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2014/09/17/データからの知識発見第８章/" data-id="9sc3itrj9nvh856p" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/09/17/データからの知識発見第9章/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          アソシエーション分析
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/09/17/データからの知識発見第７章/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">多次元尺度法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">13</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/HEXO/" style="font-size: 10.00px;">HEXO</a><a href="/tags/データからの知識発見/" style="font-size: 16.67px;">データからの知識発見</a><a href="/tags/心理・教育統計法特論/" style="font-size: 13.33px;">心理・教育統計法特論</a><a href="/tags/心理統計法/" style="font-size: 20.00px;">心理統計法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">29</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2014/09/17/データからの知識発見第14章/">テキストマイニング</a>
+          </li>
+        
+          <li>
+            <a href="/2014/09/17/データからの知識発見第13章/">自己組織化マップ</a>
+          </li>
+        
+          <li>
+            <a href="/2014/09/17/データからの知識発見第12章/">バックプロパゲーション</a>
+          </li>
+        
+          <li>
+            <a href="/2014/09/17/データからの知識発見第10章/">決定木</a>
+          </li>
+        
+          <li>
+            <a href="/2014/09/17/データからの知識発見第9章/">アソシエーション分析</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2014 統計ソフトRの備忘録２<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

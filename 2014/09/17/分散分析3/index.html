@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>二要因の分散分析 | 統計ソフトRの備忘録２</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="放送大学「心理統計法」第11章　複雑な分散分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二要因の分散分析">
+<meta property="og:url" content="http://yoursite.com/2014/09/17/分散分析3/">
+<meta property="og:site_name" content="統計ソフトRの備忘録２">
+<meta property="og:description" content="放送大学「心理統計法」第11章　複雑な分散分析">
+<meta property="og:image" content="http://blog-imgs-61.fc2.com/s/t/a/statrstart/anova1.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="二要因の分散分析">
+<meta name="twitter:description" content="放送大学「心理統計法」第11章　複雑な分散分析">
+
+  
+    <link rel="alternative" href="/atom.xml" title="統計ソフトRの備忘録２" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">統計ソフトRの備忘録２</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-分散分析3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/09/17/分散分析3/" class="article-date">
+  <time datetime="2014-09-17T13:41:40.000Z" itemprop="datePublished">Sep 17 2014</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      二要因の分散分析
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="放送大学「心理統計法」第11章_複雑な分散分析">放送大学「心理統計法」第11章　複雑な分散分析</h2>
+<a id="more"></a>
+
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="title">score</span>&lt;-c(<span class="number">5</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>)</div><div class="line"><span class="title">pen</span>&lt;-c(rep(c(<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>),each=<span class="number">9</span>))</div><div class="line"><span class="title">paper</span>&lt;-c(rep(c(rep(<span class="string">"a"</span>,<span class="number">3</span>),rep(<span class="string">"b"</span>,<span class="number">3</span>),rep(<span class="string">"c"</span>,<span class="number">3</span>)),<span class="number">4</span>))</div><div class="line"><span class="title">d</span>&lt;-<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(<span class="title">pen</span>,<span class="title">paper</span>,<span class="title">score</span>)</span></span></div></pre></td></tr></table></figure>
+
+<p>アクティブデータセットをdに変更<br>平均値を図示</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">plotMeans(d<span class="variable">$score</span>, d<span class="variable">$paper</span>,d<span class="variable">$pen</span>, <span class="keyword">error</span>.bars=<span class="string">"none"</span>)</div></pre></td></tr></table></figure>
+
+<p><img src="http://blog-imgs-61.fc2.com/s/t/a/statrstart/anova1.jpg" alt=""></p>
+<p>Ｒコマンダー　<br>統計量～平均～多元配置分散分析</p>
+<p>モデルがAnovaModel.1とする。<br>整形するためにxtableパッケージを読み込む</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">library(xtable)</div><div class="line"><span class="keyword">print</span>(xtable(Anova(AnovaModel.<span class="number">1</span>)),<span class="built_in">type</span>=<span class="string">"html"</span>)</div></pre></td></tr></table></figure>
+
+<p><!-- html table generated in R 3.1.1 by xtable 1.7-3 package --><br><!-- Tue Sep  9 21:31:30 2014 --></p>
+<table border="1"><br><tr> <th>  </th> <th> Sum Sq </th> <th> Df </th> <th> F value </th> <th> Pr(&gt;F) </th>  </tr><br>  <tr> <td> paper </td> <td align="right"> 16.89 </td> <td align="right"> 2 </td> <td align="right"> 10.48 </td> <td align="right"> 0.0005 </td> </tr><br>  <tr> <td> pen </td> <td align="right"> 2.00 </td> <td align="right"> 3 </td> <td align="right"> 0.83 </td> <td align="right"> 0.4917 </td> </tr><br>  <tr> <td> paper:pen </td> <td align="right"> 8.00 </td> <td align="right"> 6 </td> <td align="right"> 1.66 </td> <td align="right"> 0.1755 </td> </tr><br>  <tr> <td> Residuals </td> <td align="right"> 19.33 </td> <td align="right"> 24 </td> <td align="right">  </td> <td align="right">  </td> </tr><br>   </table>
+
+<p>紙質の違いが有意<br>ペンの違いは有意ではない<br>交互作用も有意ではない  </p>
+<h4 id="紙質の多重比較">紙質の多重比較</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">res&lt;-pairwise.wilcox.test(d$score, d$paper, data.name=<span class="string">"d"</span>, p.adjust.<span class="keyword">method</span>=<span class="string">"bonferroni"</span>)</div><div class="line">library(xtable)</div><div class="line">print(xtable(res$p.value),<span class="keyword">type</span>=<span class="string">"html"</span>)</div></pre></td></tr></table></figure>
+
+<p><!-- html table generated in R 3.1.1 by xtable 1.7-3 package --><br><!-- Tue Sep  9 21:51:00 2014 --></p>
+<table border="1"><br><tr> <th>  </th> <th> a </th> <th> b </th>  </tr><br>  <tr> <td align="right"> b </td> <td align="right"> 0.00 </td> <td align="right">  </td> </tr><br>  <tr> <td align="right"> c </td> <td align="right"> 0.11 </td> <td align="right"> 0.04 </td> </tr><br>   </table>
+
+
+<p>a,bとb,cが有意</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2014/09/17/分散分析3/" data-id="vzmgufo7bv5ssnf4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心理統計法/">心理統計法</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/09/17/分散分析4/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          分散分析(個人差を考える)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/09/17/分散分析2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">一要因の分散分析(補足）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">13</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/HEXO/" style="font-size: 10.00px;">HEXO</a><a href="/tags/データからの知識発見/" style="font-size: 16.67px;">データからの知識発見</a><a href="/tags/心理・教育統計法特論/" style="font-size: 13.33px;">心理・教育統計法特論</a><a href="/tags/心理統計法/" style="font-size: 20.00px;">心理統計法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">29</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2014/09/17/データからの知識発見第14章/">テキストマイニング</a>
+          </li>
+        
+          <li>
+            <a href="/2014/09/17/データからの知識発見第13章/">自己組織化マップ</a>
+          </li>
+        
+          <li>
+            <a href="/2014/09/17/データからの知識発見第12章/">バックプロパゲーション</a>
+          </li>
+        
+          <li>
+            <a href="/2014/09/17/データからの知識発見第10章/">決定木</a>
+          </li>
+        
+          <li>
+            <a href="/2014/09/17/データからの知識発見第9章/">アソシエーション分析</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2014 統計ソフトRの備忘録２<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
