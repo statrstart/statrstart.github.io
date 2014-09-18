@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>テキストマイニング | 統計ソフトRの備忘録２</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="「データからの知識発見」第14章　テキストマイニング">
+<meta property="og:type" content="article">
+<meta property="og:title" content="テキストマイニング">
+<meta property="og:url" content="http://yoursite.com/2014/09/18/データからの知識発見第14章/">
+<meta property="og:site_name" content="統計ソフトRの備忘録２">
+<meta property="og:description" content="「データからの知識発見」第14章　テキストマイニング">
+<meta property="og:image" content="http://blog-imgs-61.fc2.com/s/t/a/statrstart/textM1.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="テキストマイニング">
+<meta name="twitter:description" content="「データからの知識発見」第14章　テキストマイニング">
+
+  
+    <link rel="alternative" href="/atom.xml" title="統計ソフトRの備忘録２" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">統計ソフトRの備忘録２</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-データからの知識発見第14章" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/09/18/データからの知識発見第14章/" class="article-date">
+  <time datetime="2014-09-18T14:12:05.000Z" itemprop="datePublished">Sep 18 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/放送大学/">放送大学</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      テキストマイニング
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="「データからの知識発見」第14章_テキストマイニング">「データからの知識発見」第14章　テキストマイニング</h2>
+<a id="more"></a>
+
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">library</span><span class="params">(<span class="variable">RMeCab</span>)</span></span></div></pre></td></tr></table></figure>
+
+<h4 id="形態素に分割">形態素に分割</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">RMeCabC(<span class="string">"本を読んだ"</span>)</div></pre></td></tr></table></figure>
+
+<p>[[1]]<br>名詞<br>“本” </p>
+<p>[[2]]<br>助詞<br>“を” </p>
+<p>[[3]]<br>  動詞<br>“読ん” </p>
+<p>[[4]]<br>助動詞<br>  “だ”</p>
+<h3 id="原型に直して表示">原型に直して表示</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">RMeCabC(<span class="string">"本を読んだ"</span>,<span class="number">1</span>)</div></pre></td></tr></table></figure>
+
+<p>[[1]]<br>名詞<br>“本” </p>
+<p>[[2]]<br>助詞<br>“を” </p>
+<p>[[3]]<br>  動詞<br>“読む” </p>
+<p>[[4]]<br>助動詞<br>  “だ” </p>
+<h4 id="http://www-is-ouj-ac-jp/lec/data/C14/index-html_から作品をダウンロード"><a href="http://www.is.ouj.ac.jp/lec/data/C14/index.html" target="_blank" rel="external">http://www.is.ouj.ac.jp/lec/data/C14/index.html</a> から作品をダウンロード</h4>
+<h4 id="解凍するとC14フォルダができる。作業ディレクトリにコピーする。">解凍するとC14フォルダができる。作業ディレクトリにコピーする。</h4>
+<h4 id="次のコマンド実行。解析には数秒かかった。">次のコマンド実行。解析には数秒かかった。</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">a1&lt;-docMatrix(<span class="string">"C14"</span>,pos=<span class="built_in">c</span>(<span class="string">"連体詞"</span>,<span class="string">"副詞"</span>))</div><div class="line">#a1&lt;-docMatrix(<span class="string">"C14"</span>,pos=<span class="built_in">c</span>(<span class="string">"連体詞"</span>,<span class="string">"副詞"</span>),<span class="number">2</span>) #<span class="number">2</span>回以上出現</div></pre></td></tr></table></figure>
+
+<p>file = C14/gongitsune.txt<br>file = C14/hana.txt<br>file = C14/hitofusano_budo.txt<br>file = C14/lemon.txt<br>file = C14/miminashi_hoichi.txt<br>file = C14/rashomon.txt<br>file = C14/torokko.txt<br>Term Document Matrix includes 2 information rows!<br>whose names are [[LESS-THAN-1]] and [[TOTAL-TOKENS]]<br>if you remove these rows, run<br>result[ row.names(result) != “[[LESS-THAN-1]]” , ]<br>result[ row.names(result) != “[[TOTAL-TOKENS]]” , ]  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">head</span><span class="params">(a1)</span></span></div></pre></td></tr></table></figure>
+
+<p>docs<br>terms gongitsune.txt hana.txt hitofusano_budo.txt lemon.txt miminashi_hoichi.txt rashomon.txt torokko.txt<br>[[LESS-THAN-1]] 0 0 0 0 0 0 0<br>[[TOTAL-TOKENS]] 2726 3520 3717 2889 4602 3287 2495<br>あんな 2 0 2 3 2 0 0<br>いったん 1 0 0 0 0 0 0<br>いつの間にか 1 1 1 1 0 1 0<br>いつも 3 2 3 1 1 0 0  </p>
+<h4 id="a1の上２行を取り除く">a1の上２行を取り除く</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a3&lt;<span class="operator">-a</span>1[row.names(a1)!=<span class="string">"[[LESS-THAN-1]]"</span>,]</div><div class="line">a4&lt;<span class="operator">-a</span>3[row.names(a3)!=<span class="string">"[[TOTAL-TOKENS]]"</span>,]</div><div class="line">head(a4)</div></pre></td></tr></table></figure>
+
+<p>docs<br>terms gongitsune.txt hana.txt hitofusano_budo.txt lemon.txt miminashi_hoichi.txt rashomon.txt torokko.txt<br>あんな 2 0 2 3 2 0 0<br>いったん 1 0 0 0 0 0 0<br>いつの間にか 1 1 1 1 0 1 0<br>いつも 3 2 3 1 1 0 0<br>いろんな 2 0 0 0 0 0 0<br>からっと 1 0 0 0 0 0 0  </p>
+<h4 id="a1の１行目から２行目を取り除くには以下のコマンドも可">a1の１行目から２行目を取り除くには以下のコマンドも可</h4>
+<h4 id="a4&lt;-a1[-c(1:2),]_#cの前の-はそれ以外の意味">a4&lt;-a1[-c(1:2),] #cの前の-はそれ以外の意味</h4>
+<h4 id="頻度表を保存">頻度表を保存</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">write</span>.table(a4,<span class="string">"hindo.txt"</span>)</div></pre></td></tr></table></figure>
+
+<h4 id="特徴を多次元尺度法によりグラフにし、k-means法を用いて分類">特徴を多次元尺度法によりグラフにし、k-means法を用いて分類</h4>
+<h4 id="a4の行と、列を入れ替える（転置）">a4の行と、列を入れ替える（転置）</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="title">c1</span>&lt;-t(a4)</div><div class="line"><span class="preprocessor">#多次元尺度法の手順</span></div><div class="line"><span class="title">c2</span>&lt;-dist(c1)</div><div class="line"><span class="title">c3</span>&lt;-cmdscale(c2,eig=<span class="type">T</span>)</div><div class="line"><span class="title">c3</span></div></pre></td></tr></table></figure>
+
+<p>$points<br>[,1] [,2]<br>gongitsune.txt -16.734896 8.813928<br>hana.txt 4.055198 15.451395<br>hitofusano_budo.txt -13.879645 -5.824651<br>lemon.txt -6.336276 -10.428633<br>miminashi_hoichi.txt 17.821367 -12.069433<br>rashomon.txt 25.227886 5.489024<br>torokko.txt -10.153634 -1.431631  </p>
+<p>$eig<br>[1] 1.586438e+03 6.369640e+02 2.703132e+02 2.207154e+02 1.861505e+02 1.651332e+02 -1.074819e-13</p>
+<p>$x<br>NULL</p>
+<p>$ac<br>[1] 0</p>
+<p>$GOF<br>[1] 0.7252476 0.7252476</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">c4&lt;-c3$points</div><div class="line"><span class="comment">#k-means法</span></div><div class="line">c5&lt;-kmeans(c1,<span class="number">2</span>)</div><div class="line">c6&lt;-c5$cluster</div><div class="line">plot(c4,<span class="variable">xlim=</span>c(-<span class="number">30</span>,<span class="number">30</span>),<span class="variable">t=</span><span class="string">"n"</span>,<span class="variable">main=</span><span class="string">"多次元尺度法による可視化"</span>)</div><div class="line">text(c4,rownames(c1),<span class="variable">col=</span>c6)</div></pre></td></tr></table></figure>
+
+<p><img src="http://blog-imgs-61.fc2.com/s/t/a/statrstart/textM1.jpg" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2014/09/18/データからの知識発見第14章/" data-id="wflleci4qffdp63l" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2014/09/18/データからの知識発見第13章/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">自己組織化マップ</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/放送大学/">放送大学</a><span class="category-list-count">28</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">13</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/HEXO/" style="font-size: 10.00px;">HEXO</a><a href="/tags/データからの知識発見/" style="font-size: 16.67px;">データからの知識発見</a><a href="/tags/心理・教育統計法特論/" style="font-size: 13.33px;">心理・教育統計法特論</a><a href="/tags/心理統計法/" style="font-size: 20.00px;">心理統計法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">29</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2014/09/18/データからの知識発見第14章/">テキストマイニング</a>
+          </li>
+        
+          <li>
+            <a href="/2014/09/18/データからの知識発見第13章/">自己組織化マップ</a>
+          </li>
+        
+          <li>
+            <a href="/2014/09/18/データからの知識発見第12章/">バックプロパゲーション</a>
+          </li>
+        
+          <li>
+            <a href="/2014/09/18/データからの知識発見第10章/">決定木</a>
+          </li>
+        
+          <li>
+            <a href="/2014/09/18/データからの知識発見第9章/">アソシエーション分析</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2014 統計ソフトRの備忘録２<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
