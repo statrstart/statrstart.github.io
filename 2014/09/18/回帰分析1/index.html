@@ -8,7 +8,7 @@
   <meta name="description" content="放送大学「心理統計法」第12章　回帰分析">
 <meta property="og:type" content="article">
 <meta property="og:title" content="回帰分析1">
-<meta property="og:url" content="http://yoursite.com/2014/09/17/回帰分析1/">
+<meta property="og:url" content="http://yoursite.com/2014/09/18/回帰分析1/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
 <meta property="og:description" content="放送大学「心理統計法」第12章　回帰分析">
 <meta property="og:image" content="http://blog-imgs-61.fc2.com/s/t/a/statrstart/lm1.jpg">
@@ -63,8 +63,8 @@
       <div class="outer">
         <section id="main"><article id="post-回帰分析1" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/09/17/回帰分析1/" class="article-date">
-  <time datetime="2014-09-17T13:45:58.000Z" itemprop="datePublished">Sep 17 2014</time>
+    <a href="/2014/09/18/回帰分析1/" class="article-date">
+  <time datetime="2014-09-18T12:43:59.000Z" itemprop="datePublished">Sep 18 2014</time>
 </a>
     
   </div>
@@ -95,12 +95,15 @@
 
 <table style="text-align:center"><caption><strong>線形回帰</strong></caption><br><tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"></td><td><em>Dependent variable:</em></td></tr><br><tr><td></td><td colspan="1" style="border-bottom: 1px solid black"></td></tr><br><tr><td style="text-align:left"></td><td>y</td></tr><br><tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">x</td><td>0.556<sup><strong></strong></sup> (0.172)</td></tr><br><tr><td style="text-align:left">Constant</td><td>1.911 (1.245)</td></tr><br><tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">Observations</td><td>10</td></tr><br><tr><td style="text-align:left">R<sup>2</sup></td><td>0.567</td></tr><br><tr><td style="text-align:left">Adjusted R<sup>2</sup></td><td>0.513</td></tr><br><tr><td style="text-align:left">Residual Std. Error</td><td>1.030 (df = 8)</td></tr><br><tr><td style="text-align:left">F Statistic</td><td>10.471<sup></sup> (df = 1; 8)</td></tr><br><tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"><em>Note:</em></td><td style="text-align:right"><sup><em></em></sup>p<0.1; <sup=""><strong>p<0.05; <sup=""></0.05;></strong>p<0.01< td=""></0.01<></0.1;></td></tr><br></table>
 
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">library</span><span class="params">(texreg)</span></span></div><div class="line"><span class="title">htmlreg</span><span class="params">(<span class="variable">Model</span>,single.row =<span class="variable">T</span>)</span></div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">library</span><span class="params">(texreg)</span></span></div><div class="line"><span class="title">screenreg</span><span class="params">(<span class="variable">Model</span>,single.row =<span class="variable">T</span>)</span></div></pre></td></tr></table></figure>
 
-<p>&lt;!DOCTYPE HTML PUBLIC “-//W3C//DTD HTML 4.01 Transitional//EN” “<a href="http://www.w3.org/TR/html4/loose.dtd&quot;&gt;" target="_blank" rel="external">http://www.w3.org/TR/html4/loose.dtd&quot;&gt;</a></p>
-<table cellspacing="0" align="center" style="border: none;"><br>  <caption align="bottom" style="margin-top:0.3em;">Statistical models</caption><br>  <tr><br>    <th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"></th><br>    <th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"><b>Model 1</b></th><br>  </tr><br>  <tr><br>    <td style="padding-right: 12px; border: none;">(Intercept)</td><br>    <td style="padding-right: 12px; border: none;">1.91 (1.25)</td><br>  </tr><br>  <tr><br>    <td style="padding-right: 12px; border: none;">x</td><br>    <td style="padding-right: 12px; border: none;">0.56 (0.17)<sup style="vertical-align: 4px;"><em></em></sup></td><br>  </tr><br>  <tr><br>    <td style="border-top: 1px solid black;">R<sup style="vertical-align: 4px;">2</sup></td><br>    <td style="border-top: 1px solid black;">0.57</td><br>  </tr><br>  <tr><br>    <td style="padding-right: 12px; border: none;">Adj. R<sup style="vertical-align: 4px;">2</sup></td><br>    <td style="padding-right: 12px; border: none;">0.51</td><br>  </tr><br>  <tr><br>    <td style="border-bottom: 2px solid black;">Num. obs.</td><br>    <td style="border-bottom: 2px solid black;">10</td><br>  </tr><br>  <tr><br>    <td style="padding-right: 12px; border: none;" colspan="2"><span style="font-size:0.8em"><sup style="vertical-align: 4px;">**</sup>p &lt; 0.001, <sup style="vertical-align: 4px;"><em>*</em></sup>p &lt; 0.01, <sup style="vertical-align: 4px;"></sup>p &lt; 0.05</span></td><br>  </tr><br></table>
-
-
+<p>===========================</p>
+<h2 id="_Model_1_">   Model 1       </h2>
+<p>(Intercept)   1.91 (1.25)  </p>
+<h2 id="x_0-56_(0-17)_*">x             0.56 (0.17) *</h2>
+<p>R^2           0.57<br>Adj. R^2      0.51         </p>
+<h1 id="Num-_obs-_10_">Num. obs.    10            </h1>
+<p><strong>* p &lt; 0.001, </strong> p &lt; 0.01, * p &lt; 0.05</p>
 <h4 id="回帰直線を描く">回帰直線を描く</h4>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">plot(x,y,<span class="variable">xlim=</span>c(<span class="number">0</span>,<span class="number">10</span>),<span class="variable">ylim=</span>c(<span class="number">0</span>,<span class="number">10</span>),<span class="variable">xlab=</span><span class="string">"試験成績"</span>,<span class="variable">ylab=</span><span class="string">"仕事評価"</span>,<span class="variable">main=</span><span class="string">"入社試験と仕事評価の関係"</span>)</div><div class="line">abline(Model,<span class="variable">col=</span><span class="string">"red"</span>)</div></pre></td></tr></table></figure>
 
@@ -112,7 +115,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/09/17/回帰分析1/" data-id="dgjwpzwyc3jttugq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/09/18/回帰分析1/" data-id="dgjwpzwyc3jttugq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心理統計法/">心理統計法</a></li></ul>
@@ -123,19 +126,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2014/09/17/回帰分析2/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2014/09/18/主成分分析/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          相関行列、重回帰分析
+          主成分分析と重回帰分析を組み合わせる
         
       </div>
     </a>
   
   
-    <a href="/2014/09/17/分散分析4/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2014/09/17/データからの知識発見第14章/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">分散分析(個人差を考える)</div>
+      <div class="article-nav-title">テキストマイニング</div>
     </a>
   
 </nav>
@@ -187,19 +190,19 @@
           </li>
         
           <li>
-            <a href="/2014/09/17/データからの知識発見第14章/">テキストマイニング</a>
+            <a href="/2014/09/18/データからの知識発見第10章/">決定木</a>
           </li>
         
           <li>
-            <a href="/2014/09/17/データからの知識発見第12章/">バックプロパゲーション</a>
+            <a href="/2014/09/18/データからの知識発見第７章/">多次元尺度法</a>
           </li>
         
           <li>
-            <a href="/2014/09/17/データからの知識発見第10章/">決定木</a>
+            <a href="/2014/09/18/主成分分析/">主成分分析と重回帰分析を組み合わせる</a>
           </li>
         
           <li>
-            <a href="/2014/09/17/データからの知識発見第9章/">アソシエーション分析</a>
+            <a href="/2014/09/18/回帰分析1/">回帰分析1</a>
           </li>
         
       </ul>

@@ -8,7 +8,7 @@
   <meta name="description" content="放送大学「心理統計法」第14章　多変量解析のすすめ">
 <meta property="og:type" content="article">
 <meta property="og:title" content="主成分分析と重回帰分析を組み合わせる">
-<meta property="og:url" content="http://yoursite.com/2014/09/17/主成分分析/">
+<meta property="og:url" content="http://yoursite.com/2014/09/18/主成分分析/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
 <meta property="og:description" content="放送大学「心理統計法」第14章　多変量解析のすすめ">
 <meta name="twitter:card" content="summary">
@@ -62,8 +62,8 @@
       <div class="outer">
         <section id="main"><article id="post-主成分分析" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/09/17/主成分分析/" class="article-date">
-  <time datetime="2014-09-17T13:47:26.000Z" itemprop="datePublished">Sep 17 2014</time>
+    <a href="/2014/09/18/主成分分析/" class="article-date">
+  <time datetime="2014-09-18T12:46:30.000Z" itemprop="datePublished">Sep 18 2014</time>
 </a>
     
   </div>
@@ -107,7 +107,7 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">d$<span class="type">PC1</span>&lt;-<span class="literal">result</span>$scores2[,<span class="number">1</span>]</div><div class="line">d$<span class="type">PC2</span>&lt;-<span class="literal">result</span>$scores2[,<span class="number">2</span>]</div><div class="line">d$<span class="type">PC3</span>&lt;-<span class="literal">result</span>$scores2[,<span class="number">3</span>]</div></pre></td></tr></table></figure>
 
 <h4 id="AICを用いて変数選択">AICを用いて変数選択</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="type">Model</span> &lt;- lm(心地よさ~<span class="type">PC1</span>+<span class="type">PC2</span>+<span class="type">PC3</span>, <span class="typedef"><span class="keyword">data</span>=d)</span></div><div class="line"><span class="title">select</span>&lt;-step(<span class="type">Model</span>)</div><div class="line"><span class="title">library</span>(stargazer)</div><div class="line"><span class="title">stargazer</span>(select,<span class="typedef"><span class="keyword">type</span>="html",single.row=<span class="type">T</span>)</span></div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="type">Model</span> &lt;- lm(心地よさ~<span class="type">PC1</span>+<span class="type">PC2</span>+<span class="type">PC3</span>, <span class="typedef"><span class="keyword">data</span>=d)</span></div><div class="line"><span class="title">select</span>&lt;-step(<span class="type">Model</span>)</div><div class="line"><span class="title">library</span>(xtable)</div><div class="line"><span class="title">print</span>(xtable(select),<span class="typedef"><span class="keyword">type</span>="html")</span></div></pre></td></tr></table></figure>
 
 <h4 id="変数選択">変数選択</h4>
 <p>Start:  AIC=-4.37<br>心地よさ ~ PC1 + PC2 + PC3  </p>
@@ -125,14 +125,14 @@
 <li>PC1   1   24.4694 42.471 15.6653  </li>
 </ul>
 <h4 id="結果">結果</h4>
-<table style="text-align:center"><tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"></td><td><em>Dependent variable:</em></td></tr><br><tr><td></td><td colspan="1" style="border-bottom: 1px solid black"></td></tr><br><tr><td style="text-align:left"></td><td>心地よさ</td></tr><br><tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">PC1</td><td>-0.952<sup><strong>*</strong></sup> (0.163)</td></tr><br><tr><td style="text-align:left">PC2</td><td>-0.367<sup></sup> (0.163)</td></tr><br><tr><td style="text-align:left">Constant</td><td>3.821<sup><strong><em></em></strong></sup> (0.160)</td></tr><br><tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">Observations</td><td>28</td></tr><br><tr><td style="text-align:left">R<sup>2</sup></td><td>0.610</td></tr><br><tr><td style="text-align:left">Adjusted R<sup>2</sup></td><td>0.578</td></tr><br><tr><td style="text-align:left">Residual Std. Error</td><td>0.849 (df = 25)</td></tr><br><tr><td style="text-align:left">F Statistic</td><td>19.516<sup></sup> (df = 2; 25)</td></tr><br><tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"><em>Note:</em></td><td style="text-align:right"><sup><em></em></sup>p<0.1; <sup=""><strong>p<0.05; <sup=""></0.05;></strong>p<0.01< td=""></0.01<></0.1;></td></tr><br></table>
+<table border="1"><br><tr> <th>  </th> <th> Estimate </th> <th> Std. Error </th> <th> t value </th> <th> Pr(&gt;|t|) </th>  </tr><br>  <tr> <td align="right"> (Intercept) </td> <td align="right"> 3.8214 </td> <td align="right"> 0.1604 </td> <td align="right"> 23.83 </td> <td align="right"> 0.0000 </td> </tr><br>  <tr> <td align="right"> PC1 </td> <td align="right"> -0.9520 </td> <td align="right"> 0.1633 </td> <td align="right"> -5.83 </td> <td align="right"> 0.0000 </td> </tr><br>  <tr> <td align="right"> PC2 </td> <td align="right"> -0.3670 </td> <td align="right"> 0.1633 </td> <td align="right"> -2.25 </td> <td align="right"> 0.0337 </td> </tr><br>   </table>
 
 
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/09/17/主成分分析/" data-id="yc8wn5af0mh2pwtc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/09/18/主成分分析/" data-id="yc8wn5af0mh2pwtc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心理統計法/">心理統計法</a></li></ul>
@@ -143,19 +143,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2014/09/17/t検定の基礎/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2014/09/18/データからの知識発見第７章/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          ｔ検定の基礎
+          多次元尺度法
         
       </div>
     </a>
   
   
-    <a href="/2014/09/17/回帰分析2/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2014/09/18/回帰分析1/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">相関行列、重回帰分析</div>
+      <div class="article-nav-title">回帰分析1</div>
     </a>
   
 </nav>
@@ -207,19 +207,19 @@
           </li>
         
           <li>
-            <a href="/2014/09/17/データからの知識発見第14章/">テキストマイニング</a>
+            <a href="/2014/09/18/データからの知識発見第10章/">決定木</a>
           </li>
         
           <li>
-            <a href="/2014/09/17/データからの知識発見第12章/">バックプロパゲーション</a>
+            <a href="/2014/09/18/データからの知識発見第７章/">多次元尺度法</a>
           </li>
         
           <li>
-            <a href="/2014/09/17/データからの知識発見第10章/">決定木</a>
+            <a href="/2014/09/18/主成分分析/">主成分分析と重回帰分析を組み合わせる</a>
           </li>
         
           <li>
-            <a href="/2014/09/17/データからの知識発見第9章/">アソシエーション分析</a>
+            <a href="/2014/09/18/回帰分析1/">回帰分析1</a>
           </li>
         
       </ul>
