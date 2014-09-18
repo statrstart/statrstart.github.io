@@ -88,7 +88,7 @@ ul {
 table {
   border-collapse: separate;
   border-spacing: 0;
- margin: 10px;
+ margin: 15px;
 }
 caption,
 th,
@@ -568,7 +568,7 @@ a.article-title:hover {
 .article-entry p,
 .article-entry table {
  width: 80%;
-  margin: 10px;
+  margin: 15px;
 }
 .article-entry h1,
 .article-entry h2,
@@ -614,7 +614,7 @@ a.article-title:hover {
   width: 80%;
   border-collapse: collapse;
   border-spacing: 0;
- margin: 10px;
+ margin: 15px;
 }
 .article-entry th {
   font-weight: bold;
