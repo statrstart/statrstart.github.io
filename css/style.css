@@ -88,8 +88,7 @@ ul {
 table {
   border-collapse: separate;
   border-spacing: 0;
-  vertical-align: middle;
- margin-top: 15px;
+ margin: 0;
 }
 caption,
 th,
@@ -568,15 +567,9 @@ a.article-title:hover {
 }
 .article-entry p,
 .article-entry table {
-  line-height: 1.6em;
-  margin-top:  15px;
-}
-
-.article-entry .table1 table {
+ width: auto;
   margin: 0;
-  width: auto;
 }
-
 .article-entry h1,
 .article-entry h2,
 .article-entry h3,
@@ -618,10 +611,10 @@ a.article-title:hover {
   border: none;
 }
 .article-entry table {
-  width: 60%;
+  width: auto;
   border-collapse: collapse;
   border-spacing: 0;
- margin-top: 15px;
+ margin: 0;
 }
 .article-entry th {
   font-weight: bold;
