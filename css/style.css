@@ -567,7 +567,7 @@ a.article-title:hover {
 }
 .article-entry p,
 .article-entry table {
- width: auto;
+ width: 80%;
   margin: 0;
 }
 .article-entry h1,
@@ -611,7 +611,7 @@ a.article-title:hover {
   border: none;
 }
 .article-entry table {
-  width: auto;
+  width: 80%;
   border-collapse: collapse;
   border-spacing: 0;
  margin: 0;
