@@ -63,7 +63,7 @@
         <section id="main"><article id="post-問題解決の数理第2章" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/09/19/問題解決の数理第2章/" class="article-date">
-  <time datetime="2014-09-19T14:09:13.000Z" itemprop="datePublished">Sep 19 2014</time>
+  <time datetime="2014-09-19T14:25:22.000Z" itemprop="datePublished">Sep 19 2014</time>
 </a>
     
   <div class="article-category">
@@ -90,7 +90,7 @@
 <p><a id="more"></a></p>
 <h4 id="Webサイトでは、lpSolveパッケージを用いているが、_ここでは、linprogパッケージを使います。"><a href="http://www.campus.ouj.ac.jp/~maps13/02_03/" target="_blank" rel="external">Webサイト</a>では、lpSolveパッケージを用いているが、 ここでは、linprogパッケージを使います。</h4>
 <h3 id="生産計画問題(p-25)式は、p-28">生産計画問題(p.25)式は、p.28</h3>
-<p>最大化　(z=x_1+2x_2)</p>
+<p>最大化　(z=x_1+2x_2)<br>$z=x_1+2x_2$</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">library(linprog)</div><div class="line"><span class="preprocessor"># 最大化(maximum=T)</span></div><div class="line">cvec&lt;-c(<span class="number">1</span>,<span class="number">2</span>)</div><div class="line"><span class="preprocessor"># 制約条件</span></div><div class="line"><span class="preprocessor"># 右辺</span></div><div class="line">bvec&lt;-c(<span class="number">24</span>,<span class="number">48</span>,<span class="number">22</span>)</div><div class="line"><span class="preprocessor"># 左辺</span></div><div class="line">Amat&lt;-rbind(c(<span class="number">1</span>,<span class="number">3</span>),c(<span class="number">4</span>,<span class="number">4</span>),c(<span class="number">2</span>,<span class="number">1</span>))</div><div class="line">solveLP(cvec,bvec,Amat,maximum=T,<span class="keyword">const</span>.dir=rep(<span class="string">"&lt;="</span>,length(bvec)))</div></pre></td></tr></table></figure>
 
 <p>Results of Linear Programming / Linear Optimization</p>
