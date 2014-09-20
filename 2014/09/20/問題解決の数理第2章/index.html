@@ -93,7 +93,7 @@
         <section id="main"><article id="post-問題解決の数理第2章" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/09/20/問題解決の数理第2章/" class="article-date">
-  <time datetime="2014-09-20T03:13:26.000Z" itemprop="datePublished">Sep 20 2014</time>
+  <time datetime="2014-09-20T03:26:01.000Z" itemprop="datePublished">Sep 20 2014</time>
 </a>
     
   <div class="article-category">
@@ -178,12 +178,12 @@
 
 <p>制約式</p>
 <span>$$\begin{aligned}
-x_{Aa}+x_{Ab}+x_{Ac}+0x_{Ba}+0x_{Bb}+0x_{Bc}+0x_{Ca}+0x_{Cb}+0x_{Cc} & = 1\\
-0x_{Aa}+0x_{Ab}+0x_{Ac}+1x_{Ba}+1x_{Bb}+1x_{Bc}+0x_{Ca}+0x_{Cb}+0x_{Cc} & = 1\\
-0x_{Aa}+0x_{Ab}+0x_{Ac}+0x_{Ba}+0x_{Bb}+0x_{Bc}+1x_{Ca}+1x_{Cb}+1x_{Cc} & = 1\\
-x_{Aa}+0x_{Ab}+0x_{Ac}+x_{Ba}+0x_{Bb}+0x_{Bc}+1x_{Ca}+0x_{Cb}+0x_{Cc} & = 1\\
-0x_{Aa}+x_{Ab}+0x_{Ac}+0x_{Ba}+1x_{Bb}+0x_{Bc}+0x_{Ca}+1x_{Cb}+0x_{Cc} & = 1\\
-0x_{Aa}+0x_{Ab}+x_{Ac}+0x_{Ba}+0x_{Bb}+1x_{Bc}+0x_{Ca}+0x_{Cb}+1x_{Cc} & = 1
+& x_{Aa}+x_{Ab}+x_{Ac}+0x_{Ba}+0x_{Bb}+0x_{Bc}+0x_{Ca}+0x_{Cb}+0x_{Cc}  = 1\\
+& 0x_{Aa}+0x_{Ab}+0x_{Ac}+1x_{Ba}+1x_{Bb}+1x_{Bc}+0x_{Ca}+0x_{Cb}+0x_{Cc}  = 1\\
+& 0x_{Aa}+0x_{Ab}+0x_{Ac}+0x_{Ba}+0x_{Bb}+0x_{Bc}+1x_{Ca}+1x_{Cb}+1x_{Cc}  = 1\\
+& x_{Aa}+0x_{Ab}+0x_{Ac}+x_{Ba}+0x_{Bb}+0x_{Bc}+1x_{Ca}+0x_{Cb}+0x_{Cc}  = 1\\
+& 0x_{Aa}+x_{Ab}+0x_{Ac}+0x_{Ba}+1x_{Bb}+0x_{Bc}+0x_{Ca}+1x_{Cb}+0x_{Cc}  = 1\\
+& 0x_{Aa}+0x_{Ab}+x_{Ac}+0x_{Ba}+0x_{Bb}+1x_{Bc}+0x_{Ca}+0x_{Cb}+1x_{Cc}  = 1
 \end{aligned}$$</span>
 
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">library(linprog)</div><div class="line"><span class="preprocessor"># 最小化（maximum=F）</span></div><div class="line">cvec&lt;-c(<span class="number">3</span>,<span class="number">7</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">10</span>,<span class="number">6</span>,<span class="number">8</span>)</div><div class="line"><span class="preprocessor"># 制約条件</span></div><div class="line"><span class="preprocessor"># 右辺</span></div><div class="line">bvec&lt;-c(<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>)</div><div class="line"><span class="preprocessor"># 左辺</span></div><div class="line">Amat&lt;-rbind(c(<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),c(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),c(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>),c(<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>),c(<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>),c(<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>))</div><div class="line">solveLP(cvec,bvec,Amat,maximum=F,<span class="keyword">const</span>.dir=rep(<span class="string">"&gt;="</span>,length(bvec)))</div></pre></td></tr></table></figure>
