@@ -1,0 +1,77 @@
+body {
+  font-family: Verdana, Roboto, 'Droid Sans', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic ProN', sans-serif;
+}
+
+h1 {
+font-size:2.8em;
+margin:20px;
+color: #FFFFFF;
+background-color: #009933;
+padding: 4px;
+}
+
+h2 {
+font-size:2em;
+margin:10px;
+border: solid;
+border-width: 0px 0px 0px 5px;
+border-color: #009933;
+padding: 5px;
+}
+
+h3 {
+font-size:1.6em;
+text-align: center;
+padding: 5px;
+}
+
+h4{
+text-align: center;
+padding: 4px;
+}
+
+table,td,th {
+padding:3px 5px;
+margin-top: 0.5em;
+margin-bottom: 0.5em;
+border-collapse: collapse;
+caption-side: bottom;
+empty-cells: show;
+border-width: 1px;
+border-color: blue;
+border-style: solid;
+margin-left:auto;
+margin-right:auto;
+}
+
+img{
+display: block;
+width: 100%;
+margin-left:auto;
+margin-right:auto;
+}
+
+.inverse {
+background: #272822;
+color: #777872;
+text-shadow: 0 0 20px #333;
+}
+.inverse h1, .inverse h2 , .inverse h3 {
+color: #f3f3f3;
+line-height: 1.5em;
+}
+
+.remark-slide {
+  background: #f0f1eb;
+  background-color: #f0f1eb;  
+}
+
+.remark-slide-number {
+/* visibility: hidden: */
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.remark-slide .remark-slide-content {
+  padding: 1em 1em 1em 1em;
+}
+
