@@ -4,9 +4,8 @@
 <title>Title</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf8">
 <link rel="stylesheet" type="text/css" href="./css/remark.css" media="all">
-
- <link href="./css/code-hl.css" type="text/css" rel="stylesheet">
   <link href="./css/tile-view.css" type="text/css" rel="stylesheet">
+ <link href="./css/code-hl.css" type="text/css" rel="stylesheet">
 
 
 </head>
@@ -24,8 +23,9 @@ class: center, middle
 - markdown(拡張)で書いたtableも表示できる！
 - 細かいところはCSSを書く
 - downloadしてHDDにいれておくとオフラインでも使用OK
+- ブラウザによって表示動作に違いあり
 
-ここではremark-latest.min.jsではなく、remark-0.5.9.min.jsを使っています。
+このスライドはremark-latest.min.jsではなく、remark-0.5.9.min.jsを使っています。
 
 ---
 
@@ -45,9 +45,9 @@ class: center, middle
 [Remark Hook](https://github.com/StephenHesperus/remark-hook)のTile View Mode 機能   
 「Use keyboard 'T' to toggle between tile view mode and play mode.」  
 
- t オーバービューモード  
-- スライドの cloneとは相性が悪い？  
-（zorin os + remark-0.5.9.min.js + clone + overviewで挙動がおかしくなりました）
+#### t オーバービューモード（プレゼンモードより表示枚数増加）  
+- しかし、スライドの cloneとは相性が悪い？ 
+ （zorin os + remark-0.5.9.min.js + clone + overviewで挙動がおかしくなりました）
 
 個人的にはcloneは使わないので問題無し。
 
@@ -61,8 +61,8 @@ var slideshow = remark.create();
 </script>
 
 <!-- Customization -->
-<script src="./js/jquery-latest.min.js" type="text/javascript"></script>
 <script src="./js/code-hl.js" type="text/javascript"></script>
+<script src="./js/jquery-latest.min.js" type="text/javascript"></script>
 <!-- Tile view -->
 <script src="./js/tile-view.js" type="text/javascript"></script>
 
