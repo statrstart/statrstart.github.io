@@ -1,9 +1,10 @@
 body {
   font-family: Verdana, Roboto, 'Droid Sans', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic ProN', sans-serif;
+ font-size: x-large
 }
 
 h1 {
-font-size:2.8em;
+font-size:2.2em;
 margin:20px;
 color: #FFFFFF;
 background-color: #009933;
@@ -11,7 +12,7 @@ padding: 4px;
 }
 
 h2 {
-font-size:2em;
+font-size:1.5em;
 margin:10px;
 border: solid;
 border-width: 0px 0px 0px 5px;
@@ -20,7 +21,7 @@ padding: 5px;
 }
 
 h3 {
-font-size:1.6em;
+font-size:1.2em;
 text-align: center;
 padding: 5px;
 }

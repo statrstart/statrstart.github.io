@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<title>Title</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+<link rel="stylesheet" type="text/css" href="./css/remark.css" media="all">
+
+ <link href="./css/code-hl.css" type="text/css" rel="stylesheet">
+  <link href="./css/tile-view.css" type="text/css" rel="stylesheet">
+
+
+</head>
+<body>
+<textarea id="source">
+class: center, middle
+
+# remark.js + Remark Hook
+
+---
+
+## [remark.js](https://github.com/gnab/remark) とは
+- markdown からスライドを作る javascript
+- 使い方が簡単
+- markdown(拡張)で書いたtableも表示できる！
+- 細かいところはCSSを書く
+- downloadしてHDDにいれておくとオフラインでも使用OK
+
+ここではremark-latest.min.jsではなく、remark-0.5.9.min.jsを使っています。
+
+---
+
+## スライドの操作
+- j 次のスライド(→ ↓ PgDown Space)
+- k 前のスライド(← ↑ PgUp)
+- c スライドの clone
+- f フルスクリーン
+- p プレゼンモード
+
+---
+
+## 贅沢な悩み
+- overviewモードがあったらスライド選択がしやすい。
+
+## 探したらありました！！！
+[Remark Hook](https://github.com/StephenHesperus/remark-hook)のTile View Mode 機能   
+「Use keyboard 'T' to toggle between tile view mode and play mode.」  
+
+ t オーバービューモード  
+- スライドの cloneとは相性が悪い？  
+（zorin os + remark-0.5.9.min.js + clone + overviewで挙動がおかしくなりました）
+
+個人的にはcloneは使わないので問題無し。
+
+
+
+</textarea>
+<script src="./js/remark-0.5.9.min.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+var slideshow = remark.create();
+</script>
+
+<!-- Customization -->
+<script src="./js/jquery-latest.min.js" type="text/javascript"></script>
+<script src="./js/code-hl.js" type="text/javascript"></script>
+<!-- Tile view -->
+<script src="./js/tile-view.js" type="text/javascript"></script>
+
+</body>
+</html>
