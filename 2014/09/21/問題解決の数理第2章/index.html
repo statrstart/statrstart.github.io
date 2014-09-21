@@ -93,7 +93,7 @@
         <section id="main"><article id="post-問題解決の数理第2章" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/09/21/問題解決の数理第2章/" class="article-date">
-  <time datetime="2014-09-21T12:55:33.000Z" itemprop="datePublished">Sep 21 2014</time>
+  <time datetime="2014-09-21T13:02:16.000Z" itemprop="datePublished">Sep 21 2014</time>
 </a>
     
   <div class="article-category">
@@ -160,13 +160,14 @@
 <p>All Variables (including slack variables)<br>    opt cvec min.c max.c marg marg.reg<br>1    40   10   -12    14   NA       NA<br>2    40    6   -10    10   NA       NA<br>3     0   16    99    77    4       40<br>4    80    8   -12    10   NA       NA<br>5     0    8    99    77    4       40<br>6    80   10   -20    14   NA       NA<br>S 1   0    0    -2   Inf    2       80<br>S 2   0    0    -4     2    0       NA<br>S 3   0    0    -8   Inf    8      Inf<br>S 4   0    0    -4   Inf    4       40<br>S 5   0    0   -10   Inf   10      Inf  </p>
 <h3 id="演習問題_2-1(p-37)">演習問題 2.1(p.37)</h3>
 <p>PCの回収量を　$x_1$<br>携帯電話の回収量を $x_2$ とする  </p>
-<p>最小　$240x_1+800x_2$<br>制約式</p>
-<span>$$　
-x_1+5x_2>=240\\  
-x_1+2x_2>=90\\  
-3x_1+0x_2>=60\\  
+<p>最小　<br>$$240x_1+800x_2$$<br>制約式</p>
+<span>$$\begin{aligned}　
+&x_1+5x_2>=240\\  
+&x_1+2x_2>=90\\  
+&3x_1+0x_2>=60\\  
 
-x_1>=0 ; x_2>=0$$</span>
+&x_1>=0 ; x_2>=0
+\end{aligned}$$</span>
 
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">library(linprog)</div><div class="line"><span class="preprocessor"># 最小化（maximum=F）</span></div><div class="line">cvec&lt;-c(<span class="number">240</span>,<span class="number">800</span>)</div><div class="line"><span class="preprocessor"># 制約条件</span></div><div class="line"><span class="preprocessor"># 右辺</span></div><div class="line">bvec&lt;-c(<span class="number">240</span>,<span class="number">90</span>,<span class="number">60</span>)</div><div class="line"><span class="preprocessor"># 左辺</span></div><div class="line">Amat&lt;-rbind(c(<span class="number">1</span>,<span class="number">5</span>),c(<span class="number">1</span>,<span class="number">2</span>),c(<span class="number">3</span>,<span class="number">0</span>))</div><div class="line">solveLP(cvec,bvec,Amat,maximum=F,<span class="keyword">const</span>.dir=rep(<span class="string">"&gt;="</span>,length(bvec)))</div></pre></td></tr></table></figure>
 
