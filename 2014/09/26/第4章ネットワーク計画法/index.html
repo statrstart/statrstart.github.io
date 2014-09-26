@@ -96,7 +96,7 @@
         <section id="main"><article id="post-第4章ネットワーク計画法" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/09/26/第4章ネットワーク計画法/" class="article-date">
-  <time datetime="2014-09-26T14:16:09.000Z" itemprop="datePublished">Sep 26 2014</time>
+  <time datetime="2014-09-26T14:25:09.000Z" itemprop="datePublished">Sep 26 2014</time>
 </a>
     
   <div class="article-category">
@@ -131,16 +131,21 @@
 
 <p>制約条件</p>
 <span>$$\begin{aligned}
-&x_{12}-x_{21}+x_{13}-x_{31}+0x_{23}+0x_{32}+0x_{24}+0x_{42}+0x_{34}+0x_{43}+0x_{35}+0x_{53}+0x_{46}+0x_{64}+0x_{56}+0x_{65}=1\\
-&0x_{12}+0x_{21}+0x_{13}+0x_{31}+0x_{23}+0x_{32}+0x_{24}+0x_{42}+0x_{34}+0x_{43}-x_{35}+x_{53}+0x_{46}+0x_{64}+x_{56}-x_{65}=-1\\
-&-x_{12}+x_{21}+0x_{13}+0x_{31}+x_{23}-x_{32}+x_{24}-x_{42}+0x_{34}+0x_{43}+0x_{35}+0x_{53}+0x_{46}+0x_{64}+0x_{56}+0x_{65}=0\\
-&0x_{12}+0x_{21}-x_{13}+x_{31}-x_{23}+x_{32}+0x_{24}+0x_{42}+x_{34}-x_{43}+x_{35}-x_{53}+0x_{46}+0x_{64}+0x_{56}+0x_{65}=0\\
-&0x_{12}+0x_{21}+0x_{13}+0x_{31}+0x_{23}+0x_{32}-x_{24}+x_{42}-x_{34}+x_{43}+0x_{35}+0x_{53}+x_{46}-x_{64}+0x_{56}+0x_{65}=0\\
-&0x_{12}+0x_{21}+0x_{13}+0x_{31}+0x_{23}+0x_{32}+0x_{24}+0x_{42}+0x_{34}+0x_{43}+0x_{35}+0x_{53}-x_{46}+x_{64}-x_{56}+x_{65}=0\\
-
-&x_{ij}\gep0 for (i,j)\inE
+&x_{12}-x_{21}+x_{13}-x_{31}+0x_{23}+0x_{32}+0x_{24}+0x_{42}+0x_{34}+0x_{43}+0x_{35}+0x_{53}\\
++0x_{46}+0x_{64}+0x_{56}+0x_{65}=1\\
+&0x_{12}+0x_{21}+0x_{13}+0x_{31}+0x_{23}+0x_{32}+0x_{24}+0x_{42}+0x_{34}+0x_{43}-x_{35}+x_{53}\\
++0x_{46}+0x_{64}+x_{56}-x_{65}=-1\\
+&-x_{12}+x_{21}+0x_{13}+0x_{31}+x_{23}-x_{32}+x_{24}-x_{42}+0x_{34}+0x_{43}+0x_{35}+0x_{53}\\
++0x_{46}+0x_{64}+0x_{56}+0x_{65}=0\\
+&0x_{12}+0x_{21}-x_{13}+x_{31}-x_{23}+x_{32}+0x_{24}+0x_{42}+x_{34}-x_{43}+x_{35}-x_{53}\\
++0x_{46}+0x_{64}+0x_{56}+0x_{65}=0\\
+&0x_{12}+0x_{21}+0x_{13}+0x_{31}+0x_{23}+0x_{32}-x_{24}+x_{42}-x_{34}+x_{43}+0x_{35}+0x_{53}\\
++x_{46}-x_{64}+0x_{56}+0x_{65}=0\\
+&0x_{12}+0x_{21}+0x_{13}+0x_{31}+0x_{23}+0x_{32}+0x_{24}+0x_{42}+0x_{34}+0x_{43}+0x_{35}+0x_{53}\\
+-x_{46}+x_{64}-x_{56}+x_{65}=0\\
 \end{aligned}$$</span>
 
+<p>$$x_{ij}\geq0  for  (i,j)\inE$$</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">library(linprog)</div><div class="line"><span class="preprocessor"># 最小化(maximum=F)</span></div><div class="line">cvec&lt;-c(<span class="number">1</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>)</div><div class="line"><span class="preprocessor"># 制約条件</span></div><div class="line"><span class="preprocessor"># 右辺</span></div><div class="line">bvec&lt;-c(<span class="number">1</span>,-<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>)</div><div class="line"><span class="preprocessor"># 左辺</span></div><div class="line">Amat&lt;-rbind(c(<span class="number">1</span>,-<span class="number">1</span>,<span class="number">1</span>,-<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),c(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,-<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,-<span class="number">1</span>),c(-<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,-<span class="number">1</span>,<span class="number">1</span>,-<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),</div><div class="line">c(<span class="number">0</span>,<span class="number">0</span>,-<span class="number">1</span>,<span class="number">1</span>,-<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,-<span class="number">1</span>,<span class="number">1</span>,-<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),c(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,-<span class="number">1</span>,<span class="number">1</span>,-<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,-<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>),c(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,-<span class="number">1</span>,<span class="number">1</span>,-<span class="number">1</span>,<span class="number">1</span>))</div><div class="line">solveLP(cvec,bvec,Amat,maximum=F,<span class="keyword">const</span>.dir=rep(<span class="string">"&lt;="</span>,length(bvec)))</div></pre></td></tr></table></figure>
 
 <p>Results of Linear Programming / Linear Optimization</p>
