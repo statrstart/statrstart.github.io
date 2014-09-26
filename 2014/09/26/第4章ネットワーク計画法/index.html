@@ -96,7 +96,7 @@
         <section id="main"><article id="post-第4章ネットワーク計画法" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/09/26/第4章ネットワーク計画法/" class="article-date">
-  <time datetime="2014-09-26T13:56:01.000Z" itemprop="datePublished">Sep 26 2014</time>
+  <time datetime="2014-09-26T14:16:09.000Z" itemprop="datePublished">Sep 26 2014</time>
 </a>
     
   <div class="article-category">
@@ -125,19 +125,20 @@
 <h3 id="線形計画問題として解く">線形計画問題として解く</h3>
 <p>最小化</p>
 <span>$$\begin{aligned}
-&z=x_{1,2}+x_{2,1}+5x_{1,3}+5x_{3,1}+2x_{2,3}+2x_{3,2}+2x_{2,4}+2x_{4,2}+3x_{3,4}+3x_{4,3}+x_{3,5}+x_{5,3}+3x_{4,6}+3x_{6,4}+4x_{5,6}+4x_{6,5}
+&z=x_{12}+x_{21}+5x_{13}+5x_{31}+2x_{23}+2x_{32}+2x_{24}+2x_{42}+3x_{34}+3x_{43}+x_{35}+x_{53}+3x_{46}+3x_{64}+4x_{56}+4x_{65}
 \end{aligned}$$</span>
 
 
 <p>制約条件</p>
 <span>$$\begin{aligned}
-&x_{1,2}-x_{2,1}+x_{1,3}-x_{3,1}+0x_{2,3}+0x_{3,2}+0x_{2,4}+0x_{4,2}+0x_{3,4}+0x_{4,3}+0x_{3,5}+0x_{5,3}+0x_{4,6}+0x_{6,4}+0x_{5,6}+0x_{6,5}=1\\
-&0x_{1,2}+0x_{2,1}+0x_{1,3}+0x_{3,1}+0x_{2,3}+0x_{3,2}+0x_{2,4}+0x_{4,2}+0x_{3,4}+0x_{4,3}-x_{3,5}+x_{5,3}+0x_{4,6}+0x_{6,4}+x_{5,6}-x_{6,5}=-1\\
-&-x_{1,2}+x_{2,1}+0x_{1,3}+0x_{3,1}+x_{2,3}-x_{3,2}+x_{2,4}-x_{4,2}+0x_{3,4}+0x_{4,3}+0x_{3,5}+0x_{5,3}+0x_{4,6}+0x_{6,4}+0x_{5,6}+0x_{6,5}=0\\
-&0x_{1,2}+0x_{2,1}-x_{1,3}+x_{3,1}-x_{2,3}+x_{3,2}+0x_{2,4}+0x_{4,2}+x_{3,4}-x_{4,3}+x_{3,5}-x_{5,3}+0x_{4,6}+0x_{6,4}+0x_{5,6}+0x_{6,5}=0\\
-&0x_{1,2}+0x_{2,1}+0x_{1,3}+0x_{3,1}+0x_{2,3}+0x_{3,2}-x_{2,4}+x_{4,2}-x_{3,4}+x_{4,3}+0x_{3,5}+0x_{5,3}+x_{4,6}-x_{6,4}+0x_{5,6}+0x_{6,5}=0\\
-&0x_{1,2}+0x_{2,1}+0x_{1,3}+0x_{3,1}+0x_{2,3}+0x_{3,2}+0x_{2,4}+0x_{4,2}+0x_{3,4}+0x_{4,3}+0x_{3,5}+0x_{5,3}-x_{4,6}+x_{6,4}-x_{5,6}+x_{6,5}=0\\
-&x_{i,j}\gep for (i,j)\inE
+&x_{12}-x_{21}+x_{13}-x_{31}+0x_{23}+0x_{32}+0x_{24}+0x_{42}+0x_{34}+0x_{43}+0x_{35}+0x_{53}+0x_{46}+0x_{64}+0x_{56}+0x_{65}=1\\
+&0x_{12}+0x_{21}+0x_{13}+0x_{31}+0x_{23}+0x_{32}+0x_{24}+0x_{42}+0x_{34}+0x_{43}-x_{35}+x_{53}+0x_{46}+0x_{64}+x_{56}-x_{65}=-1\\
+&-x_{12}+x_{21}+0x_{13}+0x_{31}+x_{23}-x_{32}+x_{24}-x_{42}+0x_{34}+0x_{43}+0x_{35}+0x_{53}+0x_{46}+0x_{64}+0x_{56}+0x_{65}=0\\
+&0x_{12}+0x_{21}-x_{13}+x_{31}-x_{23}+x_{32}+0x_{24}+0x_{42}+x_{34}-x_{43}+x_{35}-x_{53}+0x_{46}+0x_{64}+0x_{56}+0x_{65}=0\\
+&0x_{12}+0x_{21}+0x_{13}+0x_{31}+0x_{23}+0x_{32}-x_{24}+x_{42}-x_{34}+x_{43}+0x_{35}+0x_{53}+x_{46}-x_{64}+0x_{56}+0x_{65}=0\\
+&0x_{12}+0x_{21}+0x_{13}+0x_{31}+0x_{23}+0x_{32}+0x_{24}+0x_{42}+0x_{34}+0x_{43}+0x_{35}+0x_{53}-x_{46}+x_{64}-x_{56}+x_{65}=0\\
+
+&x_{ij}\gep0 for (i,j)\inE
 \end{aligned}$$</span>
 
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">library(linprog)</div><div class="line"><span class="preprocessor"># 最小化(maximum=F)</span></div><div class="line">cvec&lt;-c(<span class="number">1</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>)</div><div class="line"><span class="preprocessor"># 制約条件</span></div><div class="line"><span class="preprocessor"># 右辺</span></div><div class="line">bvec&lt;-c(<span class="number">1</span>,-<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>)</div><div class="line"><span class="preprocessor"># 左辺</span></div><div class="line">Amat&lt;-rbind(c(<span class="number">1</span>,-<span class="number">1</span>,<span class="number">1</span>,-<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),c(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,-<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,-<span class="number">1</span>),c(-<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,-<span class="number">1</span>,<span class="number">1</span>,-<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),</div><div class="line">c(<span class="number">0</span>,<span class="number">0</span>,-<span class="number">1</span>,<span class="number">1</span>,-<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,-<span class="number">1</span>,<span class="number">1</span>,-<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),c(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,-<span class="number">1</span>,<span class="number">1</span>,-<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,-<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>),c(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,-<span class="number">1</span>,<span class="number">1</span>,-<span class="number">1</span>,<span class="number">1</span>))</div><div class="line">solveLP(cvec,bvec,Amat,maximum=F,<span class="keyword">const</span>.dir=rep(<span class="string">"&lt;="</span>,length(bvec)))</div></pre></td></tr></table></figure>
@@ -173,19 +174,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2014/09/26/第4章ネットワーク計画法2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          最大流問題
-        
-      </div>
-    </a>
   
-  
-    <a href="/2014/09/24/エボラ熱データ/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2014/09/26/第4章ネットワーク計画法2/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">エボラ熱データ</div>
+      <div class="article-nav-title">最大流問題</div>
     </a>
   
 </nav>
@@ -240,11 +232,11 @@
       <ul>
         
           <li>
-            <a href="/2014/09/26/第4章ネットワーク計画法2/">最大流問題</a>
+            <a href="/2014/09/26/第4章ネットワーク計画法/">最短路問題</a>
           </li>
         
           <li>
-            <a href="/2014/09/26/第4章ネットワーク計画法/">最短路問題</a>
+            <a href="/2014/09/26/第4章ネットワーク計画法2/">最大流問題</a>
           </li>
         
           <li>
