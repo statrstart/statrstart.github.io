@@ -3,18 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>相関関係1 | 統計ソフトRの備忘録２</title>
+  <title>最大流問題 | 統計ソフトRの備忘録２</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="放送大学「心理統計法」第8章　相関関係（１）">
+  <meta name="description" content="問題解決の数理 第4章 ネットワーク計画法2">
 <meta property="og:type" content="article">
-<meta property="og:title" content="相関関係1">
-<meta property="og:url" content="http://yoursite.com/2014/09/19/相関関係1/">
+<meta property="og:title" content="最大流問題">
+<meta property="og:url" content="http://yoursite.com/2014/09/26/第4章ネットワーク計画法2/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
-<meta property="og:description" content="放送大学「心理統計法」第8章　相関関係（１）">
-<meta property="og:image" content="http://blog-imgs-61.fc2.com/s/t/a/statrstart/scatter1.jpg">
+<meta property="og:description" content="問題解決の数理 第4章 ネットワーク計画法2">
+<meta property="og:image" content="/images/graph04.png">
+<meta property="og:image" content="/images/graph05.png">
+<meta property="og:image" content="/images/graph06.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="相関関係1">
-<meta name="twitter:description" content="放送大学「心理統計法」第8章　相関関係（１）">
+<meta name="twitter:title" content="最大流問題">
+<meta name="twitter:description" content="問題解決の数理 第4章 ネットワーク計画法2">
 
   
     <link rel="alternative" href="/atom.xml" title="統計ソフトRの備忘録２" type="application/atom+xml">
@@ -91,10 +93,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-相関関係1" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-第4章ネットワーク計画法2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/09/19/相関関係1/" class="article-date">
-  <time datetime="2014-09-19T00:32:22.000Z" itemprop="datePublished">Sep 19 2014</time>
+    <a href="/2014/09/26/第4章ネットワーク計画法2/" class="article-date">
+  <time datetime="2014-09-26T14:07:04.000Z" itemprop="datePublished">Sep 26 2014</time>
 </a>
     
   <div class="article-category">
@@ -109,7 +111,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      相関関係1
+      最大流問題
     </h1>
   
 
@@ -117,33 +119,26 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="放送大学「心理統計法」第8章_相関関係（１）">放送大学「心理統計法」第8章　相関関係（１）</h2>
+        <h2 id="問題解決の数理_第4章_ネットワーク計画法2">問題解決の数理 第4章 ネットワーク計画法2</h2>
 <a id="more"></a>
 
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">x&lt;-<span class="built_in">c</span>(<span class="number">10</span>,<span class="number">9</span>,<span class="number">9</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">4</span>)</div><div class="line">y&lt;-<span class="built_in">c</span>(<span class="number">8</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">6</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">library(igraph)</div><div class="line"><span class="type">E</span> &lt;- rbind( <span class="built_in">c</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>), <span class="built_in">c</span>(<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>), <span class="built_in">c</span>(<span class="number">2</span>,<span class="number">5</span>,<span class="number">2</span>), <span class="built_in">c</span>(<span class="number">2</span>,<span class="number">4</span>,<span class="number">2</span>), <span class="built_in">c</span>(<span class="number">3</span>,<span class="number">4</span>,<span class="number">3</span>), <span class="built_in">c</span>(<span class="number">3</span>,<span class="number">6</span>,<span class="number">3</span>),<span class="built_in">c</span>(<span class="number">4</span>,<span class="number">7</span>,<span class="number">2</span>),<span class="built_in">c</span>(<span class="number">5</span>,<span class="number">7</span>,<span class="number">3</span>),<span class="built_in">c</span>(<span class="number">6</span>,<span class="number">7</span>,<span class="number">4</span>))</div><div class="line">colnames(<span class="type">E</span>) &lt;- <span class="built_in">c</span>(<span class="string">"from"</span>, <span class="string">"to"</span>, <span class="string">"capacity"</span>)</div><div class="line">g &lt;- graph.data.frame(<span class="keyword">as</span>.data.frame(<span class="type">E</span>))</div><div class="line">plot(g,vertex.label=<span class="type">V</span>(g)$name,edge.label=<span class="type">E</span>(g)$capacity)</div></pre></td></tr></table></figure>
 
-<h4 id="散布図">散布図</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scatterplot(x,y, reg.<span class="variable">line=</span>lm, <span class="variable">smooth=</span>FALSE, <span class="variable">spread=</span>FALSE, <span class="variable">boxplots=</span>'xy',<span class="variable">span=</span><span class="number">0.5</span>)</div></pre></td></tr></table></figure>
+<p><img src="/images/graph04.png" alt=""></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#p.60</span></div><div class="line"><span class="title">v1</span>&lt;- c(<span class="number">1</span>,<span class="number">2</span>); v2 &lt;- c(<span class="number">2</span>,<span class="number">3</span>); v3 &lt;- c(<span class="number">2</span>,<span class="number">1</span>); v4 &lt;- c(<span class="number">3</span>,<span class="number">2</span>); v5 &lt;- c(<span class="number">4</span>,<span class="number">3</span>); v6 &lt;- c(<span class="number">4</span>,<span class="number">1</span>);v7&lt;-c(<span class="number">5</span>,<span class="number">2</span>)</div><div class="line"><span class="title">lay</span> &lt;- rbind(v1,v2,v3,v4,v5,v6,v7)</div><div class="line"><span class="preprocessor">#プロット</span></div><div class="line"><span class="title">plot</span>(g,layout=lay,vertex.label=<span class="type">V</span>(g)$name,edge.label=<span class="type">E</span>(g)$capacity)</div></pre></td></tr></table></figure>
 
-<p><img src="http://blog-imgs-61.fc2.com/s/t/a/statrstart/scatter1.jpg" alt=""></p>
-<h4 id="ピアソンの積率相関係数">ピアソンの積率相関係数</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cor.test(x, y, alternative=<span class="string">"two.sided"</span>, <span class="keyword">method</span>=<span class="string">"pearson"</span>)</div></pre></td></tr></table></figure>
+<p><img src="/images/graph05.png" alt=""></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">res&lt;-graph.maxflow(g, <span class="built_in">source</span>=V(g)[<span class="string">"1"</span>], target=V(g)[<span class="string">"7"</span>])</div><div class="line">V(g)<span class="variable">$shape</span> &lt;- <span class="string">"circle"</span>  <span class="comment">#形状</span></div><div class="line">V(g)<span class="variable">$shape</span>[<span class="number">1</span>] &lt;- <span class="string">"square"</span> ;V(g)<span class="variable">$shape</span>[<span class="number">7</span>] &lt;- <span class="string">"square"</span></div><div class="line">V(g)<span class="variable">$color</span> &lt;- <span class="string">"skyblue"</span>  <span class="comment">#色</span></div><div class="line">V(g)<span class="variable">$color</span>[<span class="number">1</span>] &lt;- <span class="string">"pink"</span> ;V(g)<span class="variable">$color</span>[<span class="number">7</span>] &lt;- <span class="string">"pink"</span></div><div class="line">plot(g,layout=lay,vertex.label=V(g)<span class="variable">$name</span>,edge.label=res<span class="variable">$flow</span>)</div></pre></td></tr></table></figure>
 
-<p>Pearson’s product-moment correlation  </p>
-<p>data:  x and y<br>t = 3.2359, df = 8, p-value = 0.01195<br>alternative hypothesis: true correlation is not equal to 0<br>95 percent confidence interval:<br> 0.2344317 0.9379193<br>sample estimates:<br>      cor<br>0.7529233   </p>
-<p>相関係数 0.7529233<br>無相関検定　t値 = 3.2359, 自由度 = 8, P値 = 0.01195<br> 母相関は，0ではない<br>95 パーセント信頼区間: 0.2344317 0.9379193  </p>
-<h3 id="Rコマンダーのメニュー操作">Rコマンダーのメニュー操作</h3>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">d</span>&lt;-<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(<span class="title">x</span>,<span class="title">y</span>)</span></span></div></pre></td></tr></table></figure>
-
-<p>アクティブデータセットをdに変更<br>グラフ～散布図<br>統計量～要約～相関の検定  </p>
+<p><img src="/images/graph06.png" alt=""></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/09/19/相関関係1/" data-id="yt9ccbyyvz3j7bb8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/09/26/第4章ネットワーク計画法2/" data-id="spnx9pr0xsrnu8cr" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心理統計法/">心理統計法</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a></li></ul>
 
     </footer>
   </div>
@@ -151,19 +146,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2014/09/19/相関関係2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          相関関係2
-        
-      </div>
-    </a>
   
-  
-    <a href="/2014/09/19/t検定補足/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2014/09/26/第4章ネットワーク計画法/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">t検定補足</div>
+      <div class="article-nav-title">最短路問題</div>
     </a>
   
 </nav>
