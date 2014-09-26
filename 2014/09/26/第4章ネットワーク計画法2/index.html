@@ -96,7 +96,7 @@
         <section id="main"><article id="post-第4章ネットワーク計画法2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/09/26/第4章ネットワーク計画法2/" class="article-date">
-  <time datetime="2014-09-26T14:07:04.000Z" itemprop="datePublished">Sep 26 2014</time>
+  <time datetime="2014-09-26T14:54:36.000Z" itemprop="datePublished">Sep 26 2014</time>
 </a>
     
   <div class="article-category">
@@ -122,13 +122,13 @@
         <h2 id="問題解決の数理_第4章_ネットワーク計画法2">問題解決の数理 第4章 ネットワーク計画法2</h2>
 <a id="more"></a>
 
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">library(igraph)</div><div class="line"><span class="type">E</span> &lt;- rbind( <span class="built_in">c</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>), <span class="built_in">c</span>(<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>), <span class="built_in">c</span>(<span class="number">2</span>,<span class="number">5</span>,<span class="number">2</span>), <span class="built_in">c</span>(<span class="number">2</span>,<span class="number">4</span>,<span class="number">2</span>), <span class="built_in">c</span>(<span class="number">3</span>,<span class="number">4</span>,<span class="number">3</span>), <span class="built_in">c</span>(<span class="number">3</span>,<span class="number">6</span>,<span class="number">3</span>),<span class="built_in">c</span>(<span class="number">4</span>,<span class="number">7</span>,<span class="number">2</span>),<span class="built_in">c</span>(<span class="number">5</span>,<span class="number">7</span>,<span class="number">3</span>),<span class="built_in">c</span>(<span class="number">6</span>,<span class="number">7</span>,<span class="number">4</span>))</div><div class="line">colnames(<span class="type">E</span>) &lt;- <span class="built_in">c</span>(<span class="string">"from"</span>, <span class="string">"to"</span>, <span class="string">"capacity"</span>)</div><div class="line">g &lt;- graph.data.frame(<span class="keyword">as</span>.data.frame(<span class="type">E</span>))</div><div class="line">plot(g,vertex.label=<span class="type">V</span>(g)$name,edge.label=<span class="type">E</span>(g)$capacity)</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">library(igraph)</div><div class="line"><span class="type">E</span> &lt;- rbind( <span class="built_in">c</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>), <span class="built_in">c</span>(<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>), <span class="built_in">c</span>(<span class="number">2</span>,<span class="number">5</span>,<span class="number">2</span>), <span class="built_in">c</span>(<span class="number">2</span>,<span class="number">4</span>,<span class="number">2</span>), <span class="built_in">c</span>(<span class="number">3</span>,<span class="number">4</span>,<span class="number">3</span>), <span class="built_in">c</span>(<span class="number">3</span>,<span class="number">6</span>,<span class="number">3</span>),<span class="built_in">c</span>(<span class="number">4</span>,<span class="number">7</span>,<span class="number">2</span>),<span class="built_in">c</span>(<span class="number">5</span>,<span class="number">7</span>,<span class="number">3</span>),<span class="built_in">c</span>(<span class="number">6</span>,<span class="number">7</span>,<span class="number">4</span>))</div><div class="line">colnames(<span class="type">E</span>) &lt;- <span class="built_in">c</span>(<span class="string">"from"</span>, <span class="string">"to"</span>, <span class="string">"capacity"</span>)</div><div class="line">g &lt;- graph.data.frame(<span class="keyword">as</span>.data.frame(<span class="type">E</span>))</div><div class="line"><span class="type">V</span>(g)$size &lt;-<span class="number">30</span></div><div class="line">plot(g,vertex.label=<span class="type">V</span>(g)$name,edge.label=<span class="type">E</span>(g)$capacity)</div></pre></td></tr></table></figure>
 
 <p><img src="/images/graph04.png" alt=""></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#p.60</span></div><div class="line"><span class="title">v1</span>&lt;- c(<span class="number">1</span>,<span class="number">2</span>); v2 &lt;- c(<span class="number">2</span>,<span class="number">3</span>); v3 &lt;- c(<span class="number">2</span>,<span class="number">1</span>); v4 &lt;- c(<span class="number">3</span>,<span class="number">2</span>); v5 &lt;- c(<span class="number">4</span>,<span class="number">3</span>); v6 &lt;- c(<span class="number">4</span>,<span class="number">1</span>);v7&lt;-c(<span class="number">5</span>,<span class="number">2</span>)</div><div class="line"><span class="title">lay</span> &lt;- rbind(v1,v2,v3,v4,v5,v6,v7)</div><div class="line"><span class="preprocessor">#プロット</span></div><div class="line"><span class="title">plot</span>(g,layout=lay,vertex.label=<span class="type">V</span>(g)$name,edge.label=<span class="type">E</span>(g)$capacity)</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#p.60</span></div><div class="line"><span class="title">v1</span>&lt;- c(<span class="number">1</span>,<span class="number">2</span>); v2 &lt;- c(<span class="number">2</span>,<span class="number">3</span>); v3 &lt;- c(<span class="number">2</span>,<span class="number">1</span>); v4 &lt;- c(<span class="number">3</span>,<span class="number">2</span>); v5 &lt;- c(<span class="number">4</span>,<span class="number">3</span>); v6 &lt;- c(<span class="number">4</span>,<span class="number">1</span>);v7&lt;-c(<span class="number">5</span>,<span class="number">2</span>)</div><div class="line"><span class="title">lay</span> &lt;- rbind(v1,v2,v3,v4,v5,v6,v7)</div><div class="line"><span class="preprocessor">#プロット</span></div><div class="line"><span class="type">V</span>(g)$size &lt;-<span class="number">30</span></div><div class="line"><span class="title">plot</span>(g,layout=lay,vertex.label=<span class="type">V</span>(g)$name,edge.label=<span class="type">E</span>(g)$capacity)</div></pre></td></tr></table></figure>
 
 <p><img src="/images/graph05.png" alt=""></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">res&lt;-graph.maxflow(g, <span class="built_in">source</span>=V(g)[<span class="string">"1"</span>], target=V(g)[<span class="string">"7"</span>])</div><div class="line">V(g)<span class="variable">$shape</span> &lt;- <span class="string">"circle"</span>  <span class="comment">#形状</span></div><div class="line">V(g)<span class="variable">$shape</span>[<span class="number">1</span>] &lt;- <span class="string">"square"</span> ;V(g)<span class="variable">$shape</span>[<span class="number">7</span>] &lt;- <span class="string">"square"</span></div><div class="line">V(g)<span class="variable">$color</span> &lt;- <span class="string">"skyblue"</span>  <span class="comment">#色</span></div><div class="line">V(g)<span class="variable">$color</span>[<span class="number">1</span>] &lt;- <span class="string">"pink"</span> ;V(g)<span class="variable">$color</span>[<span class="number">7</span>] &lt;- <span class="string">"pink"</span></div><div class="line">plot(g,layout=lay,vertex.label=V(g)<span class="variable">$name</span>,edge.label=res<span class="variable">$flow</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">res&lt;-graph.maxflow(g, <span class="built_in">source</span>=V(g)[<span class="string">"1"</span>], target=V(g)[<span class="string">"7"</span>])</div><div class="line">V(g)<span class="variable">$size</span> &lt;-<span class="number">30</span></div><div class="line">V(g)<span class="variable">$shape</span> &lt;- <span class="string">"circle"</span>  <span class="comment">#形状</span></div><div class="line">V(g)<span class="variable">$shape</span>[<span class="number">1</span>] &lt;- <span class="string">"square"</span> ;V(g)<span class="variable">$shape</span>[<span class="number">7</span>] &lt;- <span class="string">"square"</span></div><div class="line">V(g)<span class="variable">$color</span> &lt;- <span class="string">"skyblue"</span>  <span class="comment">#色</span></div><div class="line">V(g)<span class="variable">$color</span>[<span class="number">1</span>] &lt;- <span class="string">"pink"</span> ;V(g)<span class="variable">$color</span>[<span class="number">7</span>] &lt;- <span class="string">"pink"</span></div><div class="line">plot(g,layout=lay,vertex.label=V(g)<span class="variable">$name</span>,edge.label=res<span class="variable">$flow</span>)</div></pre></td></tr></table></figure>
 
 <p><img src="/images/graph06.png" alt=""></p>
 
@@ -146,19 +146,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2014/09/26/第4章ネットワーク計画法/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          最短路問題
-        
-      </div>
-    </a>
   
-  
-    <a href="/2014/09/24/エボラ熱データ/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2014/09/26/第4章ネットワーク計画法/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">エボラ熱データ</div>
+      <div class="article-nav-title">最短路問題</div>
     </a>
   
 </nav>
@@ -213,11 +204,11 @@
       <ul>
         
           <li>
-            <a href="/2014/09/26/第4章ネットワーク計画法/">最短路問題</a>
+            <a href="/2014/09/26/第4章ネットワーク計画法2/">最大流問題</a>
           </li>
         
           <li>
-            <a href="/2014/09/26/第4章ネットワーク計画法2/">最大流問題</a>
+            <a href="/2014/09/26/第4章ネットワーク計画法/">最短路問題</a>
           </li>
         
           <li>
