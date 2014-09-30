@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>相関関係3 | 統計ソフトRの備忘録２</title>
+  <title>スケジューリング | 統計ソフトRの備忘録２</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="放送大学「心理統計法」第9章　相関関係（２）ー２">
+  <meta name="description" content="問題解決の数理 第5章スケジューリング1">
 <meta property="og:type" content="article">
-<meta property="og:title" content="相関関係3">
-<meta property="og:url" content="http://yoursite.com/2014/09/19/相関関係3/">
+<meta property="og:title" content="スケジューリング">
+<meta property="og:url" content="http://yoursite.com/2014/09/30/第5章スケジューリング/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
-<meta property="og:description" content="放送大学「心理統計法」第9章　相関関係（２）ー２">
+<meta property="og:description" content="問題解決の数理 第5章スケジューリング1">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="相関関係3">
-<meta name="twitter:description" content="放送大学「心理統計法」第9章　相関関係（２）ー２">
+<meta name="twitter:title" content="スケジューリング">
+<meta name="twitter:description" content="問題解決の数理 第5章スケジューリング1">
 
   
     <link rel="alternative" href="/atom.xml" title="統計ソフトRの備忘録２" type="application/atom+xml">
@@ -90,10 +90,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-相関関係3" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-第5章スケジューリング" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/09/19/相関関係3/" class="article-date">
-  <time datetime="2014-09-19T00:32:50.000Z" itemprop="datePublished">Sep 19 2014</time>
+    <a href="/2014/09/30/第5章スケジューリング/" class="article-date">
+  <time datetime="2014-09-30T13:59:53.000Z" itemprop="datePublished">Sep 30 2014</time>
 </a>
     
   <div class="article-category">
@@ -108,7 +108,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      相関関係3
+      スケジューリング
     </h1>
   
 
@@ -116,109 +116,92 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="放送大学「心理統計法」第9章_相関関係（２）ー２">放送大学「心理統計法」第9章　相関関係（２）ー２</h2>
+        <h2 id="問題解決の数理_第5章スケジューリング1">問題解決の数理 第5章スケジューリング1</h2>
 <p><a id="more"></a></p>
-<h4 id="質的なデータの相関">質的なデータの相関</h4>
-<h3 id="ピアソンのカイ二乗検定（連続性補正なし）">ピアソンのカイ二乗検定（連続性補正なし）</h3>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.<span class="keyword">Table</span> &lt;- matrix(c(<span class="number">7</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">6</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">9</span>),<span class="number">3</span>,<span class="number">5</span>, byrow=F)  </div><div class="line">colnames(.<span class="keyword">Table</span>) &lt;- c(<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>, <span class="string">'D'</span>, <span class="string">'E'</span>)  </div><div class="line">rownames(.<span class="keyword">Table</span>) &lt;- c(<span class="string">'甲'</span>, <span class="string">'乙'</span>, <span class="string">'丙'</span>)  </div><div class="line">.<span class="keyword">Table</span>  # Counts</div><div class="line">res&lt;-chisq.test(.<span class="keyword">Table</span>, correct=FALSE)</div><div class="line">res</div></pre></td></tr></table></figure>
+<h3 id="問題解決の数理のWebサイトにある指標計算のプログラムとデータを読み込んで実行してみる。">問題解決の数理のWebサイトにある指標計算のプログラムとデータを読み込んで実行してみる。</h3>
+<p>OSがlinuxなので読み込むときにencodingしないとエラーになる</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">source</span>(<span class="string">'http://www.campus.ouj.ac.jp/~maps13/05/PERT.R'</span>, encoding=<span class="string">"CP932"</span>)</div><div class="line">x &lt;- read.table(<span class="string">'http://www.campus.ouj.ac.jp/~maps13/05/Cake.txt'</span>, header=T, fileEncoding=<span class="string">"CP932"</span>)</div><div class="line">y&lt;-PERT(x)</div><div class="line">z&lt;-cbind(y<span class="variable">$ID</span>,y<span class="variable">$作</span>業,y<span class="variable">$開</span>始点,y<span class="variable">$最</span>早開始時刻,y<span class="variable">$終</span>了点,y<span class="variable">$作</span>業時間,y<span class="variable">$終</span>了点の最遅開始時刻,y<span class="variable">$作</span>業の最遅開始時刻,y<span class="variable">$余</span>裕時間)</div><div class="line">colnames(z)&lt;-c(<span class="string">"ID"</span>,<span class="string">"作業"</span>,<span class="string">"開始点"</span>,<span class="string">"最早開始時刻"</span>,<span class="string">"終了点"</span>,<span class="string">"作業時間"</span>, <span class="string">"終了点の最遅開始時刻"</span>,<span class="string">"作業の最遅開始時刻"</span>,<span class="string">"余裕時間"</span>)</div><div class="line">library(knitr)</div><div class="line">kable(z)</div></pre></td></tr></table></figure>
 
-<p>Pearson’s Chi-squared test</p>
-<p>data:  .Table<br>X-squared = 25.6918, df = 8, p-value = 0.001186  </p>
-<h3 id="期待値を出力する">期待値を出力する</h3>
-<p>res$expected</p>
-<p>A    B    C    D    E<br>甲 3.04 4.56 3.42 3.04 4.94<br>乙 2.56 3.84 2.88 2.56 4.16<br>丙 2.40 3.60 2.70 2.40 3.90  </p>
-<h3 id="クラメールの連関係数">クラメールの連関係数</h3>
-<h4 id="計算する">計算する</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sqrt</span>(<span class="keyword">res</span>$statistic/(<span class="built_in">min</span>(nrow(.Table),ncol(.Table))-<span class="number">1</span>)/sum(.Table))</div></pre></td></tr></table></figure>
-
-<p>X-squared<br>0.5068711</p>
-<h4 id="vcdパッケージを使う">vcdパッケージを使う</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">library</span><span class="params">(vcd)</span></span></div><div class="line"><span class="title">assocstats</span><span class="params">(.<span class="variable">Table</span>)</span></div></pre></td></tr></table></figure>
-
-<p>X^2 df   P(&gt; X^2)<br>Likelihood Ratio 26.186  8 0.00097613<br>Pearson          25.692  8 0.00118568  </p>
-<p>Phi-Coefficient   : 0.717<br>Contingency Coeff.: 0.583<br>Cramer’s V        : 0.507  </p>
-<h3 id="おまけ（knitrパッケージを利用して、表をmarkdownで出力。hexoでhtmlに変換）">おまけ（knitrパッケージを利用して、表をmarkdownで出力。hexoでhtmlに変換）</h3>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function">library</span>(knitr)</div><div class="line"><span class="function">kable</span>(<span class="class">.Table</span>)</div><div class="line"><span class="function">kable</span>(res<span class="variable">$expected</span>)</div></pre></td></tr></table></figure>
-
-<blockquote>
-<p>kable(.Table)</p>
-</blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align:left"></th>
-<th style="text-align:right">A</th>
-<th style="text-align:right">B</th>
-<th style="text-align:right">C</th>
-<th style="text-align:right">D</th>
-<th style="text-align:right">E</th>
+<th style="text-align:right">ID</th>
+<th style="text-align:right">作業</th>
+<th style="text-align:right">開始点</th>
+<th style="text-align:right">最早開始時刻</th>
+<th style="text-align:right">終了点</th>
+<th style="text-align:right">作業時間</th>
+<th style="text-align:right">終了点の最遅開始時刻</th>
+<th style="text-align:right">作業の最遅開始時刻</th>
+<th style="text-align:right">余裕時間</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">甲</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">6</td>
 <td style="text-align:right">7</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">5</td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">1</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td style="text-align:right">6</td>
+<td style="text-align:right">2</td>
 <td style="text-align:right">6</td>
 <td style="text-align:right">3</td>
-<td style="text-align:right">1</td>
-<td style="text-align:right">2</td>
-</tr>
-<tr>
-<td style="text-align:left">乙</td>
 <td style="text-align:right">0</td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">1</td>
+</tr>
+<tr>
 <td style="text-align:right">4</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">4</td>
+<td style="text-align:right">8</td>
+<td style="text-align:right">15</td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
 <td style="text-align:right">5</td>
+<td style="text-align:right">4</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">6</td>
+<td style="text-align:right">4</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">15</td>
+<td style="text-align:right">13</td>
+<td style="text-align:right">7</td>
+</tr>
+<tr>
+<td style="text-align:right">6</td>
 <td style="text-align:right">5</td>
-<td style="text-align:right">2</td>
-</tr>
-<tr>
-<td style="text-align:left">丙</td>
-<td style="text-align:right">1</td>
-<td style="text-align:right">2</td>
-<td style="text-align:right">1</td>
-<td style="text-align:right">2</td>
-<td style="text-align:right">9</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>kable(res$expected)</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align:left"></th>
-<th style="text-align:right">A</th>
-<th style="text-align:right">B</th>
-<th style="text-align:right">C</th>
-<th style="text-align:right">D</th>
-<th style="text-align:right">E</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">甲</td>
-<td style="text-align:right">3.04</td>
-<td style="text-align:right">4.56</td>
-<td style="text-align:right">3.42</td>
-<td style="text-align:right">3.04</td>
-<td style="text-align:right">4.94</td>
-</tr>
-<tr>
-<td style="text-align:left">乙</td>
-<td style="text-align:right">2.56</td>
-<td style="text-align:right">3.84</td>
-<td style="text-align:right">2.88</td>
-<td style="text-align:right">2.56</td>
-<td style="text-align:right">4.16</td>
-</tr>
-<tr>
-<td style="text-align:left">丙</td>
-<td style="text-align:right">2.40</td>
-<td style="text-align:right">3.60</td>
-<td style="text-align:right">2.70</td>
-<td style="text-align:right">2.40</td>
-<td style="text-align:right">3.90</td>
+<td style="text-align:right">4</td>
+<td style="text-align:right">15</td>
+<td style="text-align:right">5</td>
+<td style="text-align:right">10</td>
+<td style="text-align:right">25</td>
+<td style="text-align:right">15</td>
+<td style="text-align:right">0</td>
 </tr>
 </tbody>
 </table>
@@ -226,10 +209,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/09/19/相関関係3/" data-id="27k4k0lguf2g3pl9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/09/30/第5章スケジューリング/" data-id="mut1g3h23vqyebc6" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心理統計法/">心理統計法</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a></li></ul>
 
     </footer>
   </div>
@@ -237,19 +220,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2014/09/19/分散分析1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          一要因の分散分析(一元配置分散分析）
-        
-      </div>
-    </a>
   
-  
-    <a href="/2014/09/19/相関関係2/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2014/09/30/第4章ネットワーク計画法2/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">相関関係2</div>
+      <div class="article-nav-title">最大流問題</div>
     </a>
   
 </nav>
