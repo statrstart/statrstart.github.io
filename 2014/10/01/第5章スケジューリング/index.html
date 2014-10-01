@@ -11,9 +11,9 @@
 <meta property="og:url" content="http://yoursite.com/2014/10/01/第5章スケジューリング/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
 <meta property="og:description" content="問題解決の数理 第5章スケジューリング1">
-<meta property="og:image" content="/images/diagram01">
-<meta property="og:image" content="/images/diagram02">
-<meta property="og:image" content="/images/diagram03">
+<meta property="og:image" content="/images/diagram01.png">
+<meta property="og:image" content="/images/diagram02.png">
+<meta property="og:image" content="/images/diagram03.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="スケジューリング">
 <meta name="twitter:description" content="問題解決の数理 第5章スケジューリング1">
@@ -96,7 +96,7 @@
         <section id="main"><article id="post-第5章スケジューリング" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/10/01/第5章スケジューリング/" class="article-date">
-  <time datetime="2014-10-01T12:52:23.000Z" itemprop="datePublished">Oct 1 2014</time>
+  <time datetime="2014-10-01T12:56:16.000Z" itemprop="datePublished">Oct 1 2014</time>
 </a>
     
   <div class="article-category">
@@ -211,20 +211,20 @@
 <p>上記の指標計算のプログラムに続けて簡易的なアローダイアグラムを作成する。<br>diagramパッケージを使う。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">library(diagram)</div><div class="line">num&lt;-length(unique(c(unique(z$開始点),unique(z$終了点))))</div><div class="line">M&lt;-matrix(<span class="variable">nrow=</span>num,<span class="variable">ncol=</span>num,<span class="variable">byrow=</span>T,<span class="variable">data=</span><span class="number">0</span>)</div><div class="line">for (i <span class="keyword">in</span> <span class="number">1</span>:length(z$作業)) {</div><div class="line">  moji&lt;-paste(z$作業[i],z$作業時間[i],<span class="variable">sep=</span><span class="string">"-"</span>)</div><div class="line">  M[z$開始点[i],z$終了点[i]]&lt;-moji</div><div class="line">}</div><div class="line">names&lt;-<span class="number">1</span>:num</div><div class="line"><span class="comment">#このままだと矢印の向きが逆になるので転置してからプロット</span></div><div class="line">pp&lt;-plotmat(t(M),<span class="variable">name=</span>names,<span class="variable">pos=</span>c(<span class="number">1</span>,num-<span class="number">2</span>,<span class="number">1</span>), box.<span class="variable">size =</span> <span class="number">0.02</span>,box.<span class="variable">col =</span> <span class="string">"lightblue"</span>,shadow.<span class="variable">size =</span> <span class="number">0</span>, arr.<span class="variable">len =</span><span class="number">0.3</span>, cex.<span class="variable">txt =</span> <span class="number">0.8</span>)</div></pre></td></tr></table></figure>
 
-<p><img src="/images/diagram01" alt=""></p>
+<p><img src="/images/diagram01.png" alt=""></p>
 <ul>
 <li>ポジションの調整を行う。  </li>
 <li>上から 1-2-1-1の配置。plotmat関数は上からの配置のみ。  </li>
 </ul>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pp&lt;-plotmat(t(M),<span class="variable">name=</span>names,<span class="variable">pos=</span>c(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>), box.<span class="variable">size =</span> <span class="number">0.02</span> ,box.<span class="variable">col =</span> <span class="string">"lightblue"</span>,shadow.<span class="variable">size =</span> <span class="number">0</span>,<span class="variable">curve=</span><span class="number">0</span>,arr.<span class="variable">type =</span> <span class="string">"simple"</span>, arr.<span class="variable">len =</span><span class="number">0.3</span>, cex.<span class="variable">txt =</span> <span class="number">0.8</span>)</div></pre></td></tr></table></figure>
 
-<p><img src="/images/diagram02" alt=""></p>
+<p><img src="/images/diagram02.png" alt=""></p>
 <ul>
 <li>ダミー作業も実線になる。点線にするために一工夫。</li>
 </ul>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#d-0の入っている箇所に0を入れて線を書かないようにする。</span></div><div class="line">M[<span class="number">2</span>,<span class="number">3</span>]&lt;-<span class="string">"0"</span></div><div class="line">pp&lt;-plotmat(t(M),<span class="variable">name=</span>names,<span class="variable">pos=</span>c(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>), box.<span class="variable">size =</span> <span class="number">0.02</span> ,box.<span class="variable">col =</span> <span class="string">"lightblue"</span>,shadow.<span class="variable">size =</span> <span class="number">0</span>,<span class="variable">curve=</span><span class="number">0</span>,arr.<span class="variable">type =</span> <span class="string">"simple"</span>, arr.<span class="variable">len =</span><span class="number">0.3</span>,cex.<span class="variable">txt =</span> <span class="number">0.8</span>)</div><div class="line"><span class="comment">#ダミー作業の線を描く始点と終点の座標</span></div><div class="line">m2&lt;- pp$comp[<span class="variable">names=</span>=<span class="number">2</span>]</div><div class="line">m3&lt;- pp$comp[<span class="variable">names=</span>=<span class="number">3</span>]</div><div class="line"><span class="comment">#線を書く</span></div><div class="line">dummy&lt;-straightarrow(<span class="variable">from =</span>m2,<span class="variable">to =</span> m3,arr.<span class="variable">type =</span><span class="string">"simple"</span>, arr.<span class="variable">pos =</span><span class="number">0.5</span>,<span class="variable">lty=</span><span class="number">3</span>,arr.<span class="variable">len =</span><span class="number">0.3</span>)</div><div class="line"><span class="comment">#d-0を書く</span></div><div class="line">textplain(<span class="variable">mid=</span>(m2+m3)/<span class="number">2</span>,<span class="variable">lab=</span>c(<span class="string">""</span>,<span class="string">"d-0"</span>),<span class="variable">adj =</span> c(<span class="number">0</span>, <span class="number">0.5</span>),<span class="variable">cex=</span><span class="number">0.8</span>)</div></pre></td></tr></table></figure>
 
-<p><img src="/images/diagram03" alt=""></p>
+<p><img src="/images/diagram03.png" alt=""></p>
 <ul>
 <li>あまり美しくないけどとりあえず完成</li>
 </ul>
