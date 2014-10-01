@@ -8,7 +8,7 @@
   <meta name="description" content="問題解決の数理 第4章 ネットワーク計画法2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="最大流問題">
-<meta property="og:url" content="http://yoursite.com/2014/09/30/第4章ネットワーク計画法2/">
+<meta property="og:url" content="http://yoursite.com/2014/10/01/第4章ネットワーク計画法2/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
 <meta property="og:description" content="問題解決の数理 第4章 ネットワーク計画法2">
 <meta property="og:image" content="/images/graph04.png">
@@ -95,8 +95,8 @@
       <div class="outer">
         <section id="main"><article id="post-第4章ネットワーク計画法2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/09/30/第4章ネットワーク計画法2/" class="article-date">
-  <time datetime="2014-09-30T13:12:41.000Z" itemprop="datePublished">Sep 30 2014</time>
+    <a href="/2014/10/01/第4章ネットワーク計画法2/" class="article-date">
+  <time datetime="2014-10-01T01:50:57.000Z" itemprop="datePublished">Oct 1 2014</time>
 </a>
     
   <div class="article-category">
@@ -132,40 +132,22 @@
 <p>制約条件  </p>
 <span>$$\begin{aligned}
 &x_{24}+x_{25}-x_{12}=0\\
-&x_{34{+x_{36}-x_{13}=0\\
+&x_{34}+x_{36}-x_{13}=0\\
 &x_{47}-x_{24}-x_{34}=0\\
 &x_{57}-x_{25}=0\\
 &x_{67}-x_{36}=0\\
-&0\leqx_{12}\leq3\\
-&0\leqx_{13}\leq5\\
-&0\leqx_{24}\leq2\\
-&0\leqx_{25}\leq2\\
-&0\leqx_{34}\leq3\\
-&0\leqx_{36}\leq3\\
-&0\leqx_{47}\leq2\\
-&0\leqx_{57}\leq3\\
-&0\leqx_{67}\leq4
+&0\leq x_{12}\leq3\\
+&0\leq x_{13}\leq5\\
+&0\leq x_{24}\leq2\\
+&0\leq x_{25}\leq2\\
+&0\leq x_{34}\leq3\\
+&0\leq x_{36}\leq3\\
+&0\leq x_{47}\leq2\\
+&0\leq x_{57}\leq3\\
+&0\leq x_{67}\leq4\\
 \end{aligned}$$</span>
 
-
-<p>Rglpk_solve_LP関数（Rglpkパッケージ）を使う</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">library(<span class="string">"Rglpk"</span>)</div><div class="line">obj &lt;- <span class="built_in">c</span>(<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>)</div><div class="line">mat &lt;- rbind(</div><div class="line"><span class="built_in">c</span>(-<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),</div><div class="line"><span class="built_in">c</span>(<span class="number">0</span>,-<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),</div><div class="line"><span class="built_in">c</span>(<span class="number">0</span>,<span class="number">0</span>,-<span class="number">1</span>,<span class="number">0</span>,-<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>),</div><div class="line"><span class="built_in">c</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,-<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>),</div><div class="line"><span class="built_in">c</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,-<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>),</div><div class="line"><span class="built_in">c</span>(<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),</div><div class="line"><span class="built_in">c</span>(<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),</div><div class="line"><span class="built_in">c</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),</div><div class="line"><span class="built_in">c</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),</div><div class="line"><span class="built_in">c</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),</div><div class="line"><span class="built_in">c</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),</div><div class="line"><span class="built_in">c</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>),</div><div class="line"><span class="built_in">c</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>),</div><div class="line"><span class="built_in">c</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>))</div><div class="line">dir &lt;- <span class="built_in">c</span>(<span class="string">"=="</span>,<span class="string">"=="</span>,<span class="string">"=="</span>,<span class="string">"=="</span>,<span class="string">"=="</span>,<span class="string">"&lt;="</span>,<span class="string">"&lt;="</span>,<span class="string">"&lt;="</span>,<span class="string">"&lt;="</span>,<span class="string">"&lt;="</span>,<span class="string">"&lt;="</span>,<span class="string">"&lt;="</span>,<span class="string">"&lt;="</span>,<span class="string">"&lt;="</span>)</div><div class="line">rhs &lt;- <span class="built_in">c</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</div><div class="line"><span class="built_in">max</span> &lt;- <span class="type">T</span></div><div class="line"><span class="type">Rglpk_solve_LP</span>(obj, mat, dir, rhs, <span class="built_in">max</span> = <span class="built_in">max</span>)</div></pre></td></tr></table></figure>
-
-<p>$optimum<br> 7</p>
-<p>$solution<br> 3 4 1 2 1 3 2 2 3</p>
-<p>$status<br> 0</p>
-<h3 id="igraphパッケージを使う">igraphパッケージを使う</h3>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">library(igraph)</div><div class="line"><span class="type">E</span> &lt;- rbind( <span class="built_in">c</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>), <span class="built_in">c</span>(<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>), <span class="built_in">c</span>(<span class="number">2</span>,<span class="number">5</span>,<span class="number">2</span>), <span class="built_in">c</span>(<span class="number">2</span>,<span class="number">4</span>,<span class="number">2</span>), <span class="built_in">c</span>(<span class="number">3</span>,<span class="number">4</span>,<span class="number">3</span>), <span class="built_in">c</span>(<span class="number">3</span>,<span class="number">6</span>,<span class="number">3</span>),<span class="built_in">c</span>(<span class="number">4</span>,<span class="number">7</span>,<span class="number">2</span>),<span class="built_in">c</span>(<span class="number">5</span>,<span class="number">7</span>,<span class="number">3</span>),<span class="built_in">c</span>(<span class="number">6</span>,<span class="number">7</span>,<span class="number">4</span>))</div><div class="line">colnames(<span class="type">E</span>) &lt;- <span class="built_in">c</span>(<span class="string">"from"</span>, <span class="string">"to"</span>, <span class="string">"capacity"</span>)</div><div class="line">g &lt;- graph.data.frame(<span class="keyword">as</span>.data.frame(<span class="type">E</span>))</div><div class="line"><span class="type">V</span>(g)$size &lt;-<span class="number">30</span></div><div class="line">plot(g,vertex.label=<span class="type">V</span>(g)$name,edge.label=<span class="type">E</span>(g)$capacity)</div></pre></td></tr></table></figure>
-
-<p><img src="/images/graph04.png" alt=""></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#p.60</span></div><div class="line"><span class="title">v1</span>&lt;- c(<span class="number">1</span>,<span class="number">2</span>); v2 &lt;- c(<span class="number">2</span>,<span class="number">3</span>); v3 &lt;- c(<span class="number">2</span>,<span class="number">1</span>); v4 &lt;- c(<span class="number">3</span>,<span class="number">2</span>); v5 &lt;- c(<span class="number">4</span>,<span class="number">3</span>); v6 &lt;- c(<span class="number">4</span>,<span class="number">1</span>);v7&lt;-c(<span class="number">5</span>,<span class="number">2</span>)</div><div class="line"><span class="title">lay</span> &lt;- rbind(v1,v2,v3,v4,v5,v6,v7)</div><div class="line"><span class="preprocessor">#プロット</span></div><div class="line"><span class="type">V</span>(g)$size &lt;-<span class="number">30</span></div><div class="line"><span class="title">plot</span>(g,layout=lay,vertex.label=<span class="type">V</span>(g)$name,edge.label=<span class="type">E</span>(g)$capacity)</div></pre></td></tr></table></figure>
-
-<p><img src="/images/graph05.png" alt=""></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">res&lt;-graph.maxflow(g, <span class="built_in">source</span>=V(g)[<span class="string">"1"</span>], target=V(g)[<span class="string">"7"</span>])</div><div class="line">V(g)<span class="variable">$size</span> &lt;-<span class="number">30</span></div><div class="line">V(g)<span class="variable">$shape</span> &lt;- <span class="string">"circle"</span>  <span class="comment">#形状</span></div><div class="line">V(g)<span class="variable">$shape</span>[<span class="number">1</span>] &lt;- <span class="string">"square"</span> ;V(g)<span class="variable">$shape</span>[<span class="number">7</span>] &lt;- <span class="string">"square"</span></div><div class="line">V(g)<span class="variable">$color</span> &lt;- <span class="string">"skyblue"</span>  <span class="comment">#色</span></div><div class="line">V(g)<span class="variable">$color</span>[<span class="number">1</span>] &lt;- <span class="string">"pink"</span> ;V(g)<span class="variable">$color</span>[<span class="number">7</span>] &lt;- <span class="string">"pink"</span></div><div class="line">plot(g,layout=lay,vertex.label=V(g)<span class="variable">$name</span>,edge.label=res<span class="variable">$flow</span>)</div></pre></td></tr></table></figure>
-
-<p><img src="/images/graph06.png" alt=""></p>
-<p>Rglpk_solve_LP関数を使って解いた解とは別の解になっている</p>
-<h4 id="（おまけ）表にしてみた">（おまけ）表にしてみた</h4>
+<p>表にしてみた</p>
 <table>
 <thead>
 <tr>
@@ -396,11 +378,28 @@
 </tr>
 </tbody>
 </table>
+<p>Rglpk_solve_LP関数（Rglpkパッケージ）を使う</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">library(<span class="string">"Rglpk"</span>)</div><div class="line">obj &lt;- <span class="built_in">c</span>(<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>)</div><div class="line">mat &lt;- rbind(</div><div class="line"><span class="built_in">c</span>(-<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),</div><div class="line"><span class="built_in">c</span>(<span class="number">0</span>,-<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),</div><div class="line"><span class="built_in">c</span>(<span class="number">0</span>,<span class="number">0</span>,-<span class="number">1</span>,<span class="number">0</span>,-<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>),</div><div class="line"><span class="built_in">c</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,-<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>),</div><div class="line"><span class="built_in">c</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,-<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>),</div><div class="line"><span class="built_in">c</span>(<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),</div><div class="line"><span class="built_in">c</span>(<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),</div><div class="line"><span class="built_in">c</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),</div><div class="line"><span class="built_in">c</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),</div><div class="line"><span class="built_in">c</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),</div><div class="line"><span class="built_in">c</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),</div><div class="line"><span class="built_in">c</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>),</div><div class="line"><span class="built_in">c</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>),</div><div class="line"><span class="built_in">c</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>))</div><div class="line">dir &lt;- <span class="built_in">c</span>(<span class="string">"=="</span>,<span class="string">"=="</span>,<span class="string">"=="</span>,<span class="string">"=="</span>,<span class="string">"=="</span>,<span class="string">"&lt;="</span>,<span class="string">"&lt;="</span>,<span class="string">"&lt;="</span>,<span class="string">"&lt;="</span>,<span class="string">"&lt;="</span>,<span class="string">"&lt;="</span>,<span class="string">"&lt;="</span>,<span class="string">"&lt;="</span>,<span class="string">"&lt;="</span>)</div><div class="line">rhs &lt;- <span class="built_in">c</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</div><div class="line"><span class="built_in">max</span> &lt;- <span class="type">T</span></div><div class="line"><span class="type">Rglpk_solve_LP</span>(obj, mat, dir, rhs, <span class="built_in">max</span> = <span class="built_in">max</span>)</div></pre></td></tr></table></figure>
+
+<p>$optimum<br> 7</p>
+<p>$solution<br> 3 4 1 2 1 3 2 2 3</p>
+<p>$status<br> 0</p>
+<h3 id="igraphパッケージを使う">igraphパッケージを使う</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">library(igraph)</div><div class="line"><span class="type">E</span> &lt;- rbind( <span class="built_in">c</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>), <span class="built_in">c</span>(<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>), <span class="built_in">c</span>(<span class="number">2</span>,<span class="number">5</span>,<span class="number">2</span>), <span class="built_in">c</span>(<span class="number">2</span>,<span class="number">4</span>,<span class="number">2</span>), <span class="built_in">c</span>(<span class="number">3</span>,<span class="number">4</span>,<span class="number">3</span>), <span class="built_in">c</span>(<span class="number">3</span>,<span class="number">6</span>,<span class="number">3</span>),<span class="built_in">c</span>(<span class="number">4</span>,<span class="number">7</span>,<span class="number">2</span>),<span class="built_in">c</span>(<span class="number">5</span>,<span class="number">7</span>,<span class="number">3</span>),<span class="built_in">c</span>(<span class="number">6</span>,<span class="number">7</span>,<span class="number">4</span>))</div><div class="line">colnames(<span class="type">E</span>) &lt;- <span class="built_in">c</span>(<span class="string">"from"</span>, <span class="string">"to"</span>, <span class="string">"capacity"</span>)</div><div class="line">g &lt;- graph.data.frame(<span class="keyword">as</span>.data.frame(<span class="type">E</span>))</div><div class="line"><span class="type">V</span>(g)$size &lt;-<span class="number">30</span></div><div class="line">plot(g,vertex.label=<span class="type">V</span>(g)$name,edge.label=<span class="type">E</span>(g)$capacity)</div></pre></td></tr></table></figure>
+
+<p><img src="/images/graph04.png" alt=""></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#p.60</span></div><div class="line"><span class="title">v1</span>&lt;- c(<span class="number">1</span>,<span class="number">2</span>); v2 &lt;- c(<span class="number">2</span>,<span class="number">3</span>); v3 &lt;- c(<span class="number">2</span>,<span class="number">1</span>); v4 &lt;- c(<span class="number">3</span>,<span class="number">2</span>); v5 &lt;- c(<span class="number">4</span>,<span class="number">3</span>); v6 &lt;- c(<span class="number">4</span>,<span class="number">1</span>);v7&lt;-c(<span class="number">5</span>,<span class="number">2</span>)</div><div class="line"><span class="title">lay</span> &lt;- rbind(v1,v2,v3,v4,v5,v6,v7)</div><div class="line"><span class="preprocessor">#プロット</span></div><div class="line"><span class="type">V</span>(g)$size &lt;-<span class="number">30</span></div><div class="line"><span class="title">plot</span>(g,layout=lay,vertex.label=<span class="type">V</span>(g)$name,edge.label=<span class="type">E</span>(g)$capacity)</div></pre></td></tr></table></figure>
+
+<p><img src="/images/graph05.png" alt=""></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">res&lt;-graph.maxflow(g, <span class="built_in">source</span>=V(g)[<span class="string">"1"</span>], target=V(g)[<span class="string">"7"</span>])</div><div class="line">V(g)<span class="variable">$size</span> &lt;-<span class="number">30</span></div><div class="line">V(g)<span class="variable">$shape</span> &lt;- <span class="string">"circle"</span>  <span class="comment">#形状</span></div><div class="line">V(g)<span class="variable">$shape</span>[<span class="number">1</span>] &lt;- <span class="string">"square"</span> ;V(g)<span class="variable">$shape</span>[<span class="number">7</span>] &lt;- <span class="string">"square"</span></div><div class="line">V(g)<span class="variable">$color</span> &lt;- <span class="string">"skyblue"</span>  <span class="comment">#色</span></div><div class="line">V(g)<span class="variable">$color</span>[<span class="number">1</span>] &lt;- <span class="string">"pink"</span> ;V(g)<span class="variable">$color</span>[<span class="number">7</span>] &lt;- <span class="string">"pink"</span></div><div class="line">plot(g,layout=lay,vertex.label=V(g)<span class="variable">$name</span>,edge.label=res<span class="variable">$flow</span>)</div></pre></td></tr></table></figure>
+
+<p><img src="/images/graph06.png" alt=""></p>
+<p>Rglpk_solve_LP関数を使って解いた解とは別の解になっている</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/09/30/第4章ネットワーク計画法2/" data-id="spnx9pr0xsrnu8cr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/10/01/第4章ネットワーク計画法2/" data-id="spnx9pr0xsrnu8cr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a></li></ul>
@@ -411,19 +410,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2014/09/30/第5章スケジューリング/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          スケジューリング
-        
-      </div>
-    </a>
   
-  
-    <a href="/2014/09/30/NetworkXを用いて第4章/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2014/09/30/第5章スケジューリング/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">NetworkXを用いて第4章</div>
+      <div class="article-nav-title">スケジューリング</div>
     </a>
   
 </nav>
@@ -466,7 +456,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">37</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">36</span></li></ul>
     </div>
   </div>
 
@@ -478,11 +468,11 @@
       <ul>
         
           <li>
-            <a href="/2014/09/30/第5章スケジューリング/">スケジューリング</a>
+            <a href="/2014/10/01/第4章ネットワーク計画法2/">最大流問題</a>
           </li>
         
           <li>
-            <a href="/2014/09/30/第4章ネットワーク計画法2/">最大流問題</a>
+            <a href="/2014/09/30/第5章スケジューリング/">スケジューリング</a>
           </li>
         
           <li>
