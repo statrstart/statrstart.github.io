@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>スケジューリング | 統計ソフトRの備忘録２</title>
+  <title>スケジューリング2 | 統計ソフトRの備忘録２</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="問題解決の数理 第5章スケジューリング1">
 <meta property="og:type" content="article">
-<meta property="og:title" content="スケジューリング">
-<meta property="og:url" content="http://yoursite.com/2014/10/01/第5章スケジューリング/">
+<meta property="og:title" content="スケジューリング2">
+<meta property="og:url" content="http://yoursite.com/2014/10/02/第5章スケジューリング2/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
 <meta property="og:description" content="問題解決の数理 第5章スケジューリング1">
-<meta property="og:image" content="/images/diagram01.png">
-<meta property="og:image" content="/images/diagram02.png">
-<meta property="og:image" content="/images/diagram03.png">
+<meta property="og:image" content="ensyu51_1.png">
+<meta property="og:image" content="ensyu51_2.png">
+<meta property="og:image" content="ensyu51_3.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="スケジューリング">
+<meta name="twitter:title" content="スケジューリング2">
 <meta name="twitter:description" content="問題解決の数理 第5章スケジューリング1">
 
   
@@ -93,10 +93,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-第5章スケジューリング" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-第5章スケジューリング2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/10/01/第5章スケジューリング/" class="article-date">
-  <time datetime="2014-10-01T12:56:16.000Z" itemprop="datePublished">Oct 1 2014</time>
+    <a href="/2014/10/02/第5章スケジューリング2/" class="article-date">
+  <time datetime="2014-10-02T11:42:16.000Z" itemprop="datePublished">Oct 2 2014</time>
 </a>
     
   <div class="article-category">
@@ -111,7 +111,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      スケジューリング
+      スケジューリング2
     </h1>
   
 
@@ -120,10 +120,73 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="問題解決の数理_第5章スケジューリング1">問題解決の数理 第5章スケジューリング1</h2>
-<p><a id="more"></a></p>
+<a id="more"></a>
+
+<h3 id="GanttProjectを使って">GanttProjectを使って</h3>
+<p>演習問題5.1</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">記号</th>
+<th style="text-align:center">標準所要日数</th>
+<th style="text-align:center">先行作業</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">A</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:right">B</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:right">C</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">A</td>
+</tr>
+<tr>
+<td style="text-align:right">D</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">A</td>
+</tr>
+<tr>
+<td style="text-align:right">E</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">B,C</td>
+</tr>
+<tr>
+<td style="text-align:right">F</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">D</td>
+</tr>
+<tr>
+<td style="text-align:right">G</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">E,F</td>
+</tr>
+<tr>
+<td style="text-align:right">H</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">D</td>
+</tr>
+</tbody>
+</table>
+<p>(問題解決の数理のWebサイトで紹介されている)GanttProjectを使って作成した図</p>
+<p><img src="ensyu51_1.png" alt=""></p>
+<p><img src="ensyu51_2.png" alt=""></p>
+<ul>
+<li>2014年10月1日を開始点とした。</li>
+<li>休日はなしに設定。</li>
+<li>操作はわかりやすい。</li>
+<li>クリティカルパス A-&gt;C-&gt;E-&gt;G も色分けされるので分かる。</li>
+<li>PERT図の配置は手作業(ドラッグアンドドロップ）。</li>
+</ul>
 <h3 id="問題解決の数理のWebサイトにある指標計算のプログラムとデータを読み込んで実行してみる。">問題解決の数理のWebサイトにある指標計算のプログラムとデータを読み込んで実行してみる。</h3>
-<p>OSがlinuxなので読み込むときにencodingしないとエラーになる</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">source</span>(<span class="string">'http://www.campus.ouj.ac.jp/~maps13/05/PERT.R'</span>, encoding=<span class="string">"CP932"</span>)</div><div class="line">x &lt;- read.table(<span class="string">'http://www.campus.ouj.ac.jp/~maps13/05/Cake.txt'</span>, header=T, fileEncoding=<span class="string">"CP932"</span>)</div><div class="line">y&lt;-PERT(x)</div><div class="line">z&lt;-data.frame(y<span class="variable">$ID</span>,y<span class="variable">$作</span>業,y<span class="variable">$開</span>始点,y<span class="variable">$最</span>早開始時刻,y<span class="variable">$終</span>了点,y<span class="variable">$作</span>業時間,y<span class="variable">$終</span>了点の最遅開始時刻,y<span class="variable">$作</span>業の最遅開始時刻,y<span class="variable">$余</span>裕時間)</div><div class="line">colnames(z)&lt;-c(<span class="string">"ID"</span>,<span class="string">"作業"</span>,<span class="string">"開始点"</span>,<span class="string">"最早開始時刻"</span>,<span class="string">"終了点"</span>,<span class="string">"作業時間"</span>, <span class="string">"終了点の最遅開始時刻"</span>,<span class="string">"作業の最遅開始時刻"</span>,<span class="string">"余裕時間"</span>)</div><div class="line">library(knitr)</div><div class="line">kable(z)</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">source</span>(<span class="string">'http://www.campus.ouj.ac.jp/~maps13/05/PERT.R'</span>, encoding=<span class="string">"CP932"</span>)</div><div class="line">x&lt;-data.frame( c(<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>,<span class="string">"E"</span>,<span class="string">"F"</span>,<span class="string">"G"</span>,<span class="string">"H"</span>),</div><div class="line">               c(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>),</div><div class="line">               c(<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">4</span>),</div><div class="line">               c(<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">6</span>),</div><div class="line">               c(<span class="number">4</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>))</div><div class="line">names(x)&lt;-c(<span class="string">"作業"</span>,<span class="string">"NO"</span>,<span class="string">"開始点"</span>,<span class="string">"終了点"</span>,<span class="string">"作業時間"</span>)</div><div class="line">y&lt;-PERT(x)</div><div class="line">z&lt;-data.frame(y<span class="variable">$ID</span>,y<span class="variable">$作</span>業,y<span class="variable">$開</span>始点,y<span class="variable">$最</span>早開始時刻,y<span class="variable">$終</span>了点,y<span class="variable">$作</span>業時間,y<span class="variable">$終</span>了点の最遅開始時刻,y<span class="variable">$作</span>業の最遅開始時刻,y<span class="variable">$余</span>裕時間)</div><div class="line">colnames(z)&lt;-c(<span class="string">"ID"</span>,<span class="string">"作業"</span>,<span class="string">"開始点"</span>,<span class="string">"最早開始時刻"</span>,<span class="string">"終了点"</span>,<span class="string">"作業時間"</span>, <span class="string">"終了点の最遅開始時刻"</span>,<span class="string">"作業の最遅開始時刻"</span>,<span class="string">"余裕時間"</span>)</div><div class="line">library(knitr)</div><div class="line">kable(z)</div></pre></td></tr></table></figure>
 
 <table>
 <thead>
@@ -145,9 +208,9 @@
 <td style="text-align:left">A</td>
 <td style="text-align:right">1</td>
 <td style="text-align:right">1</td>
-<td style="text-align:right">3</td>
-<td style="text-align:right">6</td>
-<td style="text-align:right">7</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">4</td>
+<td style="text-align:right">5</td>
 <td style="text-align:right">1</td>
 <td style="text-align:right">0</td>
 </tr>
@@ -156,83 +219,88 @@
 <td style="text-align:left">B</td>
 <td style="text-align:right">1</td>
 <td style="text-align:right">1</td>
-<td style="text-align:right">2</td>
-<td style="text-align:right">5</td>
-<td style="text-align:right">7</td>
-<td style="text-align:right">2</td>
-<td style="text-align:right">1</td>
-</tr>
-<tr>
 <td style="text-align:right">3</td>
-<td style="text-align:left">d</td>
 <td style="text-align:right">2</td>
-<td style="text-align:right">6</td>
-<td style="text-align:right">3</td>
-<td style="text-align:right">0</td>
-<td style="text-align:right">7</td>
-<td style="text-align:right">7</td>
-<td style="text-align:right">1</td>
-</tr>
-<tr>
-<td style="text-align:right">4</td>
-<td style="text-align:left">C</td>
-<td style="text-align:right">3</td>
-<td style="text-align:right">7</td>
-<td style="text-align:right">4</td>
 <td style="text-align:right">8</td>
-<td style="text-align:right">15</td>
-<td style="text-align:right">7</td>
+<td style="text-align:right">6</td>
+<td style="text-align:right">5</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td style="text-align:left">C</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">5</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">8</td>
+<td style="text-align:right">5</td>
 <td style="text-align:right">0</td>
 </tr>
 <tr>
-<td style="text-align:right">5</td>
+<td style="text-align:right">4</td>
 <td style="text-align:left">D</td>
 <td style="text-align:right">2</td>
-<td style="text-align:right">6</td>
+<td style="text-align:right">5</td>
 <td style="text-align:right">4</td>
-<td style="text-align:right">2</td>
-<td style="text-align:right">15</td>
+<td style="text-align:right">5</td>
 <td style="text-align:right">13</td>
-<td style="text-align:right">7</td>
+<td style="text-align:right">8</td>
+<td style="text-align:right">3</td>
+</tr>
+<tr>
+<td style="text-align:right">5</td>
+<td style="text-align:left">E</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">8</td>
+<td style="text-align:right">5</td>
+<td style="text-align:right">6</td>
+<td style="text-align:right">14</td>
+<td style="text-align:right">8</td>
+<td style="text-align:right">0</td>
 </tr>
 <tr>
 <td style="text-align:right">6</td>
-<td style="text-align:left">E</td>
+<td style="text-align:left">F</td>
 <td style="text-align:right">4</td>
-<td style="text-align:right">15</td>
-<td style="text-align:right">5</td>
 <td style="text-align:right">10</td>
-<td style="text-align:right">25</td>
-<td style="text-align:right">15</td>
+<td style="text-align:right">5</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">14</td>
+<td style="text-align:right">13</td>
+<td style="text-align:right">3</td>
+</tr>
+<tr>
+<td style="text-align:right">7</td>
+<td style="text-align:left">G</td>
+<td style="text-align:right">5</td>
+<td style="text-align:right">14</td>
+<td style="text-align:right">6</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">16</td>
+<td style="text-align:right">14</td>
 <td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">8</td>
+<td style="text-align:left">H</td>
+<td style="text-align:right">4</td>
+<td style="text-align:right">10</td>
+<td style="text-align:right">6</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">16</td>
+<td style="text-align:right">13</td>
+<td style="text-align:right">3</td>
 </tr>
 </tbody>
 </table>
-<p>上記の指標計算のプログラムに続けて簡易的なアローダイアグラムを作成する。<br>diagramパッケージを使う。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">library(diagram)</div><div class="line">num&lt;-length(unique(c(unique(z$開始点),unique(z$終了点))))</div><div class="line">M&lt;-matrix(<span class="variable">nrow=</span>num,<span class="variable">ncol=</span>num,<span class="variable">byrow=</span>T,<span class="variable">data=</span><span class="number">0</span>)</div><div class="line">for (i <span class="keyword">in</span> <span class="number">1</span>:length(z$作業)) {</div><div class="line">  moji&lt;-paste(z$作業[i],z$作業時間[i],<span class="variable">sep=</span><span class="string">"-"</span>)</div><div class="line">  M[z$開始点[i],z$終了点[i]]&lt;-moji</div><div class="line">}</div><div class="line">names&lt;-<span class="number">1</span>:num</div><div class="line"><span class="comment">#このままだと矢印の向きが逆になるので転置してからプロット</span></div><div class="line">pp&lt;-plotmat(t(M),<span class="variable">name=</span>names,<span class="variable">pos=</span>c(<span class="number">1</span>,num-<span class="number">2</span>,<span class="number">1</span>), box.<span class="variable">size =</span> <span class="number">0.02</span>,box.<span class="variable">col =</span> <span class="string">"lightblue"</span>,shadow.<span class="variable">size =</span> <span class="number">0</span>, arr.<span class="variable">len =</span><span class="number">0.3</span>, cex.<span class="variable">txt =</span> <span class="number">0.8</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">library(diagram)</div><div class="line">num&lt;-length(unique(c(unique(z$開始点),unique(z$終了点))))</div><div class="line">M&lt;-matrix(<span class="variable">nrow=</span>num,<span class="variable">ncol=</span>num,<span class="variable">byrow=</span>T,<span class="variable">data=</span><span class="number">0</span>)</div><div class="line">for (i <span class="keyword">in</span> <span class="number">1</span>:length(z$作業)) {</div><div class="line">  moji&lt;-paste(z$作業[i],z$作業時間[i],<span class="variable">sep=</span><span class="string">"-"</span>)</div><div class="line">  M[z$開始点[i],z$終了点[i]]&lt;-moji</div><div class="line">}</div><div class="line">names&lt;-<span class="number">1</span>:num</div><div class="line"><span class="comment">#このままだと矢印の向きが逆になるので転置してからプロット</span></div><div class="line">pp&lt;-plotmat(t(M),<span class="variable">name=</span>names,<span class="variable">pos=</span>c(<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>),box.<span class="variable">size =</span> <span class="number">0.02</span> ,box.<span class="variable">col =</span> <span class="string">"lightblue"</span>,shadow.<span class="variable">size =</span> <span class="number">0</span>,<span class="variable">curve=</span><span class="number">0</span>,arr.<span class="variable">type =</span> <span class="string">"simple"</span>, arr.<span class="variable">len =</span><span class="number">0.3</span>, cex.<span class="variable">txt =</span> <span class="number">0.8</span>)</div></pre></td></tr></table></figure>
 
-<p><img src="/images/diagram01.png" alt=""></p>
-<ul>
-<li>ポジションの調整を行う。  </li>
-<li>上から 1-2-1-1の配置。plotmat関数は上からの配置のみ。  </li>
-</ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pp&lt;-plotmat(t(M),<span class="variable">name=</span>names,<span class="variable">pos=</span>c(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>), box.<span class="variable">size =</span> <span class="number">0.02</span> ,box.<span class="variable">col =</span> <span class="string">"lightblue"</span>,shadow.<span class="variable">size =</span> <span class="number">0</span>,<span class="variable">curve=</span><span class="number">0</span>,arr.<span class="variable">type =</span> <span class="string">"simple"</span>, arr.<span class="variable">len =</span><span class="number">0.3</span>, cex.<span class="variable">txt =</span> <span class="number">0.8</span>)</div></pre></td></tr></table></figure>
-
-<p><img src="/images/diagram02.png" alt=""></p>
-<ul>
-<li>ダミー作業も実線になる。点線にするために一工夫。</li>
-</ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#d-0の入っている箇所に0を入れて線を書かないようにする。</span></div><div class="line">M[<span class="number">2</span>,<span class="number">3</span>]&lt;-<span class="string">"0"</span></div><div class="line">pp&lt;-plotmat(t(M),<span class="variable">name=</span>names,<span class="variable">pos=</span>c(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>), box.<span class="variable">size =</span> <span class="number">0.02</span> ,box.<span class="variable">col =</span> <span class="string">"lightblue"</span>,shadow.<span class="variable">size =</span> <span class="number">0</span>,<span class="variable">curve=</span><span class="number">0</span>,arr.<span class="variable">type =</span> <span class="string">"simple"</span>, arr.<span class="variable">len =</span><span class="number">0.3</span>,cex.<span class="variable">txt =</span> <span class="number">0.8</span>)</div><div class="line"><span class="comment">#ダミー作業の線を描く始点と終点の座標</span></div><div class="line">m2&lt;- pp$comp[<span class="variable">names=</span>=<span class="number">2</span>]</div><div class="line">m3&lt;- pp$comp[<span class="variable">names=</span>=<span class="number">3</span>]</div><div class="line"><span class="comment">#線を書く</span></div><div class="line">dummy&lt;-straightarrow(<span class="variable">from =</span>m2,<span class="variable">to =</span> m3,arr.<span class="variable">type =</span><span class="string">"simple"</span>, arr.<span class="variable">pos =</span><span class="number">0.5</span>,<span class="variable">lty=</span><span class="number">3</span>,arr.<span class="variable">len =</span><span class="number">0.3</span>)</div><div class="line"><span class="comment">#d-0を書く</span></div><div class="line">textplain(<span class="variable">mid=</span>(m2+m3)/<span class="number">2</span>,<span class="variable">lab=</span>c(<span class="string">""</span>,<span class="string">"d-0"</span>),<span class="variable">adj =</span> c(<span class="number">0</span>, <span class="number">0.5</span>),<span class="variable">cex=</span><span class="number">0.8</span>)</div></pre></td></tr></table></figure>
-
-<p><img src="/images/diagram03.png" alt=""></p>
-<ul>
-<li>あまり美しくないけどとりあえず完成</li>
-</ul>
+<p><img src="ensyu51_3.png" alt=""></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/10/01/第5章スケジューリング/" data-id="39d19jxr47uqo0uy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/10/02/第5章スケジューリング2/" data-id="c1ksqjjrkfgqfyme" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a></li></ul>
@@ -243,19 +311,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2014/10/02/第5章スケジューリング2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          スケジューリング2
-        
-      </div>
-    </a>
   
-  
-    <a href="/2014/10/01/第4章ネットワーク計画法2/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2014/10/01/第5章スケジューリング/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">最大流問題</div>
+      <div class="article-nav-title">スケジューリング</div>
     </a>
   
 </nav>
