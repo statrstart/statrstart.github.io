@@ -11,9 +11,9 @@
 <meta property="og:url" content="http://yoursite.com/2014/10/02/第5章スケジューリング2/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
 <meta property="og:description" content="問題解決の数理 第5章スケジューリング1">
-<meta property="og:image" content="ensyu51_1.png">
-<meta property="og:image" content="ensyu51_2.png">
-<meta property="og:image" content="ensyu51_3.png">
+<meta property="og:image" content="/images/ensyu51_1.png">
+<meta property="og:image" content="/images/ensyu51_2.png">
+<meta property="og:image" content="/images/ensyu51_3.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="スケジューリング2">
 <meta name="twitter:description" content="問題解決の数理 第5章スケジューリング1">
@@ -96,7 +96,7 @@
         <section id="main"><article id="post-第5章スケジューリング2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/10/02/第5章スケジューリング2/" class="article-date">
-  <time datetime="2014-10-02T11:42:16.000Z" itemprop="datePublished">Oct 2 2014</time>
+  <time datetime="2014-10-02T11:45:06.000Z" itemprop="datePublished">Oct 2 2014</time>
 </a>
     
   <div class="article-category">
@@ -176,8 +176,8 @@
 </tbody>
 </table>
 <p>(問題解決の数理のWebサイトで紹介されている)GanttProjectを使って作成した図</p>
-<p><img src="ensyu51_1.png" alt=""></p>
-<p><img src="ensyu51_2.png" alt=""></p>
+<p><img src="/images/ensyu51_1.png" alt=""></p>
+<p><img src="/images/ensyu51_2.png" alt=""></p>
 <ul>
 <li>2014年10月1日を開始点とした。</li>
 <li>休日はなしに設定。</li>
@@ -295,7 +295,7 @@
 </table>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">library(diagram)</div><div class="line">num&lt;-length(unique(c(unique(z$開始点),unique(z$終了点))))</div><div class="line">M&lt;-matrix(<span class="variable">nrow=</span>num,<span class="variable">ncol=</span>num,<span class="variable">byrow=</span>T,<span class="variable">data=</span><span class="number">0</span>)</div><div class="line">for (i <span class="keyword">in</span> <span class="number">1</span>:length(z$作業)) {</div><div class="line">  moji&lt;-paste(z$作業[i],z$作業時間[i],<span class="variable">sep=</span><span class="string">"-"</span>)</div><div class="line">  M[z$開始点[i],z$終了点[i]]&lt;-moji</div><div class="line">}</div><div class="line">names&lt;-<span class="number">1</span>:num</div><div class="line"><span class="comment">#このままだと矢印の向きが逆になるので転置してからプロット</span></div><div class="line">pp&lt;-plotmat(t(M),<span class="variable">name=</span>names,<span class="variable">pos=</span>c(<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>),box.<span class="variable">size =</span> <span class="number">0.02</span> ,box.<span class="variable">col =</span> <span class="string">"lightblue"</span>,shadow.<span class="variable">size =</span> <span class="number">0</span>,<span class="variable">curve=</span><span class="number">0</span>,arr.<span class="variable">type =</span> <span class="string">"simple"</span>, arr.<span class="variable">len =</span><span class="number">0.3</span>, cex.<span class="variable">txt =</span> <span class="number">0.8</span>)</div></pre></td></tr></table></figure>
 
-<p><img src="ensyu51_3.png" alt=""></p>
+<p><img src="/images/ensyu51_3.png" alt=""></p>
 
       
     </div>
