@@ -8,9 +8,11 @@
   <meta name="description" content="ggplot2, reshape2, XML">
 <meta property="og:type" content="article">
 <meta property="og:title" content="エボラ熱データ">
-<meta property="og:url" content="http://yoursite.com/2014/09/24/エボラ熱データ/">
+<meta property="og:url" content="http://yoursite.com/2014/10/03/エボラ熱データ/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
 <meta property="og:description" content="ggplot2, reshape2, XML">
+<meta property="og:image" content="/images/ebola1003_1.png">
+<meta property="og:image" content="/images/ebola1003_2.png">
 <meta property="og:image" content="/images/ebola1.png">
 <meta property="og:image" content="/images/ebola2.png">
 <meta name="twitter:card" content="summary">
@@ -94,8 +96,8 @@
       <div class="outer">
         <section id="main"><article id="post-エボラ熱データ" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/09/24/エボラ熱データ/" class="article-date">
-  <time datetime="2014-09-24T14:51:21.000Z" itemprop="datePublished">Sep 24 2014</time>
+    <a href="/2014/10/03/エボラ熱データ/" class="article-date">
+  <time datetime="2014-10-03T14:31:53.000Z" itemprop="datePublished">Oct 3 2014</time>
 </a>
     
   <div class="article-category">
@@ -125,6 +127,9 @@
 <h3 id="参考">参考</h3>
 <p><a href="http://www.r-bloggers.com/ebola-wikipedia-and-data-janitors/" target="_blank" rel="external">Ebola, Wikipedia and data janitors</a><br><a href="http://en.wikipedia.org/wiki/Ebola_virus_epidemic_in_West_Africa" target="_blank" rel="external">Ebola virus epidemic in West Africa</a></p>
 <h3 id="エボラ熱で亡くなった人の数と患者数の推移（国別）">エボラ熱で亡くなった人の数と患者数の推移（国別）</h3>
+<p>（注意）サイトの更新により下のコードでは取り込めなくなっています。<br>ebola$<code>Ebola cases and deaths by country and by date</code> だったのが<br>10月3日現在<br>ebola$”Ebola cases and deaths by country and by date - 1 August to present.”になっています。  </p>
+<p><img src="/images/ebola1003_1.png" alt=""></p>
+<p><img src="/images/ebola1003_2.png" alt=""></p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">library(XML)</div><div class="line">library(ggplot2)</div><div class="line">library(reshape2)</div><div class="line"> <span class="comment"># get all tables on the page</span></div><div class="line">ebola &lt;- readHTMLTable(<span class="string">"http://en.wikipedia.org/wiki/Ebola_virus_epidemic_in_West_Africa"</span>, </div><div class="line">                  stringsAsFactors = <span class="constant">FALSE</span>)</div><div class="line"><span class="comment"># thankfully our table has a name; it is table #5</span></div><div class="line"><span class="comment"># this is not something you can really automate</span></div><div class="line">head(names(ebola))</div><div class="line"><span class="comment"># [1] "Ebola virus epidemic in West Africa"          </span></div><div class="line"><span class="comment"># [2] "Nigeria Ebola areas-2014"                     </span></div><div class="line"><span class="comment"># [3] "Treatment facilities in West Africa"          </span></div><div class="line"><span class="comment"># [4] "Democratic Republic of Congo-2014"            </span></div><div class="line"><span class="comment"># [5] "Ebola cases and deaths by country and by date"</span></div><div class="line"><span class="comment"># [6] "NULL"</span></div><div class="line">ebola &lt;- ebola$`Ebola cases <span class="operator">and</span> deaths <span class="keyword">by</span> country <span class="operator">and</span> <span class="keyword">by</span> <span class="built_in">date</span>`</div><div class="line">eb&lt;-ebola[-<span class="number">1</span>,<span class="number">1</span>:<span class="number">13</span>] <span class="comment"># -1 は1行目はebには入れないということ</span></div><div class="line">eb</div></pre></td></tr></table></figure>
 
 <h4 id="参考資料ではRコードのみですべて行っていますが_修正する箇所が多いのでエディタを使いました。（ここまではRを使う必要がなかったかも）">参考資料ではRコードのみですべて行っていますが 修正する箇所が多いのでエディタを使いました。（ここまではRを使う必要がなかったかも）</h4>
@@ -144,7 +149,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/09/24/エボラ熱データ/" data-id="dlosjk4gf4sz86kn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/10/03/エボラ熱データ/" data-id="dlosjk4gf4sz86kn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a></li></ul>
@@ -155,19 +160,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2014/09/26/第4章ネットワーク計画法/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          最短路問題
-        
-      </div>
-    </a>
   
-  
-    <a href="/2014/09/21/blog開設後に行ったこと1/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2014/10/03/第5章スケジューリング2/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">blog開設後に行ったこと1</div>
+      <div class="article-nav-title">スケジューリング2</div>
     </a>
   
 </nav>
@@ -210,7 +206,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">35</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">34</span></li></ul>
     </div>
   </div>
 
@@ -220,6 +216,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2014/10/03/エボラ熱データ/">エボラ熱データ</a>
+          </li>
         
           <li>
             <a href="/2014/10/03/第5章スケジューリング2/">スケジューリング2</a>
@@ -235,10 +235,6 @@
         
           <li>
             <a href="/2014/09/30/NetworkXを用いて第4章/">NetworkXを用いて第4章</a>
-          </li>
-        
-          <li>
-            <a href="/2014/09/30/第4章ネットワーク計画法3/">最小費用流問題</a>
           </li>
         
       </ul>
