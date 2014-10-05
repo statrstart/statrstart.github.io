@@ -97,7 +97,7 @@
         <section id="main"><article id="post-エボラ熱データ" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/10/03/エボラ熱データ/" class="article-date">
-  <time datetime="2014-10-03T14:31:53.000Z" itemprop="datePublished">Oct 3 2014</time>
+  <time datetime="2014-10-03T14:40:30.000Z" itemprop="datePublished">Oct 3 2014</time>
 </a>
     
   <div class="article-category">
@@ -127,7 +127,7 @@
 <h3 id="参考">参考</h3>
 <p><a href="http://www.r-bloggers.com/ebola-wikipedia-and-data-janitors/" target="_blank" rel="external">Ebola, Wikipedia and data janitors</a><br><a href="http://en.wikipedia.org/wiki/Ebola_virus_epidemic_in_West_Africa" target="_blank" rel="external">Ebola virus epidemic in West Africa</a></p>
 <h3 id="エボラ熱で亡くなった人の数と患者数の推移（国別）">エボラ熱で亡くなった人の数と患者数の推移（国別）</h3>
-<p>（注意）サイトの更新により下のコードでは取り込めなくなっています。<br>ebola$<code>Ebola cases and deaths by country and by date</code> だったのが<br>10月3日現在<br>ebola$”Ebola cases and deaths by country and by date - 1 August to present.”になっています。  </p>
+<p>（注意）サイトの更新により下のコードでは取り込めなくなっています。<br>ebola$”Ebola cases and deaths by country and by date” だったのが<br>10月3日現在<br>ebola$”Ebola cases and deaths by country and by date - 1 August to present.”になっています。  </p>
 <p><img src="/images/ebola1003_1.png" alt=""></p>
 <p><img src="/images/ebola1003_2.png" alt=""></p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">library(XML)</div><div class="line">library(ggplot2)</div><div class="line">library(reshape2)</div><div class="line"> <span class="comment"># get all tables on the page</span></div><div class="line">ebola &lt;- readHTMLTable(<span class="string">"http://en.wikipedia.org/wiki/Ebola_virus_epidemic_in_West_Africa"</span>, </div><div class="line">                  stringsAsFactors = <span class="constant">FALSE</span>)</div><div class="line"><span class="comment"># thankfully our table has a name; it is table #5</span></div><div class="line"><span class="comment"># this is not something you can really automate</span></div><div class="line">head(names(ebola))</div><div class="line"><span class="comment"># [1] "Ebola virus epidemic in West Africa"          </span></div><div class="line"><span class="comment"># [2] "Nigeria Ebola areas-2014"                     </span></div><div class="line"><span class="comment"># [3] "Treatment facilities in West Africa"          </span></div><div class="line"><span class="comment"># [4] "Democratic Republic of Congo-2014"            </span></div><div class="line"><span class="comment"># [5] "Ebola cases and deaths by country and by date"</span></div><div class="line"><span class="comment"># [6] "NULL"</span></div><div class="line">ebola &lt;- ebola$`Ebola cases <span class="operator">and</span> deaths <span class="keyword">by</span> country <span class="operator">and</span> <span class="keyword">by</span> <span class="built_in">date</span>`</div><div class="line">eb&lt;-ebola[-<span class="number">1</span>,<span class="number">1</span>:<span class="number">13</span>] <span class="comment"># -1 は1行目はebには入れないということ</span></div><div class="line">eb</div></pre></td></tr></table></figure>
@@ -160,6 +160,15 @@
     
 <nav id="article-nav">
   
+    <a href="/2014/10/05/第7章階層分析法/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          階層分析法
+        
+      </div>
+    </a>
+  
   
     <a href="/2014/10/03/第5章スケジューリング2/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
@@ -179,7 +188,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/NetworkX/">NetworkX</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/放送大学/">放送大学</a><span class="category-list-count">34</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/NetworkX/">NetworkX</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/放送大学/">放送大学</a><span class="category-list-count">35</span></li></ul>
     </div>
   </div>
 
@@ -188,7 +197,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">13</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">13</span></li></ul>
     </div>
   </div>
 
@@ -206,7 +215,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">34</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">34</span></li></ul>
     </div>
   </div>
 
@@ -216,6 +225,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2014/10/05/第7章階層分析法/">階層分析法</a>
+          </li>
         
           <li>
             <a href="/2014/10/03/エボラ熱データ/">エボラ熱データ</a>
@@ -231,10 +244,6 @@
         
           <li>
             <a href="/2014/10/01/第4章ネットワーク計画法2/">最大流問題</a>
-          </li>
-        
-          <li>
-            <a href="/2014/09/30/NetworkXを用いて第4章/">NetworkXを用いて第4章</a>
           </li>
         
       </ul>
