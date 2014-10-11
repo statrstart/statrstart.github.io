@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>ｔ検定の基礎 | 統計ソフトRの備忘録２</title>
+  <title>組み合わせ計画法 | 統計ソフトRの備忘録２</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="放送大学（院）「心理・教育統計法特論」第３章">
+  <meta name="description" content="第12章 組み合わせ計画法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ｔ検定の基礎">
-<meta property="og:url" content="http://yoursite.com/2014/09/19/t検定の基礎/">
+<meta property="og:title" content="組み合わせ計画法">
+<meta property="og:url" content="http://yoursite.com/2014/10/11/第12章組み合わせ計画法/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
-<meta property="og:description" content="放送大学（院）「心理・教育統計法特論」第３章">
+<meta property="og:description" content="第12章 組み合わせ計画法">
+<meta property="og:image" content="/images/mst01.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ｔ検定の基礎">
-<meta name="twitter:description" content="放送大学（院）「心理・教育統計法特論」第３章">
+<meta name="twitter:title" content="組み合わせ計画法">
+<meta name="twitter:description" content="第12章 組み合わせ計画法">
 
   
     <link rel="alternative" href="/atom.xml" title="統計ソフトRの備忘録２" type="application/atom+xml">
@@ -90,10 +91,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-t検定の基礎" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-第12章組み合わせ計画法" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/09/19/t検定の基礎/" class="article-date">
-  <time datetime="2014-09-19T00:34:57.000Z" itemprop="datePublished">Sep 19 2014</time>
+    <a href="/2014/10/11/第12章組み合わせ計画法/" class="article-date">
+  <time datetime="2014-10-11T13:23:44.000Z" itemprop="datePublished">Oct 11 2014</time>
 </a>
     
   <div class="article-category">
@@ -108,7 +109,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      ｔ検定の基礎
+      組み合わせ計画法
     </h1>
   
 
@@ -116,51 +117,63 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="放送大学（院）「心理・教育統計法特論」第３章">放送大学（院）「心理・教育統計法特論」第３章</h2>
+        <h2 id="第12章_組み合わせ計画法">第12章 組み合わせ計画法</h2>
 <p><a id="more"></a></p>
-<h4 id="ｔ検定の基礎">ｔ検定の基礎</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="type">A</span>大学&lt;-<span class="built_in">c</span>(<span class="number">9</span>,<span class="number">10</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">6</span>,<span class="number">9</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">10</span>,<span class="number">9</span>)</div><div class="line"><span class="type">B</span>大学&lt;-<span class="built_in">c</span>(<span class="number">5</span>,<span class="number">6</span>,<span class="number">9</span>,<span class="number">6</span>,<span class="number">9</span>,<span class="number">8</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">7</span>)</div></pre></td></tr></table></figure>
+<h3 id="p-160_最小木問題">p.160 最小木問題</h3>
+<p>igraphパッケージのminimum.spanning.treeを使う<br>この関数のアルゴリズムは<a href="http://ja.wikipedia.org/wiki/%E3%83%97%E3%83%AA%E3%83%A0%E6%B3%95" target="_blank" rel="external">プリム法</a></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">library(igraph)</div><div class="line"><span class="comment">#エッジリストの作成</span></div><div class="line">d &lt;- data.frame(matrix(c( <span class="string">"1"</span>,<span class="string">"2"</span>, <span class="string">"1"</span>,<span class="string">"3"</span>, <span class="string">"1"</span>,<span class="string">"4"</span>, <span class="string">"1"</span>,<span class="string">"5"</span>, <span class="string">"2"</span>,<span class="string">"3"</span>, <span class="string">"2"</span>,<span class="string">"4"</span>, <span class="string">"4"</span>, <span class="string">"5"</span>),<span class="variable">nc=</span><span class="number">2</span>,<span class="variable">byrow=</span>TRUE),<span class="variable">stringsAsFactors=</span>FALSE)</div><div class="line"><span class="comment">#ノードリストの作成</span></div><div class="line">vers &lt;- data.frame(c(<span class="string">"1"</span>,<span class="string">"2"</span>,<span class="string">"3"</span>,<span class="string">"4"</span>,<span class="string">"5"</span>),<span class="variable">stringsAsFactors=</span>FALSE)</div><div class="line"><span class="comment">#グラフの作成</span></div><div class="line"><span class="comment">#無向グラフ(directed=F)</span></div><div class="line">g &lt;- graph.data.frame(d,<span class="variable">directed=</span>F,<span class="variable">vertices=</span>vers)</div><div class="line"><span class="comment">#ウエイトの指定</span></div><div class="line">E(g)$weight &lt;- c(<span class="number">1</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">6</span>,<span class="number">7</span>)</div><div class="line">V(g)$size &lt;-<span class="number">35</span></div><div class="line"><span class="comment">#ノードの座標の指定</span></div><div class="line">v1&lt;- c(<span class="number">1</span>,<span class="number">2</span>); v2 &lt;- c(<span class="number">2</span>,<span class="number">3</span>); v3 &lt;- c(<span class="number">3</span>,<span class="number">3</span>); v4 &lt;- c(<span class="number">3</span>,<span class="number">1</span>); v5 &lt;- c(<span class="number">2</span>,<span class="number">1</span>)</div><div class="line">lay &lt;- rbind(v1,v2,v3,v4,v5)</div><div class="line">mst &lt;- minimum.spanning.tree(g)</div><div class="line"><span class="comment">#プロット</span></div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">1</span>,<span class="number">2</span>))</div><div class="line">plot(g,<span class="variable">layout=</span>lay,vertex.<span class="variable">label=</span>V(g)$name,edge.<span class="variable">label=</span>E(g)$weight)</div><div class="line">plot(mst,<span class="variable">layout=</span>lay,vertex.<span class="variable">label=</span>V(mst)$name,edge.<span class="variable">label=</span>E(mst)$weight)</div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">1</span>,<span class="number">1</span>))</div></pre></td></tr></table></figure>
 
-<p>平均</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">mean</span>(<span class="tag">A</span>大学);<span class="function">mean</span>(<span class="tag">B</span>大学)</div></pre></td></tr></table></figure>
+<p><img src="/images/mst01.png" alt=""></p>
+<h3 id="p-164_ナップサック問題">p.164 ナップサック問題</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="title">library</span>(<span class="string">"adagio"</span>)</div><div class="line"><span class="title">library</span>(knitr)</div><div class="line"><span class="title">profit</span>&lt;- c(<span class="number">9</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">3</span>)</div><div class="line"><span class="title">weight</span>&lt;- c(<span class="number">6</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">3</span>)</div><div class="line"><span class="title">table</span>&lt;-cbind(profit,weight)</div><div class="line"><span class="title">row</span>.names(table)&lt;-c(<span class="string">"1"</span>,<span class="string">"2"</span>,<span class="string">"3"</span>,<span class="string">"4"</span>,<span class="string">"5"</span>)</div><div class="line"><span class="title">kable</span>(table,row.names =<span class="type">T</span>)</div><div class="line"><span class="title">capacity</span> &lt;- <span class="number">17</span></div><div class="line"><span class="preprocessor">#0-1 Knapsack Problem</span></div><div class="line">(is &lt;- knapsack(w=weight, p=profit, cap=capacity))</div></pre></td></tr></table></figure>
 
-<p>不偏分散</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span>(A大学);<span class="keyword">var</span>(B大学)</div></pre></td></tr></table></figure>
-
-<p>不偏標準偏差 </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">sd</span>(<span class="tag">A</span>大学);<span class="function">sd</span>(<span class="tag">B</span>大学)</div></pre></td></tr></table></figure>
-
-<p>標本分散</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var(A大学)*(<span class="built_in">length</span>(A大学)-<span class="number">1</span>)/<span class="built_in">length</span>(A大学);var(B大学)*(<span class="built_in">length</span>(B大学)-<span class="number">1</span>)/<span class="built_in">length</span>(B大学)</div></pre></td></tr></table></figure>
-
-<p>標本標準偏差(テキストP.42のSDはこっち）</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sqrt</span>(var(A大学)*(<span class="built_in">length</span>(A大学)-<span class="number">1</span>)/<span class="built_in">length</span>(A大学));<span class="built_in">sqrt</span>(var(B大学)*(<span class="built_in">length</span>(B大学)-<span class="number">1</span>)/<span class="built_in">length</span>(B大学))</div></pre></td></tr></table></figure>
-
-<p>群ごとにシャピロ・ウィルクの正規性検定</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">shapiro.test(<span class="literal">A</span>大学)<span class="comment">;shapiro.test(B大学)</span></div></pre></td></tr></table></figure>
-
-<p>Shapiro-Wilk normality test</p>
-<p>data:  A大学<br>W = 0.9288, p-value = 0.2615</p>
-<p>Shapiro-Wilk normality test</p>
-<p>data:  B大学<br>W = 0.8909, p-value = 0.06928</p>
-<p>F検定</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag"><span class="attribute">var.test</span>(<span class="attribute">A</span>大学,<span class="attribute">B</span>大学, <span class="attribute">alternative</span>=<span class="value">'two.sided'</span><span class="value">,</span> <span class="attribute">conf.level</span>=<span class="value">.95)</span></span></span></div></pre></td></tr></table></figure>
-
-<p>F test to compare two variances  </p>
-<p>data:  A大学 and B大学<br>F = 0.8023, num df = 14, denom df = 14, p-value = 0.6858<br>alternative hypothesis: true ratio of variances is not equal to 1<br>95 percent confidence interval:<br> 0.2693424 2.3896013<br>sample estimates:<br>ratio of variances<br>         0.8022599   </p>
-<p>t検定（分散が等しいと仮定できるとき）</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag"><span class="attribute">t.test</span>(<span class="attribute">A</span>大学,<span class="attribute">B</span>大学, <span class="attribute">alternative</span>=<span class="value">'two.sided'</span><span class="value">,</span> <span class="attribute">conf.level</span>=<span class="value">.95,</span> <span class="attribute">var.equal</span>=<span class="value">TRUE)</span></span></span></div></pre></td></tr></table></figure>
-
-<p>Two Sample t-test</p>
-<p>data:  A大学 and B大学<br>t = 3.7033, df = 28, p-value = 0.0009253<br>alternative hypothesis: true difference in means is not equal to 0<br>95 percent confidence interval:<br> 0.7447931 2.5885402<br>sample estimates:<br>mean of x mean of y<br> 8.266667  6.600000   </p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:right">profit</th>
+<th style="text-align:right">weight</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:right">9</td>
+<td style="text-align:right">6</td>
+</tr>
+<tr>
+<td style="text-align:left">2</td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">4</td>
+</tr>
+<tr>
+<td style="text-align:left">3</td>
+<td style="text-align:right">6</td>
+<td style="text-align:right">5</td>
+</tr>
+<tr>
+<td style="text-align:left">4</td>
+<td style="text-align:right">5</td>
+<td style="text-align:right">3</td>
+</tr>
+<tr>
+<td style="text-align:left">5</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">3</td>
+</tr>
+</tbody>
+</table>
+<p>$capacity<br>[1] 16</p>
+<p>$profit<br>[1] 24</p>
+<p>$indices<br>[1] 1 2 4 5</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/09/19/t検定の基礎/" data-id="yvgtg7q81kr2svm1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/10/11/第12章組み合わせ計画法/" data-id="k931c3sufjiai8aa" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a></li></ul>
 
     </footer>
   </div>
@@ -168,19 +181,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2014/09/19/対応のあるt検定/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          対応のあるｔ検定
-        
-      </div>
-    </a>
   
-  
-    <a href="/2014/09/19/主成分分析/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2014/10/11/第13章非線形計画法2/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">主成分分析と重回帰分析を組み合わせる</div>
+      <div class="article-nav-title">非線形計画法2</div>
     </a>
   
 </nav>
