@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2014/9 | 統計ソフトRの備忘録２</title>
+  <title>非線形計画法2 | 統計ソフトRの備忘録２</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="統計ソフトRの備忘録２">
-<meta property="og:url" content="http://yoursite.com/archives/2014/09/page/4/">
+  <meta name="description" content="第13章 非線形計画法2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="非線形計画法2">
+<meta property="og:url" content="http://yoursite.com/2014/10/11/第13章非線形計画法2/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
-<meta property="og:description">
+<meta property="og:description" content="第13章 非線形計画法2">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="統計ソフトRの備忘録２">
-<meta name="twitter:description">
+<meta name="twitter:title" content="非線形計画法2">
+<meta name="twitter:description" content="第13章 非線形計画法2">
 
   
     <link rel="alternative" href="/atom.xml" title="統計ソフトRの備忘録２" type="application/atom+xml">
@@ -90,12 +90,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-t検定補足" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-第13章非線形計画法2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/09/19/t検定補足/" class="article-date">
-  <time datetime="2014-09-19T00:32:10.000Z" itemprop="datePublished">Sep 19 2014</time>
+    <a href="/2014/10/11/第13章非線形計画法2/" class="article-date">
+  <time datetime="2014-10-11T05:46:04.000Z" itemprop="datePublished">Oct 11 2014</time>
 </a>
     
   <div class="article-category">
@@ -109,8 +107,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/19/t検定補足/">t検定補足</a>
+    <h1 class="article-title" itemprop="name">
+      非線形計画法2
     </h1>
   
 
@@ -118,179 +116,81 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="本来、ｔ検定を採用するには正規性を満たしていることが必要">本来、ｔ検定を採用するには正規性を満たしていることが必要</h3>
-<h3 id="確認してみる">確認してみる</h3>
-<p>
-        
-          <p class="article-more-link">
-            <a href="/2014/09/19/t検定補足/#more">Read More</a>
-          </p>
-        
+        <h2 id="第13章_非線形計画法2">第13章 非線形計画法2</h2>
+<a id="more"></a>
+
+<h3 id="p-175_例2">p.175 例2</h3>
+<p>$$sqrt{(x_1-1)^2+(x_2-12)^2}+sqrt{(x_1-4)^2+(x_2-14)^2}+sqrt{(x_1-15)^2+(x_2-10)^2}+sqrt{(x_1-11)^2+(x_2-2)^2}+sqrt{(x_1-5)^2+(x_2-5)^2}$$</p>
+<p>model&lt;-function(x) {<br>return( sqrt((x[1]-1)^2+(x[2]-12)^2)+sqrt((x[1]-4)^2+(x[2]-14)^2)+sqrt((x[1]-15)^2+(x[2]-10)^2)+sqrt((x[1]-11)^2+(x[2]-2)^2)+sqrt((x[1]-5)^2+(x[2]-5)^2))<br>}</p>
+<p>optim関数</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">res1 &lt;- optim(x0, model) <span class="comment"># Nelder and Mead シンプレックス法</span></div><div class="line">res2 &lt;- optim(x0, model, <span class="keyword">method</span>=<span class="string">"BFGS"</span>) <span class="comment"># 準ニュートン法 (BFGS法)</span></div><div class="line">res1;res2</div></pre></td></tr></table></figure>
+
+<blockquote>
+<p>res1;res2<br>$par<br>[1] 6.353805 8.163534</p>
+</blockquote>
+<p>$value<br>[1] 32.87839</p>
+<p>$counts<br>function gradient<br>      85       NA </p>
+<p>$convergence<br>[1] 0</p>
+<p>$message<br>NULL</p>
+<p>$par<br>[1] 6.353591 8.162658</p>
+<p>$value<br>[1] 32.87839</p>
+<p>$counts<br>function gradient<br>      11        8 </p>
+<p>$convergence<br>[1] 0</p>
+<p>$message<br>NULL</p>
+<p>nlm関数</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">res</span> &lt;- nlm(model,x0,<span class="keyword">print</span>.level=<span class="number">2</span>)</div><div class="line"><span class="keyword">res</span></div></pre></td></tr></table></figure>
+
+<p>$minimum<br>[1] 32.87839</p>
+<p>$estimate<br>[1] 6.353552 8.162883</p>
+<p>$gradient<br>[1] 2.270229e-07 1.321352e-06</p>
+<p>$code<br>[1] 1</p>
+<p>$iterations<br>[1] 8</p>
+<p>BBパッケージ</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">library(BB)</div><div class="line"><span class="preprocessor">#Derivative-Free Spectral Approach for solving nonlinear systems of equations</span></div><div class="line"><span class="preprocessor">#ans&lt;-dfsane(x0,model)</span></div><div class="line"><span class="preprocessor">#ans</span></div><div class="line"><span class="preprocessor">#A strategy using different Barzilai-Borwein steplengths to solve a nonlinear system of equations.</span></div><div class="line"><span class="preprocessor">#ans&lt;-BBsolve(x0,model)</span></div><div class="line"><span class="preprocessor">#ans</span></div><div class="line"><span class="preprocessor">#A strategy using different Barzilai-Borwein steplengths to optimize a nonlinear objective function subject to box constraints.</span></div><div class="line">ans1&lt;-BBoptim(x0,model)</div><div class="line"><span class="preprocessor">#Spectral projected gradient method for large-scale optimization with simple constraints.</span></div><div class="line">ans2&lt;-spg(x0,model)</div><div class="line">ans1;ans2</div></pre></td></tr></table></figure>
+
+<p>$par<br>[1] 6.353546 8.162880</p>
+<p>$value<br>[1] 32.87839</p>
+<p>$gradient<br>[1] 4.689582e-06</p>
+<p>$fn.reduction<br>[1] 27.69725</p>
+<p>$iter<br>[1] 8</p>
+<p>$feval<br>[1] 10</p>
+<p>$convergence<br>[1] 0</p>
+<p>$message<br>[1] “Successful convergence”</p>
+<p>$cpar<br>method      M<br>     2     50 </p>
+<p>$par<br>[1] 6.353540 8.162878</p>
+<p>$value<br>[1] 32.87839</p>
+<p>$gradient<br>[1] 8.100187e-06</p>
+<p>$fn.reduction<br>[1] 27.69725</p>
+<p>$iter<br>[1] 8</p>
+<p>$feval<br>[1] 10</p>
+<p>$convergence<br>[1] 0</p>
+<p>$message<br>[1] “Successful convergence”</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/09/19/t検定補足/" data-id="uzd3xjf30sbgvmr4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/10/11/第13章非線形計画法2/" data-id="daf912x0qa326iha" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心理統計法/">心理統計法</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a></li></ul>
 
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-t検定2" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/09/19/t検定2/" class="article-date">
-  <time datetime="2014-09-19T00:31:59.000Z" itemprop="datePublished">Sep 19 2014</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/放送大学/">放送大学</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/19/t検定2/">対応のある場合のt検定</a>
-    </h1>
+    <a href="/2014/10/11/第13章非線形計画法/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">非線形計画法1</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="放送大学「心理統計法」第7章_２つの平均値の差の検定">放送大学「心理統計法」第7章　２つの平均値の差の検定</h2>
-
-        
-          <p class="article-more-link">
-            <a href="/2014/09/19/t検定2/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/09/19/t検定2/" data-id="3vmwk0t1gg3t8x68" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心理統計法/">心理統計法</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
 
-
-  
-    <article id="post-t検定１" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/09/19/t検定１/" class="article-date">
-  <time datetime="2014-09-19T00:31:45.000Z" itemprop="datePublished">Sep 19 2014</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/放送大学/">放送大学</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/19/t検定１/">対応のない場合のt検定</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="放送大学「心理統計法」第7章_２つの平均値の差の検定">放送大学「心理統計法」第7章 ２つの平均値の差の検定</h2>
-
-        
-          <p class="article-more-link">
-            <a href="/2014/09/19/t検定１/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/09/19/t検定１/" data-id="ukjib78gqy3ze6rt" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心理統計法/">心理統計法</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/09/17/hello-world/" class="article-date">
-  <time datetime="2014-09-17T13:29:43.000Z" itemprop="datePublished">Sep 17 2014</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/17/hello-world/">HEXOを使ってGithub Pagesにブログを作成しました。</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="次の３つの記事のとおりにやったらできました。感謝です。">次の３つの記事のとおりにやったらできました。感謝です。</h2>
-<h4 id="Node-jsの環境を整える">Node.jsの環境を整える</h4>
-<p><a href="http://liginc.co.jp/web/programming/node-js/85318" target="_blank" rel="external">いまアツいJavaScript！ゼロから始めるNode.js入門〜5分で環境構築編〜</a> </p>
-<h4 id="Githubのアカウントを取得し、Github_Pages用のリポジトリを作成">Githubのアカウントを取得し、Github Pages用のリポジトリを作成</h4>
-<p><a href="http://liginc.co.jp/web/html-css/html/96453" target="_blank" rel="external">Git初心者でも大丈夫！完全無料でGithub PagesにWebページを公開する方法</a>  </p>
-<h4 id="HEXOをインストールし、ブログを作成、公開">HEXOをインストールし、ブログを作成、公開</h4>
-<p><a href="http://liginc.co.jp/web/programming/server/104594" target="_blank" rel="external">所要時間3分!? Github PagesとHEXOで爆速ブログ構築してみよう！</a><br>
-        
-          <p class="article-more-link">
-            <a href="/2014/09/17/hello-world/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/09/17/hello-world/" data-id="m6uxqy3f9wfbdlci" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HEXO/">HEXO</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-  
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2014/09/page/3/">&laquo; Prev</a><a class="page-number" href="/archives/2014/09/">1</a><a class="page-number" href="/archives/2014/09/page/2/">2</a><a class="page-number" href="/archives/2014/09/page/3/">3</a><span class="page-number current">4</span>
-    </nav>
-  
 </section>
         
           <aside id="sidebar">
