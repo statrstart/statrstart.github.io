@@ -8,9 +8,10 @@
   <meta name="description" content="第13章 非線形計画法2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="非線形計画法2">
-<meta property="og:url" content="http://yoursite.com/2014/10/12/第13章非線形計画法2/">
+<meta property="og:url" content="http://yoursite.com/2014/10/13/第13章非線形計画法2/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
 <meta property="og:description" content="第13章 非線形計画法2">
+<meta property="og:image" content="/images/image01.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="非線形計画法2">
 <meta name="twitter:description" content="第13章 非線形計画法2">
@@ -92,8 +93,8 @@
       <div class="outer">
         <section id="main"><article id="post-第13章非線形計画法2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/10/12/第13章非線形計画法2/" class="article-date">
-  <time datetime="2014-10-12T14:14:29.000Z" itemprop="datePublished">Oct 12 2014</time>
+    <a href="/2014/10/13/第13章非線形計画法2/" class="article-date">
+  <time datetime="2014-10-13T00:50:39.000Z" itemprop="datePublished">Oct 13 2014</time>
 </a>
     
   <div class="article-category">
@@ -176,11 +177,15 @@ z=&\sqrt{(x_1-1)^2+(x_2-12)^2}+\sqrt{(x_1-4)^2+(x_2-14)^2}+\sqrt{(x_1-15)^2+(x_2
 <p>$fmin<br>[1] 32.87839</p>
 <p>$fcount<br>[1] 223</p>
 <p>$restarts<br>[1] 0</p>
+<p>（おまけ）関数の視覚化</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">x</span> &lt;- se<span class="string">q(0,10,length=200)</span></div><div class="line"><span class="keyword">y</span> &lt;- se<span class="string">q(0,12,length=200)</span></div><div class="line">f&lt;- function(<span class="keyword">x</span>,<span class="keyword">y</span>) { </div><div class="line">  <span class="keyword">sqrt</span>((<span class="keyword">x</span>-<span class="number">1</span>)^<span class="number">2</span>+(<span class="keyword">y</span>-<span class="number">12</span>)^<span class="number">2</span>)+<span class="keyword">sqrt</span>((<span class="keyword">x</span>-<span class="number">4</span>)^<span class="number">2</span>+(<span class="keyword">y</span>-<span class="number">14</span>)^<span class="number">2</span>)+<span class="keyword">sqrt</span>((<span class="keyword">x</span>-<span class="number">15</span>)^<span class="number">2</span>+(<span class="keyword">y</span>-<span class="number">10</span>)^<span class="number">2</span>)+<span class="keyword">sqrt</span>((<span class="keyword">x</span>-<span class="number">11</span>)^<span class="number">2</span>+(<span class="keyword">y</span>-<span class="number">2</span>)^<span class="number">2</span>)+<span class="keyword">sqrt</span>((<span class="keyword">x</span>-<span class="number">5</span>)^<span class="number">2</span>+(<span class="keyword">y</span>-<span class="number">5</span>)^<span class="number">2</span>) </div><div class="line">}</div><div class="line"><span class="comment">#XとYの組み合わせに対して関数fを適用する</span></div><div class="line">z &lt;- outer(<span class="keyword">x</span>,<span class="keyword">y</span>,f)</div><div class="line">image(<span class="keyword">x</span>, <span class="keyword">y</span>, z, col = terrain.colors(<span class="number">100</span>),axes=T)</div><div class="line">contour(<span class="keyword">x</span>,<span class="keyword">y</span>,z,add=T)</div></pre></td></tr></table></figure>
+
+<p><img src="/images/image01.png" alt=""></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/10/12/第13章非線形計画法2/" data-id="daf912x0qa326iha" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/10/13/第13章非線形計画法2/" data-id="daf912x0qa326iha" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a></li></ul>
@@ -249,7 +254,7 @@ z=&\sqrt{(x_1-1)^2+(x_2-12)^2}+\sqrt{(x_1-4)^2+(x_2-14)^2}+\sqrt{(x_1-15)^2+(x_2
       <ul>
         
           <li>
-            <a href="/2014/10/12/第13章非線形計画法2/">非線形計画法2</a>
+            <a href="/2014/10/13/第13章非線形計画法2/">非線形計画法2</a>
           </li>
         
           <li>
