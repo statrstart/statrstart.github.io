@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>blog開設後に行ったこと1 | 統計ソフトRの備忘録２</title>
+  <title>メタヒューリスティクス | 統計ソフトRの備忘録２</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="blog開設後に行ったこと">
+  <meta name="description" content="第15章メタヒューリスティクス">
 <meta property="og:type" content="article">
-<meta property="og:title" content="blog開設後に行ったこと1">
-<meta property="og:url" content="http://yoursite.com/2014/09/21/blog開設後に行ったこと1/">
+<meta property="og:title" content="メタヒューリスティクス">
+<meta property="og:url" content="http://yoursite.com/2014/10/17/第15章メタヒューリスティクス/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
-<meta property="og:description" content="blog開設後に行ったこと">
+<meta property="og:description" content="第15章メタヒューリスティクス">
+<meta property="og:image" content="/images/ga01.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="blog開設後に行ったこと1">
-<meta name="twitter:description" content="blog開設後に行ったこと">
+<meta name="twitter:title" content="メタヒューリスティクス">
+<meta name="twitter:description" content="第15章メタヒューリスティクス">
 
   
     <link rel="alternative" href="/atom.xml" title="統計ソフトRの備忘録２" type="application/atom+xml">
@@ -90,12 +91,16 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-blog開設後に行ったこと1" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-第15章メタヒューリスティクス" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/09/21/blog開設後に行ったこと1/" class="article-date">
-  <time datetime="2014-09-21T10:06:33.000Z" itemprop="datePublished">Sep 21 2014</time>
+    <a href="/2014/10/17/第15章メタヒューリスティクス/" class="article-date">
+  <time datetime="2014-10-17T10:38:55.000Z" itemprop="datePublished">Oct 17 2014</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/放送大学/">放送大学</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -104,7 +109,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      blog開設後に行ったこと1
+      メタヒューリスティクス
     </h1>
   
 
@@ -112,33 +117,26 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="blog開設後に行ったこと">blog開設後に行ったこと</h3>
-<p><a id="more"></a></p>
-<ul>
-<li>banner.jpgを変更した。（砂丘の風紋）</li>
-<li>記事に<code>&lt;!— more —&gt;</code>を書き加えた。</li>
-<li>hexo-math-pluginをinstall  <ul>
-<li>mathjaxでは添字に_記号を使うがこれを同じ行で２つ使うとmarkdownではイタリック体と認識される可能性あり。</li>
-<li>誤認識されるときは<a href="https://github.com/akfish/hexo-math" target="_blank" rel="external">Tag Block</a>を使うのが無難だと思う。</li>
-</ul>
-</li>
-<li>画像を保存するためにsourceフォルダ内にimagesフォルダ作成。</li>
-<li>scaffoldsフォルダ内のpost.mdを書き換えた。</li>
-<li>スライドを公開。  <ul>
-<li>layout: false がfront-matterにないと拡張子がhtmlであっても hexo g で書き換わるので注意！（参考）<a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></li>
-</ul>
-</li>
-</ul>
-<h4 id="スライド">スライド</h4>
-<p><a href="/slides/remark0.html" target="_blank">remark.js+Remark Hook</a></p>
+        <h2 id="第15章メタヒューリスティクス">第15章メタヒューリスティクス</h2>
+<a id="more"></a>
+
+<p>放送授業の遺伝的アルゴリズムの数値例をRのGAパッケージでやってみる</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">library</span>(<span class="string">"GA"</span>)</div><div class="line"><span class="comment">#ga関数のパラメータ</span></div><div class="line">population =<span class="number">400</span></div><div class="line">selection =<span class="number">4</span> </div><div class="line">mutation =<span class="number">8</span></div><div class="line">crossover =<span class="number">380</span></div><div class="line">r&lt;-<span class="number">200</span></div><div class="line"><span class="comment">#授業サイトpos.citiesを使わせてもらいます</span></div><div class="line">nc &lt;- <span class="number">30</span> <span class="comment">#正30角形</span></div><div class="line">pos.cities &lt;- <span class="keyword">function</span>(n) {</div><div class="line">  th0 &lt;- seq(<span class="number">0</span>, <span class="number">2</span>*pi, length=(n+<span class="number">1</span>))</div><div class="line">  th &lt;- th0[<span class="number">1</span>:n]</div><div class="line">  z &lt;- matrix(numeric(<span class="number">2</span>*n), ncol=<span class="number">2</span>)</div><div class="line">  z[,<span class="number">1</span>] &lt;- cos(th)</div><div class="line">  z[,<span class="number">2</span>] &lt;- sin(th)</div><div class="line">  <span class="keyword">return</span>(z)</div><div class="line">}</div><div class="line">cities &lt;- pos.cities(nc)</div><div class="line">cdist&lt;-dist(cities, method = <span class="string">"euclidean"</span>, diag = <span class="literal">FALSE</span>, upper = <span class="literal">FALSE</span>)</div><div class="line">D &lt;- as.matrix(cdist)</div><div class="line">tourLength &lt;- <span class="keyword">function</span>(tour, distMatrix) {</div><div class="line">  our &lt;- c(tour, tour[<span class="number">1</span>])</div><div class="line">  route &lt;- embed(tour, <span class="number">2</span>)[,<span class="number">2</span>:<span class="number">1</span>]</div><div class="line">  sum(distMatrix[route]) </div><div class="line">}</div><div class="line">tspFitness &lt;- <span class="keyword">function</span>(tour, <span class="keyword">...</span>) <span class="number">1</span>/tourLength(tour, <span class="keyword">...</span>)</div><div class="line">GA &lt;- ga(type = <span class="string">"permutation"</span>, fitness = tspFitness, distMatrix = D,min = <span class="number">1</span>, </div><div class="line">         max = attr(cdist, <span class="string">"Size"</span>), popSize = <span class="number">400</span>, maxiter = r,</div><div class="line">         run = r , pcrossover = <span class="number">0.95</span>, pmutation = <span class="number">0.02</span>)</div><div class="line">summary(GA)</div></pre></td></tr></table></figure>
+
+<p> Genetic Algorithm   </p>
+<p>GA settings:<br>Type                  =  permutation<br>Population size       =  400<br>Number of generations =  200<br>Elitism               =  20<br>Crossover probability =  0.95<br>Mutation probability  =  0.02   </p>
+<p>GA results:<br>Iterations             = 200<br>Fitness function value = 0.1649443<br>Solutions              =<br>   x1 x2 x3 x4 x5 x6 x7 x8 x9 x10 x11 x12 x13 x14 x15 x16 x17 x18<br>[1,] 15 14 13 12 11 10  9  8  7   6   5   4   3   2   1  30  29  28<br>[2,] 18 17 16 15 14 13 12 11 10   9   8   7   6   5   4   3   2   1<br>   x19 x20 … x30<br>[1,]  27  26      16<br>[2,]  30  29      19</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#図の表示</span></div><div class="line">mds &lt;- cmdscale(cdist)</div><div class="line">x &lt;- mds[, <span class="number">1</span>]</div><div class="line">y &lt;- -mds[, <span class="number">2</span>]</div><div class="line">plot(x, y, <span class="variable">type =</span> <span class="string">"n"</span>, <span class="variable">asp =</span> <span class="number">1</span>, <span class="variable">xlab =</span> <span class="string">""</span>, <span class="variable">ylab =</span> <span class="string">""</span>)</div><div class="line">abline(<span class="variable">h =</span> pretty(range(x), <span class="number">10</span>), <span class="variable">v =</span> pretty(range(y), <span class="number">10</span>),<span class="variable">col =</span> <span class="string">"light gray"</span>)</div><div class="line">tour &lt;- GA@solution[<span class="number">1</span>, ]</div><div class="line">tour &lt;- c(tour, tour[<span class="number">1</span>])</div><div class="line">n &lt;- length(tour)</div><div class="line">arrows(x[tour[-n]], y[tour[-n]], x[tour[-<span class="number">1</span>]], y[tour[-<span class="number">1</span>]],</div><div class="line">       <span class="variable">length =</span> <span class="number">0.15</span>, <span class="variable">angle =</span> <span class="number">25</span>, <span class="variable">col =</span> <span class="string">"steelblue"</span>, <span class="variable">lwd =</span> <span class="number">2</span>)</div><div class="line">text(x, y, labels(<span class="string">""</span>), <span class="variable">cex=</span><span class="number">0.8</span>)</div></pre></td></tr></table></figure>
+
+<p><img src="/images/ga01.png" alt=""></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/09/21/blog開設後に行ったこと1/" data-id="m8a8etp1u0gof7s5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/10/17/第15章メタヒューリスティクス/" data-id="uk3zj7swcu2vqt0e" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HEXO/">HEXO</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a></li></ul>
 
     </footer>
   </div>
@@ -146,19 +144,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2014/09/26/第4章ネットワーク計画法/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2014/10/17/第15章メタヒューリスティクス2/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          最短路問題
+          メタヒューリスティクス2
         
       </div>
     </a>
   
   
-    <a href="/2014/09/19/データからの知識発見第14章/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2014/10/13/第9章ゲーム理論2/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">テキストマイニング</div>
+      <div class="article-nav-title">Gambitを用いて第9章</div>
     </a>
   
 </nav>
