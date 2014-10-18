@@ -12,6 +12,7 @@
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
 <meta property="og:description" content="第15章メタヒューリスティクス">
 <meta property="og:image" content="/images/ga01.png">
+<meta property="og:image" content="/images/ga02.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="メタヒューリスティクス">
 <meta name="twitter:description" content="第15章メタヒューリスティクス">
@@ -94,7 +95,7 @@
         <section id="main"><article id="post-第15章メタヒューリスティクス" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/10/17/第15章メタヒューリスティクス/" class="article-date">
-  <time datetime="2014-10-17T10:38:55.000Z" itemprop="datePublished">Oct 17 2014</time>
+  <time datetime="2014-10-17T12:12:39.000Z" itemprop="datePublished">Oct 17 2014</time>
 </a>
     
   <div class="article-category">
@@ -120,15 +121,21 @@
         <h2 id="第15章メタヒューリスティクス">第15章メタヒューリスティクス</h2>
 <a id="more"></a>
 
-<p>放送授業の遺伝的アルゴリズムの数値例をRのGAパッケージでやってみる</p>
+<p>放送授業の遺伝的アルゴリズムの数値例をRのGAパッケージでやってみる<br>参考<br><a href="http://rstudio-pubs-static.s3.amazonaws.com/13578_fb1794c413a249d5bb891932c8cf34e9.html" target="_blank" rel="external">http://rstudio-pubs-static.s3.amazonaws.com/13578_fb1794c413a249d5bb891932c8cf34e9.html</a></p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">library</span>(<span class="string">"GA"</span>)</div><div class="line"><span class="comment">#ga関数のパラメータ</span></div><div class="line">population =<span class="number">400</span></div><div class="line">selection =<span class="number">4</span> </div><div class="line">mutation =<span class="number">8</span></div><div class="line">crossover =<span class="number">380</span></div><div class="line">r&lt;-<span class="number">200</span></div><div class="line"><span class="comment">#授業サイトpos.citiesを使わせてもらいます</span></div><div class="line">nc &lt;- <span class="number">30</span> <span class="comment">#正30角形</span></div><div class="line">pos.cities &lt;- <span class="keyword">function</span>(n) {</div><div class="line">  th0 &lt;- seq(<span class="number">0</span>, <span class="number">2</span>*pi, length=(n+<span class="number">1</span>))</div><div class="line">  th &lt;- th0[<span class="number">1</span>:n]</div><div class="line">  z &lt;- matrix(numeric(<span class="number">2</span>*n), ncol=<span class="number">2</span>)</div><div class="line">  z[,<span class="number">1</span>] &lt;- cos(th)</div><div class="line">  z[,<span class="number">2</span>] &lt;- sin(th)</div><div class="line">  <span class="keyword">return</span>(z)</div><div class="line">}</div><div class="line">cities &lt;- pos.cities(nc)</div><div class="line">cdist&lt;-dist(cities, method = <span class="string">"euclidean"</span>, diag = <span class="literal">FALSE</span>, upper = <span class="literal">FALSE</span>)</div><div class="line">D &lt;- as.matrix(cdist)</div><div class="line">tourLength &lt;- <span class="keyword">function</span>(tour, distMatrix) {</div><div class="line">  our &lt;- c(tour, tour[<span class="number">1</span>])</div><div class="line">  route &lt;- embed(tour, <span class="number">2</span>)[,<span class="number">2</span>:<span class="number">1</span>]</div><div class="line">  sum(distMatrix[route]) </div><div class="line">}</div><div class="line">tspFitness &lt;- <span class="keyword">function</span>(tour, <span class="keyword">...</span>) <span class="number">1</span>/tourLength(tour, <span class="keyword">...</span>)</div><div class="line">GA &lt;- ga(type = <span class="string">"permutation"</span>, fitness = tspFitness, distMatrix = D,min = <span class="number">1</span>, </div><div class="line">         max = attr(cdist, <span class="string">"Size"</span>), popSize = <span class="number">400</span>, maxiter = r,</div><div class="line">         run = r , pcrossover = <span class="number">0.95</span>, pmutation = <span class="number">0.02</span>)</div><div class="line">summary(GA)</div></pre></td></tr></table></figure>
 
 <p> Genetic Algorithm   </p>
 <p>GA settings:<br>Type                  =  permutation<br>Population size       =  400<br>Number of generations =  200<br>Elitism               =  20<br>Crossover probability =  0.95<br>Mutation probability  =  0.02   </p>
 <p>GA results:<br>Iterations             = 200<br>Fitness function value = 0.1649443<br>Solutions              =<br>   x1 x2 x3 x4 x5 x6 x7 x8 x9 x10 x11 x12 x13 x14 x15 x16 x17 x18<br>[1,] 15 14 13 12 11 10  9  8  7   6   5   4   3   2   1  30  29  28<br>[2,] 18 17 16 15 14 13 12 11 10   9   8   7   6   5   4   3   2   1<br>   x19 x20 … x30<br>[1,]  27  26      16<br>[2,]  30  29      19</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#図の表示</span></div><div class="line">mds &lt;- cmdscale(cdist)</div><div class="line">x &lt;- mds[, <span class="number">1</span>]</div><div class="line">y &lt;- -mds[, <span class="number">2</span>]</div><div class="line">plot(x, y, <span class="variable">type =</span> <span class="string">"n"</span>, <span class="variable">asp =</span> <span class="number">1</span>, <span class="variable">xlab =</span> <span class="string">""</span>, <span class="variable">ylab =</span> <span class="string">""</span>)</div><div class="line">abline(<span class="variable">h =</span> pretty(range(x), <span class="number">10</span>), <span class="variable">v =</span> pretty(range(y), <span class="number">10</span>),<span class="variable">col =</span> <span class="string">"light gray"</span>)</div><div class="line">tour &lt;- GA@solution[<span class="number">1</span>, ]</div><div class="line">tour &lt;- c(tour, tour[<span class="number">1</span>])</div><div class="line">n &lt;- length(tour)</div><div class="line">arrows(x[tour[-n]], y[tour[-n]], x[tour[-<span class="number">1</span>]], y[tour[-<span class="number">1</span>]],</div><div class="line">       <span class="variable">length =</span> <span class="number">0.15</span>, <span class="variable">angle =</span> <span class="number">25</span>, <span class="variable">col =</span> <span class="string">"steelblue"</span>, <span class="variable">lwd =</span> <span class="number">2</span>)</div><div class="line">text(x, y, labels(<span class="string">""</span>), <span class="variable">cex=</span><span class="number">0.8</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#図の表示</span></div><div class="line">mds &lt;- cmdscale(cdist)</div><div class="line">x &lt;- mds[, <span class="number">1</span>]</div><div class="line">y &lt;- -mds[, <span class="number">2</span>]</div><div class="line">plot(x, y, <span class="variable">type =</span> <span class="string">"n"</span>, <span class="variable">asp =</span> <span class="number">1</span>, <span class="variable">xlab =</span> <span class="string">""</span>, <span class="variable">ylab =</span> <span class="string">""</span>)</div><div class="line">abline(<span class="variable">h =</span> pretty(range(x), <span class="number">10</span>), <span class="variable">v =</span> pretty(range(y), <span class="number">10</span>),<span class="variable">col =</span> <span class="string">"light gray"</span>)</div><div class="line">tour &lt;- GA@solution[<span class="number">1</span>, ]</div><div class="line">tour &lt;- c(tour, tour[<span class="number">1</span>])</div><div class="line">n &lt;- length(tour)</div><div class="line">arrows(x[tour[-n]], y[tour[-n]], x[tour[-<span class="number">1</span>]], y[tour[-<span class="number">1</span>]],</div><div class="line">       <span class="variable">length =</span> <span class="number">0.15</span>, <span class="variable">angle =</span> <span class="number">25</span>, <span class="variable">col =</span> <span class="string">"steelblue"</span>, <span class="variable">lwd =</span> <span class="number">2</span>)</div><div class="line">text(x, y, labels(<span class="string">""</span>), <span class="variable">cex=</span><span class="number">0.8</span>)</div><div class="line"><span class="comment">#tour</span></div><div class="line">tourLength(tour,D);<span class="number">2</span>*pi*<span class="number">1</span></div></pre></td></tr></table></figure>
 
+<p>[1] 6.271708<br>[1] 6.283185</p>
 <p><img src="/images/ga01.png" alt=""></p>
+<p>ちなみに<br>nc &lt;- 57<br>r&lt;-1000  </p>
+<p>でやってみたら、</p>
+<p>[1] 12.34934<br>[1] 6.283185</p>
+<p>でした。</p>
+<p><img src="/images/ga02.png" alt=""></p>
 
       
     </div>
@@ -144,19 +151,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2014/10/17/第15章メタヒューリスティクス2/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2014/10/18/第10章統計的決定/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          メタヒューリスティクス2
+          統計的決定
         
       </div>
     </a>
   
   
-    <a href="/2014/10/13/第9章ゲーム理論2/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2014/10/17/第15章メタヒューリスティクス2/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Gambitを用いて第9章</div>
+      <div class="article-nav-title">メタヒューリスティクス2</div>
     </a>
   
 </nav>
@@ -172,7 +179,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Gambit/">Gambit</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NetworkX/">NetworkX</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/放送大学/">放送大学</a><span class="category-list-count">42</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Gambit/">Gambit</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NetworkX/">NetworkX</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/放送大学/">放送大学</a><span class="category-list-count">43</span></li></ul>
     </div>
   </div>
 
@@ -181,7 +188,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">13</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">13</span></li></ul>
     </div>
   </div>
 
@@ -199,7 +206,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">34</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">34</span></li></ul>
     </div>
   </div>
 
@@ -211,11 +218,15 @@
       <ul>
         
           <li>
-            <a href="/2014/10/17/第15章メタヒューリスティクス2/">メタヒューリスティクス2</a>
+            <a href="/2014/10/18/第10章統計的決定/">統計的決定</a>
           </li>
         
           <li>
             <a href="/2014/10/17/第15章メタヒューリスティクス/">メタヒューリスティクス</a>
+          </li>
+        
+          <li>
+            <a href="/2014/10/17/第15章メタヒューリスティクス2/">メタヒューリスティクス2</a>
           </li>
         
           <li>
@@ -224,10 +235,6 @@
         
           <li>
             <a href="/2014/10/13/第13章非線形計画法2/">非線形計画法2</a>
-          </li>
-        
-          <li>
-            <a href="/2014/10/12/第12章組み合わせ計画法/">組み合わせ計画法</a>
           </li>
         
       </ul>
