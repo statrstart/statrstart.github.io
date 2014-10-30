@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>時系列解析の勉強1 | 統計ソフトRの備忘録２</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="forecast、tseries、timsac">
+<meta property="og:type" content="article">
+<meta property="og:title" content="時系列解析の勉強1">
+<meta property="og:url" content="http://yoursite.com/2014/10/30/時系列解析1/">
+<meta property="og:site_name" content="統計ソフトRの備忘録２">
+<meta property="og:description" content="forecast、tseries、timsac">
+<meta property="og:image" content="/images/forecast01.png">
+<meta property="og:image" content="/images/forecast02.png">
+<meta property="og:image" content="/images/forecast03.png">
+<meta property="og:image" content="/images/forecast04.png">
+<meta property="og:image" content="/images/forecast05.png">
+<meta property="og:image" content="/images/forecast06.png">
+<meta property="og:image" content="/images/forecast07.png">
+<meta property="og:image" content="/images/forecast08.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="時系列解析の勉強1">
+<meta name="twitter:description" content="forecast、tseries、timsac">
+
+  
+    <link rel="alternative" href="/atom.xml" title="統計ソフトRの備忘録２" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">統計ソフトRの備忘録２</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-時系列解析1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/10/30/時系列解析1/" class="article-date">
+  <time datetime="2014-10-30T11:17:46.000Z" itemprop="datePublished">Oct 30 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/R/">R</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      時系列解析の勉強1
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="forecast、tseries、timsac">forecast、tseries、timsac</h2>
+<a id="more"></a>
+
+<p>（とても勉強になったサイト）<br><a href="http://logics-of-blue.com/" target="_blank" rel="external">logics of blue</a>  </p>
+<h4 id="モデルによる予測ができない時">モデルによる予測ができない時</h4>
+<p>使用するパッケージ</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">library</span><span class="params">(forecast)</span></span></div><div class="line"><span class="title">library</span><span class="params">(tseries)</span></div><div class="line"><span class="title">library</span><span class="params">(timsac)</span></div></pre></td></tr></table></figure>
+
+<h5 id="ホワイトノイズ(自己相関の無い完全な雑音のようなデータ)">ホワイトノイズ(自己相関の無い完全な雑音のようなデータ)</h5>
+<p>ホワイトノイズを作成<br>自己相関がないのか確認<br>forecastパッケージのtsdisplay関数</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">set.<span class="keyword">seed</span>(<span class="number">1</span>)</div><div class="line">white.<span class="keyword">noise</span> &lt;- rnorm(n=<span class="number">400</span>)</div><div class="line">tsdisplay(white.<span class="keyword">noise</span>)</div></pre></td></tr></table></figure>
+
+<p><img src="/images/forecast01.png" alt=""></p>
+<p>自己相関なし</p>
+<p>単位根検定</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">adf.test(white.<span class="built_in">noise</span>)</div></pre></td></tr></table></figure>
+
+<p>p-value = 0.01<br>(単位根なし。定常(時間や位置によって確率分布が変化しない確率過程)）</p>
+<p>スペクトル</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">spectrum</span><span class="params">(white.noise)</span></span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/forecast02.png" alt=""></p>
+<p>成分分解<br>（timsacパッケージのdecomp関数を使ってみます)</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">decomp</span><span class="params">(white.noise)</span></span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/forecast03.png" alt=""></p>
+<p>ホワイトノイズにARIMAモデルを適用するとしたらどんなモデルになるのか？<br>forecastパッケージのauto.arima関数</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="list">(<span class="title">model</span>.noise &lt;- auto.arima<span class="list">(<span class="title">white</span>.noise,ic=<span class="string">"aic"</span>,trace=T,stepwise=F,approximation=F)</span>)</span></div></pre></td></tr></table></figure>
+
+<p>選ばれたモデル</p>
+<p>Series: white.noise<br>ARIMA(0,0,0) with zero mean</p>
+<p>予測結果</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">plot(forecast(model.noise, <span class="variable">h=</span><span class="number">100</span>), <span class="variable">flwd=</span><span class="number">5</span>)</div><div class="line">abline(<span class="variable">h=</span>mean(white.noise))</div></pre></td></tr></table></figure>
+
+<p><img src="/images/forecast04.png" alt=""></p>
+<h5 id="ランダムウォーク(ホワイトノイズのような乱数の累積和)">ランダムウォーク(ホワイトノイズのような乱数の累積和)</h5>
+<p>ランダムウォークデータ作成(ホワイトノイズの累積和を取る)</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">random</span>.walk &lt;- cumsum(white.<span class="built_in">noise</span>)</div><div class="line">tsdisplay(<span class="built_in">random</span>.walk)</div></pre></td></tr></table></figure>
+
+<p><img src="/images/forecast05.png" alt=""></p>
+<p>ホワイトノイズと違って自己相関がある</p>
+<p>単位根検定</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">adf.test(<span class="built_in">random</span>.walk)</div></pre></td></tr></table></figure>
+
+<p>p-value = 0.3132<br>(単位根あり。定常ではない)</p>
+<p>次に、差分をとって調べてみると</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">adf.test(diff(<span class="built_in">random</span>.walk))</div></pre></td></tr></table></figure>
+
+<p>p-value = 0.01<br>(単位根なし。定常)</p>
+<p>スペクトル</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">spectrum</span><span class="params">(random.walk)</span></span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/forecast06.png" alt=""></p>
+<p>成分分解</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">decomp</span><span class="params">(random.walk)</span></span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/forecast07.png" alt=""></p>
+<p>モデル選択</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="list">(<span class="title">model</span>.rw&lt;- auto.arima<span class="list">(<span class="title">random</span>.walk,ic=<span class="string">"aic"</span>,trace=T,stepwise=F,approximation=F)</span>)</span></div></pre></td></tr></table></figure>
+
+<p>Series: random.walk<br>ARIMA(0,1,0) with drift         </p>
+<p>上記サイトと違って with drift = ドリフト項（基本的な方向性）付きが選ばれた。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">plot(forecast(model.rw, <span class="variable">h=</span><span class="number">100</span>), <span class="variable">flwd=</span><span class="number">5</span>)</div><div class="line">abline(<span class="variable">h=</span>mean(random.walk))</div><div class="line">abline(<span class="variable">h=</span>random.walk[<span class="number">400</span>], <span class="variable">col=</span><span class="number">2</span>, <span class="variable">lty=</span><span class="number">2</span>)</div></pre></td></tr></table></figure>
+
+<p><img src="/images/forecast08.png" alt=""></p>
+<p>予測は「右肩上がりに線形に上昇」</p>
+<p>(上記サイトより抜粋)<br>和分過程(階差を取れば定常になるときの原系列)ではない、定常過程ならば平均に回帰する。<br>（和分過程の例がランダムウォークで、定常過程の例がホワイトノイズ。）<br>予測をする際、データが和分過程かどうかで結果が相当変わってくる。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2014/10/30/時系列解析1/" data-id="u66nksmq2wpq4m43" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2014/10/26/第10章統計的決定2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">統計的決定2</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Gambit/">Gambit</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NetworkX/">NetworkX</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/放送大学/">放送大学</a><span class="category-list-count">45</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">13</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/HEXO/" style="font-size: 10.00px;">HEXO</a><a href="/tags/Rパッケージ/" style="font-size: 10.00px;">Rパッケージ</a><a href="/tags/データからの知識発見/" style="font-size: 15.00px;">データからの知識発見</a><a href="/tags/問題解決の数理/" style="font-size: 20.00px;">問題解決の数理</a><a href="/tags/心理・教育統計法特論/" style="font-size: 12.50px;">心理・教育統計法特論</a><a href="/tags/心理統計法/" style="font-size: 17.50px;">心理統計法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">34</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2014/10/30/時系列解析1/">時系列解析の勉強1</a>
+          </li>
+        
+          <li>
+            <a href="/2014/10/26/第10章統計的決定2/">統計的決定2</a>
+          </li>
+        
+          <li>
+            <a href="/2014/10/24/巡回セールスマン問題ggmap/">巡回セールスマン問題ggmap</a>
+          </li>
+        
+          <li>
+            <a href="/2014/10/18/巡回セールスマン問題Concorde法/">巡回セールスマン問題Concorde法</a>
+          </li>
+        
+          <li>
+            <a href="/2014/10/18/第10章統計的決定/">統計的決定</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2014 統計ソフトRの備忘録２<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
