@@ -94,7 +94,7 @@
         <section id="main"><article id="post-sem_多重指標モデル" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/11/07/sem_多重指標モデル/" class="article-date">
-  <time datetime="2014-11-07T00:05:19.000Z" itemprop="datePublished">Nov 7 2014</time>
+  <time datetime="2014-11-07T00:45:08.000Z" itemprop="datePublished">Nov 7 2014</time>
 </a>
     
   <div class="article-category">
@@ -287,7 +287,7 @@
 <p> R-square for Endogenous Variables<br>    総熱量       肉類     乳製品       酒類 消化管ガン   大腸ガン<br>    0.8164     0.7896     0.5192     0.3843     0.9614     0.8026<br>  直腸ガン<br>    0.7053 </p>
 <p> Parameter Estimates<br>                         Estimate   Std Error  z value   Pr(&gt;|z|)<br>lam[総熱量:洋食傾向]     0.90353060 0.11570035 7.8092299 5.753844e-15<br>lam[肉類:洋食傾向]       0.88860195 0.11697802 7.5963158 3.046806e-14<br>lam[乳製品:洋食傾向]     0.72052466 0.12999089 5.5428856 2.975272e-08<br>lam[酒類:洋食傾向]       0.61993740 0.13612749 4.5540942 5.261177e-06<br>V[総熱量]                0.18363196 0.05628021 3.2628159 1.103112e-03<br>V[肉類]                  0.21038662 0.05992060 3.5110903 4.462728e-04<br>V[乳製品]                0.48084422 0.10824543 4.4421666 8.905755e-06<br>V[酒類]                  0.61567805 0.13405385 4.5927668 4.374078e-06<br>lam[直腸ガン:消化管ガン] 0.93738433 0.12049701 7.7793162 7.291758e-15<br>V[消化管ガン]            0.03095721 0.05846916 0.5294622 5.964848e-01<br>V[大腸ガン]              0.19735405 0.06694604 2.9479572 3.198814e-03<br>V[直腸ガン]              0.29472338 0.07700310 3.8274224 1.294922e-04<br>g21                      0.87845827 0.11829002 7.4263092 1.116698e-13</p>
 <p>lam[総熱量:洋食傾向]     総熱量 &lt;—- 洋食傾向<br>lam[肉類:洋食傾向]       肉類 &lt;—- 洋食傾向<br>lam[乳製品:洋食傾向]     乳製品 &lt;—- 洋食傾向<br>lam[酒類:洋食傾向]       酒類 &lt;—- 洋食傾向<br>V[総熱量]                総熱量 &lt;—&gt; 総熱量<br>V[肉類]                  肉類 &lt;—&gt; 肉類<br>V[乳製品]                乳製品 &lt;—&gt; 乳製品<br>V[酒類]                  酒類 &lt;—&gt; 酒類<br>lam[直腸ガン:消化管ガン] 直腸ガン &lt;—- 消化管ガン<br>V[消化管ガン]            消化管ガン &lt;—&gt; 消化管ガン<br>V[大腸ガン]              大腸ガン &lt;—&gt; 大腸ガン<br>V[直腸ガン]              直腸ガン &lt;—&gt; 直腸ガン<br>g21                      消化管ガン &lt;—- 洋食傾向  </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">qgraph(fit,edge.<span class="variable">labels=</span>T,<span class="variable">layout =</span> <span class="string">"tree"</span>,vsize.<span class="variable">man =</span> <span class="number">6</span>,vsize.<span class="variable">lat =</span> <span class="number">8</span>,<span class="variable">residuals =</span> T,<span class="variable">fade=</span>F)</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">qgraph(fit,edge.<span class="variable">labels=</span>T,<span class="variable">layout =</span> <span class="string">"tree"</span>,vsize.<span class="variable">man =</span> <span class="number">6</span>,vsize.<span class="variable">lat =</span> <span class="number">8</span>,<span class="variable">fade=</span>F)</div></pre></td></tr></table></figure>
 
 <p><img src="/images/sem01.png" alt=""></p>
 <h4 id="従来の記法">従来の記法</h4>
@@ -315,10 +315,19 @@
     
 <nav id="article-nav">
   
+    <a href="/2014/11/07/sem_PLSモデル/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          sem_PLSモデル
+        
+      </div>
+    </a>
   
-    <a href="/2014/10/30/時系列解析1/" id="article-nav-older" class="article-nav-link-wrap">
+  
+    <a href="/2014/11/07/sem_MIMICモデル/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">時系列解析の勉強1</div>
+      <div class="article-nav-title">sem_MIMICモデル</div>
     </a>
   
 </nav>
@@ -334,7 +343,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Gambit/">Gambit</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NetworkX/">NetworkX</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/放送大学/">放送大学</a><span class="category-list-count">45</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Gambit/">Gambit</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NetworkX/">NetworkX</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/放送大学/">放送大学</a><span class="category-list-count">45</span></li></ul>
     </div>
   </div>
 
@@ -343,7 +352,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">13</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">13</span></li></ul>
     </div>
   </div>
 
@@ -361,7 +370,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">34</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">34</span></li></ul>
     </div>
   </div>
 
@@ -373,7 +382,15 @@
       <ul>
         
           <li>
+            <a href="/2014/11/07/sem_PLSモデル/">sem_PLSモデル</a>
+          </li>
+        
+          <li>
             <a href="/2014/11/07/sem_多重指標モデル/">sem_多重指標モデル</a>
+          </li>
+        
+          <li>
+            <a href="/2014/11/07/sem_MIMICモデル/">sem_MIMICモデル</a>
           </li>
         
           <li>
@@ -382,14 +399,6 @@
         
           <li>
             <a href="/2014/10/26/第10章統計的決定2/">統計的決定2</a>
-          </li>
-        
-          <li>
-            <a href="/2014/10/24/巡回セールスマン問題ggmap/">巡回セールスマン問題ggmap</a>
-          </li>
-        
-          <li>
-            <a href="/2014/10/18/巡回セールスマン問題Concorde法/">巡回セールスマン問題Concorde法</a>
           </li>
         
       </ul>
