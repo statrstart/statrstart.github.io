@@ -3,21 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>統計的決定2 | 統計ソフトRの備忘録２</title>
+  <title>Archives: 2014/11 | 統計ソフトRの備忘録２</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="gambitで期待効用計算">
-<meta property="og:type" content="article">
-<meta property="og:title" content="統計的決定2">
-<meta property="og:url" content="http://yoursite.com/2014/10/26/第10章統計的決定2/">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="統計ソフトRの備忘録２">
+<meta property="og:url" content="http://yoursite.com/archives/2014/11/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
-<meta property="og:description" content="gambitで期待効用計算">
-<meta property="og:image" content="/images/eu01.png">
-<meta property="og:image" content="/images/eu01_1.png">
-<meta property="og:image" content="/images/eu02.png">
-<meta property="og:image" content="/images/eu02_1.png">
+<meta property="og:description">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="統計的決定2">
-<meta name="twitter:description" content="gambitで期待効用計算">
+<meta name="twitter:title" content="統計ソフトRの備忘録２">
+<meta name="twitter:description">
 
   
     <link rel="alternative" href="/atom.xml" title="統計ソフトRの備忘録２" type="application/atom+xml">
@@ -94,14 +90,16 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-第10章統計的決定2" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main">
+  
+    <article id="post-sem_多重指標モデル" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/10/26/第10章統計的決定2/" class="article-date">
-  <time datetime="2014-10-26T02:42:21.000Z" itemprop="datePublished">Oct 26 2014</time>
+    <a href="/2014/11/07/sem_多重指標モデル/" class="article-date">
+  <time datetime="2014-11-07T00:05:19.000Z" itemprop="datePublished">Nov 7 2014</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Gambit/">Gambit</a>
+    <a class="article-category-link" href="/categories/R/">R</a>
   </div>
 
   </div>
@@ -111,8 +109,8 @@
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      統計的決定2
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/11/07/sem_多重指標モデル/">sem_多重指標モデル</a>
     </h1>
   
 
@@ -120,73 +118,29 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="gambitで期待効用計算">gambitで期待効用計算</h2>
-<a id="more"></a>
+        <h2 id="sem,qgraph">sem,qgraph</h2>
 
-<p>数値の入力場所に少し悩みましたが、計算できました。<br>この類の問題に関してはGUIは楽です。</p>
-<h5 id="外出の問題">外出の問題</h5>
-<p><img src="/images/eu01.png" alt=""></p>
-<ul>
-<li>「傘を持たない」方の線が黒くなっています。</li>
-<li>「傘を持つ」の下が０、「傘を持たない」の下が１になっています。</li>
-</ul>
-<p><img src="/images/eu01_1.png" alt=""></p>
-<ul>
-<li>1が「傘を持つ」期待効用で、2が「傘を持たない」期待効用</li>
-</ul>
-<h5 id="資源採掘の問題">資源採掘の問題</h5>
-<p><img src="/images/eu02.png" alt=""></p>
-<p><img src="/images/eu02_1.png" alt=""></p>
-<ul>
-<li>11が標準採掘ー＞強化採掘する、12が標準採掘ー＞強化採掘しない(断念）、2*が強化採掘</li>
-</ul>
-<hr>
-<p>windowsでエクセル（2007以降）を持っている方へ<br>エクセルのアドインでTreePlanというのもあります。（注）フリーウェアではない！  </p>
-<p>30日トライアル版（この授業のためならこれでいいのでは）<br><a href="http://www.treeplan.com/download-trial-treeplan-sensit-simvoi.htm" target="_blank" rel="external">the free 30-day Trial version</a>  </p>
-<p>学生版<br><a href="http://www.treeplan.com/student-pricing-treeplan-sensit-simvoi.htm" target="_blank" rel="external">Student Pricing for TreePlan</a></p>
-<p>zorinOS+wine-1.7.17 +excel2000 +TreePlan1.70で上記の問題を図示。  </p>
-<p><a href="/data/expected_utility.xls">expected_utility.xls</a>  </p>
-<ul>
-<li>excelXP,excel2007（どちらもPCインストール版）はPC故障でつかえず、excel2000使用。</li>
-<li>TreePlanも古いものを使用。<a href="http://www.treeplan.com/version-history-treeplan-sensit-simvoi.htm" target="_blank" rel="external">Version Histories</a>にも載っていない。</li>
-<li>色は後でつけました。</li>
-<li>計算式の入ったセルも保護されていないので入力する際は注意。</li>
-</ul>
-
+        
+          <p class="article-more-link">
+            <a href="/2014/11/07/sem_多重指標モデル/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/10/26/第10章統計的決定2/" data-id="tvbmjodu9mcuzemr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/11/07/sem_多重指標モデル/" data-id="vr68u82uk5iohu40" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a></li></ul>
 
     </footer>
   </div>
   
-    
-<nav id="article-nav">
-  
-    <a href="/2014/10/30/時系列解析1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          時系列解析の勉強1
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2014/10/24/巡回セールスマン問題ggmap/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">巡回セールスマン問題ggmap</div>
-    </a>
-  
-</nav>
-
-  
 </article>
 
+
+  
+  
 </section>
         
           <aside id="sidebar">
