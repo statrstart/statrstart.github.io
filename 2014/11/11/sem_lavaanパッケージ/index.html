@@ -97,7 +97,7 @@
         <section id="main"><article id="post-sem_lavaanパッケージ" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/11/11/sem_lavaanパッケージ/" class="article-date">
-  <time datetime="2014-11-11T12:00:21.000Z" itemprop="datePublished">Nov 11 2014</time>
+  <time datetime="2014-11-11T12:33:18.000Z" itemprop="datePublished">Nov 11 2014</time>
 </a>
     
   <div class="article-category">
@@ -151,9 +151,7 @@
 <p><img src="/images/sem_lavaan1_1.png" alt=""></p>
 <p>エディタでout.dotを加工します。</p>
 <h5 id="center=1;_の後に">center=1; の後に</h5>
-<p>{rank=same “洋食傾向” “消化管ガン”}<br>{rank=min “総熱量” “肉類” “乳製品” “酒類”}<br>{rank=max “大腸ガン” “直腸ガン”}<br>“洋食傾向” [shape=ellipse]<br>“消化管ガン” [shape=ellipse]  </p>
-<p>を書き加える。</p>
-<p>“洋食傾向” -&gt;”洋食傾向”[label=”1”,dir=”both”];　を<br>“洋食傾向” -&gt;”洋食傾向”[label=”1”,dir=”both”, headport=s, tailport=s];　に変更。</p>
+<p>{rank=min “総熱量” “肉類” “乳製品” “酒類”}<br>{rank=max “大腸ガン” “直腸ガン”}<br>“洋食傾向” [shape=ellipse]<br>“消化管ガン” [shape=ellipse]<br>を書き加える。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">system('<span class="built_in">dot</span> -Tpng <span class="keyword">out</span>.<span class="built_in">dot</span> -o <span class="keyword">out</span>.png')</div></pre></td></tr></table></figure>
 
 <p><img src="/images/sem_lavaan1_2.png" alt=""></p>
