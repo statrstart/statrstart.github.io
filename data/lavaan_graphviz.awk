@@ -1,6 +1,6 @@
 BEGIN {
 	print "digraph \"fit\" \{" 
- 	print "rankdir=LR;" 
+ 	print "rankdir=TB;" 
  	print "size=\"8,8\";" 
  	print "node [fontname=\"serif\" fontsize=14 shape=box];" 
  	print "edge [fontname=\"sans\" fontsize=10];" 

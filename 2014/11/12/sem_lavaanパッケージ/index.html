@@ -8,7 +8,7 @@
   <meta name="description" content="lavaanパッケージ　gawk graphviz">
 <meta property="og:type" content="article">
 <meta property="og:title" content="sem_lavaanパッケージ">
-<meta property="og:url" content="http://yoursite.com/2014/11/11/sem_lavaanパッケージ/">
+<meta property="og:url" content="http://yoursite.com/2014/11/12/sem_lavaanパッケージ/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
 <meta property="og:description" content="lavaanパッケージ　gawk graphviz">
 <meta property="og:image" content="/images/sem_lavaan1_1.png">
@@ -96,8 +96,8 @@
       <div class="outer">
         <section id="main"><article id="post-sem_lavaanパッケージ" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/11/11/sem_lavaanパッケージ/" class="article-date">
-  <time datetime="2014-11-11T12:33:18.000Z" itemprop="datePublished">Nov 11 2014</time>
+    <a href="/2014/11/12/sem_lavaanパッケージ/" class="article-date">
+  <time datetime="2014-11-12T01:59:58.000Z" itemprop="datePublished">Nov 12 2014</time>
 </a>
     
   <div class="article-category">
@@ -151,24 +151,25 @@
 <p><img src="/images/sem_lavaan1_1.png" alt=""></p>
 <p>エディタでout.dotを加工します。</p>
 <h5 id="center=1;_の後に">center=1; の後に</h5>
-<p>{rank=min “総熱量” “肉類” “乳製品” “酒類”}<br>{rank=max “大腸ガン” “直腸ガン”}<br>“洋食傾向” [shape=ellipse]<br>“消化管ガン” [shape=ellipse]<br>を書き加える。</p>
+<p>“洋食傾向” [shape=ellipse]<br>“消化管ガン” [shape=ellipse]<br>を書き加える。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">system('<span class="built_in">dot</span> -Tpng <span class="keyword">out</span>.<span class="built_in">dot</span> -o <span class="keyword">out</span>.png')</div></pre></td></tr></table></figure>
 
 <p><img src="/images/sem_lavaan1_2.png" alt=""></p>
-<h4 id="MIMICモデルは作成した図だけを置いておきます。">MIMICモデルは作成した図だけを置いておきます。</h4>
+<h4 id="#MIMICモデル">#MIMICモデル</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="xml">cancermimicmodel <span class="tag">&lt;<span class="title">-</span> '</span></span></div><div class="line">消化管ガン ~ 総熱量 + 肉類 + 乳製品 + 酒類</div><div class="line">消化管ガン =<span class="value">~</span> 大腸ガン + 直腸ガン</div><div class="line">'</div><div class="line"><span class="attribute">fit</span> &lt;<span class="attribute">-</span> <span class="attribute">sem</span>(<span class="attribute">cancermimicmodel</span>, <span class="attribute">sample.cov</span>=<span class="value">soukan,</span> <span class="attribute">sample.nobs</span>=<span class="value">47)</span></div><div class="line"><span class="attribute">summary</span>(<span class="attribute">fit</span>, <span class="attribute">standardized</span>=<span class="value">TRUE)</span></div></pre></td></tr></table></figure>
+
+<p>dotファイルの作成手順は上と同じ</p>
 <p><img src="/images/sem_lavaan2_1.png" alt=""></p>
 <h5 id="center=1;_の後に-1">center=1; の後に</h5>
 <p>{rank=min “総熱量” “肉類” “乳製品” “酒類”}<br>{rank=max “大腸ガン” “直腸ガン”}<br>“消化管ガン” [shape=ellipse]<br>を書き加える。</p>
+<p>rankdir=TB; をrankdir=LR; に変更</p>
 <p>“総熱量” -&gt;”総熱量”[label=”1”,dir=”both”];<br>“肉類” -&gt;”肉類”[label=”1”,dir=”both”];<br>“乳製品” -&gt;”乳製品”[label=”1”,dir=”both”];<br>“酒類” -&gt;”酒類”[label=”1”,dir=”both”];<br>を表示しない</p>
 <p><img src="/images/sem_lavaan2_2.png" alt=""></p>
-<ul>
-<li>なぜかpngファイルへの変換がうまくいかない（エッジが肉類の内側まで引かれてる）</li>
-</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/11/11/sem_lavaanパッケージ/" data-id="pqumum0qicqsdiem" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/11/12/sem_lavaanパッケージ/" data-id="pqumum0qicqsdiem" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a></li></ul>
@@ -237,7 +238,7 @@
       <ul>
         
           <li>
-            <a href="/2014/11/11/sem_lavaanパッケージ/">sem_lavaanパッケージ</a>
+            <a href="/2014/11/12/sem_lavaanパッケージ/">sem_lavaanパッケージ</a>
           </li>
         
           <li>
