@@ -8,7 +8,7 @@
   <meta name="description" content="sem,qgraph,Rgraphviz">
 <meta property="og:type" content="article">
 <meta property="og:title" content="sem_PLSモデル">
-<meta property="og:url" content="http://yoursite.com/2014/11/10/sem_PLSモデル/">
+<meta property="og:url" content="http://yoursite.com/2014/11/12/sem_PLSモデル/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
 <meta property="og:description" content="sem,qgraph,Rgraphviz">
 <meta property="og:image" content="/images/sem03.png">
@@ -94,8 +94,8 @@
       <div class="outer">
         <section id="main"><article id="post-sem_PLSモデル" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/11/10/sem_PLSモデル/" class="article-date">
-  <time datetime="2014-11-10T09:50:59.000Z" itemprop="datePublished">Nov 10 2014</time>
+    <a href="/2014/11/12/sem_PLSモデル/" class="article-date">
+  <time datetime="2014-11-12T11:19:46.000Z" itemprop="datePublished">Nov 12 2014</time>
 </a>
     
   <div class="article-category">
@@ -123,7 +123,7 @@
 
 <p>(参考)<br><a href="http://m884.hateblo.jp/entry/2012/05/05/202927" target="_blank" rel="external">はやしさんのブログ Rev.3</a><br><a href="http://wwwhum.meijo-u.ac.jp/labs/hh002/r/rconsole.html" target="_blank" rel="external">名城大学人間学部神谷研究室</a></p>
 <h3 id="(準備)_graphvizをインストールする">(準備)　graphvizをインストールする</h3>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">library(sem)</div><div class="line"><span class="comment">#library(semPlot)</span></div><div class="line">library(qgraph)</div><div class="line">library(knitr)</div><div class="line"><span class="comment">#blue backs「原因をさぐる統計学」p.88 データ</span></div><div class="line">data &lt;- read.table(<span class="string">"http://wwwhum.meijo-u.ac.jp/labs/hh002/r/rfile/gan.csv"</span>, header=<span class="constant">TRUE</span>, sep=<span class="string">","</span>, na.strings=<span class="string">"NA"</span>, dec=<span class="string">"."</span>, </div><div class="line">strip.white=<span class="constant">TRUE</span>)</div><div class="line">names(data)&lt;-c(<span class="string">"総熱量"</span>,<span class="string">"肉類"</span>,<span class="string">"乳製品"</span>,<span class="string">"酒類"</span>,<span class="string">"大腸ガン"</span>,<span class="string">"直腸ガン"</span>)</div><div class="line">soukan&lt;-cor(data)</div><div class="line"> </div><div class="line"><span class="comment">#covsオプションに"変数1, 変数2"という形で共分散を指定</span></div><div class="line">model.c1 &lt;- specifyEquations(</div><div class="line"> covs=<span class="string">"総熱量, 肉類,乳製品,酒類"</span>)</div><div class="line">洋食傾向 = gam1*総熱量 + gam2*肉類+ gam3*乳製品 + gam4*酒類</div><div class="line"><span class="constant">V</span>(洋食傾向)=<span class="number">1</span></div><div class="line"><span class="input"><span class="prompt"></span></span></div><div class="line"></div><div class="line">model.c2 &lt;- specifyModel()</div><div class="line">消化管ガン -&gt; 大腸ガン, lam61, <span class="constant">NA</span></div><div class="line"><span class="input"><span class="prompt">消化管ガン -&gt;</span> 直腸ガン, lam62, <span class="constant">NA</span></span></div><div class="line"><span class="input"><span class="prompt">消化管ガン &lt;-&gt;</span> 消化管ガン, <span class="constant">NA</span>, <span class="number">1</span></span></div><div class="line"><span class="input"><span class="prompt">洋食傾向 -&gt;</span> 消化管ガン, <span class="constant">NA</span>, <span class="number">1</span></span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#モデルを結合</span></div><div class="line">model.c&lt;- combineModels(model.c1, model.c2)</div><div class="line"><span class="comment">#標準的なsemmodクラスに変換</span></div><div class="line">model &lt;- removeRedundantPaths(model.c)</div><div class="line">fit &lt;- <span class="symbol">sem:</span><span class="symbol">:</span><span class="symbol">:sem</span>(model,soukan, <span class="constant">N</span>=<span class="number">47</span>)</div><div class="line">kable(stdCoef(fit))</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">library(sem)</div><div class="line"><span class="comment">#library(semPlot)</span></div><div class="line">library(qgraph)</div><div class="line">library(knitr)</div><div class="line"><span class="comment">#blue backs「原因をさぐる統計学」p.88 データ</span></div><div class="line">data &lt;- read.table(<span class="string">"http://wwwhum.meijo-u.ac.jp/labs/hh002/r/rfile/gan.csv"</span>, header=<span class="constant">TRUE</span>, sep=<span class="string">","</span>, na.strings=<span class="string">"NA"</span>, dec=<span class="string">"."</span>, </div><div class="line">strip.white=<span class="constant">TRUE</span>)</div><div class="line">names(data)&lt;-c(<span class="string">"総熱量"</span>,<span class="string">"肉類"</span>,<span class="string">"乳製品"</span>,<span class="string">"酒類"</span>,<span class="string">"大腸ガン"</span>,<span class="string">"直腸ガン"</span>)</div><div class="line">soukan&lt;-cor(data)</div><div class="line"> </div><div class="line"><span class="comment">#covsオプションに"変数1, 変数2"という形で共分散を指定</span></div><div class="line"><span class="comment">#endog.variances=F (洋食傾向に誤差項をつけない)</span></div><div class="line">model.c1 &lt;- specifyEquations(endog.variances=<span class="constant">F</span>,</div><div class="line"> covs=<span class="string">"総熱量, 肉類,乳製品,酒類"</span>)</div><div class="line">洋食傾向 = gam1*総熱量 + gam2*肉類+ gam3*乳製品 + gam4*酒類</div><div class="line"><span class="input"><span class="prompt"></span></span></div><div class="line"></div><div class="line">model.c2 &lt;- specifyModel()</div><div class="line">消化管ガン -&gt; 大腸ガン, lam61, <span class="constant">NA</span></div><div class="line"><span class="input"><span class="prompt">消化管ガン -&gt;</span> 直腸ガン, lam62, <span class="constant">NA</span></span></div><div class="line"><span class="input"><span class="prompt">消化管ガン &lt;-&gt;</span> 消化管ガン, <span class="constant">NA</span>, <span class="number">1</span></span></div><div class="line"><span class="input"><span class="prompt">洋食傾向 -&gt;</span> 消化管ガン, <span class="constant">NA</span>, <span class="number">1</span></span></div><div class="line"><span class="input"><span class="prompt">洋食傾向 &lt;-&gt;</span> 洋食傾向,<span class="constant">NA</span>,<span class="number">0</span></span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#モデルを結合</span></div><div class="line">model.c&lt;- combineModels(model.c1, model.c2)</div><div class="line"><span class="comment">#標準的なsemmodクラスに変換</span></div><div class="line">model &lt;- removeRedundantPaths(model.c)</div><div class="line">fit &lt;- <span class="symbol">sem:</span><span class="symbol">:</span><span class="symbol">:sem</span>(model,soukan, <span class="constant">N</span>=<span class="number">47</span>)</div><div class="line">kable(stdCoef(fit))</div></pre></td></tr></table></figure>
 
 <table>
 <thead>
@@ -136,28 +136,23 @@
 <tbody>
 <tr>
 <td style="text-align:left">gam1</td>
-<td style="text-align:right">0.3378809</td>
+<td style="text-align:right">0.3449044</td>
 <td style="text-align:left">洋食傾向 &lt;—- 総熱量</td>
 </tr>
 <tr>
 <td style="text-align:left">gam2</td>
-<td style="text-align:right">0.6598349</td>
+<td style="text-align:right">0.6735523</td>
 <td style="text-align:left">洋食傾向 &lt;—- 肉類</td>
 </tr>
 <tr>
 <td style="text-align:left">gam3</td>
-<td style="text-align:right">-0.1362843</td>
+<td style="text-align:right">-0.1391173</td>
 <td style="text-align:left">洋食傾向 &lt;—- 乳製品</td>
 </tr>
 <tr>
 <td style="text-align:left">gam4</td>
-<td style="text-align:right">0.2076667</td>
+<td style="text-align:right">0.2119839</td>
 <td style="text-align:left">洋食傾向 &lt;—- 酒類</td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:right">0.0403159</td>
-<td style="text-align:left">洋食傾向 &lt;—&gt; 洋食傾向</td>
 </tr>
 <tr>
 <td style="text-align:left">V[総熱量]</td>
@@ -166,17 +161,17 @@
 </tr>
 <tr>
 <td style="text-align:left">C[総熱量,肉類]</td>
-<td style="text-align:right">0.7731108</td>
+<td style="text-align:right">0.7731110</td>
 <td style="text-align:left">肉類 &lt;—&gt; 総熱量</td>
 </tr>
 <tr>
 <td style="text-align:left">C[総熱量,乳製品]</td>
-<td style="text-align:right">0.7155249</td>
+<td style="text-align:right">0.7155246</td>
 <td style="text-align:left">乳製品 &lt;—&gt; 総熱量</td>
 </tr>
 <tr>
 <td style="text-align:left">C[総熱量,酒類]</td>
-<td style="text-align:right">0.6341240</td>
+<td style="text-align:right">0.6341239</td>
 <td style="text-align:left">酒類 &lt;—&gt; 総熱量</td>
 </tr>
 <tr>
@@ -186,12 +181,12 @@
 </tr>
 <tr>
 <td style="text-align:left">C[肉類,乳製品]</td>
-<td style="text-align:right">0.7227995</td>
+<td style="text-align:right">0.7227996</td>
 <td style="text-align:left">乳製品 &lt;—&gt; 肉類</td>
 </tr>
 <tr>
 <td style="text-align:left">C[肉類,酒類]</td>
-<td style="text-align:right">0.4515933</td>
+<td style="text-align:right">0.4515932</td>
 <td style="text-align:left">酒類 &lt;—&gt; 肉類</td>
 </tr>
 <tr>
@@ -201,7 +196,7 @@
 </tr>
 <tr>
 <td style="text-align:left">C[乳製品,酒類]</td>
-<td style="text-align:right">0.2321335</td>
+<td style="text-align:right">0.2321328</td>
 <td style="text-align:left">酒類 &lt;—&gt; 乳製品</td>
 </tr>
 <tr>
@@ -216,18 +211,23 @@
 </tr>
 <tr>
 <td style="text-align:left">lam62</td>
-<td style="text-align:right">0.8272906</td>
+<td style="text-align:right">0.8272908</td>
 <td style="text-align:left">直腸ガン &lt;—- 消化管ガン</td>
 </tr>
 <tr>
 <td style="text-align:left"></td>
-<td style="text-align:right">0.0387535</td>
+<td style="text-align:right">0.0775069</td>
 <td style="text-align:left">消化管ガン &lt;—&gt; 消化管ガン</td>
 </tr>
 <tr>
 <td style="text-align:left"></td>
-<td style="text-align:right">0.9804318</td>
+<td style="text-align:right">0.9604650</td>
 <td style="text-align:left">消化管ガン &lt;—- 洋食傾向</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:right">0.0000000</td>
+<td style="text-align:left">洋食傾向 &lt;—&gt; 洋食傾向</td>
 </tr>
 <tr>
 <td style="text-align:left">V[大腸ガン]</td>
@@ -236,37 +236,29 @@
 </tr>
 <tr>
 <td style="text-align:left">V[直腸ガン]</td>
-<td style="text-align:right">0.3155903</td>
+<td style="text-align:right">0.3155899</td>
 <td style="text-align:left">直腸ガン &lt;—&gt; 直腸ガン</td>
 </tr>
 </tbody>
 </table>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">summary</span><span class="params">(fit)</span></span></div></pre></td></tr></table></figure>
 
-<p> Model Chisquare =  17.34207   Df =  3 Pr(&gt;Chisq) = 0.0006010001<br> AIC =  53.34207<br> BIC =  5.791629  </p>
-<p> Normalized Residuals<br>      Min.    1st Qu.     Median       Mean    3rd Qu.       Max.<br>-0.3885000  0.0000005  0.0000028  0.0068210  0.0000040  0.5215000   </p>
-<p> R-square for Endogenous Variables<br>  洋食傾向 消化管ガン   大腸ガン   直腸ガン<br>    0.9597     0.9612     0.8271     0.6844   </p>
-<p> Parameter Estimates<br>                 Estimate   Std Error  z value   Pr(&gt;|z|)<br>gam1              1.6827726 0.98508162  1.708257 8.758866e-02 洋食傾向 &lt;—- 総熱量<br>gam2              3.2862240 1.39185649  2.361037 1.822394e-02 洋食傾向 &lt;—- 肉類<br>gam3             -0.6787468 0.65296589 -1.039483 2.985803e-01 洋食傾向 &lt;—- 乳製品<br>gam4              1.0342575 0.63844514  1.619963 1.052402e-01 洋食傾向 &lt;—- 酒類<br>V[総熱量]         0.9999997 0.20851435  4.795832 1.620014e-06 総熱量 &lt;—&gt; 総熱量<br>C[総熱量,肉類]    0.7731104 0.18636677  4.148327 3.349135e-05 肉類 &lt;—&gt; 総熱量<br>C[総熱量,乳製品]  0.7155246 0.18129813  3.946674 7.924435e-05 乳製品 &lt;—&gt; 総熱量<br>C[総熱量,酒類]    0.6341237 0.17458720  3.632132 2.810897e-04 酒類 &lt;—&gt; 総熱量<br>V[肉類]           0.9999991 0.20851423  4.795832 1.620014e-06 肉類 &lt;—&gt; 肉類<br>C[肉類,乳製品]    0.7227990 0.18192430  3.973075 7.095059e-05 乳製品 &lt;—&gt; 肉類<br>C[肉類,酒類]      0.4515929 0.16177914  2.791416 5.247791e-03 酒類 &lt;—&gt; 肉類<br>V[乳製品]         0.9999994 0.20851428  4.795832 1.620014e-06 乳製品 &lt;—&gt; 乳製品<br>C[乳製品,酒類]    0.2321333 0.15136225  1.533628 1.251213e-01 酒類 &lt;—&gt; 乳製品<br>V[酒類]           0.9999992 0.20851425  4.795832 1.620014e-06 酒類 &lt;—&gt; 酒類<br>lam61             0.1790355 0.06910907  2.590623 9.580251e-03 大腸ガン &lt;—- 消化管ガン<br>lam62             0.1628597 0.06286508  2.590623 9.580251e-03 直腸ガン &lt;—- 消化管ガン<br>V[大腸ガン]       0.1728823 0.05975160  2.893350 3.811563e-03 大腸ガン &lt;—&gt; 大腸ガン<br>V[直腸ガン]       0.3155902 0.07671436  4.113834 3.891413e-05 直腸ガン &lt;—&gt; 直腸ガン  </p>
-<p> Iterations =  75 </p>
+<p>Model Chisquare =  17.34207   Df =  3 Pr(&gt;Chisq) = 0.0006010001<br> AIC =  53.34207<br> BIC =  5.791629  </p>
+<p> Normalized Residuals<br>   Min.    1st Qu.     Median       Mean    3rd Qu.       Max.<br>-0.3885000 -0.0000015  0.0000000  0.0068180  0.0000014  0.5215000   </p>
+<p> R-square for Endogenous Variables<br>  洋食傾向 消化管ガン   大腸ガン   直腸ガン<br>   1.0000     0.9225     0.8271     0.6844   </p>
+<p> Parameter Estimates<br>   Estimate   Std Error  z value   Pr(&gt;|z|)<br>gam1              1.1898995 0.69655784  1.708257   8.758874e-02 洋食傾向 &lt;—- 総熱量<br>gam2              2.3237115 0.98419115  2.361037   1.822393e-02 洋食傾向 &lt;—- 肉類<br>gam3             -0.4799463 0.46171648 -1.039483 2.985803e-01 洋食傾向 &lt;—- 乳製品<br>gam4              0.7313307 0.45144880  1.619964 1.052401e-01 洋食傾向 &lt;—- 酒類<br>V[総熱量]         0.9999997 0.20851434  4.795832 1.620014e-06 総熱量 &lt;—&gt; 総熱量<br>C[総熱量,肉類]    0.7731107 0.18636684  4.148327 3.349131e-05 肉類 &lt;—&gt; 総熱量<br>C[総熱量,乳製品]  0.7155249 0.18129821  3.946674 7.924433e-05 乳製品 &lt;—&gt; 総熱量<br>C[総熱量,酒類]    0.6341241 0.17458730  3.632132 2.810895e-04 酒類 &lt;—&gt; 総熱量<br>V[肉類]           0.9999998 0.20851438  4.795832 1.620014e-06 肉類 &lt;—&gt; 肉類<br>C[肉類,乳製品]    0.7227997 0.18192446  3.973076 7.095045e-05 乳製品 &lt;—&gt; 肉類<br>C[肉類,酒類]      0.4515934 0.16177929  2.791417 5.247789e-03 酒類 &lt;—&gt; 肉類<br>V[乳製品]         1.0000003 0.20851447  4.795832 1.620014e-06 乳製品 &lt;—&gt; 乳製品<br>C[乳製品,酒類]    0.2321335 0.15136241  1.533627 1.251214e-01 酒類 &lt;—&gt; 乳製品<br>V[酒類]           1.0000004 0.20851449  4.795832 1.620014e-06 酒類 &lt;—&gt; 酒類<br>lam61             0.2531944 0.09773497  2.590623 9.580246e-03 大腸ガン &lt;—- 消化管ガン<br>lam62             0.2303184 0.08890465  2.590623 9.580246e-03 直腸ガン &lt;—- 消化管ガン<br>V[大腸ガン]       0.1728823 0.05975160  2.893350 3.811566e-03 大腸ガン &lt;—&gt; 大腸ガン<br>V[直腸ガン]       0.3155902 0.07671436  4.113834 3.891411e-05 直腸ガン &lt;—&gt; 直腸ガン  </p>
+<p> Iterations =  51 </p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">qgraph(fit,edge.<span class="variable">labels=</span>T,<span class="variable">layout =</span><span class="string">"tree"</span>,vsize.<span class="variable">man=</span><span class="number">6</span>,vsize.<span class="variable">lat=</span><span class="number">8</span>,<span class="variable">fade=</span>F)</div></pre></td></tr></table></figure>
 
 <p><img src="/images/sem03.png" alt=""></p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">library(Rgraphviz)</div><div class="line">pathDiagram(fit,edge.<span class="variable">labels=</span><span class="string">"values"</span>,ignore.<span class="variable">double=</span>T,<span class="variable">standardize=</span>T,<span class="variable">digits=</span><span class="number">2</span>,<span class="variable">file=</span><span class="string">"sem3"</span>,graphics.<span class="variable">fmt =</span><span class="string">"png"</span>,</div><div class="line">node.<span class="variable">font =</span> c(<span class="string">"serif"</span>, <span class="number">14</span>), edge.<span class="variable">font =</span> c(<span class="string">"sans"</span>, <span class="number">10</span>),</div><div class="line">min.<span class="variable">rank=</span><span class="string">"総熱量, 肉類, 乳製品, 酒類"</span>,max.<span class="variable">rank=</span><span class="string">"大腸ガン, 直腸ガン"</span>,same.<span class="variable">rank=</span>NULL)</div></pre></td></tr></table></figure>
 
 <p><img src="/images/sem3.png" alt=""></p>
-<h4 id="従来の記法">従来の記法</h4>
-<p>model.c &lt;- specifyModel()  </p>
-<h5 id="model-c1">model.c1</h5>
-<p>総熱量 -&gt; 洋食傾向, gam11, NA<br>肉類 -&gt; 洋食傾向, gam12, NA<br>乳製品 -&gt; 洋食傾向, gam13, NA<br>酒類 -&gt; 洋食傾向, gam14, NA<br>洋食傾向 &lt;-&gt; 洋食傾向,  NA, 1<br>総熱量  &lt;-&gt; 肉類, phi12, NA<br>総熱量  &lt;-&gt; 乳製品, phi13, NA<br>総熱量  &lt;-&gt; 酒類, phi14, NA<br>肉類  &lt;-&gt; 乳製品, phi23, NA<br>肉類  &lt;-&gt; 酒類, phi24, NA<br>乳製品  &lt;-&gt; 酒類, phi34, NA  </p>
-<h5 id="model-c2">model.c2</h5>
-<p>消化管ガン -&gt; 大腸ガン, lam61, NA<br>消化管ガン -&gt; 直腸ガン, lam62, NA<br>消化管ガン &lt;-&gt; 消化管ガン, NA, 1<br>洋食傾向 -&gt; 消化管ガン, NA, 1  </p>
-<h5 id="表記の必要無し">表記の必要無し</h5>
-<p>総熱量  &lt;-&gt; 総熱量, phi11, NA<br>肉類  &lt;-&gt; 肉類, phi22, NA<br>乳製品  &lt;-&gt; 乳製品, phi33, NA<br>酒類  &lt;-&gt; 酒類, phi44, NA<br>大腸ガン &lt;-&gt; 大腸ガン, theta1, NA<br>直腸ガン &lt;-&gt; 直腸ガン, theta2, NA  </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/11/10/sem_PLSモデル/" data-id="y30nva91nuspfozx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/11/12/sem_PLSモデル/" data-id="y30nva91nuspfozx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a></li></ul>
@@ -277,19 +269,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2014/11/12/sem_lavaanパッケージ/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          sem_lavaanパッケージ
-        
-      </div>
-    </a>
   
-  
-    <a href="/2014/11/10/sem_MIMICモデル/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2014/11/12/sem_lavaanパッケージ/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">sem_MIMICモデル</div>
+      <div class="article-nav-title">sem_lavaanパッケージ</div>
     </a>
   
 </nav>
@@ -344,11 +327,11 @@
       <ul>
         
           <li>
-            <a href="/2014/11/12/sem_lavaanパッケージ/">sem_lavaanパッケージ</a>
+            <a href="/2014/11/12/sem_PLSモデル/">sem_PLSモデル</a>
           </li>
         
           <li>
-            <a href="/2014/11/10/sem_PLSモデル/">sem_PLSモデル</a>
+            <a href="/2014/11/12/sem_lavaanパッケージ/">sem_lavaanパッケージ</a>
           </li>
         
           <li>
