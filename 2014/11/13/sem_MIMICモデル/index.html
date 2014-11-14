@@ -8,7 +8,7 @@
   <meta name="description" content="sem,qgraph,Rgraphviz">
 <meta property="og:type" content="article">
 <meta property="og:title" content="sem_MIMICモデル">
-<meta property="og:url" content="http://yoursite.com/2014/11/10/sem_MIMICモデル/">
+<meta property="og:url" content="http://yoursite.com/2014/11/13/sem_MIMICモデル/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
 <meta property="og:description" content="sem,qgraph,Rgraphviz">
 <meta property="og:image" content="/images/sem02.png">
@@ -94,8 +94,8 @@
       <div class="outer">
         <section id="main"><article id="post-sem_MIMICモデル" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/11/10/sem_MIMICモデル/" class="article-date">
-  <time datetime="2014-11-10T09:39:12.000Z" itemprop="datePublished">Nov 10 2014</time>
+    <a href="/2014/11/13/sem_MIMICモデル/" class="article-date">
+  <time datetime="2014-11-13T11:03:58.000Z" itemprop="datePublished">Nov 13 2014</time>
 </a>
     
   <div class="article-category">
@@ -123,7 +123,7 @@
 
 <p>(参考)<br><a href="http://m884.hateblo.jp/entry/2012/05/05/202927" target="_blank" rel="external">はやしさんのブログ Rev.3</a><br><a href="http://wwwhum.meijo-u.ac.jp/labs/hh002/r/rconsole.html" target="_blank" rel="external">名城大学人間学部神谷研究室</a></p>
 <h3 id="(準備)_graphvizをインストールする">(準備)　graphvizをインストールする</h3>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">library(sem)</div><div class="line"><span class="comment">#library(semPlot)</span></div><div class="line">library(qgraph)</div><div class="line">library(knitr)</div><div class="line"><span class="comment">#blue backs「原因をさぐる統計学」p.88 データ</span></div><div class="line">data &lt;- read.table(<span class="string">"http://wwwhum.meijo-u.ac.jp/labs/hh002/r/rfile/gan.csv"</span>, <span class="variable">header=</span>TRUE, <span class="variable">sep=</span><span class="string">","</span>, na.<span class="variable">strings=</span><span class="string">"NA"</span>, <span class="variable">dec=</span><span class="string">"."</span>, </div><div class="line">strip.<span class="variable">white=</span>TRUE)</div><div class="line">names(data)&lt;-c(<span class="string">"総熱量"</span>,<span class="string">"肉類"</span>,<span class="string">"乳製品"</span>,<span class="string">"酒類"</span>,<span class="string">"大腸ガン"</span>,<span class="string">"直腸ガン"</span>)</div><div class="line">soukan&lt;-cor(data)</div><div class="line"></div><div class="line"><span class="comment">#covsオプションに"変数1, 変数2"という形で共分散を指定</span></div><div class="line">model.b1 &lt;- specifyEquations(</div><div class="line"> <span class="variable">covs=</span><span class="string">"総熱量, 肉類,乳製品,酒類"</span>)</div><div class="line">消化管ガン = gam1*総熱量 + gam2*肉類+ gam3*乳製品 + gam4*酒類</div><div class="line"></div><div class="line"></div><div class="line">model.b2 &lt;- cfa(reference.<span class="variable">indicators=</span>T)</div><div class="line">消化管ガン: 大腸ガン, 直腸ガン</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#モデルを結合</span></div><div class="line">model.b&lt;- combineModels(model.b1, model.b2)</div><div class="line"><span class="comment">#標準的なsemmodクラスに変換</span></div><div class="line">model &lt;- removeRedundantPaths(model.b)</div><div class="line">fit &lt;- sem:::sem(model, soukan, <span class="variable">N=</span><span class="number">47</span>)</div><div class="line">kable(stdCoef(fit))</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">library(sem)</div><div class="line"><span class="comment">#library(semPlot)</span></div><div class="line">library(qgraph)</div><div class="line">library(knitr)</div><div class="line"><span class="comment">#blue backs「原因をさぐる統計学」p.88 データ</span></div><div class="line">data &lt;- read.table(<span class="string">"http://wwwhum.meijo-u.ac.jp/labs/hh002/r/rfile/gan.csv"</span>, <span class="variable">header=</span>TRUE, <span class="variable">sep=</span><span class="string">","</span>, na.<span class="variable">strings=</span><span class="string">"NA"</span>, <span class="variable">dec=</span><span class="string">"."</span>, </div><div class="line">strip.<span class="variable">white=</span>TRUE)</div><div class="line">names(data)&lt;-c(<span class="string">"総熱量"</span>,<span class="string">"肉類"</span>,<span class="string">"乳製品"</span>,<span class="string">"酒類"</span>,<span class="string">"大腸ガン"</span>,<span class="string">"直腸ガン"</span>)</div><div class="line">soukan&lt;-cor(data)</div><div class="line"></div><div class="line"><span class="comment">#covsオプションに"変数1, 変数2"という形で共分散を指定</span></div><div class="line">model.b1 &lt;- specifyEquations(</div><div class="line"> <span class="variable">covs=</span><span class="string">"総熱量, 肉類,乳製品,酒類"</span>)</div><div class="line">消化管ガン = gam1*総熱量 + gam2*肉類+ gam3*乳製品 + gam4*酒類</div><div class="line"></div><div class="line"></div><div class="line">model.b2 &lt;- cfa(reference.<span class="variable">indicators=</span>T)</div><div class="line">消化管ガン: 大腸ガン, 直腸ガン</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#モデルを結合</span></div><div class="line">model.b&lt;- combineModels(model.b1, model.b2)</div><div class="line"><span class="comment">#標準的なsemmodクラスに変換</span></div><div class="line">model &lt;- removeRedundantPaths(model.b)</div><div class="line">fit &lt;- sem:::sem(model, soukan, <span class="variable">N=</span>nrow(data))</div><div class="line">kable(stdCoef(fit))</div></pre></td></tr></table></figure>
 
 <table>
 <thead>
@@ -276,7 +276,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/11/10/sem_MIMICモデル/" data-id="1nj5n2xkykqk5eok" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/11/13/sem_MIMICモデル/" data-id="1nj5n2xkykqk5eok" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a></li></ul>
@@ -287,17 +287,17 @@
     
 <nav id="article-nav">
   
-    <a href="/2014/11/12/sem_lavaanパッケージ/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2014/11/14/因子分析＆確証的因子分析/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          sem_lavaanパッケージ
+          因子分析＆確証的因子分析
         
       </div>
     </a>
   
   
-    <a href="/2014/11/10/sem_多重指標モデル/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2014/11/13/sem_多重指標モデル/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">sem_多重指標モデル</div>
     </a>
@@ -315,7 +315,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Gambit/">Gambit</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NetworkX/">NetworkX</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/放送大学/">放送大学</a><span class="category-list-count">45</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Gambit/">Gambit</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NetworkX/">NetworkX</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/放送大学/">放送大学</a><span class="category-list-count">45</span></li></ul>
     </div>
   </div>
 
@@ -324,7 +324,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">13</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">13</span></li></ul>
     </div>
   </div>
 
@@ -333,7 +333,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/HEXO/" style="font-size: 10.00px;">HEXO</a><a href="/tags/Rパッケージ/" style="font-size: 12.50px;">Rパッケージ</a><a href="/tags/データからの知識発見/" style="font-size: 15.00px;">データからの知識発見</a><a href="/tags/問題解決の数理/" style="font-size: 20.00px;">問題解決の数理</a><a href="/tags/心理・教育統計法特論/" style="font-size: 12.50px;">心理・教育統計法特論</a><a href="/tags/心理統計法/" style="font-size: 17.50px;">心理統計法</a>
+      <a href="/tags/HEXO/" style="font-size: 10.00px;">HEXO</a><a href="/tags/Rパッケージ/" style="font-size: 14.00px;">Rパッケージ</a><a href="/tags/データからの知識発見/" style="font-size: 16.00px;">データからの知識発見</a><a href="/tags/問題解決の数理/" style="font-size: 20.00px;">問題解決の数理</a><a href="/tags/心理・教育統計法特論/" style="font-size: 12.00px;">心理・教育統計法特論</a><a href="/tags/心理統計法/" style="font-size: 18.00px;">心理統計法</a>
     </div>
   </div>
 
@@ -342,7 +342,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">34</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">34</span></li></ul>
     </div>
   </div>
 
@@ -354,7 +354,15 @@
       <ul>
         
           <li>
-            <a href="/2014/11/12/sem_PLSモデル/">sem_PLSモデル</a>
+            <a href="/2014/11/14/因子分析＆確証的因子分析/">因子分析＆確証的因子分析</a>
+          </li>
+        
+          <li>
+            <a href="/2014/11/13/sem_MIMICモデル/">sem_MIMICモデル</a>
+          </li>
+        
+          <li>
+            <a href="/2014/11/13/sem_多重指標モデル/">sem_多重指標モデル</a>
           </li>
         
           <li>
@@ -362,15 +370,7 @@
           </li>
         
           <li>
-            <a href="/2014/11/10/sem_MIMICモデル/">sem_MIMICモデル</a>
-          </li>
-        
-          <li>
-            <a href="/2014/11/10/sem_多重指標モデル/">sem_多重指標モデル</a>
-          </li>
-        
-          <li>
-            <a href="/2014/10/30/時系列解析1/">時系列解析の勉強1</a>
+            <a href="/2014/11/12/sem_PLSモデル/">sem_PLSモデル</a>
           </li>
         
       </ul>
