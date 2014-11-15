@@ -3,18 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>回帰分析(データからの知識発見) | 統計ソフトRの備忘録２</title>
+  <title>Category: Gnumeric | 統計ソフトRの備忘録２</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="放送大学「データからの知識発見」第６章　回帰分析">
-<meta property="og:type" content="article">
-<meta property="og:title" content="回帰分析(データからの知識発見)">
-<meta property="og:url" content="http://yoursite.com/2014/09/19/データからの知識発見第６章/">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="統計ソフトRの備忘録２">
+<meta property="og:url" content="http://yoursite.com/categories/Gnumeric/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
-<meta property="og:description" content="放送大学「データからの知識発見」第６章　回帰分析">
-<meta property="og:image" content="http://blog-imgs-61.fc2.com/s/t/a/statrstart/lm2.jpg">
+<meta property="og:description">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="回帰分析(データからの知識発見)">
-<meta name="twitter:description" content="放送大学「データからの知識発見」第６章　回帰分析">
+<meta name="twitter:title" content="統計ソフトRの備忘録２">
+<meta name="twitter:description">
 
   
     <link rel="alternative" href="/atom.xml" title="統計ソフトRの備忘録２" type="application/atom+xml">
@@ -91,14 +90,16 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-データからの知識発見第６章" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main">
+  
+    <article id="post-Gnumeric" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/09/19/データからの知識発見第６章/" class="article-date">
-  <time datetime="2014-09-19T00:37:50.000Z" itemprop="datePublished">Sep 19 2014</time>
+    <a href="/2014/11/15/Gnumeric/" class="article-date">
+  <time datetime="2014-11-15T12:03:46.000Z" itemprop="datePublished">Nov 15 2014</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/放送大学/">放送大学</a>
+    <a class="article-category-link" href="/categories/Gnumeric/">Gnumeric</a>
   </div>
 
   </div>
@@ -108,8 +109,8 @@
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      回帰分析(データからの知識発見)
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/11/15/Gnumeric/">Gnumeric</a>
     </h1>
   
 
@@ -117,51 +118,29 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="放送大学「データからの知識発見」第６章_回帰分析">放送大学「データからの知識発見」第６章　回帰分析</h2>
-<p><a id="more"></a></p>
-<h3 id="標準化していない身長と体重のデータ（テキストとは異なるデータ）">標準化していない身長と体重のデータ（テキストとは異なるデータ）</h3>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="title">height</span>&lt;-c(<span class="number">147.3</span>,<span class="number">149.9</span>,<span class="number">152.4</span>,<span class="number">154.9</span>,<span class="number">157.5</span>,<span class="number">160</span>,<span class="number">162.6</span>,<span class="number">165.1</span>,<span class="number">167.6</span>,<span class="number">170.2</span>,<span class="number">172.7</span>,<span class="number">175.3</span>,<span class="number">177.8</span>,<span class="number">180.3</span>,<span class="number">182.9</span>)</div><div class="line"><span class="title">weight</span>&lt;-c(<span class="number">52.3</span>,<span class="number">53.2</span>,<span class="number">54.5</span>,<span class="number">55.9</span>,<span class="number">57.3</span>,<span class="number">58.6</span>,<span class="number">60</span>,<span class="number">61.4</span>,<span class="number">63.2</span>,<span class="number">64.5</span>,<span class="number">66.4</span>,<span class="number">68.2</span>,<span class="number">70</span>,<span class="number">72.3</span>,<span class="number">74.5</span>)</div><div class="line"><span class="title">w1</span>&lt;-<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(<span class="title">height</span>,<span class="title">weight</span>)</span></span></div><div class="line"><span class="title">row</span>.names(w1)&lt;-c(<span class="string">"A1"</span>,<span class="string">"A2"</span>,<span class="string">"A3"</span>,<span class="string">"A4"</span>,<span class="string">"A5"</span>,<span class="string">"A6"</span>,<span class="string">"A7"</span>,<span class="string">"A8"</span>,<span class="string">"A9"</span>,<span class="string">"A10"</span>,<span class="string">"A11"</span>,<span class="string">"A12"</span>,<span class="string">"A13"</span>,<span class="string">"A14"</span>,<span class="string">"A15"</span>)</div><div class="line"><span class="title">w2</span>&lt;-lm(weight~height,<span class="typedef"><span class="keyword">data</span>=w1)</span></div><div class="line"><span class="title">library</span>(stargazer)</div><div class="line"><span class="title">stargazer</span>(w2,<span class="typedef"><span class="keyword">type</span>="html",single.row=<span class="type">T</span>)</span></div></pre></td></tr></table></figure>
+        <h2 id="Gnumericのソルバー">Gnumericのソルバー</h2>
 
-<table style="text-align:center"><tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"></td><td><em>Dependent variable:</em></td></tr><br><tr><td></td><td colspan="1" style="border-bottom: 1px solid black"></td></tr><br><tr><td style="text-align:left"></td><td>weight</td></tr><br><tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">height</td><td>0.617<sup><strong><em></em></strong></sup> (0.016)</td></tr><br><tr><td style="text-align:left">Constant</td><td>-39.755<sup></sup> (2.692)</td></tr><br><tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">Observations</td><td>15</td></tr><br><tr><td style="text-align:left">R<sup>2</sup></td><td>0.991</td></tr><br><tr><td style="text-align:left">Adjusted R<sup>2</sup></td><td>0.990</td></tr><br><tr><td style="text-align:left">Residual Std. Error</td><td>0.692 (df = 13)</td></tr><br><tr><td style="text-align:left">F Statistic</td><td>1,439.108<sup><strong><em></em></strong></sup> (df = 1; 13)</td></tr><br><tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"><em>Note:</em></td><td style="text-align:right"><sup></sup>p<0.1; <sup="">p<0.05; <sup=""><em>*</em>p<0.01< td=""></0.01<></0.05;></0.1;></td></tr><br></table>
-
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">plot</span><span class="params">(w1,main=<span class="string">"回帰直線"</span>)</span></span></div><div class="line"><span class="title">abline</span><span class="params">(w2,col=<span class="string">"red"</span>)</span></div></pre></td></tr></table></figure>
-
-<p><img src="http://blog-imgs-61.fc2.com/s/t/a/statrstart/lm2.jpg" alt=""></p>
-
+        
+          <p class="article-more-link">
+            <a href="/2014/11/15/Gnumeric/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/09/19/データからの知識発見第６章/" data-id="yjbu91drwpryso6d" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/11/15/Gnumeric/" data-id="14du5wo3rgzwgttv" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a></li></ul>
 
     </footer>
   </div>
   
-    
-<nav id="article-nav">
-  
-    <a href="/2014/09/19/データからの知識発見第７章/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          多次元尺度法
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2014/09/19/データからの知識発見第５章/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">主成分分析</div>
-    </a>
-  
-</nav>
-
-  
 </article>
 
+
+  
+  
 </section>
         
           <aside id="sidebar">
