@@ -1,0 +1,25 @@
+digraph  fit  {
+rankdir=LR;
+size="8,8";
+edge [fontname="sans" fontsize=10];
+center=1;
+node [shape =ellipse, style = filled,fillcolor = "#f4fd78"];傾き 切片;
+node [fontname="serif" fontsize=14 shape=box, style = filled,fillcolor = "#a9fab1"];
+#
+graph [ranksep = 1.5, nodesep = 0.5 ordering=out];
+{rank=same 傾き 切片} ;
+{rank=same 英語力1年 英語力2年 英語力3年 } ;
+#
+傾き->英語力1年[label=0];
+傾き->英語力2年[label=0.29];
+傾き->英語力3年[label=0.47];
+切片->英語力1年[label=0.96];
+切片->英語力2年[label=0.85];
+切片->英語力3年[label=0.7];
+傾き->切片[label=0.36dir=both];
+英語力1年->英語力1年[label=0.08dir=both, headport=e, tailport=e];
+英語力2年->英語力2年[label=0.015dir=both, headport=e, tailport=e];
+英語力3年->英語力3年[label=0.053dir=both, headport=e, tailport=e];
+#傾き->傾き[label=1dir=both];
+#切片->切片[label=1dir=both];
+}

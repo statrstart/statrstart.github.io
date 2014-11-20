@@ -1,0 +1,29 @@
+digraph  fit  {
+rankdir=LR;
+size="8,8";
+edge [fontname="sans" fontsize=10];
+center=1;
+node [shape =ellipse, style = filled,fillcolor = "#f4fd78"];傾き 切片;
+node [fontname="serif" fontsize=14 shape=box, style = filled,fillcolor = "#a9fab1"];
+#
+graph [ranksep = 1.5, nodesep = 0.5 ordering=out];
+{rank=min 語学への関心} 
+{rank=same 傾き 切片} 
+{rank=max 英語力1年 英語力2年 英語力3年} 
+#
+傾き->英語力1年[label=0];
+傾き->英語力2年[label=0.31];
+傾き->英語力3年[label=0.52];
+切片->英語力1年[label=0.97];
+切片->英語力2年[label=0.85];
+切片->英語力3年[label=0.7];
+傾き->語学への関心[label=0.87dir=back];
+切片->語学への関心[label=0.22dir=back];
+傾き->切片[label=0.23dir=both];
+英語力1年->英語力1年[label=0.067dir=both , headport=e, tailport=e];
+英語力2年->英語力2年[label=0.028dir=both, headport=e, tailport=e];
+英語力3年->英語力3年[label=0.025dir=both, headport=e, tailport=e];
+傾き->傾き[label=0.24dir=both , headport=n, tailport=n];
+切片->切片[label=0.95dir=both, headport=s, tailport=s];
+#語学への関心->語学への関心[label=1dir=both];
+}
