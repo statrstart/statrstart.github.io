@@ -8,7 +8,7 @@
   <meta name="description" content="forecast、tseries、timsac">
 <meta property="og:type" content="article">
 <meta property="og:title" content="時系列解析の勉強2">
-<meta property="og:url" content="http://yoursite.com/2014/11/16/時系列解析2/">
+<meta property="og:url" content="http://yoursite.com/2014/11/23/時系列解析2/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
 <meta property="og:description" content="forecast、tseries、timsac">
 <meta property="og:image" content="/images/honda01.png">
@@ -96,8 +96,8 @@
       <div class="outer">
         <section id="main"><article id="post-時系列解析2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/11/16/時系列解析2/" class="article-date">
-  <time datetime="2014-11-16T12:54:50.000Z" itemprop="datePublished">Nov 16 2014</time>
+    <a href="/2014/11/23/時系列解析2/" class="article-date">
+  <time datetime="2014-11-23T02:07:23.000Z" itemprop="datePublished">Nov 23 2014</time>
 </a>
     
   <div class="article-category">
@@ -129,7 +129,7 @@
 
 <p><a href="/data/honda.dat">honda.dat</a>を作業ディレクトリへ保存</p>
 <p>読み込んでグラフ化</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">load(<span class="string">"honda.dat"</span>)</div><div class="line"><span class="comment">#項目ごとに分ける</span></div><div class="line">dp&lt;-honda[,<span class="number">1</span>]</div><div class="line">op&lt;-honda[,<span class="number">2</span>]</div><div class="line">sales&lt;-honda[,<span class="number">3</span>]</div><div class="line">export&lt;-honda[,<span class="number">4</span>]</div><div class="line"><span class="comment">#png("honda01.png", width =600, height =600)  # 描画デバイスを開く</span></div><div class="line">ts.plot(dp,op,sales,export,<span class="variable">gpars=</span>list(<span class="variable">xlab=</span><span class="string">"年"</span>,<span class="variable">ylab=</span><span class="string">"台数"</span>,<span class="variable">lty=</span>c(<span class="number">1</span>:<span class="number">4</span>),<span class="variable">col=</span>c(<span class="number">1</span>:<span class="number">4</span>)),<span class="variable">main=</span><span class="string">"HONDA 2010.01_2014.09"</span>)</div><div class="line">legend(<span class="string">"topleft"</span>,c(<span class="string">"国内生産"</span>,<span class="string">"海外生産"</span>,<span class="string">"国内販売"</span>,<span class="string">"輸出"</span>),<span class="variable">lty=</span>c(<span class="number">1</span>:<span class="number">4</span>),<span class="variable">col=</span>c(<span class="number">1</span>:<span class="number">4</span>))</div><div class="line">grid()</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">load(<span class="string">"honda.dat"</span>)</div><div class="line"><span class="comment">#項目ごとに分ける</span></div><div class="line">dp&lt;-honda[,<span class="number">1</span>]</div><div class="line">op&lt;-honda[,<span class="number">2</span>]</div><div class="line">sales&lt;-honda[,<span class="number">3</span>]</div><div class="line">export&lt;-honda[,<span class="number">4</span>]</div><div class="line"><span class="comment">#png("honda01.png", width =600, height =600)  # 描画デバイスを開く</span></div><div class="line">par(<span class="variable">mar=</span>c(<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">6</span>),<span class="variable">las=</span><span class="number">1</span>,cex.<span class="variable">axis=</span><span class="number">0.9</span>,<span class="variable">family=</span><span class="string">"TakaoMincho"</span>)</div><div class="line">ts.plot(dp,op,sales,export,<span class="variable">gpars=</span>list(<span class="variable">xlab=</span><span class="string">"年"</span>,<span class="variable">ylab=</span><span class="string">"台数"</span>,<span class="variable">lty=</span>c(<span class="number">1</span>:<span class="number">4</span>),<span class="variable">col=</span>c(<span class="number">1</span>:<span class="number">4</span>)),<span class="variable">main=</span><span class="string">"HONDA 2010.01_2014.09"</span>)</div><div class="line"><span class="comment">#legend("topleft",c("国内生産","海外生産","国内販売","輸出"),lty=c(1:4),col=c(1:4))</span></div><div class="line"><span class="comment">#axis(4,honda[nrow(honda),], c("国内生産","海外生産","国内販売","輸出"))</span></div><div class="line"><span class="comment">#海外生産と国内販売が重なる-&gt;個別に描く</span></div><div class="line">axis(<span class="number">4</span>,honda[nrow(honda),<span class="number">1</span>], <span class="string">"国内生産"</span>,col.<span class="variable">axis=</span><span class="number">1</span>)</div><div class="line">axis(<span class="number">4</span>,honda[nrow(honda)-<span class="number">5</span>,<span class="number">2</span>], <span class="string">"海外生産"</span>,col.<span class="variable">axis=</span><span class="number">2</span>)</div><div class="line">axis(<span class="number">4</span>,honda[nrow(honda)-<span class="number">5</span>,<span class="number">3</span>], <span class="string">"国内販売"</span>,col.<span class="variable">axis=</span><span class="number">3</span>)</div><div class="line">axis(<span class="number">4</span>,honda[nrow(honda),<span class="number">4</span>], <span class="string">"輸出"</span>,col.<span class="variable">axis=</span><span class="number">4</span>)</div><div class="line">grid()</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
 
 <p><img src="/images/honda01.png" alt=""></p>
 <p>使用するパッケージ</p>
@@ -180,7 +180,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/11/16/時系列解析2/" data-id="82n9qdtabjmh82aa" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/11/23/時系列解析2/" data-id="82n9qdtabjmh82aa" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a></li></ul>
@@ -191,19 +191,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2014/11/20/因子分析＆確証的因子分析/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          因子分析＆確証的因子分析
-        
-      </div>
-    </a>
   
-  
-    <a href="/2014/11/15/Gnumeric/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2014/11/23/sem_OpenMxパッケージ/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Gnumeric</div>
+      <div class="article-nav-title">sem_OpenMxパッケージ</div>
     </a>
   
 </nav>
@@ -258,6 +249,10 @@
       <ul>
         
           <li>
+            <a href="/2014/11/23/時系列解析2/">時系列解析の勉強2</a>
+          </li>
+        
+          <li>
             <a href="/2014/11/23/sem_OpenMxパッケージ/">sem_OpenMxパッケージ</a>
           </li>
         
@@ -271,10 +266,6 @@
         
           <li>
             <a href="/2014/11/20/因子分析＆確証的因子分析/">因子分析＆確証的因子分析</a>
-          </li>
-        
-          <li>
-            <a href="/2014/11/16/時系列解析2/">時系列解析の勉強2</a>
           </li>
         
       </ul>
