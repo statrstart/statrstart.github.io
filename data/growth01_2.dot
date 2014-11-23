@@ -1,0 +1,30 @@
+digraph  fit  {
+rankdir=LR;
+size="8,8";
+#フォントはパソコンに入っているものを指定
+edge [fontname="Noto Sans Japanese" fontsize=10];
+center=1;
+node [shape =ellipse, style = filled,fillcolor = "#f4fd78"];傾き 切片;
+node [fontname="Takao P明朝" fontsize=14 shape=box, style = filled,fillcolor = "#a9fab1"];
+edge [arrowsize = 0.8]; 
+#
+#絶対位置指定
+切片[pos="0,1.5!"];
+傾き[pos="0,2.5!"];
+英語力1年[pos="3,4!"];
+英語力2年[pos="3,2!"];
+英語力3年[pos="3,0!"];
+#
+傾き->英語力1年[label=0];
+傾き->英語力2年[label=0.29];
+傾き->英語力3年[label=0.47];
+切片->英語力1年[label=0.96];
+切片->英語力2年[label=0.85];
+切片->英語力3年[label=0.7];
+傾き->切片[label=0.36,dir=both];
+英語力1年->英語力1年[label=0.08,dir=both, headport=e, tailport=e];
+英語力2年->英語力2年[label=0.015,dir=both, headport=e, tailport=e];
+英語力3年->英語力3年[label=0.053,dir=both, headport=e, tailport=e];
+#傾き->傾き[label=1,dir=both];
+#切片->切片[label=1,dir=both];
+}

@@ -1,0 +1,34 @@
+digraph  fit  {
+rankdir=LR;
+size="8,8";
+#フォントはパソコンに入っているものを指定
+edge [fontname="Noto Sans Japanese" fontsize=10];
+center=1;
+node [shape =ellipse, style = filled,fillcolor = "#f4fd78"];傾き 切片;
+node [fontname="Takao P明朝" fontsize=14 shape=box, style = filled,fillcolor = "#a9fab1"];
+edge [arrowsize = 0.8]; 
+#
+#絶対位置指定
+語学への関心[pos="0,2!"];
+切片[pos="1.5,1.5!"];
+傾き[pos="1.5,2.5!"];
+英語力1年[pos="4.5,4!"];
+英語力2年[pos="4.5,2!"];
+英語力3年[pos="4.5,0!"];
+#
+傾き->英語力1年[label=0];
+傾き->英語力2年[label=0.31];
+傾き->英語力3年[label=0.52];
+切片->英語力1年[label=0.97];
+切片->英語力2年[label=0.85];
+切片->英語力3年[label=0.7];
+傾き->語学への関心[label=0.87dir=back];
+切片->語学への関心[label=0.22dir=back];
+傾き->切片[label=0.23dir=both];
+英語力1年->英語力1年[label=0.067dir=both , headport=e, tailport=e];
+英語力2年->英語力2年[label=0.028dir=both, headport=e, tailport=e];
+英語力3年->英語力3年[label=0.025dir=both, headport=e, tailport=e];
+傾き->傾き[label=0.24dir=both , headport=n, tailport=n];
+切片->切片[label=0.95dir=both, headport=s, tailport=s];
+#語学への関心->語学への関心[label=1dir=both];
+}
