@@ -1,0 +1,38 @@
+digraph  fit  {
+rankdir=LR;
+size="8,8";
+edge [fontname="sans" ,fontsize=8,arrowsize = 0.8,penwidth=0.8];
+graph [ ordering = out];
+center=1;
+#node [shape =ellipse, style = filled,fillcolor = "#f4fd78"];F1 F2 F3;
+#node [fontname="serif" ,fontsize=14, shape=box, style = filled,fillcolor = "#a9fab1"];
+#絶対位置,shape,style,fillcolor,label指定
+X1[pos="0,4!",fontname="serif" ,fontsize=14, shape=box, style = filled,fillcolor = "#a9fab1",label="(妻)幸せな\n家庭生活への\n期待"];
+X2[pos="0,3!",fontname="serif" ,fontsize=14, shape=box, style = filled,fillcolor = "#a9fab1",label="(妻)子供の成\n長を見守るこ\nとへの期待"];
+X3[pos="0,2!",fontname="serif" ,fontsize=14, shape=box, style = filled,fillcolor = "#a9fab1",label="(夫)幸せな\n家庭生活への\n期待"];
+X4[pos="0,1!",fontname="serif" ,fontsize=14, shape=box, style = filled,fillcolor = "#a9fab1",label="(夫)子供の成\n長を見守るこ\nとへの期待"];
+F1[pos="2.5,3.5!",fontname="serif" ,fontsize=14,shape =ellipse, style = filled,fillcolor = "#f4fd78",label="妻の\n子供を持つこと\nの効用の評価"];
+F2[pos="2.5,1.5!",fontname="serif" ,fontsize=14,shape =ellipse, style = filled,fillcolor = "#f4fd78",label="夫の\n子供を持つこと\nの効用の評価"];
+F3[pos="4.5,2.5!",fontname="serif" ,fontsize=14,shape =ellipse, style = filled,fillcolor = "#f4fd78",label="子供を作る\n予定"];
+X5[pos="6.5,3.5!",fontname="serif" ,fontsize=14, shape=box, style = filled,fillcolor = "#a9fab1",label="(妻)１年以内に\n子供を作る予定"];
+X6[pos="6.5,1.5!",fontname="serif" ,fontsize=14, shape=box, style = filled,fillcolor = "#a9fab1",label="(夫)１年以内に\n子供を作る予定"];
+#
+F1->X1[label=0.87];
+F1->X2[label=0.54];
+F2->X3[label=0.82];
+F2->X4[label=0.6];
+F3->X5[label=0.89];
+F3->X6[label=0.91];
+F3->F1[label=0.52,dir=back];
+F3->F2[label=0.41,dir=back];
+F1->F2[label=0.63,dir=both];
+X1->X1[label=0.24,dir=both, headport=w, tailport=w];
+X2->X2[label=0.71,dir=both, headport=w, tailport=w];
+X3->X3[label=0.32,dir=both, headport=w, tailport=w];
+X4->X4[label=0.64,dir=both, headport=w, tailport=w];
+X5->X5[label=0.2,dir=both, headport=e, tailport=e];
+X6->X6[label=0.17,dir=both, headport=e, tailport=e];
+F1->F1[label=1,dir=both, headport=n, tailport=n];
+F2->F2[label=1,dir=both, headport=s, tailport=s];
+F3->F3[label=0.3,dir=both, headport=n, tailport=n];
+}

@@ -1,0 +1,41 @@
+digraph  fit  {
+rankdir=LR;
+size="8,8";
+edge [fontname="sans" ,fontsize=8,arrowsize = 0.8,penwidth=0.8];
+graph [ ordering = out];
+center=1;
+node [shape =ellipse, style = filled,fillcolor = "#f4fd78"];両親の学歴 家庭の経済状態 子供の知能;
+node [fontname="serif" ,fontsize=14, shape=box, style = filled,fillcolor = "#a9fab1"];
+#{rank=min 母親の学歴 父親の学歴 父親の職業 家庭の収入};
+#{rank=same 両親の学歴 家庭の経済状態};
+#{rank=max  MRT ITPA};
+#絶対位置指定
+母親の学歴[pos="0,4!"];
+父親の学歴[pos="0,3!"];
+父親の職業[pos="0,2!"];
+家庭の収入[pos="0,1!"];
+両親の学歴[pos="2.5,3.5!"];
+家庭の経済状態[pos="2.5,1.5!"];
+子供の知能[pos="4.5,2.5!"];
+MRT[pos="6.5,3.5!"];
+ITPA[pos="6.5,1.5!"];
+#
+両親の学歴->母親の学歴[label=0.64];
+両親の学歴->父親の学歴[label=0.75];
+家庭の経済状態->父親の職業[label=0.71];
+家庭の経済状態->家庭の収入[label=0.54];
+子供の知能->MRT[label=0.71];
+子供の知能->ITPA[label=0.9];
+子供の知能->両親の学歴[label=0.36,dir=back];
+子供の知能->家庭の経済状態[label=0.14,dir=back];
+両親の学歴->家庭の経済状態[label=0.59,dir=both];
+母親の学歴->母親の学歴[label=0.59,dir=both, headport=w, tailport=w];
+父親の学歴->父親の学歴[label=0.43,dir=both, headport=w, tailport=w];
+父親の職業->父親の職業[label=0.49,dir=both, headport=w, tailport=w];
+家庭の収入->家庭の収入[label=0.7,dir=both, headport=w, tailport=w];
+MRT->MRT[label=0.5,dir=both];
+ITPA->ITPA[label=0.19,dir=both];
+両親の学歴->両親の学歴[label=1,dir=both];
+家庭の経済状態->家庭の経済状態[label=1,dir=both];
+子供の知能->子供の知能[label=0.79,dir=both];
+}

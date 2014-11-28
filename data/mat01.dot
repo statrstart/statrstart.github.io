@@ -1,0 +1,26 @@
+digraph  fit  {
+rankdir=LR;
+size="8,8";
+edge [fontname="sans" ,fontsize=8,arrowsize = 0.8,penwidth=0.8];
+graph [ ordering = out];
+center=1;
+node [shape =ellipse, style = filled,fillcolor = "#f4fd78"];社会的地位 子供の知能;
+node [fontname="serif" ,fontsize=14, shape=box, style = filled,fillcolor = "#a9fab1"];
+{rank=min 母親の学歴 父親の学歴 父親の職業 家庭の収入};
+{rank=max  MRT ITPA};
+社会的地位->母親の学歴[label=0.63];
+社会的地位->父親の学歴[label=0.7];
+社会的地位->父親の職業[label=0.5];
+社会的地位->家庭の収入[label=0.42];
+子供の知能->MRT[label=0.71];
+子供の知能->ITPA[label=0.9];
+社会的地位->子供の知能[label=0.47,dir=both];
+母親の学歴->母親の学歴[label=0.6,dir=both];
+父親の学歴->父親の学歴[label=0.52,dir=both];
+父親の職業->父親の職業[label=0.75,dir=both];
+家庭の収入->家庭の収入[label=0.82,dir=both];
+MRT->MRT[label=0.5,dir=both];
+ITPA->ITPA[label=0.19,dir=both];
+社会的地位->社会的地位[label=1,dir=both];
+子供の知能->子供の知能[label=1,dir=both];
+}
