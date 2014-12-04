@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>共分散行列を利用2 | 統計ソフトRの備忘録２</title>
+  <title>共分散行列を利用3 | 統計ソフトRの備忘録２</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="lavaanパッケージ　gawk graphviz">
 <meta property="og:type" content="article">
-<meta property="og:title" content="共分散行列を利用2">
-<meta property="og:url" content="http://yoursite.com/2014/12/03/共分散行列を利用2/">
+<meta property="og:title" content="共分散行列を利用3">
+<meta property="og:url" content="http://yoursite.com/2014/12/05/共分散行列を利用3/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
 <meta property="og:description" content="lavaanパッケージ　gawk graphviz">
-<meta property="og:image" content="/images/cov01.png">
+<meta property="og:image" content="/images/cov02.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="共分散行列を利用2">
+<meta name="twitter:title" content="共分散行列を利用3">
 <meta name="twitter:description" content="lavaanパッケージ　gawk graphviz">
 
   
@@ -91,10 +91,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-共分散行列を利用2" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-共分散行列を利用3" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/12/03/共分散行列を利用2/" class="article-date">
-  <time datetime="2014-12-03T12:58:35.000Z" itemprop="datePublished">Dec 3 2014</time>
+    <a href="/2014/12/05/共分散行列を利用3/" class="article-date">
+  <time datetime="2014-12-04T15:05:29.000Z" itemprop="datePublished">Dec 5 2014</time>
 </a>
     
   <div class="article-category">
@@ -109,7 +109,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      共分散行列を利用2
+      共分散行列を利用3
     </h1>
   
 
@@ -123,20 +123,21 @@
 <p>(参考)blue backs「原因をさぐる統計学」</p>
 <p>OSはlinux(zorinOS)<br>windowsではlavaan:::sem使用時に変数名が日本語だとエラーになりました。</p>
 <p>(準備)「因子分析＆確証的因子分析」にあるmakeawk関数を読み込んでおく。</p>
-<h4 id="「原因をさぐる統計学」p-204_p-243図表_補-8">「原因をさぐる統計学」p.204  p.243図表　補-8</h4>
-<h5 id="産業化と民主化の因果モデル">産業化と民主化の因果モデル</h5>
-<p>母数に等価の制約を置く</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">library(lavaan)</div><div class="line"><span class="comment">#Sample Size は 75</span></div><div class="line"><span class="comment">#本では「標準化された母数の値が等しい」という制約だが、</span></div><div class="line"><span class="comment">#ここでは「標準化される前の母数の値が等しい」という制約で行う。</span></div><div class="line"><span class="comment">#この方が一般的とのこと(p.206)</span></div><div class="line">mat&lt;-'</div><div class="line"><span class="number">0.54</span></div><div class="line"><span class="number">0.99</span> <span class="number">2.28</span></div><div class="line"><span class="number">0.82</span> <span class="number">1.81</span> <span class="number">1.98</span></div><div class="line"><span class="number">0.73</span> <span class="number">1.27</span> <span class="number">0.91</span> <span class="number">6.89</span></div><div class="line"><span class="number">0.62</span> <span class="number">1.49</span> <span class="number">1.17</span> <span class="number">6.25</span> <span class="number">15.58</span></div><div class="line"><span class="number">0.79</span> <span class="number">1.55</span> <span class="number">1.04</span> <span class="number">5.84</span> <span class="number">5.84</span> <span class="number">10.76</span></div><div class="line"><span class="number">1.08</span> <span class="number">2.06</span> <span class="number">1.58</span> <span class="number">5.06</span> <span class="number">5.60</span> <span class="number">4.94</span> <span class="number">6.83</span></div><div class="line"><span class="number">0.85</span> <span class="number">1.81</span> <span class="number">1.57</span> <span class="number">5.75</span> <span class="number">9.39</span> <span class="number">4.73</span> <span class="number">4.987</span> <span class="number">11.38</span></div><div class="line"><span class="number">0.94</span> <span class="number">2.00</span> <span class="number">1.63</span> <span class="number">5.81</span> <span class="number">7.54</span> <span class="number">7.01</span> <span class="number">5.82</span> <span class="number">6.75</span> <span class="number">10.80</span></div><div class="line">'</div><div class="line">wheaton.cov &lt;- getCov(mat,<span class="variable">names=</span>c(<span class="string">"x1"</span>,<span class="string">"x2"</span>,<span class="string">"x3"</span>,<span class="string">"x4"</span>,<span class="string">"x5"</span>,<span class="string">"x6"</span>,<span class="string">"x7"</span>,<span class="string">"x8"</span>,<span class="string">"x9"</span>))</div><div class="line">model&lt;-'</div><div class="line"><span class="variable">F1=</span>~x1+x2+x3</div><div class="line"><span class="variable">F2=</span>~x4+a*x5+b*x6</div><div class="line"><span class="variable">F3=</span>~x7+a*x8+b*x9</div><div class="line">F2~F1</div><div class="line">F3~F1+F2</div><div class="line">x4~~c*x4</div><div class="line">x7~~c*x7</div><div class="line">x4~~x7</div><div class="line">x5~~d*x5</div><div class="line">x8~~d*x8</div><div class="line">x5~~x8</div><div class="line">x6~~e*x6</div><div class="line">x9~~e*x9</div><div class="line">x6~~x9</div><div class="line">'</div><div class="line">fit &lt;- lavaan:::sem(model, sample.<span class="variable">cov=</span>wheaton.cov, sample.<span class="variable">nobs=</span><span class="number">75</span>)</div><div class="line">summary(fit, <span class="variable">standardized=</span>TRUE)</div><div class="line">latent&lt;-c(<span class="string">"F1"</span>,<span class="string">"F2"</span>,<span class="string">"F3"</span>)</div><div class="line">makeawk(latent)</div><div class="line">pars &lt;- parameterEstimates(fit)  <span class="comment">#, standardized = TRUE</span></div><div class="line">g&lt;-data.frame(pars$lhs,pars$op,pars$rhs,<span class="string">" [label="</span>,signif(pars$est,<span class="variable">digits=</span><span class="number">3</span>),<span class="string">"];"</span>)</div><div class="line"><span class="comment">#非標準化推定値。値は共分散</span></div><div class="line">write.table(g,<span class="string">"out"</span>,<span class="variable">sep=</span><span class="string">" "</span>,col.<span class="variable">names=</span>FALSE,row.<span class="variable">names=</span>FALSE,<span class="variable">quote=</span>FALSE, <span class="variable">na=</span><span class="string">""</span>)</div><div class="line">system( 'gawk -f <span class="string">"lavaan_dot.awk"</span> <span class="string">"out"</span>&gt;out.dot')</div></pre></td></tr></table></figure>
+<h4 id="転職の意思に関する因果モデル_p-193_図表_補-7_p-242">転職の意思に関する因果モデル p.193 図表 補-7 p.242</h4>
+<h5 id="誤差分散を固定する_p-199">誤差分散を固定する　p.199</h5>
+<p>相関行列をlavaan:::cor2covを使って共分散行列に変換する必要あり。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">library(lavaan)</div><div class="line">mat&lt;-'</div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">0.38</span> <span class="number">1</span></div><div class="line"><span class="number">0.26</span> <span class="number">0.23</span> <span class="number">1</span></div><div class="line">-<span class="number">0.06</span> <span class="number">0.13</span> <span class="number">0.05</span> <span class="number">1</span></div><div class="line"><span class="number">0.1</span> <span class="number">0.18</span> -<span class="number">0.03</span> <span class="number">0.31</span> <span class="number">1</span></div><div class="line"><span class="number">0.13</span> <span class="number">0.23</span> <span class="number">0.01</span> <span class="number">0.15</span> <span class="number">0.38</span> <span class="number">1</span></div><div class="line"><span class="number">0.06</span> <span class="number">0.07</span> <span class="number">0.06</span> <span class="number">0.05</span> <span class="number">0.2</span> <span class="number">0.38</span> <span class="number">1</span></div><div class="line"><span class="number">0.16</span> <span class="number">0.24</span> <span class="number">0.05</span> <span class="number">0.2</span> <span class="number">0.34</span> <span class="number">0.5</span> <span class="number">0.2</span> <span class="number">1</span></div><div class="line"><span class="number">0.21</span> <span class="number">0.16</span> <span class="number">0.09</span> <span class="number">0.15</span> <span class="number">0.38</span> <span class="number">0.24</span> <span class="number">0.32</span> <span class="number">0.5</span> <span class="number">1</span></div><div class="line"><span class="number">0.14</span> <span class="number">0.12</span> <span class="number">0.08</span> <span class="number">0.19</span> <span class="number">0.35</span> <span class="number">0.25</span> <span class="number">0.15</span> <span class="number">0.41</span> <span class="number">0.32</span> <span class="number">1</span></div><div class="line">-<span class="number">0.13</span> -<span class="number">0.14</span> -<span class="number">0.03</span> -<span class="number">0.16</span> -<span class="number">0.3</span> -<span class="number">0.24</span> -<span class="number">0.18</span> -<span class="number">0.27</span> -<span class="number">0.27</span> -<span class="number">0.38</span> <span class="number">1</span></div><div class="line">'</div><div class="line">wheaton.cov &lt;- getCov(mat,<span class="variable">names=</span>c(<span class="string">"x1"</span>,<span class="string">"x2"</span>,<span class="string">"x3"</span>,<span class="string">"x4"</span>,<span class="string">"x5"</span>,<span class="string">"x6"</span>,<span class="string">"x7"</span>,<span class="string">"x8"</span>,<span class="string">"x9"</span>,<span class="string">"x10"</span>,<span class="string">"x11"</span>))</div><div class="line">sd&lt;-c(<span class="number">0.5</span>, <span class="number">0.8</span>, <span class="number">0.6</span>, <span class="number">0.8</span>, <span class="number">0.9</span>, <span class="number">1.3</span>, <span class="number">1.3</span>, <span class="number">4.3</span>, <span class="number">5.2</span>, <span class="number">9.6</span>, <span class="number">1.0</span>)</div><div class="line"><span class="comment">#共分散行列に変換</span></div><div class="line">full.cov &lt;- lavaan:::cor2cov(wheaton.cov,sd,<span class="variable">names=</span>c(<span class="string">"x1"</span>,<span class="string">"x2"</span>,<span class="string">"x3"</span>,<span class="string">"x4"</span>,<span class="string">"x5"</span>,<span class="string">"x6"</span>,<span class="string">"x7"</span>,<span class="string">"x8"</span>,<span class="string">"x9"</span>,<span class="string">"x10"</span>,<span class="string">"x11"</span>))</div><div class="line">model&lt;-'</div><div class="line"><span class="variable">F1=</span>~x1+x2+x3</div><div class="line"><span class="variable">F2=</span>~x4+x5</div><div class="line"><span class="variable">F3=</span>~x6+x7</div><div class="line"><span class="variable">F4=</span>~x8+x9</div><div class="line"><span class="variable">F5=</span>~x10</div><div class="line"><span class="variable">F6=</span>~x11</div><div class="line">F1~~F2</div><div class="line">F3~F1</div><div class="line">F4~F2+F3</div><div class="line">F5~F4</div><div class="line">F6~F4+F5</div><div class="line">x10~~<span class="number">10.14</span>*x10</div><div class="line">x11~~<span class="number">0.35</span>*x11</div><div class="line">x5~~x6</div><div class="line">'</div><div class="line">fit &lt;- lavaan:::sem(model, sample.<span class="variable">cov=</span>full.cov, sample.<span class="variable">nobs=</span><span class="number">338</span>)</div><div class="line">summary(fit, <span class="variable">standardized=</span>TRUE)</div><div class="line">latent&lt;-c(<span class="string">"F1"</span>,<span class="string">"F2"</span>,<span class="string">"F3"</span>,<span class="string">"F4"</span>,<span class="string">"F5"</span>,<span class="string">"F6"</span>)</div><div class="line">makeawk(latent)</div><div class="line">pars &lt;- parameterEstimates(fit, <span class="variable">standardized =</span> TRUE) </div><div class="line">g&lt;-data.frame(pars$lhs,pars$op,pars$rhs,<span class="string">" [label="</span>,signif(pars$std.all,<span class="variable">digits=</span><span class="number">3</span>),<span class="string">"];"</span>)</div><div class="line">write.table(g,<span class="string">"out"</span>,<span class="variable">sep=</span><span class="string">" "</span>,col.<span class="variable">names=</span>FALSE,row.<span class="variable">names=</span>FALSE,<span class="variable">quote=</span>FALSE, <span class="variable">na=</span><span class="string">""</span>)</div><div class="line">system( 'gawk -f <span class="string">"lavaan_dot.awk"</span> <span class="string">"out"</span>&gt;out.dot')</div></pre></td></tr></table></figure>
 
-<p>かなり手を入れないと(絶対位置指定を指定する。ラベルをつける。等々)きれいな図にはなりません。  </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">system</span>(<span class="string">'neato -Tpng out.dot -o cov01.png'</span>)</div></pre></td></tr></table></figure>
+<p>絶対位置指定、潜在変数のラベル付け等</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">system</span>(<span class="string">'neato -Tpng out.dot -o cov02.png'</span>)</div></pre></td></tr></table></figure>
 
-<p><a href="/data/cov01.dot">cov01.dot</a><br><img src="/images/cov01.png" alt=""></p>
+<p><a href="/data/cov02.dot">cov02.dot</a></p>
+<p><img src="/images/cov02.png" alt=""></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/12/03/共分散行列を利用2/" data-id="rn3ddv0a5p9fjlkw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/12/05/共分散行列を利用3/" data-id="57xz4qbps0yt1bt9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a></li></ul>
@@ -147,19 +148,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2014/12/05/共分散行列を利用3/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          共分散行列を利用3
-        
-      </div>
-    </a>
   
-  
-    <a href="/2014/12/03/因子分析＆確証的因子分析/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2014/12/03/共分散行列を利用2/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">因子分析＆確証的因子分析</div>
+      <div class="article-nav-title">共分散行列を利用2</div>
     </a>
   
 </nav>
