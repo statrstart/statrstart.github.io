@@ -8,11 +8,13 @@
   <meta name="description" content="lavaan、semPlot パッケージ">
 <meta property="og:type" content="article">
 <meta property="og:title" content="共分散行列を利用4">
-<meta property="og:url" content="http://yoursite.com/2014/12/05/共分散行列を利用4/">
+<meta property="og:url" content="http://yoursite.com/2014/12/06/共分散行列を利用4/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
 <meta property="og:description" content="lavaan、semPlot パッケージ">
 <meta property="og:image" content="/images/cov03.png">
 <meta property="og:image" content="/images/cov03_2.png">
+<meta property="og:image" content="/images/cov04.png">
+<meta property="og:image" content="/images/cov04_2.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="共分散行列を利用4">
 <meta name="twitter:description" content="lavaan、semPlot パッケージ">
@@ -94,8 +96,8 @@
       <div class="outer">
         <section id="main"><article id="post-共分散行列を利用4" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/12/05/共分散行列を利用4/" class="article-date">
-  <time datetime="2014-12-05T14:30:20.000Z" itemprop="datePublished">Dec 5 2014</time>
+    <a href="/2014/12/06/共分散行列を利用4/" class="article-date">
+  <time datetime="2014-12-06T06:48:57.000Z" itemprop="datePublished">Dec 6 2014</time>
 </a>
     
   <div class="article-category">
@@ -129,11 +131,20 @@
 <p><img src="/images/cov03.png" alt=""></p>
 <p>graphvizを使った図</p>
 <p><img src="/images/cov03_2.png" alt=""></p>
+<h5 id="p-186_双方向の因果関係_図表_補-6_p-241">p.186 双方向の因果関係 図表 補-6 p.241</h5>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">library(lavaan)</div><div class="line">library(semPlot)</div><div class="line">mat&lt;-'</div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">0.56</span> <span class="number">1</span></div><div class="line"><span class="number">0.06</span> <span class="number">0.05</span> <span class="number">1</span></div><div class="line"><span class="number">0.16</span> <span class="number">0.21</span> <span class="number">0.32</span> <span class="number">1</span></div><div class="line"><span class="number">0.01</span> -<span class="number">0.04</span> <span class="number">0.1</span> -<span class="number">0.06</span> <span class="number">1</span></div><div class="line">-<span class="number">0.07</span> -<span class="number">0.05</span> <span class="number">0.16</span> -<span class="number">0.07</span> <span class="number">0.42</span> <span class="number">1</span></div><div class="line">-<span class="number">0.02</span> -<span class="number">0.01</span> <span class="number">0.14</span> <span class="number">0.08</span> <span class="number">0.18</span> <span class="number">0.31</span> <span class="number">1</span></div><div class="line"><span class="number">0.17</span> <span class="number">0.3</span> <span class="number">0.29</span> <span class="number">0.4</span> <span class="number">0.01</span> <span class="number">0.13</span> <span class="number">0.21</span> <span class="number">1</span></div><div class="line"><span class="number">0.16</span> <span class="number">0.21</span> <span class="number">0.28</span> <span class="number">0.19</span> <span class="number">0.12</span> <span class="number">0.27</span> <span class="number">0.27</span> <span class="number">0.5</span> <span class="number">1</span></div><div class="line"><span class="number">0.05</span> <span class="number">0.04</span> <span class="number">0.08</span> <span class="number">0.13</span> <span class="number">0.07</span> <span class="number">0.15</span> <span class="number">0.25</span> <span class="number">0.28</span> <span class="number">0.24</span> <span class="number">1</span></div><div class="line"><span class="number">0.1</span> <span class="number">0.1</span> <span class="number">0.09</span> <span class="number">0.17</span> <span class="number">0.02</span> <span class="number">0.08</span> <span class="number">0.08</span> <span class="number">0.23</span> <span class="number">0.18</span> <span class="number">0.59</span> <span class="number">1</span></div><div class="line"><span class="number">0.1</span> <span class="number">0.17</span> <span class="number">0.14</span> <span class="number">0.17</span> <span class="number">0.08</span> <span class="number">0.17</span> <span class="number">0.33</span> <span class="number">0.32</span> <span class="number">0.4</span> <span class="number">0.55</span> <span class="number">0.49</span> <span class="number">1</span></div><div class="line">'</div><div class="line">wheaton.cov &lt;- getCov(mat,<span class="variable">names=</span>c(<span class="string">"x1"</span>,<span class="string">"x2"</span>,<span class="string">"x3"</span>,<span class="string">"x4"</span>,<span class="string">"x5"</span>,<span class="string">"x6"</span>,<span class="string">"x7"</span>,<span class="string">"x8"</span>,<span class="string">"x9"</span>,<span class="string">"x10"</span>,<span class="string">"x11"</span>,<span class="string">"x12"</span>))</div><div class="line">model&lt;-'</div><div class="line"><span class="variable">F1=</span>~x1+x2</div><div class="line"><span class="variable">F2=</span>~x3+x4</div><div class="line"><span class="variable">F3=</span>~x5+x6+x7</div><div class="line"><span class="variable">F4=</span>~x8+x9</div><div class="line"><span class="variable">F5=</span>~x10+x11+x12</div><div class="line">F1~~F2</div><div class="line">F1~~F3</div><div class="line">F2~~F3</div><div class="line">F4~F1+F2</div><div class="line">F5~F3</div><div class="line">F5~F4</div><div class="line">F4~F5</div><div class="line">'</div><div class="line">fit &lt;- lavaan:::sem(model, sample.<span class="variable">cov=</span>wheaton.cov, sample.<span class="variable">nobs=</span><span class="number">249</span>)</div><div class="line">summary(fit, <span class="variable">standardized=</span>TRUE)</div><div class="line">manifests&lt;-c(<span class="string">"x1"</span>,<span class="string">"x2"</span>,<span class="string">"x3"</span>,<span class="string">"x4"</span>,<span class="string">"x5"</span>,<span class="string">"x6"</span>,<span class="string">"x7"</span>,<span class="string">"x8"</span>,<span class="string">"x9"</span>,<span class="string">"x10"</span>,<span class="string">"x11"</span>,<span class="string">"x12"</span>)</div><div class="line">latents&lt;-c(<span class="string">"F1"</span>,<span class="string">"F2"</span>,<span class="string">"F3"</span>,<span class="string">"F4"</span>,<span class="string">"F5"</span>)</div><div class="line"><span class="variable">labels=</span>c(<span class="string">"x1"</span>,<span class="string">"x2"</span>,<span class="string">"x3"</span>,<span class="string">"x4"</span>,<span class="string">"x5"</span>,<span class="string">"x6"</span>,<span class="string">"x7"</span>,<span class="string">"x8"</span>,<span class="string">"x9"</span>,<span class="string">"x10"</span>,<span class="string">"x11"</span>,<span class="string">"x12"</span>,<span class="string">"親の\n社会経済的\n地位"</span>,<span class="string">"　知　能　"</span>,<span class="string">"大人からの\n評価"</span>,<span class="string">"学業成績"</span>,<span class="string">"友達からの\n評価"</span>)</div><div class="line">semPaths(fit,<span class="string">"std"</span>,<span class="variable">fade=</span>F,<span class="variable">manifests=</span>manifests,<span class="variable">latents=</span>latents,<span class="variable">nodeLabels=</span>labels,<span class="variable">style=</span><span class="string">"lisrel"</span>)</div></pre></td></tr></table></figure>
+
+<p><img src="/images/cov04.png" alt=""></p>
+<ul>
+<li>学業成績と友達からの評価の双方向の因果関係を表すエッジが共分散のような両矢印になる。</li>
+</ul>
+<p>graphvizを使った図（手を加えても綺麗な図にならなかった）</p>
+<p><img src="/images/cov04_2.png" alt=""></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/12/05/共分散行列を利用4/" data-id="0f9vnogbhw67q2ng" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/12/06/共分散行列を利用4/" data-id="0f9vnogbhw67q2ng" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a></li></ul>
@@ -202,7 +213,7 @@
       <ul>
         
           <li>
-            <a href="/2014/12/05/共分散行列を利用4/">共分散行列を利用4</a>
+            <a href="/2014/12/06/共分散行列を利用4/">共分散行列を利用4</a>
           </li>
         
           <li>
