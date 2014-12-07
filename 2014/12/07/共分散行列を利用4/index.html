@@ -8,12 +8,13 @@
   <meta name="description" content="lavaan、semPlot パッケージ">
 <meta property="og:type" content="article">
 <meta property="og:title" content="共分散行列を利用4">
-<meta property="og:url" content="http://yoursite.com/2014/12/06/共分散行列を利用4/">
+<meta property="og:url" content="http://yoursite.com/2014/12/07/共分散行列を利用4/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
 <meta property="og:description" content="lavaan、semPlot パッケージ">
 <meta property="og:image" content="/images/cov03.png">
 <meta property="og:image" content="/images/cov03_2.png">
 <meta property="og:image" content="/images/cov04.png">
+<meta property="og:image" content="/images/cov04_1.png">
 <meta property="og:image" content="/images/cov04_2.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="共分散行列を利用4">
@@ -96,8 +97,8 @@
       <div class="outer">
         <section id="main"><article id="post-共分散行列を利用4" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/12/06/共分散行列を利用4/" class="article-date">
-  <time datetime="2014-12-06T06:48:57.000Z" itemprop="datePublished">Dec 6 2014</time>
+    <a href="/2014/12/07/共分散行列を利用4/" class="article-date">
+  <time datetime="2014-12-07T04:23:32.000Z" itemprop="datePublished">Dec 7 2014</time>
 </a>
     
   <div class="article-category">
@@ -123,7 +124,7 @@
         <h2 id="lavaan、semPlot_パッケージ_">lavaan、semPlot パッケージ　</h2>
 <a id="more"></a>
 
-<p>(参考)blue backs「原因をさぐる統計学」</p>
+<p>(参考)blue backs「原因をさぐる統計学」<br><a href="https://gist.github.com/myuhe/1825991" target="_blank" rel="external">R-SVG.org</a><br><a href="http://oku.edu.mie-u.ac.jp/~okumura/stat/svg.html" target="_blank" rel="external">SVG画像</a>  </p>
 <h4 id="原因を探る統計学">原因を探る統計学</h4>
 <h5 id="p-210_社会階層モデルの分析_図表_補-9_p-245">p.210 社会階層モデルの分析 図表 補-9 p.245</h5>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">library(lavaan)</div><div class="line">library(semPlot)</div><div class="line">mat&lt;-'</div><div class="line"><span class="number">1</span> </div><div class="line"><span class="number">0.4703</span> <span class="number">1</span></div><div class="line"><span class="number">0.4609</span> <span class="number">0.2655</span> <span class="number">1</span></div><div class="line"><span class="number">0.2988</span> <span class="number">0.21</span> <span class="number">0.4392</span> <span class="number">1</span></div><div class="line"><span class="number">0.2335</span> <span class="number">0.2019</span> <span class="number">0.1917</span> <span class="number">0.1462</span> <span class="number">1</span></div><div class="line"><span class="number">0.1172</span> <span class="number">0.1262</span> <span class="number">0.0946</span> <span class="number">0.0564</span> <span class="number">0.5581</span> <span class="number">1</span></div><div class="line"><span class="number">0.2782</span> <span class="number">0.2381</span> <span class="number">0.2747</span> <span class="number">0.2359</span> <span class="number">0.3597</span> <span class="number">0.325</span> <span class="number">1</span></div><div class="line"><span class="number">0.1571</span> <span class="number">0.1455</span> <span class="number">0.1514</span> <span class="number">0.0942</span> <span class="number">0.3352</span> <span class="number">0.4242</span> <span class="number">0.4337</span> <span class="number">1</span></div><div class="line"><span class="number">0.2512</span> <span class="number">0.2083</span> <span class="number">0.2517</span> <span class="number">0.2337</span> <span class="number">0.2676</span> <span class="number">0.2723</span> <span class="number">0.4076</span> <span class="number">0.3291</span> <span class="number">1</span></div><div class="line"><span class="number">0.2684</span> <span class="number">0.2311</span> <span class="number">0.2657</span> <span class="number">0.2392</span> <span class="number">0.4099</span> <span class="number">0.4406</span> <span class="number">0.5266</span> <span class="number">0.4329</span> <span class="number">0.4761</span> <span class="number">1</span></div><div class="line"><span class="number">0.2576</span> <span class="number">0.2123</span> <span class="number">0.2779</span> <span class="number">0.2274</span> <span class="number">0.4294</span> <span class="number">0.4382</span> <span class="number">0.5048</span> <span class="number">0.4089</span> <span class="number">0.4482</span> <span class="number">0.7457</span> <span class="number">1</span></div><div class="line"><span class="number">0.2901</span> <span class="number">0.2464</span> <span class="number">0.2842</span> <span class="number">0.2248</span> <span class="number">0.4291</span> <span class="number">0.4812</span> <span class="number">0.4837</span> <span class="number">0.3857</span> <span class="number">0.4342</span> <span class="number">0.612</span> <span class="number">0.5634</span> <span class="number">1</span></div><div class="line"><span class="number">0.2983</span> <span class="number">0.272</span> <span class="number">0.2919</span> <span class="number">0.2205</span> <span class="number">0.4455</span> <span class="number">0.5005</span> <span class="number">0.4592</span> <span class="number">0.3932</span> <span class="number">0.4452</span> <span class="number">0.6455</span> <span class="number">0.5574</span> <span class="number">0.845</span> <span class="number">1</span></div><div class="line"><span class="number">0.2856</span> <span class="number">0.2136</span> <span class="number">0.3096</span> <span class="number">0.2439</span> <span class="number">0.3851</span> <span class="number">0.3966</span> <span class="number">0.4096</span> <span class="number">0.3426</span> <span class="number">0.374</span> <span class="number">0.4822</span> <span class="number">0.5176</span> <span class="number">0.6345</span> <span class="number">0.645</span> <span class="number">1</span></div><div class="line"><span class="number">0.2521</span> <span class="number">0.1892</span> <span class="number">0.2838</span> <span class="number">0.2275</span> <span class="number">0.3525</span> <span class="number">0.343</span> <span class="number">0.3618</span> <span class="number">0.297</span> <span class="number">0.3528</span> <span class="number">0.4139</span> <span class="number">0.4674</span> <span class="number">0.5424</span> <span class="number">0.5626</span> <span class="number">0.68</span> <span class="number">1</span></div><div class="line">'</div><div class="line">wheaton.cov &lt;- getCov(mat,<span class="variable">names=</span>c(<span class="string">"x1"</span>,<span class="string">"x2"</span>,<span class="string">"x3"</span>,<span class="string">"x4"</span>,<span class="string">"x5"</span>,<span class="string">"x6"</span>,<span class="string">"x7"</span>,<span class="string">"x8"</span>,<span class="string">"x9"</span>,<span class="string">"x10"</span>,<span class="string">"x11"</span>,<span class="string">"x12"</span>,<span class="string">"x13"</span>,<span class="string">"x14"</span>,<span class="string">"x15"</span>))</div><div class="line">model&lt;-'</div><div class="line"><span class="variable">F1=</span>~x1+x2+x3+x4</div><div class="line"><span class="variable">F2=</span>~x5+x6</div><div class="line"><span class="variable">F3=</span>~x7+x8+x9</div><div class="line"><span class="variable">F4=</span>~x10+x11</div><div class="line"><span class="variable">F5=</span>~x12+x13</div><div class="line"><span class="variable">F6=</span>~x14+x15</div><div class="line">F1~~F2</div><div class="line">F3~F1+F2</div><div class="line">F4~F2+F3</div><div class="line">F5~F4</div><div class="line">F6~F5</div><div class="line">'</div><div class="line">fit &lt;- lavaan:::sem(model, sample.<span class="variable">cov=</span>wheaton.cov, sample.<span class="variable">nobs=</span><span class="number">2038</span>)</div><div class="line">summary(fit, <span class="variable">standardized=</span>TRUE)</div><div class="line">manifests&lt;-c(<span class="string">"x1"</span>,<span class="string">"x2"</span>,<span class="string">"x3"</span>,<span class="string">"x4"</span>,<span class="string">"x5"</span>,<span class="string">"x6"</span>,<span class="string">"x7"</span>,<span class="string">"x8"</span>,<span class="string">"x9"</span>,<span class="string">"x10"</span>,<span class="string">"x11"</span>,<span class="string">"x12"</span>,<span class="string">"x13"</span>,<span class="string">"x14"</span>,<span class="string">"x15"</span>)</div><div class="line">latents&lt;-c(<span class="string">"F1"</span>,<span class="string">"F2"</span>,<span class="string">"F3"</span>,<span class="string">"F4"</span>,<span class="string">"F5"</span>,<span class="string">"F6"</span>)</div><div class="line"><span class="variable">labels=</span>c(<span class="string">"x1"</span>,<span class="string">"x2"</span>,<span class="string">"x3"</span>,<span class="string">"x4"</span>,<span class="string">"x5"</span>,<span class="string">"x6"</span>,<span class="string">"x7"</span>,<span class="string">"x8"</span>,<span class="string">"x9"</span>,<span class="string">"x10"</span>,<span class="string">"x11"</span>,<span class="string">"x12"</span>,<span class="string">"x13"</span>,<span class="string">"x14"</span>,<span class="string">"x15"</span>,<span class="string">"親の\n社会経済的\n地位"</span>,<span class="string">"本人の能力"</span>,<span class="string">"周囲の励まし"</span>,<span class="string">"教育的・\n職業的向上心"</span>,<span class="string">"　学　歴　"</span>,<span class="string">"職業的地位"</span>)</div><div class="line">semPaths(fit,<span class="string">"std"</span>,<span class="variable">fade=</span>F,<span class="variable">manifests=</span>manifests,<span class="variable">latents=</span>latents,<span class="variable">nodeLabels=</span>labels,<span class="variable">style=</span><span class="string">"lisrel"</span>)</div></pre></td></tr></table></figure>
@@ -138,13 +139,24 @@
 <ul>
 <li>学業成績と友達からの評価の双方向の因果関係を表すエッジが共分散のような両矢印になる。</li>
 </ul>
+<p>グラフをsvg形式で出力し、Inkscapeを使って重なった部分を分離する。</p>
+<p>RでグラフをSVG形式で描くには</p>
+<ul>
+<li>svg()関数（文字も図形になり，ビューアに依存しない）  </li>
+<li>RSVGTipsDevice:::devSVGTips関数（UTF-8の文字列を書き込むので後で変更可）</li>
+</ul>
+<p>ここではsvg()関数を使う。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#標準（cairo）の svg() を使う(日本語のフォント名を指定する必要があり)</span></div><div class="line">svg(<span class="string">"graph.svg"</span>, <span class="variable">family=</span><span class="string">"Takao P明朝"</span>, <span class="variable">width=</span><span class="number">12</span>, <span class="variable">height=</span><span class="number">10</span>)</div><div class="line">semPaths(fit,<span class="string">"std"</span>,<span class="variable">fade=</span>F,<span class="variable">manifests=</span>manifests,<span class="variable">latents=</span>latents,<span class="variable">nodeLabels=</span>labels,<span class="variable">style=</span><span class="string">"lisrel"</span>)</div><div class="line">dev.off()</div></pre></td></tr></table></figure>
+
+<p>Inkscapeを使って重なった部分を上下に分離する</p>
+<p><img src="/images/cov04_1.png" alt=""></p>
 <p>graphvizを使った図（手を加えても綺麗な図にならなかった）</p>
 <p><img src="/images/cov04_2.png" alt=""></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/12/06/共分散行列を利用4/" data-id="0f9vnogbhw67q2ng" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/12/07/共分散行列を利用4/" data-id="0f9vnogbhw67q2ng" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a></li></ul>
@@ -213,7 +225,7 @@
       <ul>
         
           <li>
-            <a href="/2014/12/06/共分散行列を利用4/">共分散行列を利用4</a>
+            <a href="/2014/12/07/共分散行列を利用4/">共分散行列を利用4</a>
           </li>
         
           <li>
