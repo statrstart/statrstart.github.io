@@ -5,18 +5,19 @@
   
   <title>塗り分け地図1 | 統計ソフトRの備忘録２</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="maptools、classInt パッケージ">
+  <meta name="description" content="maptools、classInt ,ggplot2パッケージ">
 <meta property="og:type" content="article">
 <meta property="og:title" content="塗り分け地図1">
-<meta property="og:url" content="http://yoursite.com/2014/12/31/塗り分け地図1/">
+<meta property="og:url" content="http://yoursite.com/2015/01/02/塗り分け地図1/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
-<meta property="og:description" content="maptools、classInt パッケージ">
+<meta property="og:description" content="maptools、classInt ,ggplot2パッケージ">
 <meta property="og:image" content="/images/population01.png">
 <meta property="og:image" content="/images/PopulationDensity01.png">
 <meta property="og:image" content="/images/PopulationDensity02.png">
+<meta property="og:image" content="/images/PopulationDensity03.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="塗り分け地図1">
-<meta name="twitter:description" content="maptools、classInt パッケージ">
+<meta name="twitter:description" content="maptools、classInt ,ggplot2パッケージ">
 
   
     <link rel="alternative" href="/atom.xml" title="統計ソフトRの備忘録２" type="application/atom+xml">
@@ -95,8 +96,8 @@
       <div class="outer">
         <section id="main"><article id="post-塗り分け地図1" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/12/31/塗り分け地図1/" class="article-date">
-  <time datetime="2014-12-31T03:57:08.000Z" itemprop="datePublished">Dec 31 2014</time>
+    <a href="/2015/01/02/塗り分け地図1/" class="article-date">
+  <time datetime="2015-01-02T04:28:22.000Z" itemprop="datePublished">Jan 2 2015</time>
 </a>
     
   <div class="article-category">
@@ -119,7 +120,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="maptools、classInt_パッケージ">maptools、classInt パッケージ</h2>
+        <h2 id="maptools、classInt_,ggplot2パッケージ">maptools、classInt ,ggplot2パッケージ</h2>
 <p><a id="more"></a><br>塗り分け地図の作成には、<a href="http://www.esrij.com/products/japan-shp/" target="_blank" rel="external">ESRIジャパン株式会社の全国市区町村界データ</a>を使用しました。</p>
 <p>人口(P_NUM)は<br>「住民基本台帳に基づく人口、人口動態及び世帯数（平成26年1月1日現在） 総務省」による人口<br>市町村の面積は<br><a href="http://www.gsi.go.jp/KOKUJYOHO/MENCHO/201310/opening.htm" target="_blank" rel="external">平成25年全国都道府県市区町村別面積調</a></p>
 <p>文字コード変換( SHIFT_JIS -&gt; UTF-8)にはlibreOffice Calcとleafpadを使いました。<br>（ヘッダーの数値を増やす必要有り）<br>Rのforeignパッケージを使ってもできるようです。</p>
@@ -137,11 +138,15 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">library(maptools)</div><div class="line">library(classInt)</div><div class="line"><span class="comment">#	ESRI全日本市区町村ShapeFileの読み込み</span></div><div class="line"><span class="comment">##	ShapeFileをSpatialPolygonsDataFrameに</span></div><div class="line"><span class="variable">jpn =</span> readShapePoly(<span class="string">"JPN/JPN/japan_ver72.shp"</span>)</div><div class="line">proj4string(jpn)=<span class="string">"+proj=longlat"</span></div><div class="line"><span class="comment">#読み込むデータはJCODE(市区町村コード)が必要</span></div><div class="line">Dataset &lt;- read.table(<span class="string">"/home/user/R/work/tottori.csv"</span>, <span class="variable">header=</span>TRUE, <span class="variable">sep=</span><span class="string">","</span>, na.<span class="variable">strings=</span><span class="string">"NA"</span>, <span class="variable">dec=</span><span class="string">"."</span>, strip.<span class="variable">white=</span>TRUE)</div><div class="line"><span class="variable">mdata=</span>Dataset;<span class="variable">mvar=</span><span class="string">"人口密度"</span>;  <span class="variable">city=</span><span class="number">1</span>;  <span class="variable">ccex=</span><span class="number">1.2</span>; <span class="variable">lloc=</span><span class="string">"topleft"</span>;<span class="variable">maintxt=</span><span class="string">"人口密度に応じて塗り分け（鳥取県）"</span></div><div class="line"><span class="comment">#	県の指定</span></div><div class="line">jpn.pref &lt;- jpn[jpn$<span class="variable">KEN=</span>=<span class="string">"鳥取県"</span>,]</div><div class="line"><span class="comment">#	DBFデータの取り出し</span></div><div class="line">jpn.pref.<span class="variable">data =</span> jpn.pref@data</div><div class="line"><span class="comment">###########</span></div><div class="line"><span class="comment">#	地図描画   #</span></div><div class="line"><span class="comment">###########</span></div><div class="line"><span class="comment">#png("PopulationDensity02.png",  width=1000, height=800)</span></div><div class="line">par(<span class="variable">cex =</span> <span class="number">0.9</span>,<span class="variable">family=</span><span class="string">"Takao P明朝"</span>,<span class="variable">mar=</span>c(<span class="number">3</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">11.5</span>))</div><div class="line"><span class="comment"># DBFデータに他のデータをJCODEをキーにしてマージ</span></div><div class="line"><span class="comment"># all=T を指定し，データを全て残す </span></div><div class="line"><span class="variable">DD =</span> merge(mdata, jpn.pref.data, <span class="variable">sort=</span>F, <span class="variable">by=</span><span class="string">"JCODE"</span>, <span class="variable">all=</span>T)</div><div class="line"><span class="variable">DD =</span> DD[, colnames(DD) == mvar]</div><div class="line"><span class="comment"># 塗りつぶしの色</span></div><div class="line">col_grad &lt;- rev(heat.colors(<span class="number">8</span>))</div><div class="line"><span class="comment">#intvl &lt;- classIntervals(DD,n=8,style="fixed",fixedBreaks=c(0,5000,10000,30000,100000,200000,300000,400000,500000)) #人口</span></div><div class="line">intvl &lt;- classIntervals(DD,<span class="variable">n=</span><span class="number">8</span>,<span class="variable">style=</span><span class="string">"fixed"</span>,<span class="variable">fixedBreaks=</span>c(<span class="number">0</span>,<span class="number">25</span>,<span class="number">50</span>,<span class="number">100</span>,<span class="number">250</span>,<span class="number">500</span>,<span class="number">750</span>,<span class="number">1000</span>,<span class="number">2000</span>)) <span class="comment">#人口密度</span></div><div class="line">cols &lt;- findColours(intvl,col_grad)</div><div class="line">plot(jpn.pref, <span class="variable">col=</span>cols, <span class="variable">border=</span><span class="string">"white"</span>,<span class="variable">lwd =</span> <span class="number">2</span>,<span class="variable">bg =</span> <span class="string">"lightcyan1"</span>, <span class="variable">axes=</span>T, panel.<span class="variable">first =</span> grid(<span class="variable">lty=</span><span class="number">1</span>,<span class="variable">col =</span> <span class="string">"white"</span>))</div><div class="line"><span class="comment"># 枠外への描画を許可</span></div><div class="line">par(<span class="variable">xpd=</span>T)</div><div class="line"><span class="comment"># 凡例を表示</span></div><div class="line"><span class="comment"># par()$usr[2], par()$usr[4]で右上の座標を取得する</span></div><div class="line">legend(par()$usr[<span class="number">2</span>]+<span class="number">0.01</span> , par()$usr[<span class="number">4</span>] - <span class="number">0.6</span> , <span class="variable">fill=</span>attr(cols,<span class="string">"palette"</span>), box.<span class="variable">lty=</span><span class="number">0</span>,<span class="variable">cex=</span><span class="number">1.5</span>,<span class="variable">ncol=</span><span class="number">1</span>,<span class="variable">legend=</span>names(attr(cols,<span class="string">"table"</span>)),<span class="variable">title=</span><span class="string">"人口密度(人/km^2)"</span>,, title.<span class="variable">col =</span><span class="string">"blue"</span>)</div><div class="line"><span class="comment">#	図タイトルの記入</span></div><div class="line">mtext(maintxt, <span class="variable">side=</span><span class="number">3</span>, <span class="variable">cex=</span><span class="number">1.5</span>, <span class="variable">line=</span><span class="number">1</span>)</div><div class="line"><span class="comment">#	市町村名の追加</span></div><div class="line"><span class="keyword">if</span> (<span class="variable">city =</span>=<span class="number">1</span>) {</div><div class="line">text(getSpPPolygonsLabptSlots(jpn.pref), <span class="variable">labels=</span>as.character(jpn.pref$SIKUCHOSON), <span class="variable">cex=</span>ccex)</div><div class="line">	}</div><div class="line"><span class="comment">#dev.off()</span></div><div class="line">summary(DD)</div></pre></td></tr></table></figure>
 
 <p><img src="/images/PopulationDensity02.png" alt=""></p>
+<p>棒グラフ(ggplot2パッケージを使用)<br>市町村の面積によってグラフの色を変える</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">library(ggplot2)</div><div class="line">ggplot(Dataset,aes(<span class="variable">x =</span> reorder(CITY1,JCODE),<span class="variable">y=</span>人口密度))+</div><div class="line">geom_bar(<span class="variable">stat =</span> <span class="string">"identity"</span>,aes(<span class="variable">fill=</span>面積)) +</div><div class="line">xlab(<span class="string">"市町村名（JCODE順）"</span>)+</div><div class="line">ylab(<span class="string">"人口密度(１平方kmあたり人数)"</span>)+</div><div class="line">ggtitle(<span class="string">"鳥取県人口密度(市町村別)"</span>) +</div><div class="line">geom_text(aes(<span class="variable">x =</span> reorder(CITY1,JCODE),<span class="variable">y=</span>人口密度+<span class="number">30</span>,<span class="variable">label=</span>round(人口密度)), <span class="variable">size=</span><span class="number">4</span>, <span class="variable">colour=</span><span class="string">"gray55"</span>)+</div><div class="line"><span class="comment">#theme(legend.position ="none")</span></div><div class="line">scale_fill_gradientn(<span class="variable">limits =</span> c(<span class="number">0</span>,<span class="number">800</span>),<span class="variable">colours=</span>c(<span class="string">"blue"</span>,<span class="string">"lightgray"</span>,<span class="string">"orange"</span>),<span class="variable">breaks=</span>c(<span class="number">10</span>,<span class="number">100</span>,<span class="number">200</span>,<span class="number">300</span>,<span class="number">500</span>,<span class="number">800</span>),<span class="variable">labels=</span>format(c(<span class="number">10</span>,<span class="number">100</span>,<span class="number">200</span>,<span class="number">300</span>,<span class="number">500</span>,<span class="number">800</span>)))</div><div class="line"><span class="comment">#ggsave("PopulationDensity03.png",dpi = 100)</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/PopulationDensity03.png" alt=""></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/12/31/塗り分け地図1/" data-id="gkat5msmyoq08s3e" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/01/02/塗り分け地図1/" data-id="gkat5msmyoq08s3e" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a></li></ul>
@@ -198,7 +203,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12">December 2014</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">34</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12">December 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">34</span></li></ul>
     </div>
   </div>
 
@@ -210,7 +215,7 @@
       <ul>
         
           <li>
-            <a href="/2014/12/31/塗り分け地図1/">塗り分け地図1</a>
+            <a href="/2015/01/02/塗り分け地図1/">塗り分け地図1</a>
           </li>
         
           <li>
@@ -241,7 +246,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2014 統計ソフトRの備忘録２<br>
+      &copy; 2015 統計ソフトRの備忘録２<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
