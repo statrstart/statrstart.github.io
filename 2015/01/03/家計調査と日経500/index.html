@@ -3,17 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Category: Gambit | 統計ソフトRの備忘録２</title>
+  <title>家計調査と日経500 | 統計ソフトRの備忘録２</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="統計ソフトRの備忘録２">
-<meta property="og:url" content="http://yoursite.com/categories/Gambit/">
+  <meta name="description" content="quantmod,xts パッケージ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="家計調査と日経500">
+<meta property="og:url" content="http://yoursite.com/2015/01/03/家計調査と日経500/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
-<meta property="og:description">
+<meta property="og:description" content="quantmod,xts パッケージ">
+<meta property="og:image" content="/images/kakei01.png">
+<meta property="og:image" content="/images/nikkei500_01.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="統計ソフトRの備忘録２">
-<meta name="twitter:description">
+<meta name="twitter:title" content="家計調査と日経500">
+<meta name="twitter:description" content="quantmod,xts パッケージ">
 
   
     <link rel="alternative" href="/atom.xml" title="統計ソフトRの備忘録２" type="application/atom+xml">
@@ -90,16 +92,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-第10章統計的決定2" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-家計調査と日経500" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/10/26/第10章統計的決定2/" class="article-date">
-  <time datetime="2014-10-26T02:42:21.000Z" itemprop="datePublished">Oct 26 2014</time>
+    <a href="/2015/01/03/家計調査と日経500/" class="article-date">
+  <time datetime="2015-01-03T05:59:07.000Z" itemprop="datePublished">Jan 3 2015</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Gambit/">Gambit</a>
+    <a class="article-category-link" href="/categories/R/">R</a>
   </div>
 
   </div>
@@ -109,8 +109,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/10/26/第10章統計的決定2/">統計的決定2</a>
+    <h1 class="article-title" itemprop="name">
+      家計調査と日経500
     </h1>
   
 
@@ -118,77 +118,44 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="gambitで期待効用計算">gambitで期待効用計算</h2>
+        <h2 id="quantmod,xts_パッケージ">quantmod,xts パッケージ</h2>
+<a id="more"></a>
 
-        
-          <p class="article-more-link">
-            <a href="/2014/10/26/第10章統計的決定2/#more">Read More</a>
-          </p>
-        
+<p><a href="http://www.stat.go.jp/data/kakei/2.htm" target="_blank" rel="external">家計調査（家計収支編）調査結果</a> より<br>月（二人以上の世帯）最新結果速報 平成26年(2014年)11月分<br>（平成26年12月26日公表）<br>第1表 主要家計指標-二人以上の世帯（エクセル：69KB） から<br>勤労者世帯の実収入、可処分所得、消費支出を抜きだしグラフ化。</p>
+<p><a href="/data/kakei.dat">kakei.dat</a></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">load(<span class="string">"kakei.dat"</span>)</div><div class="line">options(<span class="variable">scipen=</span><span class="number">6</span>)</div><div class="line">zitsu&lt;-kakei[,<span class="number">1</span>]</div><div class="line">kasho&lt;-kakei[,<span class="number">2</span>]</div><div class="line">shouhi&lt;-kakei[,<span class="number">3</span>]</div><div class="line"><span class="comment">#png("kakei01.png", width =800, height =600)  </span></div><div class="line">par(<span class="variable">mar=</span>c(<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">6</span>),<span class="variable">las=</span><span class="number">1</span>,cex.<span class="variable">axis=</span><span class="number">0.9</span>,<span class="variable">family=</span><span class="string">"TakaoMincho"</span>)</div><div class="line">ts.plot(zitsu,kasho,shouhi,<span class="variable">gpars=</span>list(<span class="variable">xlab=</span><span class="string">""</span>,<span class="variable">ylab=</span><span class="string">""</span>,<span class="variable">xaxt=</span><span class="string">"n"</span>,<span class="variable">lty=</span>c(<span class="number">1</span>:<span class="number">3</span>),<span class="variable">col=</span>c(<span class="number">1</span>:<span class="number">3</span>)),<span class="variable">main=</span><span class="string">"勤労者世帯の実収入・可処分所得・消費支出(単位:円) (2012/11～2014/11)"</span>)</div><div class="line">axis(<span class="number">1</span>,c(<span class="string">"2013"</span>,<span class="string">"2014"</span>))</div><div class="line">axis(<span class="number">4</span>,kakei[nrow(kakei),<span class="number">1</span>],<span class="string">"実収入"</span>,col.<span class="variable">axis=</span><span class="number">1</span>)</div><div class="line">axis(<span class="number">4</span>,kakei[nrow(kakei),<span class="number">2</span>],<span class="string">"可処分所得"</span>,col.<span class="variable">axis=</span><span class="number">2</span>)</div><div class="line">axis(<span class="number">4</span>,kakei[nrow(kakei),<span class="number">3</span>],<span class="string">"消費支出"</span>,col.<span class="variable">axis=</span><span class="number">3</span>)</div><div class="line">grid()</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/kakei01.png" alt=""></p>
+<p>日経500種平均株価（業種別日経平均株価）<br>月次データの最終行を削除。文字コードをutf-8で保存(linuxで使うため)。変数名、ファイル名を短く。<br>データ転載禁止ですのでコードとグラフのみ。  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">library(xts)</div><div class="line">library(quantmod)</div><div class="line"><span class="comment">#library(ggplot2)</span></div><div class="line">data &lt;- read.table(<span class="string">"/home/user/R/work/nikkei_500.csv"</span>, <span class="variable">header=</span>TRUE, <span class="variable">sep=</span><span class="string">","</span>, na.<span class="variable">strings=</span><span class="string">"NA"</span>, <span class="variable">dec=</span><span class="string">"."</span>, strip.<span class="variable">white=</span>TRUE)</div><div class="line">head(data)</div><div class="line">subset(data, <span class="variable">subset=</span>データ日付==<span class="string">"2012/11/01"</span>)</div><div class="line"><span class="comment">#107行目から最終行までのデータを使う</span></div><div class="line">nikkei500&lt;-data[c(<span class="number">107</span>:nrow(data)),c(<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">2</span>)]</div><div class="line">names(nikkei500)&lt;-c(<span class="string">"Date"</span>,<span class="string">"Open"</span>,<span class="string">"High"</span>,<span class="string">"Low"</span>,<span class="string">"Close"</span>)</div><div class="line">nikkei500&lt;-as.xts(read.zoo(nikkei500))</div><div class="line"><span class="comment">#png("nikkei500_01.png", width =800, height =600)  </span></div><div class="line">candleChart(nikkei500)</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/nikkei500_01.png" alt=""></p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/10/26/第10章統計的決定2/" data-id="tvbmjodu9mcuzemr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/01/03/家計調査と日経500/" data-id="56y5o12jc111g4il" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a></li></ul>
 
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-第9章ゲーム理論2" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/10/13/第9章ゲーム理論2/" class="article-date">
-  <time datetime="2014-10-13T09:35:48.000Z" itemprop="datePublished">Oct 13 2014</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Gambit/">Gambit</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/10/13/第9章ゲーム理論2/">Gambitを用いて第9章</a>
-    </h1>
+    <a href="/2015/01/02/塗り分け地図1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">塗り分け地図1</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="第9章ゲーム理論2">第9章ゲーム理論2</h2>
-<p>（zorinOS synapticパッケージマネージャを利用してgambit0.2010.09.01-1.1をインストール)<br>
-        
-          <p class="article-more-link">
-            <a href="/2014/10/13/第9章ゲーム理論2/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/10/13/第9章ゲーム理論2/" data-id="b1axswjx91csm0mx" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
 
-
-  
-  
 </section>
         
           <aside id="sidebar">
