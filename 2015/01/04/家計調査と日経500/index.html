@@ -8,7 +8,7 @@
   <meta name="description" content="quantmod,xts,ggplot2,reshape2 パッケージ">
 <meta property="og:type" content="article">
 <meta property="og:title" content="家計調査と日経500">
-<meta property="og:url" content="http://yoursite.com/2015/01/03/家計調査と日経500/">
+<meta property="og:url" content="http://yoursite.com/2015/01/04/家計調査と日経500/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
 <meta property="og:description" content="quantmod,xts,ggplot2,reshape2 パッケージ">
 <meta property="og:image" content="/images/kakei01.png">
@@ -95,8 +95,8 @@
       <div class="outer">
         <section id="main"><article id="post-家計調査と日経500" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/01/03/家計調査と日経500/" class="article-date">
-  <time datetime="2015-01-03T14:36:31.000Z" itemprop="datePublished">Jan 3 2015</time>
+    <a href="/2015/01/04/家計調査と日経500/" class="article-date">
+  <time datetime="2015-01-03T22:25:50.000Z" itemprop="datePublished">Jan 4 2015</time>
 </a>
     
   <div class="article-category">
@@ -127,7 +127,8 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">load(<span class="string">"kakei.dat"</span>)</div><div class="line">options(<span class="variable">scipen=</span><span class="number">6</span>)</div><div class="line">zitsu&lt;-kakei[,<span class="number">1</span>]</div><div class="line">kasho&lt;-kakei[,<span class="number">2</span>]</div><div class="line">shouhi&lt;-kakei[,<span class="number">3</span>]</div><div class="line"><span class="comment">#png("kakei01.png", width =800, height =600)  </span></div><div class="line">par(<span class="variable">mar=</span>c(<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">6</span>),<span class="variable">las=</span><span class="number">1</span>,cex.<span class="variable">axis=</span><span class="number">0.9</span>,<span class="variable">family=</span><span class="string">"TakaoMincho"</span>)</div><div class="line">ts.plot(zitsu,kasho,shouhi,<span class="variable">gpars=</span>list(<span class="variable">xlab=</span><span class="string">""</span>,<span class="variable">ylab=</span><span class="string">""</span>,<span class="variable">xaxt=</span><span class="string">"n"</span>,<span class="variable">lty=</span>c(<span class="number">1</span>:<span class="number">3</span>),<span class="variable">col=</span>c(<span class="number">1</span>:<span class="number">3</span>)),<span class="variable">main=</span><span class="string">"勤労者世帯の実収入・可処分所得・消費支出(単位:円) (2012/11～2014/11)"</span>)</div><div class="line">axis(<span class="number">1</span>,c(<span class="string">"2013"</span>,<span class="string">"2014"</span>))</div><div class="line">axis(<span class="number">4</span>,kakei[nrow(kakei),<span class="number">1</span>],<span class="string">"実収入"</span>,col.<span class="variable">axis=</span><span class="number">1</span>)</div><div class="line">axis(<span class="number">4</span>,kakei[nrow(kakei),<span class="number">2</span>],<span class="string">"可処分所得"</span>,col.<span class="variable">axis=</span><span class="number">2</span>)</div><div class="line">axis(<span class="number">4</span>,kakei[nrow(kakei),<span class="number">3</span>],<span class="string">"消費支出"</span>,col.<span class="variable">axis=</span><span class="number">3</span>)</div><div class="line">grid()</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
 
 <p><img src="/images/kakei01.png" alt=""></p>
-<p><a href="http://www.stat.go.jp/data/kakei/sokuhou/nen/index.htm" target="_blank" rel="external">家計調査報告（家計収支編）―平成25年（2013年）平均速報結果の概況―</a><br>年間収入階級別１世帯当たり１か月間の収入と支出<br>(平成25年(2013年)平均 全国・大都市・中都市・小都市＋町村<br>：二人以上の世帯のうち勤労者世帯)</p>
+<p><a href="http://www.stat.go.jp/data/kakei/sokuhou/nen/index.htm" target="_blank" rel="external">家計調査報告（家計収支編）―平成25年（2013年）平均速報結果の概況―</a><br>年間収入階級別１世帯当たり１か月間の収入と支出<br>平成25年(2013年)平均 全国・大都市・中都市・小都市＋町村  </p>
+<h5 id="二人以上の世帯のうち勤労者世帯">二人以上の世帯のうち勤労者世帯</h5>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="function">library</span>(ggplot2)</div><div class="line"><span class="function">library</span>(reshape2)</div><div class="line">年間収入階級&lt;<span class="function">-c</span>("２００万円未満","２００～２５０",	"２５０～３００","３００～３５０","３５０～４００","４００～４５０","４５０～５００","５００～５５０","５５０～６００","６００～６５０","６５０～７００","７００～７５０","７５０～８００","８００～９００","９００～１０００","１０００～１２５０","１２５０～１５００","１５００万円以上")</div><div class="line">No&lt;<span class="function">-c</span>(1<span class="value">:<span class="number">18</span>)</span></div><div class="line">全国&lt;<span class="function">-c</span>(<span class="number">35</span>,<span class="number">85</span>,	<span class="number">115</span>,<span class="number">167</span>,<span class="number">241</span>,<span class="number">277</span>,<span class="number">298</span>,<span class="number">317</span>,<span class="number">281</span>,<span class="number">282</span>,<span class="number">248</span>,<span class="number">233</span>,<span class="number">220</span>,	<span class="number">352</span>,<span class="number">240</span>,<span class="number">327</span>,<span class="number">141</span>,<span class="number">104</span>)</div><div class="line">大都市&lt;<span class="function">-c</span>(<span class="number">8</span>,<span class="number">17</span>,<span class="number">25</span>,<span class="number">40</span>,<span class="number">59</span>,<span class="number">71</span>,<span class="number">85</span>,<span class="number">92</span>,<span class="number">89</span>,<span class="number">71</span>,<span class="number">71</span>,<span class="number">78</span>,<span class="number">68</span>,<span class="number">113</span>,<span class="number">76</span>,<span class="number">115</span>,<span class="number">45</span>,<span class="number">41</span>)</div><div class="line">中都市&lt;<span class="function">-c</span>(<span class="number">18</span>,<span class="number">49</span>,<span class="number">62</span>,<span class="number">88</span>,<span class="number">138</span>,<span class="number">147</span>,<span class="number">161</span>,<span class="number">162</span>,<span class="number">136</span>,<span class="number">155</span>,<span class="number">126</span>,<span class="number">117</span>,<span class="number">115</span>,<span class="number">185</span>,	<span class="number">125</span>,<span class="number">164</span>,<span class="number">70</span>,<span class="number">49</span>)</div><div class="line">小都市町村&lt;<span class="function">-c</span>(<span class="number">10</span>,	<span class="number">18</span>,	<span class="number">27</span>,	<span class="number">39</span>,	<span class="number">44</span>,	<span class="number">60</span>,	<span class="number">53</span>,	<span class="number">63</span>,	<span class="number">56</span>,	<span class="number">56</span>,	<span class="number">52</span>,	<span class="number">38</span>,	<span class="number">37</span>,	<span class="number">54</span>,	<span class="number">40</span>,	<span class="number">49</span>,	<span class="number">27</span>,	<span class="number">13</span>)</div><div class="line">全国割合&lt;<span class="function">-round</span>((全国/<span class="number">3963</span>)*<span class="number">100</span>,<span class="number">2</span>)</div><div class="line">大都市割合&lt;<span class="function">-round</span>((大都市/<span class="number">1161</span>)*<span class="number">100</span>,<span class="number">2</span>)</div><div class="line">中都市割合&lt;<span class="function">-round</span>((中都市/<span class="number">2068</span>)*<span class="number">100</span>,<span class="number">2</span>)</div><div class="line">小都市町村割合&lt;<span class="function">-round</span>((小都市町村/<span class="number">734</span>)*<span class="number">100</span>,<span class="number">2</span>)</div><div class="line">年間収入階級別１世帯当たり１か月間の収入と支出&lt;-data.<span class="function">frame</span>(No,年間収入階級,全国,大都市,中都市,小都市町村,全国割合,大都市割合,中都市割合,小都市町村割合)</div><div class="line">#<span class="function">save</span>(<span class="string">"年間収入階級別１世帯当たり１か月間の収入と支出"</span>, file=<span class="string">"/home/user/R/work/年間収入階級別１世帯当たり１か月間の収入と支出.dat"</span>)</div><div class="line">#<span class="function">load</span>(<span class="string">"年間収入階級別１世帯当たり１か月間の収入と支出.dat"</span>)</div><div class="line">d&lt;-年間収入階級別１世帯当たり１か月間の収入と支出</div><div class="line">#temp1 &lt;- <span class="function">melt</span>(d,id=<span class="function">c</span>(<span class="string">"No"</span>,<span class="string">"年間収入階級"</span>), measure=<span class="function">c</span>( <span class="string">"全国"</span>, <span class="string">"大都市"</span>, <span class="string">"中都市"</span>,<span class="string">"小都市町村"</span>))</div><div class="line">temp2&lt;- <span class="function">melt</span>(d,id=<span class="function">c</span>(<span class="string">"No"</span>,<span class="string">"年間収入階級"</span>), measure=<span class="function">c</span>( <span class="string">"全国割合"</span>, <span class="string">"大都市割合"</span>, <span class="string">"中都市割合"</span>,<span class="string">"小都市町村割合"</span>))</div><div class="line"><span class="function">ggplot</span>(temp2, <span class="function">aes</span>(x=<span class="function">reorder</span>(年間収入階級,No),y=value)) + </div><div class="line"><span class="function">geom_bar</span>(stat=<span class="string">"identity"</span>, position = <span class="string">"dodge"</span>,<span class="function">aes</span>(group=variable,fill=variable)) +</div><div class="line"><span class="function">xlab</span>(<span class="string">"年間収入"</span>)+</div><div class="line"><span class="function">ylab</span>(<span class="string">"世帯数割合（％）"</span>)+</div><div class="line"><span class="function">ggtitle</span>(<span class="string">"年間収入金額別世帯数割合（％）(2013年)"</span>) +</div><div class="line"><span class="function">theme</span>(legend.title=<span class="function">element_blank</span>(),axis.text.x = <span class="function">element_text</span>(angle = <span class="number">45</span>, hjust = <span class="number">1</span>))</div><div class="line">#<span class="function">ggsave</span>(<span class="string">"kakei02.png"</span>,dpi = <span class="number">120</span>, width = <span class="number">8</span>, height = <span class="number">6</span>)</div></pre></td></tr></table></figure>
 
 <p><img src="/images/kakei02.png" alt=""></p>
@@ -139,7 +140,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/01/03/家計調査と日経500/" data-id="56y5o12jc111g4il" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/01/04/家計調査と日経500/" data-id="56y5o12jc111g4il" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a></li></ul>
@@ -149,6 +150,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2015/01/04/家計調査2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          家計調査2
+        
+      </div>
+    </a>
   
   
     <a href="/2015/01/02/塗り分け地図1/" id="article-nav-older" class="article-nav-link-wrap">
@@ -169,7 +179,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Gambit/">Gambit</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gnumeric/">Gnumeric</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Graphviz/">Graphviz</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NetworkX/">NetworkX</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sqlite3/">sqlite3</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/放送大学/">放送大学</a><span class="category-list-count">45</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Gambit/">Gambit</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gnumeric/">Gnumeric</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Graphviz/">Graphviz</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NetworkX/">NetworkX</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sqlite3/">sqlite3</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/放送大学/">放送大学</a><span class="category-list-count">45</span></li></ul>
     </div>
   </div>
 
@@ -178,7 +188,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">13</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">13</span></li></ul>
     </div>
   </div>
 
@@ -196,7 +206,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12">December 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">34</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12">December 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">34</span></li></ul>
     </div>
   </div>
 
@@ -208,7 +218,11 @@
       <ul>
         
           <li>
-            <a href="/2015/01/03/家計調査と日経500/">家計調査と日経500</a>
+            <a href="/2015/01/04/家計調査2/">家計調査2</a>
+          </li>
+        
+          <li>
+            <a href="/2015/01/04/家計調査と日経500/">家計調査と日経500</a>
           </li>
         
           <li>
@@ -221,10 +235,6 @@
         
           <li>
             <a href="/2014/12/13/データベース2/">データベース2</a>
-          </li>
-        
-          <li>
-            <a href="/2014/12/09/共分散行列を利用5/">共分散行列を利用5</a>
           </li>
         
       </ul>
