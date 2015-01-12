@@ -13,6 +13,7 @@
 <meta property="og:description" content="zoo,xts,quantmod,gdata パッケージ">
 <meta property="og:image" content="/images/nichi01.png">
 <meta property="og:image" content="/images/nichi02.png">
+<meta property="og:image" content="/images/nichi03.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="日銀買入額">
 <meta name="twitter:description" content="zoo,xts,quantmod,gdata パッケージ">
@@ -95,7 +96,7 @@
         <section id="main"><article id="post-日銀買入額" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/01/12/日銀買入額/" class="article-date">
-  <time datetime="2015-01-12T09:13:56.000Z" itemprop="datePublished">Jan 12 2015</time>
+  <time datetime="2015-01-12T13:28:18.000Z" itemprop="datePublished">Jan 12 2015</time>
 </a>
     
   <div class="article-category">
@@ -132,6 +133,14 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">getSymbols(<span class="string">"^N225"</span>,<span class="variable">from=</span><span class="string">"2010-10-15"</span>)</div><div class="line"><span class="comment">#head(N225);tail(N225)</span></div><div class="line">N225[<span class="string">"2014-12-01"</span>,c(<span class="number">1</span>:<span class="number">6</span>)]&lt;-c(<span class="number">17475.10</span>,<span class="number">17649.02</span>,<span class="number">17474.27</span>,<span class="number">17590.10</span>,<span class="number">0</span>,<span class="number">17590.10</span>)</div><div class="line"><span class="comment">#chartSeries(N225)</span></div><div class="line"><span class="comment">#tail(N225$N225.Close)</span></div><div class="line"><span class="comment">#グラフにする期間を指定</span></div><div class="line">start&lt;-<span class="string">"2010-10-15"</span> ; end&lt;-<span class="string">"2015-01-09"</span></div><div class="line">r&lt;-as.POSIXct(c(start,end))</div><div class="line">t&lt;-paste(start,<span class="string">"::"</span>,end,<span class="variable">sep=</span><span class="string">""</span>)</div><div class="line"><span class="comment">#png("nichi02.png", width=1000, height=800)</span></div><div class="line">par(<span class="variable">oma =</span> c(<span class="number">0</span>,<span class="number">3</span>, <span class="number">0</span>, <span class="number">3</span>))</div><div class="line">plot(N225$N225.Close[t],<span class="variable">main=</span>paste(<span class="string">"日経平均株価 & 日本銀行 ETF 買入額("</span>,start,<span class="string">"～"</span>,end,<span class="string">")"</span>),<span class="variable">xlim=</span>c(r[<span class="number">1</span>],r[<span class="number">2</span>]),<span class="variable">ylim=</span>c(<span class="number">5000</span>,<span class="number">19000</span>),<span class="variable">las=</span><span class="number">1</span>)</div><div class="line">mtext(<span class="string">"日経平均株価"</span>,<span class="variable">side =</span> <span class="number">2</span>, <span class="variable">line =</span> <span class="number">4</span>) </div><div class="line">par(<span class="variable">new=</span>T)</div><div class="line">plot(d.xts[t,<span class="number">1</span>],<span class="variable">type=</span><span class="string">"h"</span>,<span class="variable">xlim=</span>c(r[<span class="number">1</span>],r[<span class="number">2</span>]),<span class="variable">ylim=</span>c(<span class="number">0</span>,<span class="number">1000</span>),<span class="variable">xaxt=</span><span class="string">"n"</span>,<span class="variable">xlab=</span><span class="string">""</span>,<span class="variable">yaxt=</span><span class="string">"n"</span>,<span class="variable">ylab=</span><span class="string">""</span>,<span class="variable">main=</span><span class="string">""</span>,<span class="variable">col=</span><span class="string">"red"</span>)</div><div class="line">axis(<span class="number">4</span>,<span class="variable">las=</span><span class="number">1</span>)  </div><div class="line">mtext(<span class="string">"ETF 買入額(億円)"</span>,<span class="variable">side =</span> <span class="number">4</span>, <span class="variable">line =</span> <span class="number">3</span>) </div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
 
 <p><img src="/images/nichi02.png" alt=""></p>
+<p>1991_2014までのtopixのデータは<br><a href="http://wakash.com/cgi-bin/get_kabuka/select_meigara.php" target="_blank" rel="external">株価時系列データ取得</a><br>を利用してyahooファイナンスから入手しました。</p>
+<p><a href="/data/topix1991_2014.dat">topix1991_2014.dat</a></p>
+<p>（2015年のデータは最新のグラフを作るときに入手）  </p>
+<p><a href="http://k-db.com/indices/I102" target="_blank" rel="external">【TOPIX】株価指数 時系列データ 日足</a><br>2015 を選択 -&gt; csvダウンロード </p>
+<p>ダウンロードしたcsvファイルを作業フォルダに置いて</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">library(gdata)</div><div class="line">library(xts)</div><div class="line">library(quantmod)</div><div class="line">topix2015 &lt;- read.csv(<span class="string">"/home/user/R/work/I102_2015.csv"</span>, <span class="variable">header=</span>F,<span class="variable">skip=</span><span class="number">2</span>)</div><div class="line">names(topix2015)&lt;-c(<span class="string">"Date"</span>,<span class="string">"Open"</span>,<span class="string">"High"</span>,<span class="string">"Low"</span>,<span class="string">"Close"</span>)</div><div class="line"><span class="comment">#topix1991_2014.datを読み込んで結合</span></div><div class="line">load(<span class="string">"topix1991_2014.dat"</span>)</div><div class="line">topix&lt;-rbind(topix2015,topix1991_2014)</div><div class="line">topix.xts &lt;- as.xts(zoo(topix[,-<span class="number">1</span>]), as.POSIXct(topix[,<span class="number">1</span>]))</div><div class="line"><span class="comment">#chartSeries(topix.xts)</span></div><div class="line"><span class="comment">#plot(topix.xts[,4])</span></div><div class="line"><span class="comment">#topix & 日本銀行 ETF 買入額</span></div><div class="line"><span class="comment">#日本銀行 ETF 買入額の読み込みは上と同じ</span></div><div class="line">d2014&lt;-read.xls(<span class="string">"2014.xls"</span>,<span class="variable">sheet=</span><span class="number">1</span>,<span class="variable">header=</span>F,<span class="variable">skip=</span><span class="number">8</span>)</div><div class="line">d2014&lt;-d2014[,<span class="number">2</span>:<span class="number">4</span>]</div><div class="line">names(d2014)&lt;-c(<span class="string">"date"</span>,<span class="string">"ETF"</span>,<span class="string">"REIT"</span>)</div><div class="line">load(<span class="string">"d2010_201403.dat"</span>)</div><div class="line">d&lt;-rbind(d2010_201403,d2014)</div><div class="line">d.xts &lt;- as.xts(zoo(d[,-<span class="number">1</span>]),as.POSIXct(d[,<span class="number">1</span>]))</div><div class="line"><span class="comment">#グラフにする期間を指定</span></div><div class="line">start&lt;-<span class="string">"2010-10-15"</span> ; end&lt;-<span class="string">"2015-01-09"</span></div><div class="line">r&lt;-as.POSIXct(c(start,end))</div><div class="line">t&lt;-paste(start,<span class="string">"::"</span>,end,<span class="variable">sep=</span><span class="string">""</span>)</div><div class="line"><span class="comment">#png("nichi03.png", width=1000, height=800)</span></div><div class="line">par(<span class="variable">oma =</span> c(<span class="number">0</span>,<span class="number">3</span>, <span class="number">0</span>, <span class="number">3</span>))</div><div class="line">plot(topix.xts$Close[t],<span class="variable">main=</span>paste(<span class="string">"TOPIX & 日本銀行 ETF 買入額("</span>,start,<span class="string">"～"</span>,end,<span class="string">")"</span>),<span class="variable">xlim=</span>c(r[<span class="number">1</span>],r[<span class="number">2</span>]),<span class="variable">ylim=</span>c(<span class="number">500</span>,<span class="number">1500</span>),<span class="variable">las=</span><span class="number">1</span>)</div><div class="line">mtext(<span class="string">"TOPIX"</span>,<span class="variable">side =</span> <span class="number">2</span>, <span class="variable">line =</span> <span class="number">4</span>) </div><div class="line">par(<span class="variable">new=</span>T)</div><div class="line">plot(d.xts[t,<span class="number">1</span>],<span class="variable">type=</span><span class="string">"h"</span>,<span class="variable">xlim=</span>c(r[<span class="number">1</span>],r[<span class="number">2</span>]),<span class="variable">ylim=</span>c(<span class="number">0</span>,<span class="number">1000</span>),<span class="variable">xaxt=</span><span class="string">"n"</span>,<span class="variable">xlab=</span><span class="string">""</span>,<span class="variable">yaxt=</span><span class="string">"n"</span>,<span class="variable">ylab=</span><span class="string">""</span>,<span class="variable">main=</span><span class="string">""</span>,<span class="variable">col=</span><span class="string">"red"</span>)</div><div class="line">axis(<span class="number">4</span>,<span class="variable">las=</span><span class="number">1</span>)  </div><div class="line">mtext(<span class="string">"ETF 買入額(億円)"</span>,<span class="variable">side =</span> <span class="number">4</span>, <span class="variable">line =</span> <span class="number">3</span>) </div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/nichi03.png" alt=""></p>
 
       
     </div>
@@ -147,19 +156,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/01/12/東大物価指数等1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          東大物価指数・USDJPY・日経平均株価・WTI原油価格
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/01/04/家計調査2/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2015/01/12/東大物価指数等1/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">家計調査2</div>
+      <div class="article-nav-title">東大物価指数・USDJPY・日経平均株価・WTI原油価格</div>
     </a>
   
 </nav>
@@ -214,11 +214,11 @@
       <ul>
         
           <li>
-            <a href="/2015/01/12/東大物価指数等1/">東大物価指数・USDJPY・日経平均株価・WTI原油価格</a>
+            <a href="/2015/01/12/日銀買入額/">日銀買入額</a>
           </li>
         
           <li>
-            <a href="/2015/01/12/日銀買入額/">日銀買入額</a>
+            <a href="/2015/01/12/東大物価指数等1/">東大物価指数・USDJPY・日経平均株価・WTI原油価格</a>
           </li>
         
           <li>
