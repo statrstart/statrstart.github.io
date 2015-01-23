@@ -8,11 +8,12 @@
   <meta name="description" content="WDI,data.table,reshape2,countrycode パッケージ">
 <meta property="og:type" content="article">
 <meta property="og:title" content="世界銀行データ">
-<meta property="og:url" content="http://yoursite.com/2015/01/18/世界銀行データ/">
+<meta property="og:url" content="http://yoursite.com/2015/01/23/世界銀行データ/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
 <meta property="og:description" content="WDI,data.table,reshape2,countrycode パッケージ">
 <meta property="og:image" content="/images/wdi01.png">
 <meta property="og:image" content="/images/wdi02.png">
+<meta property="og:image" content="/images/wdi03.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="世界銀行データ">
 <meta name="twitter:description" content="WDI,data.table,reshape2,countrycode パッケージ">
@@ -94,8 +95,8 @@
       <div class="outer">
         <section id="main"><article id="post-世界銀行データ" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/01/18/世界銀行データ/" class="article-date">
-  <time datetime="2015-01-18T03:48:05.000Z" itemprop="datePublished">Jan 18 2015</time>
+    <a href="/2015/01/23/世界銀行データ/" class="article-date">
+  <time datetime="2015-01-23T14:20:17.000Z" itemprop="datePublished">Jan 23 2015</time>
 </a>
     
   <div class="article-category">
@@ -695,11 +696,15 @@
 </tr>
 </tbody>
 </table>
+<p>Southern EuropeのGDPの成長率(2013年)</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">library(data.table)</div><div class="line">countrycodeJP &lt;-  fread(<span class="string">"countrycodeJP.csv"</span>)</div><div class="line"><span class="comment">#keyを設定</span></div><div class="line">setkey(countrycodeJP,<span class="string">"region"</span>)</div><div class="line"><span class="comment">#regionがSouthern Europe</span></div><div class="line">iso&lt;-countrycodeJP[<span class="string">"Southern Europe"</span>,]$iso2c</div><div class="line">iso</div><div class="line">library(WDI)</div><div class="line"><span class="comment">#library(reshape2)</span></div><div class="line"><span class="comment">#library(ggplot2)</span></div><div class="line"><span class="comment">#ＧＤＰの成長率ny.gdp.mktp.kd.zg GDP growth (annual %)</span></div><div class="line">gdpgrowth &lt;- WDI(<span class="variable">country=</span>iso, <span class="variable">indicator =</span><span class="string">"NY.GDP.MKTP.KD.ZG"</span>, <span class="variable">start =</span> <span class="number">1960</span>, <span class="variable">end =</span> <span class="number">2013</span>)</div><div class="line">names(gdpgrowth)&lt;-c( <span class="string">"iso2c"</span>,<span class="string">"country"</span>,<span class="string">"value"</span> ,<span class="string">"year"</span>  )</div><div class="line"><span class="comment">#2013年のデータを抽出</span></div><div class="line">gdpgrowth2013 &lt;- subset(gdpgrowth, <span class="variable">subset=</span><span class="variable">year=</span>=<span class="number">2013</span>)</div><div class="line"><span class="comment">#データのない国は削除</span></div><div class="line">gdpgrowth2013 &lt;- na.omit(gdpgrowth2013)</div><div class="line">png(<span class="string">"wdi03.png"</span>,<span class="variable">width=</span><span class="number">1000</span>,<span class="variable">height=</span><span class="number">800</span>)</div><div class="line">par(<span class="variable">mar=</span>c(<span class="number">5</span>,<span class="number">12</span>,<span class="number">4</span>,<span class="number">5</span>) )</div><div class="line">barplot(gdpgrowth2013$value,names.<span class="variable">arg=</span>gdpgrowth2013$country,<span class="variable">horiz=</span>T,<span class="variable">las=</span><span class="number">1</span>,<span class="variable">main=</span><span class="string">"GDP成長率 2013年 (%)"</span>)</div><div class="line">dev.off()</div></pre></td></tr></table></figure>
+
+<p><img src="/images/wdi03.png" alt=""></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/01/18/世界銀行データ/" data-id="p1d6rjcn7dr43qze" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/01/23/世界銀行データ/" data-id="p1d6rjcn7dr43qze" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a></li></ul>
@@ -710,19 +715,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/01/23/震源地と原子力発電所/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          震源地と原子力発電所
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/01/12/日銀買入額/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2015/01/23/震源地と原子力発電所/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">日銀買入額</div>
+      <div class="article-nav-title">震源地と原子力発電所</div>
     </a>
   
 </nav>
@@ -777,11 +773,11 @@
       <ul>
         
           <li>
-            <a href="/2015/01/23/震源地と原子力発電所/">震源地と原子力発電所</a>
+            <a href="/2015/01/23/世界銀行データ/">世界銀行データ</a>
           </li>
         
           <li>
-            <a href="/2015/01/18/世界銀行データ/">世界銀行データ</a>
+            <a href="/2015/01/23/震源地と原子力発電所/">震源地と原子力発電所</a>
           </li>
         
           <li>
