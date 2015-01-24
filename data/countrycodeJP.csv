@@ -1,0 +1,249 @@
+countryJP,country.name,cowc,cown,fao,fips104,imf,ioc,iso2c,iso3c,iso3n,un,wb,regex,continent,region,regionJP
+アンドラ,Andorra,AND,232,6,AN,NA,AND,AD,AND,20,20,ADO,andorra,Europe,"Southern Europe",西ヨーロッパ
+アラブ首長国連邦,"United Arab Emirates",UAE,696,225,AE,466,UAE,AE,ARE,784,784,ARE,emirates|^u\.?a\.?e\.?$|united.?arab.?em,Asia,"Western Asia",中東
+アフガニスタン,Afghanistan,AFG,700,2,AF,512,AFG,AF,AFG,4,4,AFG,afghan,Asia,"Southern Asia",中東
+アンティグア・バーブーダ,"Antigua and Barbuda",AAB,58,8,AC,311,ANT,AG,ATG,28,28,ATG,antigua,Americas,Caribbean,中央アメリカ
+アンギラ,Anguilla,NA,NA,NA,AV,312,AIA,AI,AIA,660,660,AIA,anguill?a,Americas,Caribbean,中央アメリカ
+アルバニア,Albania,ALB,339,3,AL,914,ALB,AL,ALB,8,8,ALB,albania,Europe,"Southern Europe",東ヨーロッパ
+アルメニア,Armenia,ARM,371,1,AM,911,ARM,AM,ARM,51,51,ARM,armenia,Asia,"Western Asia",東ヨーロッパ
+アンゴラ,Angola,ANG,540,7,AO,614,ANG,AO,AGO,24,24,AGO,angola,Africa,"Middle Africa",南アフリカ
+南極,Antarctica,NA,NA,NA,AY,NA,NA,AQ,ATA,10,NA,ATA,antarctica,NA,NA,南極
+アルゼンチン,Argentina,ARG,160,9,AR,213,ARG,AR,ARG,32,32,ARG,argentin,Americas,"South America",南アメリカ
+アメリカ領サモア,"American Samoa",NA,NA,NA,AQ,859,ASA,AS,ASM,16,16,ASM,^(?=.*americ).*samoa,Oceania,Polynesia,オセアニア
+オーストリア,Austria,AUS,305,11,AU,122,AUT,AT,AUT,40,40,AUT,^(?!.*hungary).*austria|\baust.*\bemp,Europe,"Western Europe",東ヨーロッパ
+オーストラリア,Australia,AUL,900,10,AS,193,AUS,AU,AUS,36,36,AUS,australia,Oceania,"Australia and New Zealand",オセアニア
+アルバ,Aruba,NA,NA,NA,AA,314,ARU,AW,ABW,533,533,ABW,^(?!.*bonaire).*\baruba,Americas,Caribbean,中央アメリカ
+オーランド諸島,"Aland Islands",NA,NA,NA,NA,NA,NA,AX,ALA,248,248,ALA,\b(a|å)land,Europe,"Northern Europe",北ヨーロッパ
+アゼルバイジャン,Azerbaijan,AZE,373,52,AJ,912,AZE,AZ,AZE,31,31,AZE,azerbaijan,Asia,"Western Asia",東ヨーロッパ
+ボスニア・ヘルツェゴビナ,"Bosnia and Herzegovina",BOS,346,80,BK,963,BIH,BA,BIH,70,70,BIH,herzegovina|bosnia,Europe,"Southern Europe",東ヨーロッパ
+バルバドス,Barbados,BAR,53,14,BB,316,BAR,BB,BRB,52,52,BRB,barbados,Americas,Caribbean,中央アメリカ
+バングラデシュ,Bangladesh,BNG,771,16,BG,513,BAN,BD,BGD,50,50,BGD,bangladesh|^(?=.*east).*paki?stan,Asia,"Southern Asia",南アジア
+ベルギー,Belgium,BEL,211,255,BE,124,BEL,BE,BEL,56,56,BEL,^(?!.*luxem).*belgium,Europe,"Western Europe",西ヨーロッパ
+ブルキナファソ,"Burkina Faso",BFO,439,233,UV,748,BUR,BF,BFA,854,854,BFA,burkina|\bfaso|upper.?volta,Africa,"Western Africa",西アフリカ
+ブルガリア,Bulgaria,BUL,355,27,BU,918,BUL,BG,BGR,100,100,BGR,bulgaria,Europe,"Eastern Europe",東ヨーロッパ
+バーレーン,Bahrain,BAH,692,13,BA,419,BRN,BH,BHR,48,48,BHR,bahrain,Asia,"Western Asia",中東
+ブルンジ,Burundi,BUI,516,29,BY,618,BDI,BI,BDI,108,108,BDI,burundi,Africa,"Eastern Africa",中央アフリカ
+ベナン,Benin,BEN,434,53,BN,638,BEN,BJ,BEN,204,204,BEN,benin|dahome,Africa,"Western Africa",西アフリカ
+サン・バルテルミー,"Saint Barthelemy",NA,NA,NA,NA,NA,NA,BL,BLM,652,652,BLM,barth(e|é)lemy,Americas,Caribbean,中央アメリカ
+バミューダ,Bermuda,NA,NA,NA,NA,319,BER,BM,BMU,60,60,BMU,bermuda,Americas,"Northern America",中央アメリカ
+ブルネイ,"Brunei Darussalam",BRU,835,26,BX,516,BRU,BN,BRN,96,96,BRN,brunei,Asia,"South-Eastern Asia",東南アジア
+ボリビア,"Bolivia, Plurinational State of",BOL,145,19,BL,218,BOL,BO,BOL,68,68,BOL,bolivia,Americas,"South America",南アメリカ
+BES諸島,"Bonaire, Sint Eustatius and Saba",NA,NA,NA,NA,NA,NA,BQ,BES,535,535,NA,^(?=.*bonaire).*eustatius|^(?=.*carib).*netherlands|\bbes.?islands,Americas,Caribbean,中央アメリカ
+ブラジル,Brazil,BRA,140,21,BR,223,BRA,BR,BRA,76,76,BRA,brazil,Americas,"South America",南アメリカ
+バハマ,Bahamas,BHM,31,12,BF,313,BAH,BS,BHS,44,44,BHS,bahamas,Americas,Caribbean,中央アメリカ
+ブータン,Bhutan,BHU,760,18,BT,514,BHU,BT,BTN,64,64,BTN,bhutan,Asia,"Southern Asia",南アジア
+ブーベ島,"Bouvet Island",NA,NA,NA,NA,NA,NA,BV,BVT,74,NA,BVT,bouvet,NA,NA,南極
+ボツワナ,Botswana,BOT,571,20,BC,616,BOT,BW,BWA,72,72,BWA,botswana|bechuana,Africa,"Southern Africa",南アフリカ
+ベラルーシ,Belarus,BLR,370,57,BO,913,BLR,BY,BLR,112,112,BLR,belarus|byelo,Europe,"Eastern Europe",東ヨーロッパ
+ベリーズ,Belize,BLZ,80,23,BH,339,BIZ,BZ,BLZ,84,84,BLZ,belize|^(?=.*british).*honduras,Americas,"Central America",中央アメリカ
+カナダ,Canada,CAN,20,33,CA,156,CAN,CA,CAN,124,124,CAN,canada,Americas,"Northern America",北アメリカ
+ココス諸島,"Cocos (Keeling) Islands",NA,NA,NA,NA,NA,NA,CC,CCK,166,NA,CCK,\bcocos|keeling,NA,NA,インド洋地域
+コンゴ民主共和国,"Congo, the Democratic Republic of the",DRC,490,250,CG,636,COD,CD,COD,180,180,ZAR,"\bdem.*congo|congo.*\bdem|congo.*\bdr|\bdr.*congo|\bd\.?r\.?c|\bd\.?r\.?o\.?c|\br\.?d\.?c|belgian.?congo|congo.?free.?state|kinshasa|zaire|l\w{1,2}opoldville",Africa,"Middle Africa",中央アフリカ
+中央アフリカ共和国,"Central African Republic",CEN,482,37,CT,626,CAF,CF,CAF,140,140,CAF,\bcen.*\baf|^c\.?a\.?r\.?$,Africa,"Middle Africa",中央アフリカ
+コンゴ共和国,Congo,CON,484,46,CF,634,CGO,CG,COG,178,178,COG,"^(?!.*\bdem)(?!.*\bdr)(?!.*kinshasa)(?!.*zaire)(?!.*belg)(?!.*l\w{1,2}opoldville)(?!.*free).*\bcongo",Africa,"Middle Africa",中央アフリカ
+スイス,Switzerland,SWZ,225,211,SZ,146,SUI,CH,CHE,756,756,CHE,switz|swiss,Europe,"Western Europe",西ヨーロッパ
+コートジボワール,"Cote d'Ivoire",CDI,437,107,IV,662,CIV,CI,CIV,384,384,CIV,ivoire|ivory,Africa,"Western Africa",西アフリカ
+クック諸島,"Cook Islands",NA,NA,47,CW,815,COK,CK,COK,184,184,COK,\bcook,Oceania,Polynesia,オセアニア
+チリ,Chile,CHL,155,40,CI,228,CHI,CL,CHL,152,152,CHL,\bchile,Americas,"South America",南アメリカ
+カメルーン,Cameroon,CAO,471,32,CM,622,CMR,CM,CMR,120,120,CMR,cameroon,Africa,"Middle Africa",中央アフリカ
+中国,China,CHN,710,351,CH,924,CHN,CN,CHN,156,156,CHN,^(?!.*\bmac)(?!.*\bhong)(?!.*\btai).*china|^p\.?r\.?c\.?$,Asia,"Eastern Asia",東アジア
+コロンビア,Colombia,COL,100,44,CO,233,COL,CO,COL,170,170,COL,colombia,Americas,"South America",南アメリカ
+コスタリカ,"Costa Rica",COS,94,48,CS,238,CRC,CR,CRI,188,188,CRI,costa.?rica,Americas,"Central America",中央アメリカ
+キューバ,Cuba,CUB,40,49,CU,928,CUB,CU,CUB,192,192,CUB,\bcuba,Americas,Caribbean,中央アメリカ
+カーボベルデ,"Cabo Verde",CAP,402,35,CV,624,CPV,CV,CPV,132,132,CPV,verde,Africa,"Western Africa",西アフリカ
+キュラソー,Curacao,NA,NA,NA,UC,354,NA,CW,CUW,531,531,CUW,^(?!.*bonaire).*\bcura(c|ç)ao,Americas,Caribbean,中央アメリカ
+クリスマス島,"Christmas Island",NA,NA,NA,CX,NA,NA,CX,CXR,162,NA,CXR,christmas,NA,NA,オセアニア
+キプロス,Cyprus,CYP,352,50,CY,423,CYP,CY,CYP,196,196,CYP,cyprus,Asia,"Western Asia",地中海地域
+チェコ,"Czech Republic",CZR,316,167,EZ,935,CZE,CZ,CZE,203,203,CZE,^(?=.*rep).*czech|czechia|bohemia,Europe,"Eastern Europe",東ヨーロッパ
+ドイツ,Germany,GMY,255,79,GM,134,GER,DE,DEU,276,276,DEU,^(?!.*east).*germany|^(?=.*\bfed.*\brep).*german,Europe,"Western Europe",西ヨーロッパ
+ジブチ,Djibouti,DJI,522,72,DJ,611,DJI,DJ,DJI,262,262,DJI,djibouti,Africa,"Eastern Africa",東アフリカ
+デンマーク,Denmark,DEN,390,54,DA,128,DEN,DK,DNK,208,208,DNK,denmark,Europe,"Northern Europe",北ヨーロッパ
+ドミニカ国,Dominica,DMA,54,55,DO,321,DMA,DM,DMA,212,212,DMA,dominica(?!n),Americas,Caribbean,中央アメリカ
+ドミニカ共和国,"Dominican Republic",DOM,42,56,DR,243,DOM,DO,DOM,214,214,DOM,dominican,Americas,Caribbean,中央アメリカ
+アルジェリア,Algeria,ALG,615,4,AG,612,ALG,DZ,DZA,12,12,DZA,algeria,Africa,"Northern Africa",北アフリカ
+エクアドル,Ecuador,ECU,130,58,EC,248,ECU,EC,ECU,218,218,ECU,ecuador,Americas,"South America",南アメリカ
+エストニア,Estonia,EST,366,63,EN,939,EST,EE,EST,233,233,EST,estonia,Europe,"Northern Europe",東ヨーロッパ
+エジプト,Egypt,EGY,651,59,EG,469,EGY,EG,EGY,818,818,EGY,egypt,Africa,"Northern Africa",北アフリカ
+西サハラ,"Western Sahara",NA,NA,NA,WI,NA,NA,EH,ESH,732,732,ESH,sahara,Africa,"Northern Africa",西アフリカ
+エリトリア,Eritrea,ERI,531,178,ER,643,ERI,ER,ERI,232,232,ERI,eritrea,Africa,"Eastern Africa",東アフリカ
+スペイン,Spain,SPN,230,203,SP,184,ESP,ES,ESP,724,724,ESP,spain,Europe,"Southern Europe",西ヨーロッパ
+エチオピア,Ethiopia,ETH,530,238,ET,644,ETH,ET,ETH,231,231,ETH,ethiopia|abyssinia,Africa,"Eastern Africa",東アフリカ
+フィンランド,Finland,FIN,375,67,FI,172,FIN,FI,FIN,246,246,FIN,finland,Europe,"Northern Europe",北ヨーロッパ
+フィジー,Fiji,FIJ,950,66,FJ,819,FIJ,FJ,FJI,242,242,FJI,fiji,Oceania,Melanesia,オセアニア
+フォークランド諸島,"Falkland Islands (Malvinas)",NA,NA,NA,FK,323,NA,FK,FLK,238,238,FLK,falkland|malvinas,Americas,"South America",南アメリカ
+ミクロネシア連邦,"Micronesia, Federated States of",FSM,987,145,FM,868,FSM,FM,FSM,583,583,FSM,micronesia,Oceania,Micronesia,オセアニア
+フェロー諸島,"Faroe Islands",NA,NA,64,FO,816,NA,FO,FRO,234,234,FRO,faroe|faeroe,Europe,"Northern Europe",北ヨーロッパ
+フランス,France,FRN,220,68,FR,132,FRA,FR,FRA,250,250,FRA,^(?!.*\bdep).*france|french.?republic|\bgaul,Europe,"Western Europe",西ヨーロッパ
+ガボン,Gabon,GAB,481,74,GB,646,GAB,GA,GAB,266,266,GAB,gabon,Africa,"Middle Africa",中央アフリカ
+イギリス,"United Kingdom",UKG,200,229,UK,112,GBR,GB,GBR,826,826,GBR,united.?kingdom|britain|^u\.?k\.?$,Europe,"Northern Europe",西ヨーロッパ
+グレナダ,Grenada,GRN,55,86,GJ,328,GRN,GD,GRD,308,308,GRD,grenada,Americas,Caribbean,中央アメリカ
+グルジア,Georgia,GRG,372,73,GG,915,GEO,GE,GEO,268,268,GEO,^(?!.*south).*georgia,Asia,"Western Asia",東ヨーロッパ
+フランス領ギアナ,"French Guiana",NA,NA,NA,FG,333,NA,GF,GUF,254,254,GUF,^(?=.*french).*guiana,Americas,"South America",南アメリカ
+ガーンジー,Guernsey,NA,NA,NA,GK,NA,NA,GG,GGY,831,831,GGY,guernsey,Europe,"Northern Europe",西ヨーロッパ
+ガーナ,Ghana,GHA,452,81,GH,652,GHA,GH,GHA,288,288,GHA,ghana|gold.?coast,Africa,"Western Africa",西アフリカ
+ジブラルタル,Gibraltar,NA,NA,NA,GI,823,NA,GI,GIB,292,292,GIB,gibraltar,Europe,"Southern Europe",西ヨーロッパ
+グリーンランド,Greenland,NA,NA,NA,GL,326,NA,GL,GRL,304,304,GRL,greenland,Americas,"Northern America",北ヨーロッパ
+ガンビア,Gambia,GAM,420,75,GA,648,GAM,GM,GMB,270,270,GMB,gambia,Africa,"Western Africa",西アフリカ
+ギニア,Guinea,GUI,438,90,GV,656,GUI,GN,GIN,324,324,GIN,^(?!.*eq)(?!.*span)(?!.*bissau)(?!.*portu)(?!.*new).*guinea,Africa,"Western Africa",西アフリカ
+グアドループ,Guadeloupe,NA,NA,NA,GP,329,NA,GP,GLP,312,312,GLP,guadeloupe,Americas,Caribbean,中央アメリカ
+赤道ギニア,"Equatorial Guinea",EQG,411,61,EK,642,GEQ,GQ,GNQ,226,226,GNQ,guine.*eq|eq.*guine|^(?=.*span).*guinea,Africa,"Middle Africa",中央アフリカ
+ギリシャ,Greece,GRC,350,84,GR,174,GRE,GR,GRC,300,300,GRC,greece|hellenic|hellas,Europe,"Southern Europe",西ヨーロッパ
+サウスジョージア・サウスサンドウィッチ諸島,"South Georgia and the South Sandwich Islands",NA,NA,NA,NA,NA,NA,GS,SGS,239,NA,SGS,south.?georgia|sandwich,NA,NA,南アメリカ
+グアテマラ,Guatemala,GUA,90,89,GT,258,GUA,GT,GTM,320,320,GTM,guatemala,Americas,"Central America",中央アメリカ
+グアム,Guam,NA,NA,NA,GU,829,GUM,GU,GUM,316,316,GUM,\bguam,Oceania,Micronesia,オセアニア
+ギニアビサウ,Guinea-Bissau,GNB,404,175,PU,654,GBS,GW,GNB,624,624,GNB,bissau|^(?=.*portu).*guinea,Africa,"Western Africa",西アフリカ
+ガイアナ,Guyana,GUY,110,91,GY,336,GUY,GY,GUY,328,328,GUY,guyana|british.?guiana,Americas,"South America",南アメリカ
+香港,"Hong Kong",NA,NA,NA,NA,532,HKG,HK,HKG,344,344,HKG,hong.?kong,Asia,"Eastern Asia",東アジア
+ハード島とマクドナルド諸島,"Heard Island and McDonald Islands",NA,NA,NA,NA,NA,NA,HM,HMD,334,NA,HMD,heard.*mcdonald,NA,NA,インド洋地域
+ホンジュラス,Honduras,HON,91,95,HO,268,HON,HN,HND,340,340,HND,^(?!.*brit).*honduras,Americas,"Central America",中央アメリカ
+クロアチア,Croatia,CRO,344,98,HR,960,CRO,HR,HRV,191,191,HRV,croatia,Europe,"Southern Europe",東ヨーロッパ
+ハイチ,Haiti,HAI,41,93,HA,263,HAI,HT,HTI,332,332,HTI,haiti,Americas,Caribbean,中央アメリカ
+ハンガリー,Hungary,HUN,310,97,HU,944,HUN,HU,HUN,348,348,HUN,^(?!.*austr).*hungary,Europe,"Eastern Europe",東ヨーロッパ
+インドネシア,Indonesia,INS,850,101,ID,536,INA,ID,IDN,360,360,IDN,indonesia,Asia,"South-Eastern Asia",東南アジア
+アイルランド,Ireland,IRE,205,104,EI,178,IRL,IE,IRL,372,372,IRL,ireland,Europe,"Northern Europe",西ヨーロッパ
+イスラエル,Israel,ISR,666,105,IS,436,ISR,IL,ISR,376,376,ISR,israel,Asia,"Western Asia",中東
+マン島,"Isle of Man",NA,NA,NA,IM,NA,NA,IM,IMN,833,833,IMY,^(?=.*isle).*\bman,Europe,"Northern Europe",西ヨーロッパ
+インド,India,IND,750,100,IN,534,IND,IN,IND,356,356,IND,india(?!.*ocea),Asia,"Southern Asia",南アジア
+イギリス領インド洋地域,"British Indian Ocean Territory",NA,NA,NA,NA,NA,NA,IO,IOT,86,NA,IOT,british.?indian.?ocean,NA,NA,インド洋地域
+イラク,Iraq,IRQ,645,103,IZ,433,IRQ,IQ,IRQ,368,368,IRQ,\biraq|mesopotamia,Asia,"Western Asia",中東
+イラン,"Iran, Islamic Republic of",IRN,630,102,IR,429,IRI,IR,IRN,364,364,IRN,\biran|persia,Asia,"Southern Asia",中東
+アイスランド,Iceland,ICE,395,99,IC,176,ISL,IS,ISL,352,352,ISL,iceland,Europe,"Northern Europe",北ヨーロッパ
+イタリア,Italy,ITA,325,106,IT,136,ITA,IT,ITA,380,380,ITA,italy,Europe,"Southern Europe",西ヨーロッパ
+ジャージー,Jersey,NA,NA,NA,NA,NA,NA,JE,JEY,832,832,JEY,jersey,Europe,"Northern Europe",西ヨーロッパ
+ジャマイカ,Jamaica,JAM,51,109,JM,343,JAM,JM,JAM,388,388,JAM,jamaica,Americas,Caribbean,中央アメリカ
+ヨルダン,Jordan,JOR,663,112,JO,439,JOR,JO,JOR,400,400,JOR,jordan,Asia,"Western Asia",中東
+日本,Japan,JPN,740,110,JA,158,JPN,JP,JPN,392,392,JPN,japan,Asia,"Eastern Asia",東アジア
+ケニア,Kenya,KEN,501,114,KE,664,KEN,KE,KEN,404,404,KEN,kenya|british.?east.?africa|east.?africa.?prot,Africa,"Eastern Africa",東アフリカ
+キルギス,Kyrgyzstan,KYR,703,113,KG,917,KGZ,KG,KGZ,417,417,KGZ,kyrgyz|kirghiz,Asia,"Central Asia",中央アジア
+カンボジア,Cambodia,CAM,811,115,CB,522,CAM,KH,KHM,116,116,KHM,cambodia|kampuchea|khmer|^p\.?r\.?k\.?$,Asia,"South-Eastern Asia",東南アジア
+キリバス,Kiribati,KIR,946,83,KR,826,KIR,KI,KIR,296,296,KIR,kiribati,Oceania,Micronesia,オセアニア
+コモロ,Comoros,COM,581,45,CN,632,COM,KM,COM,174,174,COM,comoro,Africa,"Eastern Africa",インド洋地域
+セントクリストファー・ネイビス,"Saint Kitts and Nevis",SKN,60,188,SC,361,SKN,KN,KNA,659,659,KNA,kitts|\bnevis,Americas,Caribbean,中央アメリカ
+北朝鮮,"Korea, Democratic People's Republic of",PRK,731,116,KN,NA,PRK,KP,PRK,408,408,PRK,^(?=.*dem).*\bkorea|^(?=.*peo).*\bkorea|^(?=.*nor).*\bkorea|\bd\.?p\.?r\.?k,Asia,"Eastern Asia",東アジア
+韓国,"Korea, Republic of",ROK,732,117,KS,542,KOR,KR,KOR,410,410,KOR,^(?!.*dem)(?!.*peo)(?!.*nor).*\bkorea|\br\.?o\.?k\b,Asia,"Eastern Asia",東アジア
+クウェート,Kuwait,KUW,690,118,KU,443,KUW,KW,KWT,414,414,KWT,kuwait,Asia,"Western Asia",中東
+ケイマン諸島,"Cayman Islands",NA,NA,NA,CJ,377,CAY,KY,CYM,136,136,CYM,cayman,Americas,Caribbean,中央アメリカ
+カザフスタン,Kazakhstan,KZK,705,108,KZ,916,KAZ,KZ,KAZ,398,398,KAZ,kazak,Asia,"Central Asia",中央アジア
+ラオス,"Lao People's Democratic Republic",LAO,812,120,LA,544,LAO,LA,LAO,418,418,LAO,\blaos?\b,Asia,"South-Eastern Asia",東南アジア
+レバノン,Lebanon,LEB,660,121,LE,446,LIB,LB,LBN,422,422,LBN,lebanon,Asia,"Western Asia",中東
+セントルシア,"Saint Lucia",SLU,56,189,ST,362,LCA,LC,LCA,662,662,LCA,\blucia,Americas,Caribbean,中央アメリカ
+リヒテンシュタイン,Liechtenstein,LIE,223,NA,LS,NA,LIE,LI,LIE,438,438,LIE,liechtenstein,Europe,"Western Europe",西ヨーロッパ
+スリランカ,"Sri Lanka",SRI,780,38,CE,524,SRI,LK,LKA,144,144,LKA,sri.?lanka|ceylon,Asia,"Southern Asia",南アジア
+リベリア,Liberia,LBR,450,123,LI,668,LBR,LR,LBR,430,430,LBR,liberia,Africa,"Western Africa",西アフリカ
+レソト,Lesotho,LES,570,122,LT,666,LES,LS,LSO,426,426,LSO,lesotho|basuto,Africa,"Southern Africa",南アフリカ
+リトアニア,Lithuania,LIT,368,126,LH,946,LTU,LT,LTU,440,440,LTU,lithuania,Europe,"Northern Europe",東ヨーロッパ
+ルクセンブルク,Luxembourg,LUX,212,256,LU,137,LUX,LU,LUX,442,442,LUX,^(?!.*belg).*luxem,Europe,"Western Europe",西ヨーロッパ
+ラトビア,Latvia,LAT,367,119,LG,941,LAT,LV,LVA,428,428,LVA,latvia,Europe,"Northern Europe",東ヨーロッパ
+リビア,Libya,LIB,620,124,LY,672,LBA,LY,LBY,434,434,LBY,libya,Africa,"Northern Africa",北アフリカ
+モロッコ,Morocco,MOR,600,143,MO,686,MAR,MA,MAR,504,504,MAR,morocco|\bmaroc,Africa,"Northern Africa",北アフリカ
+モナコ,Monaco,MNC,221,140,MN,NA,MON,MC,MCO,492,492,MCO,monaco,Europe,"Western Europe",西ヨーロッパ
+モルドバ,"Moldova, Republic of",MLD,359,146,MD,921,MDA,MD,MDA,498,498,MDA,moldov|b(a|e)ssarabia,Europe,"Eastern Europe",東ヨーロッパ
+モンテネグロ,Montenegro,MNG,341,273,MJ,943,MNE,ME,MNE,499,499,MNE,^(?!.*serbia).*montenegro,Europe,"Southern Europe",東ヨーロッパ
+"サン・マルタン (西インド諸島)|サン・マルタン（フランス領）","Saint Martin (French part)",NA,NA,NA,NA,352,NA,MF,MAF,663,663,MAF,^(?=.*collectivity).*martin|^(?=.*france).*martin|^(?=.*french).*martin,Americas,Caribbean,中央アメリカ
+マダガスカル,Madagascar,MAG,580,129,MA,674,MAD,MG,MDG,450,450,MDG,madagascar|malagasy,Africa,"Eastern Africa",インド洋地域
+マーシャル諸島,"Marshall Islands",MSI,983,127,RM,867,MHL,MH,MHL,584,584,MHL,marshall,Oceania,Micronesia,オセアニア
+マケドニア,"Macedonia, the former Yugoslav Republic of",MAC,343,154,MK,962,MKD,MK,MKD,807,807,MKD,macedonia|^f\.?y\.?r\.?o\.?m\.?$,Europe,"Southern Europe",東ヨーロッパ
+マリ,Mali,MLI,432,133,ML,678,MLI,ML,MLI,466,466,MLI,\bmali\b,Africa,"Western Africa",西アフリカ
+ミャンマー,Myanmar,MYA,775,28,BM,518,MYA,MM,MMR,104,104,MMR,myanmar|burma,Asia,"South-Eastern Asia",東南アジア
+モンゴル,Mongolia,MON,712,141,MG,948,MGL,MN,MNG,496,496,MNG,mongolia,Asia,"Eastern Asia",東アジア
+マカオ,Macao,NA,NA,NA,MC,546,NA,MO,MAC,446,446,MAC,maca(o|u),Asia,"Eastern Asia",東アジア
+北マリアナ諸島,"Northern Mariana Islands",NA,NA,NA,CQ,NA,NA,MP,MNP,580,580,MNP,mariana,Oceania,Micronesia,オセアニア
+マルティニーク,Martinique,NA,NA,NA,MB,349,NA,MQ,MTQ,474,474,MTQ,martinique,Americas,Caribbean,中央アメリカ
+モーリタニア,Mauritania,MAA,435,136,MR,682,MTN,MR,MRT,478,478,MRT,mauritania,Africa,"Western Africa",西アフリカ
+モントセラト,Montserrat,NA,NA,NA,MH,351,NA,MS,MSR,500,500,MSR,montserrat,Americas,Caribbean,中央アメリカ
+マルタ,Malta,MLT,338,134,MT,181,MLT,MT,MLT,470,470,MLT,\bmalta,Europe,"Southern Europe",地中海地域
+モーリシャス,Mauritius,MAS,590,137,MP,684,MRI,MU,MUS,480,480,MUS,mauritius,Africa,"Eastern Africa",南アフリカ
+モルディブ,Maldives,MAD,781,132,MV,556,MDV,MV,MDV,462,462,MDV,maldive,Asia,"Southern Asia",インド洋地域
+マラウイ,Malawi,MAW,553,130,MI,676,MAW,MW,MWI,454,454,MWI,malawi|nyasa,Africa,"Eastern Africa",南アフリカ
+メキシコ,Mexico,MEX,70,138,MX,273,MEX,MX,MEX,484,484,MEX,\bmexic,Americas,"Central America",中央アメリカ
+マレーシア,Malaysia,MAL,820,131,MY,548,MAS,MY,MYS,458,458,MYS,malaysia,Asia,"South-Eastern Asia",東南アジア
+モザンビーク,Mozambique,MZM,541,144,MZ,688,MOZ,MZ,MOZ,508,508,MOZ,mozambique,Africa,"Eastern Africa",南アフリカ
+ニューカレドニア,"New Caledonia",NA,NA,NA,NC,839,NA,NC,NCL,540,540,NCL,new.?caledonia,Oceania,Melanesia,オセアニア
+ニジェール,Niger,NIR,436,158,NG,692,NIG,NE,NER,562,562,NER,\bniger(?!ia),Africa,"Western Africa",中央アフリカ
+ノーフォーク島,"Norfolk Island",NA,NA,NA,NA,NA,NA,NF,NFK,574,574,NFK,norfolk,Oceania,"Australia and New Zealand",オセアニア
+ナイジェリア,Nigeria,NIG,475,159,NI,694,NGR,NG,NGA,566,566,NGA,nigeria,Africa,"Western Africa",中央アフリカ
+ニカラグア,Nicaragua,NIC,93,157,NU,278,NCA,NI,NIC,558,558,NIC,nicaragua,Americas,"Central America",中央アメリカ
+オランダ,Netherlands,NTH,210,150,NL,138,NED,NL,NLD,528,528,NLD,^(?!.*\bant)(?!.*\bcarib).*netherlands,Europe,"Western Europe",西ヨーロッパ
+ノルウェー,Norway,NOR,385,162,NO,142,NOR,NO,NOR,578,578,NOR,norway,Europe,"Northern Europe",北ヨーロッパ
+ネパール,Nepal,NEP,790,149,NP,558,NEP,NP,NPL,524,524,NPL,nepal,Asia,"Southern Asia",南アジア
+ナウル,Nauru,NAU,970,148,NR,836,NRU,NR,NRU,520,520,NRU,nauru,Oceania,Micronesia,オセアニア
+ニウエ,Niue,NA,NA,160,NE,NA,NA,NU,NIU,570,570,NIU,niue,Oceania,Polynesia,オセアニア
+ニュージーランド,"New Zealand",NEW,920,156,NZ,196,NZL,NZ,NZL,554,554,NZL,new.?zealand,Oceania,"Australia and New Zealand",オセアニア
+オマーン,Oman,OMA,698,221,MU,449,OMA,OM,OMN,512,512,OMN,\boman|trucial,Asia,"Western Asia",中東
+パナマ,Panama,PAN,95,166,PM,283,PAN,PA,PAN,591,591,PAN,panama,Americas,"Central America",中央アメリカ
+ペルー,Peru,PER,135,170,PE,293,PER,PE,PER,604,604,PER,peru,Americas,"South America",南アメリカ
+フランス領ポリネシア,"French Polynesia",NA,NA,NA,FP,887,NA,PF,PYF,258,258,PYF,french.?polynesia,Oceania,Polynesia,オセアニア
+パプアニューギニア,"Papua New Guinea",PNG,910,168,PP,853,PNG,PG,PNG,598,598,PNG,papua|\bp.*\bn.*\bguin.*|^p\.?n\.?g\.?$|new.?guinea,Oceania,Melanesia,オセアニア
+フィリピン,Philippines,PHI,840,171,RP,566,PHI,PH,PHL,608,608,PHL,philippines,Asia,"South-Eastern Asia",東南アジア
+パキスタン,Pakistan,PAK,770,165,PK,564,PAK,PK,PAK,586,586,PAK,^(?!.*east).*paki?stan,Asia,"Southern Asia",南アジア
+ポーランド,Poland,POL,290,173,PL,964,POL,PL,POL,616,616,POL,poland,Europe,"Eastern Europe",東ヨーロッパ
+サンピエール島・ミクロン島,"Saint Pierre and Miquelon",NA,NA,NA,NA,363,NA,PM,SPM,666,666,SPM,miquelon,Americas,"Northern America",北アメリカ
+ピトケアン,Pitcairn,NA,NA,NA,NA,NA,NA,PN,PCN,612,612,PCN,pitcairn,Oceania,Polynesia,オセアニア
+プエルトリコ,"Puerto Rico",NA,NA,NA,RQ,NA,PUR,PR,PRI,630,630,PRI,puerto.?rico,Americas,Caribbean,中央アメリカ
+パレスチナ,"Palestine, State of",NA,NA,NA,NA,487,PLE,PS,PSE,275,275,WBG,palestin|\bgaza|west.?bank,Asia,"Western Asia",中東
+ポルトガル,Portugal,POR,235,174,PO,182,POR,PT,PRT,620,620,PRT,portugal,Europe,"Southern Europe",西ヨーロッパ
+パラオ,Palau,PAL,986,180,PS,565,PLW,PW,PLW,585,585,PLW,palau,Oceania,Micronesia,オセアニア
+パラグアイ,Paraguay,PAR,150,169,PA,288,PAR,PY,PRY,600,600,PRY,paraguay,Americas,"South America",南アメリカ
+カタール,Qatar,QAT,694,179,QA,453,QAT,QA,QAT,634,634,QAT,qatar,Asia,"Western Asia",中東
+レユニオン,Reunion,NA,NA,NA,RE,696,NA,RE,REU,638,638,REU,r(e|é)union,Africa,"Eastern Africa",インド洋地域
+ルーマニア,Romania,ROM,360,183,RO,968,ROU,RO,ROU,642,642,ROM,r(o|u|ou)mania,Europe,"Eastern Europe",東ヨーロッパ
+セルビア,Serbia,NA,NA,272,RI,942,SRB,RS,SRB,688,688,SRB,^(?!.*monte).*serbia,Europe,"Southern Europe",東ヨーロッパ
+ロシア,"Russian Federation",RUS,365,185,RS,922,RUS,RU,RUS,643,643,RUS,\brussia|soviet.?union|u\.?s\.?s\.?r|socialist.?republics,Europe,"Eastern Europe",ロシア
+ルワンダ,Rwanda,RWA,517,184,RW,714,RWA,RW,RWA,646,646,RWA,rwanda,Africa,"Eastern Africa",中央アフリカ
+サウジアラビア,"Saudi Arabia",SAU,670,194,SA,456,KSA,SA,SAU,682,682,SAU,\bsa\w*.?arabia,Asia,"Western Asia",中東
+ソロモン諸島,"Solomon Islands",SOL,940,25,BP,813,SOL,SB,SLB,90,90,SLB,solomon,Oceania,Melanesia,オセアニア
+セーシェル,Seychelles,SEY,591,196,SE,718,SEY,SC,SYC,690,690,SYC,seychell,Africa,"Eastern Africa",インド洋地域
+スーダン,Sudan,SUD,625,276,SU,732,SUD,SD,SDN,736,729,SDN,^(?!.*\bs(?!u)).*sudan,Africa,"Northern Africa",東アフリカ
+スウェーデン,Sweden,SWD,380,210,SW,144,SWE,SE,SWE,752,752,SWE,sweden,Europe,"Northern Europe",北ヨーロッパ
+シンガポール,Singapore,SIN,830,200,SN,576,SIN,SG,SGP,702,702,SGP,singapore,Asia,"South-Eastern Asia",東南アジア
+セントヘレナ・アセンションおよびトリスタンダクーニャ,"Saint Helena, Ascension and Tristan da Cunha",NA,NA,NA,SH,856,NA,SH,SHN,654,654,SHN,helena,Africa,"Western Africa",西アフリカ
+スロベニア,Slovenia,SLV,349,198,SI,961,SLO,SI,SVN,705,705,SVN,slovenia,Europe,"Southern Europe",東ヨーロッパ
+スヴァールバル諸島およびヤンマイエン島,"Svalbard and Jan Mayen",NA,NA,NA,SV,NA,NA,SJ,SJM,744,744,SJM,svalbard,Europe,"Northern Europe",北ヨーロッパ
+スロバキア,Slovakia,SLO,317,199,LO,936,SVK,SK,SVK,703,703,SVK,^(?!.*cze).*slovak,Europe,"Eastern Europe",東ヨーロッパ
+シエラレオネ,"Sierra Leone",SIE,451,197,SL,724,SLE,SL,SLE,694,694,SLE,sierra,Africa,"Western Africa",西アフリカ
+サンマリノ,"San Marino",SNM,331,192,SM,135,SMR,SM,SMR,674,674,SMR,san.?marino,Europe,"Southern Europe",西ヨーロッパ
+セネガル,Senegal,SEN,433,195,SG,722,SEN,SN,SEN,686,686,SEN,senegal,Africa,"Western Africa",西アフリカ
+ソマリア,Somalia,SOM,520,201,SO,726,SOM,SO,SOM,706,706,SOM,somali,Africa,"Eastern Africa",東アフリカ
+スリナム,Suriname,SUR,115,207,NS,366,SUR,SR,SUR,740,740,SUR,surinam|dutch.?guiana,Americas,"South America",南アメリカ
+南スーダン,"South Sudan",SSD,626,277,OD,733,NA,SS,SSD,728,728,SSD,\bs\w*.?sudan,Africa,"Northern Africa",東アフリカ
+サントメ・プリンシペ,"Sao Tome and Principe",STP,403,193,TP,716,STP,ST,STP,678,678,STP,\bs(a|ã)o.?tom(e|é),Africa,"Middle Africa",中央アフリカ
+エルサルバドル,"El Salvador",SAL,92,60,ES,253,ESA,SV,SLV,222,222,SLV,el.?salvador,Americas,"Central America",中央アメリカ
+シント・マールテン|シント・マールテン（オランダ領）,"Sint Maarten (Dutch part)",NA,NA,NA,NN,NA,NA,SX,SXM,534,534,SXM,^(?!.*martin)(?!.*saba).*maarten,Americas,Caribbean,中央アメリカ
+シリア,"Syrian Arab Republic",SYR,652,212,SY,463,SYR,SY,SYR,760,760,SYR,syria,Asia,"Western Asia",中東
+スワジランド,Swaziland,SWA,572,209,WZ,734,SWZ,SZ,SWZ,748,748,SWZ,swaziland,Africa,"Southern Africa",南アフリカ
+タークス・カイコス諸島,"Turks and Caicos Islands",NA,NA,NA,NA,NA,NA,TC,TCA,796,796,TCA,turks,Americas,Caribbean,中央アメリカ
+チャド,Chad,CHA,483,39,CD,628,CHA,TD,TCD,148,148,TCD,\bchad,Africa,"Middle Africa",中央アフリカ
+フランス領南方・南極地域,"French Southern Territories",NA,NA,NA,NA,NA,NA,TF,ATF,260,NA,ATF,french.?southern|\bfr.*\bso.*\ban.*\b\bt,NA,NA,インド洋地域
+トーゴ,Togo,TOG,461,217,TO,742,TOG,TG,TGO,768,768,TGO,togo,Africa,"Western Africa",西アフリカ
+タイ,Thailand,THI,800,216,TH,578,THA,TH,THA,764,764,THA,thailand|\bsiam,Asia,"South-Eastern Asia",東南アジア
+タジキスタン,Tajikistan,TAJ,702,208,TI,923,TJK,TJ,TJK,762,762,TJK,tajik,Asia,"Central Asia",中央アジア
+トケラウ,Tokelau,NA,NA,NA,TL,NA,NA,TK,TKL,772,772,TKL,tokelau,Oceania,Polynesia,オセアニア
+東ティモール,Timor-Leste,ETM,860,176,TT,537,TLS,TL,TLS,626,626,TMP,^(?=.*leste).*timor|^(?=.*east).*timor,Asia,"South-Eastern Asia",東南アジア
+トルクメニスタン,Turkmenistan,TKM,701,213,TX,925,TKM,TM,TKM,795,795,TKM,turkmen,Asia,"Central Asia",中央アジア
+チュニジア,Tunisia,TUN,616,222,TS,744,TUN,TN,TUN,788,788,TUN,tunisia,Africa,"Northern Africa",北アフリカ
+トンガ,Tonga,TON,955,219,TN,866,TGA,TO,TON,776,776,TON,tonga,Oceania,Polynesia,オセアニア
+トルコ,Turkey,TUR,640,223,TU,186,TUR,TR,TUR,792,792,TUR,turkey,Asia,"Western Asia",中東
+トリニダード・トバゴ,"Trinidad and Tobago",TRI,52,220,TD,369,TTO,TT,TTO,780,780,TTO,trinidad|tobago,Americas,Caribbean,中央アメリカ
+ツバル,Tuvalu,TUV,947,227,TV,NA,TUV,TV,TUV,798,798,TUV,tuvalu,Oceania,Polynesia,オセアニア
+台湾,"Taiwan, Province of China",TAW,713,NA,TW,528,TPE,TW,TWN,158,NA,TWN,taiwan|taipei|formosa,NA,NA,東アジア
+タンザニア,"Tanzania, United Republic of",TAZ,510,215,TZ,738,TAN,TZ,TZA,834,834,TZA,tanzania,Africa,"Eastern Africa",東アフリカ
+ウクライナ,Ukraine,UKR,369,230,UP,926,UKR,UA,UKR,804,804,UKR,ukrain,Europe,"Eastern Europe",東ヨーロッパ
+ウガンダ,Uganda,UGA,500,226,UG,746,UGA,UG,UGA,800,800,UGA,uganda,Africa,"Eastern Africa",中央アフリカ
+合衆国領有小離島,"United States Minor Outlying Islands",NA,NA,NA,NA,NA,NA,UM,UMI,581,NA,UMI,minor.?outlying.?is,NA,NA,オセアニア
+アメリカ,"United States",USA,2,231,US,111,USA,US,USA,840,840,USA,^(?!.*islands).*united.?states|^u\.?s\.?a\.?$|^u\.?s\.?$,Americas,"Northern America",北アメリカ
+ウルグアイ,Uruguay,URU,165,234,UY,298,URU,UY,URY,858,858,URY,uruguay,Americas,"South America",南アメリカ
+ウズベキスタン,Uzbekistan,UZB,704,235,UZ,927,UZB,UZ,UZB,860,860,UZB,uzbek,Asia,"Central Asia",中央アジア
+バチカン市国,"Holy See (Vatican City State)",PAP,327,NA,VT,NA,NA,VA,VAT,336,336,VAT,holy.?see|vatican|papal.?st,Europe,"Southern Europe",西ヨーロッパ
+セントビンセント・グレナディーン,"Saint Vincent and the Grenadines",SVG,57,191,VC,364,VIN,VC,VCT,670,670,VCT,vincent,Americas,Caribbean,中央アメリカ
+ベネズエラ,"Venezuela, Bolivarian Republic of",VEN,101,236,VE,299,VEN,VE,VEN,862,862,VEN,venezuela,Americas,"South America",南アメリカ
+イギリス領ヴァージン諸島,"Virgin Islands, British",NA,NA,NA,VI,NA,NA,VG,VGB,92,92,VGB,^(?=.*\bu\.?\s?k).*virgin|^(?=.*brit).*virgin|^(?=.*kingdom).*virgin,Americas,Caribbean,中央アメリカ
+アメリカ領ヴァージン諸島,"Virgin Islands, U.S.",NA,NA,NA,VQ,NA,ISV,VI,VIR,850,850,VIR,^(?=.*\bu\.?\s?s).*virgin|^(?=.*states).*virgin,Americas,Caribbean,中央アメリカ
+ベトナム,"Viet Nam",DRV,816,237,VM,582,VIE,VN,VNM,704,704,VNM,^(?!.*republic).*viet.?nam|^(?=.*socialist).*viet.?nam,Asia,"South-Eastern Asia",東南アジア
+バヌアツ,Vanuatu,VAN,935,155,NH,846,VAN,VU,VUT,548,548,VUT,vanuatu|new.?hebrides,Oceania,Melanesia,オセアニア
+ウォリス・フツナ,"Wallis and Futuna",NA,NA,NA,WF,NA,NA,WF,WLF,876,876,WLF,futuna|wallis,Oceania,Polynesia,オセアニア
+サモア,Samoa,WSM,990,244,WS,862,SAM,WS,WSM,882,882,WSM,^(?!.*amer).*samoa,Oceania,Polynesia,オセアニア
+イエメン,Yemen,YEM,679,249,YM,474,YEM,YE,YEM,887,887,YEM,^(?!.*arab)(?!.*north)(?!.*sana)(?!.*peo)(?!.*dem)(?!.*south)(?!.*aden)(?!.*\bp\.?d\.?r).*yemen,Asia,"Western Asia",中東
+マヨット,Mayotte,NA,NA,NA,NA,NA,NA,YT,MYT,175,175,MYT,mayotte,Africa,"Eastern Africa",インド洋地域
+南アフリカ,"South Africa",SAF,560,202,SF,199,RSA,ZA,ZAF,710,710,ZAF,\bs\w*.?africa,Africa,"Southern Africa",南アフリカ
+ザンビア,Zambia,ZAM,551,251,ZA,754,ZAM,ZM,ZMB,894,894,ZMB,zambia|northern.?rhodesia,Africa,"Eastern Africa",南アフリカ
+ジンバブエ,Zimbabwe,ZIM,552,181,ZI,698,ZIM,ZW,ZWE,716,716,ZWE,zimbabwe|^(?!.*northern).*rhodesia,Africa,"Eastern Africa",南アフリカ
