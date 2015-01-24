@@ -8,7 +8,7 @@
   <meta name="description" content="zoo,xts,quantmod,gdata パッケージ">
 <meta property="og:type" content="article">
 <meta property="og:title" content="日銀買入額">
-<meta property="og:url" content="http://yoursite.com/2015/01/12/日銀買入額/">
+<meta property="og:url" content="http://yoursite.com/2015/01/24/日銀買入額/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
 <meta property="og:description" content="zoo,xts,quantmod,gdata パッケージ">
 <meta property="og:image" content="/images/nichi01.png">
@@ -95,8 +95,8 @@
       <div class="outer">
         <section id="main"><article id="post-日銀買入額" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/01/12/日銀買入額/" class="article-date">
-  <time datetime="2015-01-12T13:28:18.000Z" itemprop="datePublished">Jan 12 2015</time>
+    <a href="/2015/01/24/日銀買入額/" class="article-date">
+  <time datetime="2015-01-24T11:28:00.000Z" itemprop="datePublished">Jan 24 2015</time>
 </a>
     
   <div class="article-category">
@@ -126,7 +126,7 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#library(gdata)</span></div><div class="line"><span class="preprocessor">#d2010&lt;-read.xls("2010.xls",sheet=1,header=F,skip=8)</span></div><div class="line"><span class="preprocessor">#d2010&lt;-d2010[,2:4]</span></div><div class="line"><span class="preprocessor">#d2011&lt;-read.xls("2011.xls",sheet=1,header=F,skip=8)</span></div><div class="line"><span class="preprocessor">#d2011&lt;-d2011[,2:4]</span></div><div class="line"><span class="preprocessor">#d2012&lt;-read.xls("2012.xls",sheet=1,header=F,skip=8)</span></div><div class="line"><span class="preprocessor">#d2012&lt;-d2012[,2:4]</span></div><div class="line"><span class="preprocessor">#d2013&lt;-read.xls("2013.xls",sheet=1,header=F,skip=8)</span></div><div class="line"><span class="preprocessor">#d2013&lt;-d2013[,2:4]</span></div><div class="line"><span class="preprocessor">#d2014&lt;-read.xls("2014.xls",sheet=1,header=F,skip=8)</span></div><div class="line"><span class="preprocessor">#d2014&lt;-d2014[,2:4]</span></div><div class="line"><span class="preprocessor">#d2010_201403&lt;-rbind(d2010,d2011,d2012,d2013,d2014)</span></div><div class="line"><span class="preprocessor">#names(d2010_201403)&lt;-c("date","ETF","REIT")</span></div><div class="line"><span class="preprocessor">#save(d2010_201403, file="d2010_201403.dat")</span></div></pre></td></tr></table></figure>
 
 <p>作成したデータファイル　<br><a href="/data/d2010_201403.dat">d2010_201403.dat</a></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">library(gdata)</div><div class="line">library(xts)</div><div class="line">library(quantmod)</div><div class="line">load(<span class="string">"d2010_201403.dat"</span>)</div><div class="line"><span class="comment">#2014年4月以降の買入結果を解凍して2014.xlsを作業ディレクトリへ</span></div><div class="line">d2014&lt;-read.xls(<span class="string">"2014.xls"</span>,<span class="variable">sheet=</span><span class="number">1</span>,<span class="variable">header=</span>F,<span class="variable">skip=</span><span class="number">8</span>)</div><div class="line">d2014&lt;-d2014[,<span class="number">2</span>:<span class="number">4</span>]</div><div class="line">names(d2014)&lt;-c(<span class="string">"date"</span>,<span class="string">"ETF"</span>,<span class="string">"REIT"</span>)</div><div class="line"><span class="comment">#tail(d2010_201403);head(d2014)</span></div><div class="line">d&lt;-rbind(d2010_201403,d2014)</div><div class="line">d.xts &lt;- as.xts(zoo(d[,-<span class="number">1</span>]),as.POSIXct(d[,<span class="number">1</span>]))</div><div class="line"><span class="comment">#head(d.xts)</span></div><div class="line"><span class="comment">#png("nichi01.png", width=1000, height=800)</span></div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">2</span>,<span class="number">1</span>),<span class="variable">mar =</span> c(<span class="number">4</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">3</span>))</div><div class="line">plot(d.xts[,<span class="number">1</span>],<span class="variable">type=</span><span class="string">"h"</span>,<span class="variable">main=</span><span class="string">"日本銀行 ETF 買入額　単位：億円"</span>)</div><div class="line">plot(d.xts[,<span class="number">2</span>],<span class="variable">type=</span><span class="string">"h"</span>,<span class="variable">main=</span><span class="string">"日本銀行 J-REIT 買入額　単位：億円"</span>)</div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">1</span>,<span class="number">1</span>))</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="title">library</span>(gdata)</div><div class="line"><span class="title">library</span>(xts)</div><div class="line"><span class="title">library</span>(quantmod)</div><div class="line"><span class="title">load</span>(<span class="string">"d2010_201403.dat"</span>)</div><div class="line"><span class="preprocessor">#(Rのコマンドで行う)2014年4月以降の買入結果を解凍して2014.xlsを作業ディレクトリへ</span></div><div class="line"><span class="preprocessor">#d2014&lt;-read.xls("2014.xls",sheet=1,header=F,skip=8)</span></div><div class="line"><span class="preprocessor">#Rのコマンドでzipファイルをダウンロードし、解凍する。</span></div><div class="line"><span class="title">temp</span> &lt;- tempfile()</div><div class="line"><span class="title">download</span>.file(<span class="string">"http://www3.boj.or.jp/market/jp/etfreit.zip"</span>,temp)</div><div class="line"><span class="title">con</span> &lt;- unzip(temp, <span class="string">"2014.xls"</span>)</div><div class="line"><span class="title">d2014</span> &lt;- read.xls(con,header=<span class="type">F</span>,skip=<span class="number">8</span>)</div><div class="line"><span class="title">unlink</span>(temp)</div><div class="line"><span class="title">d2014</span>&lt;-d2014[,<span class="number">2</span>:<span class="number">4</span>]</div><div class="line"><span class="title">names</span>(d2014)&lt;-c(<span class="string">"date"</span>,<span class="string">"ETF"</span>,<span class="string">"REIT"</span>)</div><div class="line"><span class="preprocessor">#tail(d2010_201403);head(d2014)</span></div><div class="line"><span class="title">d</span>&lt;-rbind(d2010_201403,d2014)</div><div class="line"><span class="title">d</span>.xts &lt;- <span class="keyword">as</span>.xts(zoo(d[,-<span class="number">1</span>]),<span class="keyword">as</span>.<span class="type">POSIXct</span>(d[,<span class="number">1</span>]))</div><div class="line"><span class="preprocessor">#head(d.xts)</span></div><div class="line"><span class="preprocessor">#png("nichi01.png", width=1000, height=800)</span></div><div class="line"><span class="title">par</span>(mfrow=c(<span class="number">2</span>,<span class="number">1</span>),mar = c(<span class="number">4</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">3</span>))</div><div class="line"><span class="title">plot</span>(d.xts[,<span class="number">1</span>],<span class="typedef"><span class="keyword">type</span>="h",main="日本銀行 <span class="type">ETF</span> 買入額　単位：億円")</span></div><div class="line"><span class="title">plot</span>(d.xts[,<span class="number">2</span>],<span class="typedef"><span class="keyword">type</span>="h",main="日本銀行 <span class="type">J</span>-<span class="type">REIT</span> 買入額　単位：億円")</span></div><div class="line"><span class="title">par</span>(mfrow=c(<span class="number">1</span>,<span class="number">1</span>))</div><div class="line"><span class="preprocessor">#dev.off()</span></div></pre></td></tr></table></figure>
 
 <p><img src="/images/nichi01.png" alt=""></p>
 <p>日経平均株価 &amp; 日本銀行 ETF 買入額  </p>
@@ -145,7 +145,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/01/12/日銀買入額/" data-id="yyy8xtb0vvokm8oi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/01/24/日銀買入額/" data-id="yyy8xtb0vvokm8oi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a></li></ul>
@@ -156,19 +156,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/01/23/震源地と原子力発電所/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          震源地と原子力発電所
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/01/12/東大物価指数等1/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2015/01/24/原油価格推移/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">東大物価指数・USDJPY・日経平均株価・WTI原油価格</div>
+      <div class="article-nav-title">原油価格推移</div>
     </a>
   
 </nav>
@@ -223,6 +214,10 @@
       <ul>
         
           <li>
+            <a href="/2015/01/24/日銀買入額/">日銀買入額</a>
+          </li>
+        
+          <li>
             <a href="/2015/01/24/原油価格推移/">原油価格推移</a>
           </li>
         
@@ -232,10 +227,6 @@
         
           <li>
             <a href="/2015/01/23/震源地と原子力発電所/">震源地と原子力発電所</a>
-          </li>
-        
-          <li>
-            <a href="/2015/01/12/日銀買入額/">日銀買入額</a>
           </li>
         
           <li>
