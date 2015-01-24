@@ -98,7 +98,7 @@
         <section id="main"><article id="post-原油価格推移" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/01/24/原油価格推移/" class="article-date">
-  <time datetime="2015-01-24T11:03:56.000Z" itemprop="datePublished">Jan 24 2015</time>
+  <time datetime="2015-01-24T12:18:41.000Z" itemprop="datePublished">Jan 24 2015</time>
 </a>
     
   <div class="article-category">
@@ -164,9 +164,9 @@
 <ul>
 <li>lag=3を採用</li>
 </ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># (<span class="number">4</span>) <span class="variable">Granger</span>の因果検定</div><div class="line"><span class="function"><span class="title">library</span><span class="params">(<span class="variable">MSBVAR</span>)</span></span></div><div class="line"><span class="title">granger</span>.<span class="title">test</span><span class="params">(x,p=<span class="number">3</span>)</span></div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># (<span class="number">4</span>) <span class="variable">Granger</span>の因果検定</div><div class="line"><span class="function"><span class="title">library</span><span class="params">(<span class="variable">MSBVAR</span>)</span></span></div><div class="line"><span class="title">granger</span>.<span class="title">test</span><span class="params">(x.d,p=<span class="number">3</span>)</span></div></pre></td></tr></table></figure>
 
-<p>F-statistic      p-value<br>brent -&gt; wti    2.095116 9.923778e-02<br>wti -&gt; brent   18.224694 1.611800e-11  </p>
+<p>   F-statistic      p-value<br>brent -&gt; wti   0.8288626 4.780541e-01<br>wti -&gt; brent  19.6839451 2.105205e-12  </p>
 <ul>
 <li>wti -&gt; brent のGrangerの因果あり。</li>
 </ul>
@@ -190,7 +190,6 @@
 </blockquote>
 <p>$orig<br> 0.00247855</p>
 <p>$prob<br> 0.4780541</p>
-<p>lmtest::grangertestと同じ結果  </p>
 <ul>
 <li>wti -&gt; brent のGrangerの因果あり。</li>
 </ul>
@@ -209,19 +208,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/01/24/日銀買入額/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          日銀買入額
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/01/23/世界銀行データ/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2015/01/24/日銀買入額/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">世界銀行データ</div>
+      <div class="article-nav-title">日銀買入額</div>
     </a>
   
 </nav>
@@ -276,11 +266,11 @@
       <ul>
         
           <li>
-            <a href="/2015/01/24/日銀買入額/">日銀買入額</a>
+            <a href="/2015/01/24/原油価格推移/">原油価格推移</a>
           </li>
         
           <li>
-            <a href="/2015/01/24/原油価格推移/">原油価格推移</a>
+            <a href="/2015/01/24/日銀買入額/">日銀買入額</a>
           </li>
         
           <li>
