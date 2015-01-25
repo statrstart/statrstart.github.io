@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>家計調査3 | 統計ソフトRの備忘録２</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="plotrix、gdata パッケージ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="家計調査3">
+<meta property="og:url" content="http://yoursite.com/2015/01/25/家計調査3/">
+<meta property="og:site_name" content="統計ソフトRの備忘録２">
+<meta property="og:description" content="plotrix、gdata パッケージ">
+<meta property="og:image" content="/images/income2000.png">
+<meta property="og:image" content="/images/income2013.png">
+<meta property="og:image" content="/images/income2000_2013.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="家計調査3">
+<meta name="twitter:description" content="plotrix、gdata パッケージ">
+
+  
+    <link rel="alternative" href="/atom.xml" title="統計ソフトRの備忘録２" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">統計ソフトRの備忘録２</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-家計調査3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/01/25/家計調査3/" class="article-date">
+  <time datetime="2015-01-25T13:43:06.000Z" itemprop="datePublished">Jan 25 2015</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/R/">R</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      家計調査3
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="plotrix、gdata_パッケージ">plotrix、gdata パッケージ</h2>
+<a id="more"></a>
+
+<p><a href="http://www.stat.go.jp/data/kakei/npsf.htm" target="_blank" rel="external">家計調査年報（総世帯・二人以上の世帯・単身世帯）</a></p>
+<p><a href="http://www.e-stat.go.jp/SG1/estat/GL08020102.do?_toGL08020102_&amp;tclassID=000000330002&amp;cycleCode=7&amp;requestSender=estat" target="_blank" rel="external">家計調査 家計収支編 二人以上の世帯 詳細結果表 年次</a></p>
+<p>年間収入階級別（全国・都市階級）<br>206-3 勤労者世帯   </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">#library</span>(gdata)</div><div class="line">#セルの結合あり：skipの調整が必要 zorin <span class="class">OS</span> ではfileEncoding=<span class="comment">"cp932"</span>を指定</div><div class="line"><span class="symbol">#in2013</span> &lt;- read.xls(<span class="comment">"http://www.e-stat.go.jp/SG1/estat/Xlsdl.do?sinfid=000023621247"</span>,sheet=<span class="number">1</span>,skip=<span class="number">9</span>,header=<span class="class">F</span>,fileEncoding=<span class="comment">"cp932"</span>)</div><div class="line"><span class="symbol">#in2012</span> &lt;- read.xls(<span class="comment">"http://www.e-stat.go.jp/SG1/estat/Xlsdl.do?sinfid=000019023692"</span>,sheet=<span class="number">1</span>,skip=<span class="number">9</span>,header=<span class="class">F</span>,fileEncoding=<span class="comment">"cp932"</span>)</div><div class="line"><span class="symbol">#in2011</span> &lt;- read.xls(<span class="comment">"http://www.e-stat.go.jp/SG1/estat/GL08020103.do?_xlsDownload_&fileId=000005598468&releaseCount=2"</span>,sheet=<span class="number">1</span>,skip=<span class="number">9</span>,header=<span class="class">F</span>,fileEncoding=<span class="comment">"cp932"</span>)</div><div class="line"><span class="symbol">#in2010</span> &lt;- read.xls(<span class="comment">"http://www.e-stat.go.jp/SG1/estat/GL08020103.do?_xlsDownload_&fileId=000003972136&releaseCount=1"</span>,sheet=<span class="number">1</span>,skip=<span class="number">9</span>,header=<span class="class">F</span>,fileEncoding=<span class="comment">"cp932"</span>)</div><div class="line"><span class="symbol">#in2009</span> &lt;- read.xls(<span class="comment">"http://www.e-stat.go.jp/SG1/estat/GL08020103.do?_xlsDownload_&fileId=000003556161&releaseCount=1"</span>,sheet=<span class="number">1</span>,skip=<span class="number">9</span>,header=<span class="class">F</span>,fileEncoding=<span class="comment">"cp932"</span>)</div><div class="line"><span class="symbol">#in2008</span> &lt;- read.xls(<span class="comment">"http://www.e-stat.go.jp/SG1/estat/GL08020103.do?_xlsDownload_&fileId=000002203990&releaseCount=2"</span>,sheet=<span class="number">1</span>,skip=<span class="number">9</span>,header=<span class="class">F</span>,fileEncoding=<span class="comment">"cp932"</span>)</div><div class="line"><span class="symbol">#in2007</span> &lt;- read.xls(<span class="comment">"http://www.e-stat.go.jp/SG1/estat/GL08020103.do?_xlsDownload_&fileId=000001174966&releaseCount=1"</span>,sheet=<span class="number">1</span>,skip=<span class="number">9</span>,header=<span class="class">F</span>,fileEncoding=<span class="comment">"cp932"</span>)</div><div class="line"><span class="symbol">#in2006</span> &lt;- read.xls(<span class="comment">"http://www.e-stat.go.jp/SG1/estat/GL08020103.do?_xlsDownload_&fileId=000000331D47&releaseCount=2"</span>,sheet=<span class="number">1</span>,skip=<span class="number">9</span>,header=<span class="class">F</span>,fileEncoding=<span class="comment">"cp932"</span>)</div><div class="line"><span class="symbol">#in2005</span> &lt;- read.xls(<span class="comment">"http://www.e-stat.go.jp/SG1/estat/GL08020103.do?_xlsDownload_&fileId=000000331AF5&releaseCount=2"</span>,sheet=<span class="number">1</span>,skip=<span class="number">9</span>,header=<span class="class">F</span>,fileEncoding=<span class="comment">"cp932"</span>)</div><div class="line"><span class="symbol">#in2004</span> &lt;- read.xls(<span class="comment">"http://www.e-stat.go.jp/SG1/estat/GL08020103.do?_xlsDownload_&fileId=000000331ABC&releaseCount=2"</span>,sheet=<span class="number">1</span>,skip=<span class="number">9</span>,header=<span class="class">F</span>,fileEncoding=<span class="comment">"cp932"</span>)</div><div class="line"><span class="symbol">#in2003</span> &lt;- read.xls(<span class="comment">"http://www.e-stat.go.jp/SG1/estat/GL08020103.do?_xlsDownload_&fileId=000000331A83&releaseCount=2"</span>,sheet=<span class="number">1</span>,skip=<span class="number">9</span>,header=<span class="class">F</span>,fileEncoding=<span class="comment">"cp932"</span>)</div><div class="line"><span class="symbol">#in2002</span> &lt;- read.xls(<span class="comment">"http://www.e-stat.go.jp/SG1/estat/GL08020103.do?_xlsDownload_&fileId=000000331A4A&releaseCount=2"</span>,sheet=<span class="number">1</span>,skip=<span class="number">9</span>,header=<span class="class">F</span>,fileEncoding=<span class="comment">"cp932"</span>)</div><div class="line"><span class="symbol">#in2001</span> &lt;- read.xls(<span class="comment">"http://www.e-stat.go.jp/SG1/estat/GL08020103.do?_xlsDownload_&fileId=000000331A0D&releaseCount=2"</span>,sheet=<span class="number">1</span>,skip=<span class="number">9</span>,header=<span class="class">F</span>,fileEncoding=<span class="comment">"cp932"</span>)</div><div class="line"><span class="symbol">#in2000</span> &lt;- read.xls(<span class="comment">"http://www.e-stat.go.jp/SG1/estat/GL08020103.do?_xlsDownload_&fileId=0000003319D2&releaseCount=2"</span>,sheet=<span class="number">1</span>,skip=<span class="number">9</span>,header=<span class="class">F</span>,fileEncoding=<span class="comment">"cp932"</span>)</div><div class="line"><span class="symbol">#in2000_2013</span>&lt;-rbind(in2000[<span class="number">1</span>,c(<span class="number">8</span>,<span class="number">17</span>:<span class="number">34</span>)],in2001[<span class="number">1</span>,c(<span class="number">8</span>,<span class="number">17</span>:<span class="number">34</span>)],in2002[<span class="number">1</span>,c(<span class="number">8</span>,<span class="number">17</span>:<span class="number">34</span>)],in2003[<span class="number">1</span>,c(<span class="number">8</span>,<span class="number">17</span>:<span class="number">34</span>)],</div><div class="line"><span class="symbol">#in2004</span>[<span class="number">1</span>,c(<span class="number">8</span>,<span class="number">17</span>:<span class="number">34</span>)],in2005[<span class="number">1</span>,c(<span class="number">8</span>,<span class="number">17</span>:<span class="number">34</span>)],in2006[<span class="number">1</span>,c(<span class="number">8</span>,<span class="number">17</span>:<span class="number">34</span>)],in2007[<span class="number">1</span>,c(<span class="number">8</span>,<span class="number">17</span>:<span class="number">34</span>)],in2008[<span class="number">1</span>,c(<span class="number">8</span>,<span class="number">17</span>:<span class="number">34</span>)],</div><div class="line"><span class="symbol">#in2009</span>[<span class="number">1</span>,c(<span class="number">8</span>,<span class="number">17</span>:<span class="number">34</span>)],in2010[<span class="number">1</span>,c(<span class="number">8</span>,<span class="number">17</span>:<span class="number">34</span>)],in2011[<span class="number">1</span>,c(<span class="number">8</span>,<span class="number">17</span>:<span class="number">34</span>)],in2012[<span class="number">1</span>,c(<span class="number">8</span>,<span class="number">17</span>:<span class="number">34</span>)],in2013[<span class="number">1</span>,c(<span class="number">8</span>,<span class="number">17</span>:<span class="number">34</span>)])</div><div class="line"><span class="symbol">#names</span>(in2000_2013)&lt;-c(<span class="comment">"年"</span>,<span class="comment">"２００万円未満"</span>,<span class="comment">"２００～２５０"</span>,<span class="comment">"２５０～３００"</span>,<span class="comment">"３００～３５０"</span>,<span class="comment">"３５０～４００"</span>,<span class="comment">"４００～４５０"</span>,<span class="comment">"４５０～５００"</span>,<span class="comment">"５００～５５０"</span>,<span class="comment">"５５０～６００"</span>,<span class="comment">"６００～６５０"</span>,<span class="comment">"６５０～７００"</span>,<span class="comment">"７００～７５０"</span>,<span class="comment">"７５０～８００"</span>,<span class="comment">"８００～９００"</span>,<span class="comment">"９００～１０００"</span>,<span class="comment">"１０００～１２５０"</span>,<span class="comment">"１２５０～１５００"</span>,<span class="comment">"１５００万円以上"</span>)</div><div class="line"><span class="symbol">#names</span>(in2000_2013)&lt;-c(<span class="comment">"年"</span>,<span class="comment">"[0,200)"</span>,<span class="comment">"[200,250)"</span>,<span class="comment">"[250,300)"</span>,<span class="comment">"[300,350)"</span>,<span class="comment">"[350,400)"</span>,<span class="comment">"[400,450)"</span>,<span class="comment">"[450,500)"</span>,<span class="comment">"[500,550)"</span>,<span class="comment">"[550,600)"</span>,<span class="comment">"[600,650)"</span>,<span class="comment">"[650,700)"</span>,<span class="comment">"[700,750)"</span>,<span class="comment">"[750,800)"</span>,<span class="comment">"[800,900)"</span>,<span class="comment">"[900,1000)"</span>,<span class="comment">"[1000,1250)"</span>,<span class="comment">"[1250,1500)"</span>,<span class="comment">"[1500, )"</span>)</div><div class="line">#読み込んだデータの数値に含まれるカンマを除去</div><div class="line"><span class="symbol">#for</span> (i in <span class="number">2</span>:ncol(in2000_2013)) { </div><div class="line"><span class="symbol">#in2000_2013</span>[,i]&lt;-as.numeric(gsub(<span class="comment">","</span>,<span class="comment">""</span>,in2000_2013[,i]))</div><div class="line">#}</div><div class="line"><span class="symbol">#in2000_2013</span><span class="char">$年</span>&lt;-c(<span class="number">2000</span>:<span class="number">2013</span>)</div><div class="line"><span class="symbol">#save</span>(<span class="comment">"in2000_2013"</span>, file=<span class="comment">"in2000_2013.dat"</span>)</div></pre></td></tr></table></figure>
+
+<p>作成したデータセット</p>
+<p><a href="/data/in2000_2013.dat">in2000_2013.dat</a></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">library(plotrix)</div><div class="line">load(<span class="string">"in2000_2013.dat"</span>)</div><div class="line">#変数名が文字化けしているのでつけ直す。</div><div class="line">#names(in2000_2013)&lt;-<span class="built_in">c</span>(<span class="string">"年"</span>,<span class="string">"２００万円未満"</span>,<span class="string">"２００～２５０"</span>,<span class="string">"２５０～３００"</span>,<span class="string">"３００～３５０"</span>,<span class="string">"３５０～４００"</span>,<span class="string">"４００～４５０"</span>,<span class="string">"４５０～５００"</span>,<span class="string">"５００～５５０"</span>,<span class="string">"５５０～６００"</span>,<span class="string">"６００～６５０"</span>,<span class="string">"６５０～７００"</span>,<span class="string">"７００～７５０"</span>,<span class="string">"７５０～８００"</span>,<span class="string">"８００～９００"</span>,<span class="string">"９００～１０００"</span>,<span class="string">"１０００～１２５０"</span>,<span class="string">"１２５０～１５００"</span>,<span class="string">"１５００万円以上"</span>)</div><div class="line">names(in2000_2013)&lt;-<span class="built_in">c</span>(<span class="string">"年"</span>,<span class="string">"[0,200)"</span>,<span class="string">"[200,250)"</span>,<span class="string">"[250,300)"</span>,<span class="string">"[300,350)"</span>,<span class="string">"[350,400)"</span>,<span class="string">"[400,450)"</span>,<span class="string">"[450,500)"</span>,<span class="string">"[500,550)"</span>,<span class="string">"[550,600)"</span>,<span class="string">"[600,650)"</span>,<span class="string">"[650,700)"</span>,<span class="string">"[700,750)"</span>,<span class="string">"[750,800)"</span>,<span class="string">"[800,900)"</span>,<span class="string">"[900,1000)"</span>,<span class="string">"[1000,1250)"</span>,<span class="string">"[1250,1500)"</span>,<span class="string">"[1500, )"</span>)</div><div class="line">mat&lt;-t(<span class="keyword">as</span>.matrix(in2000_2013[,-<span class="number">1</span>]))</div><div class="line">colnames(mat)&lt;-<span class="built_in">c</span>(<span class="number">2000</span>:<span class="number">2013</span>)</div><div class="line">df&lt;-data.frame(mat)</div><div class="line">names(df)&lt;-<span class="built_in">c</span>(<span class="number">2000</span>:<span class="number">2013</span>)</div><div class="line">#</div><div class="line">#png(<span class="string">"income2000.png"</span>,width=<span class="number">1000</span>,height=<span class="number">800</span>)</div><div class="line">par(mar=<span class="built_in">c</span>(<span class="number">5</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">2</span>))</div><div class="line">#barplot(df[,<span class="number">1</span>]/<span class="number">100</span>,names.arg =rownames(df),main=<span class="string">"年間収入金額別世帯数割合 (%)（勤労者世帯 ）2000年"</span>,las=<span class="number">3</span>)</div><div class="line">#plot(<span class="built_in">c</span>(<span class="number">1</span>:<span class="number">18</span>),df[,<span class="number">1</span>]/<span class="number">100</span>,type=<span class="string">"h"</span>,lwd=<span class="number">30</span>,col=<span class="string">"lightblue"</span>,main=<span class="string">"年間収入金額別世帯数割合 (%)（勤労者世帯 ） 2000年"</span>,xaxt = <span class="string">"n"</span>,las=<span class="number">1</span>,lend=<span class="number">2</span>,xlab=<span class="string">""</span>,ylab=<span class="string">"パーセント"</span>,ylim=<span class="built_in">c</span>(<span class="number">0</span>,<span class="number">12</span>))</div><div class="line">#staxlab(<span class="number">1</span>, <span class="built_in">c</span>(<span class="number">1</span>:<span class="number">18</span>),labels=rownames(df), srt = <span class="number">45</span>)</div><div class="line">barp(df[,<span class="number">1</span>]/<span class="number">100</span>,names.arg=rownames(df),staxx=<span class="type">T</span>,col=<span class="string">"lightblue"</span>,ylim=<span class="built_in">c</span>(<span class="number">0</span>,<span class="number">12</span>),srt=<span class="number">45</span>,main=<span class="string">"年間収入金額別世帯数割合 (%)（勤労者世帯 ） 2000年"</span>)</div><div class="line">#dev.off()</div></pre></td></tr></table></figure>
+
+<p><img src="/images/income2000.png" alt=""></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#png("income2013.png",width=1000,height=800)</span></div><div class="line">par(<span class="variable">mar=</span>c(<span class="number">5</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">2</span>))</div><div class="line">barp(df[,<span class="number">14</span>]/<span class="number">100</span>,names.<span class="variable">arg=</span>rownames(df),<span class="variable">staxx=</span>T,<span class="variable">main=</span><span class="string">"年間収入金額別世帯数割合 (%)（勤労者世帯 ） 2013年"</span>,<span class="variable">col=</span><span class="string">"lightpink"</span>,<span class="variable">ylim=</span>c(<span class="number">0</span>,<span class="number">12</span>),<span class="variable">srt=</span><span class="number">45</span>)</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/income2013.png" alt=""></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">df2&lt;-cumsum(df)</div><div class="line"><span class="comment">#png("income2000_2013.png",width=1000,height=800)</span></div><div class="line">par(<span class="variable">mar=</span>c(<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">2</span>))</div><div class="line">plot(c(<span class="number">1</span>:<span class="number">18</span>), df2[,<span class="number">1</span>]/<span class="number">100</span>,<span class="variable">type=</span><span class="string">"l"</span>,<span class="variable">col=</span><span class="string">"blue"</span>,<span class="variable">xlab=</span><span class="string">""</span>,<span class="variable">ylab=</span><span class="string">""</span>,<span class="variable">xaxt =</span> <span class="string">"n"</span>,<span class="variable">las=</span><span class="number">1</span>)</div><div class="line"><span class="comment"># X軸目盛を斜め表示</span></div><div class="line">staxlab(<span class="number">1</span>, <span class="variable">at=</span>c(<span class="number">1</span>:<span class="number">18</span>),<span class="variable">labels=</span>rownames(df2), <span class="variable">srt =</span> <span class="number">45</span>)</div><div class="line">title(<span class="string">"年間収入金額別世帯数割合累計 (%)（勤労者世帯）2000年&2013年"</span> )  <span class="comment"># グラフタイトルを追加</span></div><div class="line">abline(<span class="variable">v=</span>c(<span class="number">1</span>:<span class="number">18</span>),<span class="variable">lty=</span><span class="number">2</span>,<span class="variable">col=</span><span class="string">"gray"</span>)</div><div class="line">lines(c(<span class="number">1</span>:<span class="number">18</span>), df2[,<span class="number">14</span>]/<span class="number">100</span>,<span class="variable">type=</span><span class="string">"l"</span>,<span class="variable">col=</span><span class="string">"red"</span>)</div><div class="line">abline(<span class="variable">h=</span><span class="number">25</span>,<span class="variable">lty=</span><span class="number">2</span>,<span class="variable">col=</span><span class="string">"gray"</span>)</div><div class="line">abline(<span class="variable">h=</span><span class="number">50</span>,<span class="variable">lty=</span><span class="number">2</span>,<span class="variable">col=</span><span class="string">"gray"</span>)</div><div class="line">abline(<span class="variable">h=</span><span class="number">75</span>,<span class="variable">lty=</span><span class="number">2</span>,<span class="variable">col=</span><span class="string">"gray"</span>)</div><div class="line"><span class="comment">#legend("topleft",legend = colnames(df[,c(1,14)]), col =c("blue","red"),lty = 1)</span></div><div class="line">boxed.labels(<span class="number">12.2</span>,<span class="number">50</span>,<span class="string">"2000年"</span>,<span class="variable">col=</span><span class="string">"blue"</span>,<span class="variable">border=</span><span class="number">0</span>)</div><div class="line">boxed.labels(<span class="number">8.5</span>,<span class="number">50</span>,<span class="string">"2013年"</span>,<span class="variable">col=</span><span class="string">"red"</span>,<span class="variable">border=</span><span class="number">0</span>)</div><div class="line">boxed.labels(-<span class="number">0.1</span>,<span class="number">25</span>,<span class="string">"25%"</span>,<span class="variable">col=</span><span class="string">"red"</span>,<span class="variable">border=</span><span class="number">0</span>,<span class="variable">cex=</span><span class="number">0.8</span>)</div><div class="line">boxed.labels(-<span class="number">0.1</span>,<span class="number">50</span>,<span class="string">"50%"</span>,<span class="variable">col=</span><span class="string">"red"</span>,<span class="variable">border=</span><span class="number">0</span>,<span class="variable">cex=</span><span class="number">0.8</span>)</div><div class="line">boxed.labels(-<span class="number">0.1</span>,<span class="number">75</span>,<span class="string">"75%"</span>,<span class="variable">col=</span><span class="string">"red"</span>,<span class="variable">border=</span><span class="number">0</span>,<span class="variable">cex=</span><span class="number">0.8</span>)</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/income2000_2013.png" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/01/25/家計調査3/" data-id="4o7rvwfb7d9odnf3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/01/24/原油価格推移/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">原油価格推移</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Gambit/">Gambit</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gnumeric/">Gnumeric</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Graphviz/">Graphviz</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NetworkX/">NetworkX</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">26</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sqlite3/">sqlite3</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/放送大学/">放送大学</a><span class="category-list-count">45</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a><span class="tag-list-count">26</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">13</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/HEXO/" style="font-size: 10.00px;">HEXO</a><a href="/tags/Rパッケージ/" style="font-size: 20.00px;">Rパッケージ</a><a href="/tags/データからの知識発見/" style="font-size: 14.00px;">データからの知識発見</a><a href="/tags/問題解決の数理/" style="font-size: 18.00px;">問題解決の数理</a><a href="/tags/心理・教育統計法特論/" style="font-size: 12.00px;">心理・教育統計法特論</a><a href="/tags/心理統計法/" style="font-size: 16.00px;">心理統計法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12">December 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">34</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/01/25/家計調査3/">家計調査3</a>
+          </li>
+        
+          <li>
+            <a href="/2015/01/24/原油価格推移/">原油価格推移</a>
+          </li>
+        
+          <li>
+            <a href="/2015/01/24/日銀買入額/">日銀買入額</a>
+          </li>
+        
+          <li>
+            <a href="/2015/01/23/世界銀行データ/">世界銀行データ</a>
+          </li>
+        
+          <li>
+            <a href="/2015/01/23/震源地と原子力発電所/">震源地と原子力発電所</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 統計ソフトRの備忘録２<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
