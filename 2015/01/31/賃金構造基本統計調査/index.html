@@ -11,6 +11,7 @@
 <meta property="og:url" content="http://yoursite.com/2015/01/31/賃金構造基本統計調査/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
 <meta property="og:description" content="plotrix、knitr パッケージ">
+<meta property="og:image" content="/images/wage01.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="賃金構造基本統計調査">
 <meta name="twitter:description" content="plotrix、knitr パッケージ">
@@ -93,7 +94,7 @@
         <section id="main"><article id="post-賃金構造基本統計調査" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/01/31/賃金構造基本統計調査/" class="article-date">
-  <time datetime="2015-01-31T12:59:42.000Z" itemprop="datePublished">Jan 31 2015</time>
+  <time datetime="2015-01-31T13:05:44.000Z" itemprop="datePublished">Jan 31 2015</time>
 </a>
     
   <div class="article-category">
@@ -128,7 +129,7 @@
 <ul>
 <li>平均値より中央値の方が「普通」の生活水準に近い。</li>
 </ul>
-<p><a href="/images/wage01.png"></a></p>
+<p><img src="/images/wage01.png" alt=""></p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#平均値と中央値の差を算出。</span></div><div class="line"><span class="title">dm</span>[,<span class="string">"mean-median"</span>]&lt;-dm[,<span class="string">"mean"</span>]-dm[,<span class="string">"median"</span>]</div><div class="line"><span class="title">dw</span>[,<span class="string">"mean-median"</span>]&lt;-dw[,<span class="string">"mean"</span>]-dw[,<span class="string">"median"</span>]</div><div class="line"><span class="title">mat1</span>&lt;-t(<span class="keyword">as</span>.matrix(dm[,-<span class="number">1</span>]))</div><div class="line"><span class="title">colnames</span>(mat1)&lt;-c(<span class="number">2001</span>:<span class="number">2013</span>)</div><div class="line"><span class="title">mat2</span>&lt;-t(<span class="keyword">as</span>.matrix(dw[,-<span class="number">1</span>]))</div><div class="line"><span class="title">colnames</span>(mat2)&lt;-c(<span class="number">2001</span>:<span class="number">2013</span>)</div><div class="line"><span class="preprocessor">#賃金の単位を1000をかけて円にする</span></div><div class="line"><span class="title">mat1</span>&lt;-mat1*<span class="number">1000</span>;mat2&lt;-mat2*<span class="number">1000</span></div><div class="line"><span class="preprocessor">#表にする</span></div><div class="line"><span class="title">library</span>(knitr)</div><div class="line"><span class="title">kable</span>(mat1);</div><div class="line"><span class="title">kable</span>(mat2)</div></pre></td></tr></table></figure>
 
 <h5 id="男性_(単位：円)">男性 (単位：円)</h5>
