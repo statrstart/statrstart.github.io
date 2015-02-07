@@ -8,7 +8,7 @@
   <meta name="description" content="plotrix、knitr パッケージ">
 <meta property="og:type" content="article">
 <meta property="og:title" content="賃金構造基本統計調査">
-<meta property="og:url" content="http://yoursite.com/2015/01/31/賃金構造基本統計調査/">
+<meta property="og:url" content="http://yoursite.com/2015/02/07/賃金構造基本統計調査/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
 <meta property="og:description" content="plotrix、knitr パッケージ">
 <meta property="og:image" content="/images/wage01.png">
@@ -93,8 +93,8 @@
       <div class="outer">
         <section id="main"><article id="post-賃金構造基本統計調査" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/01/31/賃金構造基本統計調査/" class="article-date">
-  <time datetime="2015-01-31T13:05:44.000Z" itemprop="datePublished">Jan 31 2015</time>
+    <a href="/2015/02/07/賃金構造基本統計調査/" class="article-date">
+  <time datetime="2015-02-07T02:07:59.000Z" itemprop="datePublished">Feb 7 2015</time>
 </a>
     
   <div class="article-category">
@@ -130,7 +130,7 @@
 <li>平均値より中央値の方が「普通」の生活水準に近い。</li>
 </ul>
 <p><img src="/images/wage01.png" alt=""></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#平均値と中央値の差を算出。</span></div><div class="line"><span class="title">dm</span>[,<span class="string">"mean-median"</span>]&lt;-dm[,<span class="string">"mean"</span>]-dm[,<span class="string">"median"</span>]</div><div class="line"><span class="title">dw</span>[,<span class="string">"mean-median"</span>]&lt;-dw[,<span class="string">"mean"</span>]-dw[,<span class="string">"median"</span>]</div><div class="line"><span class="title">mat1</span>&lt;-t(<span class="keyword">as</span>.matrix(dm[,-<span class="number">1</span>]))</div><div class="line"><span class="title">colnames</span>(mat1)&lt;-c(<span class="number">2001</span>:<span class="number">2013</span>)</div><div class="line"><span class="title">mat2</span>&lt;-t(<span class="keyword">as</span>.matrix(dw[,-<span class="number">1</span>]))</div><div class="line"><span class="title">colnames</span>(mat2)&lt;-c(<span class="number">2001</span>:<span class="number">2013</span>)</div><div class="line"><span class="preprocessor">#賃金の単位を1000をかけて円にする</span></div><div class="line"><span class="title">mat1</span>&lt;-mat1*<span class="number">1000</span>;mat2&lt;-mat2*<span class="number">1000</span></div><div class="line"><span class="preprocessor">#表にする</span></div><div class="line"><span class="title">library</span>(knitr)</div><div class="line"><span class="title">kable</span>(mat1);</div><div class="line"><span class="title">kable</span>(mat2)</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#平均値と中央値の差を算出。</span></div><div class="line"><span class="title">dm</span>[,<span class="string">"mean-median"</span>]&lt;-dm[,<span class="string">"mean"</span>]-dm[,<span class="string">"median"</span>]</div><div class="line"><span class="title">dw</span>[,<span class="string">"mean-median"</span>]&lt;-dw[,<span class="string">"mean"</span>]-dw[,<span class="string">"median"</span>]</div><div class="line"><span class="title">mat1</span>&lt;-t(<span class="keyword">as</span>.matrix(dm[,-<span class="number">1</span>]))</div><div class="line"><span class="title">colnames</span>(mat1)&lt;-c(<span class="number">2001</span>:<span class="number">2013</span>)</div><div class="line"><span class="title">mat2</span>&lt;-t(<span class="keyword">as</span>.matrix(dw[,-<span class="number">1</span>]))</div><div class="line"><span class="title">colnames</span>(mat2)&lt;-c(<span class="number">2001</span>:<span class="number">2013</span>)</div><div class="line"><span class="preprocessor">#賃金の単位を1000をかけて円にする</span></div><div class="line"><span class="title">mat1</span>&lt;-mat1*<span class="number">1000</span>;mat2&lt;-mat2*<span class="number">1000</span></div><div class="line"><span class="preprocessor">#表にする(2001,2005,2010,2011,2012,2013)</span></div><div class="line"><span class="title">library</span>(knitr)</div><div class="line"><span class="title">kable</span>(mat1[,c(<span class="string">"2001"</span>,<span class="string">"2005"</span>,<span class="string">"2010"</span>,<span class="string">"2011"</span>,<span class="string">"2012"</span>,<span class="string">"2013"</span>)])</div><div class="line"><span class="title">kable</span>(mat2[,c(<span class="string">"2001"</span>,<span class="string">"2005"</span>,<span class="string">"2010"</span>,<span class="string">"2011"</span>,<span class="string">"2012"</span>,<span class="string">"2013"</span>)])</div></pre></td></tr></table></figure>
 
 <h5 id="男性_(単位：円)">男性 (単位：円)</h5>
 <table>
@@ -138,14 +138,7 @@
 <tr>
 <th style="text-align:left"></th>
 <th style="text-align:right">2001</th>
-<th style="text-align:right">2002</th>
-<th style="text-align:right">2003</th>
-<th style="text-align:right">2004</th>
 <th style="text-align:right">2005</th>
-<th style="text-align:right">2006</th>
-<th style="text-align:right">2007</th>
-<th style="text-align:right">2008</th>
-<th style="text-align:right">2009</th>
 <th style="text-align:right">2010</th>
 <th style="text-align:right">2011</th>
 <th style="text-align:right">2012</th>
@@ -156,14 +149,7 @@
 <tr>
 <td style="text-align:left">mean</td>
 <td style="text-align:right">340700</td>
-<td style="text-align:right">336200</td>
-<td style="text-align:right">335500</td>
-<td style="text-align:right">333900</td>
 <td style="text-align:right">337800</td>
-<td style="text-align:right">337700</td>
-<td style="text-align:right">336700</td>
-<td style="text-align:right">333700</td>
-<td style="text-align:right">326800</td>
 <td style="text-align:right">328300</td>
 <td style="text-align:right">328300</td>
 <td style="text-align:right">329000</td>
@@ -172,14 +158,7 @@
 <tr>
 <td style="text-align:left">median</td>
 <td style="text-align:right">307400</td>
-<td style="text-align:right">302800</td>
 <td style="text-align:right">301900</td>
-<td style="text-align:right">299800</td>
-<td style="text-align:right">301900</td>
-<td style="text-align:right">302600</td>
-<td style="text-align:right">299600</td>
-<td style="text-align:right">298100</td>
-<td style="text-align:right">289200</td>
 <td style="text-align:right">291100</td>
 <td style="text-align:right">289100</td>
 <td style="text-align:right">288800</td>
@@ -188,14 +167,7 @@
 <tr>
 <td style="text-align:left">first_quartile</td>
 <td style="text-align:right">236100</td>
-<td style="text-align:right">232000</td>
-<td style="text-align:right">232300</td>
-<td style="text-align:right">230000</td>
 <td style="text-align:right">230200</td>
-<td style="text-align:right">230000</td>
-<td style="text-align:right">229000</td>
-<td style="text-align:right">227800</td>
-<td style="text-align:right">221200</td>
 <td style="text-align:right">224000</td>
 <td style="text-align:right">222200</td>
 <td style="text-align:right">222000</td>
@@ -204,14 +176,7 @@
 <tr>
 <td style="text-align:left">third_quartile</td>
 <td style="text-align:right">408200</td>
-<td style="text-align:right">403900</td>
-<td style="text-align:right">402500</td>
-<td style="text-align:right">401200</td>
 <td style="text-align:right">407600</td>
-<td style="text-align:right">406400</td>
-<td style="text-align:right">404200</td>
-<td style="text-align:right">399800</td>
-<td style="text-align:right">391200</td>
 <td style="text-align:right">393400</td>
 <td style="text-align:right">389800</td>
 <td style="text-align:right">392400</td>
@@ -220,14 +185,7 @@
 <tr>
 <td style="text-align:left">mean-median</td>
 <td style="text-align:right">33300</td>
-<td style="text-align:right">33400</td>
-<td style="text-align:right">33600</td>
-<td style="text-align:right">34100</td>
 <td style="text-align:right">35900</td>
-<td style="text-align:right">35100</td>
-<td style="text-align:right">37100</td>
-<td style="text-align:right">35600</td>
-<td style="text-align:right">37600</td>
 <td style="text-align:right">37200</td>
 <td style="text-align:right">39200</td>
 <td style="text-align:right">40200</td>
@@ -241,14 +199,7 @@
 <tr>
 <th style="text-align:left"></th>
 <th style="text-align:right">2001</th>
-<th style="text-align:right">2002</th>
-<th style="text-align:right">2003</th>
-<th style="text-align:right">2004</th>
 <th style="text-align:right">2005</th>
-<th style="text-align:right">2006</th>
-<th style="text-align:right">2007</th>
-<th style="text-align:right">2008</th>
-<th style="text-align:right">2009</th>
 <th style="text-align:right">2010</th>
 <th style="text-align:right">2011</th>
 <th style="text-align:right">2012</th>
@@ -259,14 +210,7 @@
 <tr>
 <td style="text-align:left">mean</td>
 <td style="text-align:right">222400</td>
-<td style="text-align:right">223600</td>
-<td style="text-align:right">224200</td>
-<td style="text-align:right">225600</td>
 <td style="text-align:right">222500</td>
-<td style="text-align:right">222600</td>
-<td style="text-align:right">225200</td>
-<td style="text-align:right">226100</td>
-<td style="text-align:right">228000</td>
 <td style="text-align:right">227600</td>
 <td style="text-align:right">231900</td>
 <td style="text-align:right">233100</td>
@@ -275,14 +219,7 @@
 <tr>
 <td style="text-align:left">median</td>
 <td style="text-align:right">203300</td>
-<td style="text-align:right">204300</td>
-<td style="text-align:right">205300</td>
-<td style="text-align:right">206600</td>
 <td style="text-align:right">202800</td>
-<td style="text-align:right">202800</td>
-<td style="text-align:right">204500</td>
-<td style="text-align:right">206600</td>
-<td style="text-align:right">207400</td>
 <td style="text-align:right">207600</td>
 <td style="text-align:right">209900</td>
 <td style="text-align:right">212200</td>
@@ -291,14 +228,7 @@
 <tr>
 <td style="text-align:left">first_quartile</td>
 <td style="text-align:right">168000</td>
-<td style="text-align:right">167800</td>
-<td style="text-align:right">168000</td>
-<td style="text-align:right">168600</td>
 <td style="text-align:right">162300</td>
-<td style="text-align:right">162500</td>
-<td style="text-align:right">164300</td>
-<td style="text-align:right">166500</td>
-<td style="text-align:right">167000</td>
 <td style="text-align:right">167900</td>
 <td style="text-align:right">169100</td>
 <td style="text-align:right">169800</td>
@@ -307,14 +237,7 @@
 <tr>
 <td style="text-align:left">third_quartile</td>
 <td style="text-align:right">253100</td>
-<td style="text-align:right">255300</td>
-<td style="text-align:right">256600</td>
-<td style="text-align:right">258500</td>
 <td style="text-align:right">257100</td>
-<td style="text-align:right">257300</td>
-<td style="text-align:right">259600</td>
-<td style="text-align:right">261200</td>
-<td style="text-align:right">262600</td>
 <td style="text-align:right">263100</td>
 <td style="text-align:right">268400</td>
 <td style="text-align:right">268000</td>
@@ -323,14 +246,7 @@
 <tr>
 <td style="text-align:left">mean-median</td>
 <td style="text-align:right">19100</td>
-<td style="text-align:right">19300</td>
-<td style="text-align:right">18900</td>
-<td style="text-align:right">19000</td>
 <td style="text-align:right">19700</td>
-<td style="text-align:right">19800</td>
-<td style="text-align:right">20700</td>
-<td style="text-align:right">19500</td>
-<td style="text-align:right">20600</td>
 <td style="text-align:right">20000</td>
 <td style="text-align:right">22000</td>
 <td style="text-align:right">20900</td>
@@ -338,11 +254,15 @@
 </tr>
 </tbody>
 </table>
+<p>(参考)<br>平成27年２月４日に<br><a href="http://www.mhlw.go.jp/toukei/itiran/roudou/monthly/26/26p/26p.html" target="_blank" rel="external">毎月勤労統計調査　平成26年分結果速報</a>が公表されました。</p>
+<p>概況<br>【調査結果のポイント】<br>（前年比でみて）<br>・現金給与総額は４年ぶりの増加<br> 一般労働者は２年連続の増加、パートタイム労働者は２年ぶりの増加<br>・所定外労働時間は５年連続の増加<br>・常用雇用は１１年連続の増加</p>
+<p>賃金（一人平均）<br><strong>平均月間現金給与総額</strong>は、前年比０.８％増の３１６,６９４円となった。<br>(中略)<br><strong>実質賃金は、前年比２.５％減となった。</strong></p>
+<p><strong><em>中央値の記載はないみたいです。</em></strong></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/01/31/賃金構造基本統計調査/" data-id="75pnsn6c1khtgux8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/02/07/賃金構造基本統計調査/" data-id="75pnsn6c1khtgux8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a></li></ul>
@@ -399,7 +319,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12">December 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">34</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01">January 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12">December 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">34</span></li></ul>
     </div>
   </div>
 
@@ -411,7 +331,7 @@
       <ul>
         
           <li>
-            <a href="/2015/01/31/賃金構造基本統計調査/">賃金構造基本統計調査</a>
+            <a href="/2015/02/07/賃金構造基本統計調査/">賃金構造基本統計調査</a>
           </li>
         
           <li>
