@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>21世紀の資本グラフ3 | 統計ソフトRの備忘録２</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Quandl、xts、lattice、gridExtra、plotrix、RColorBrewer パッケージ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="21世紀の資本グラフ3">
+<meta property="og:url" content="http://yoursite.com/2015/02/14/21世紀の資本グラフ3/">
+<meta property="og:site_name" content="統計ソフトRの備忘録２">
+<meta property="og:description" content="Quandl、xts、lattice、gridExtra、plotrix、RColorBrewer パッケージ">
+<meta property="og:image" content="/images/Piketty3_2B.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="21世紀の資本グラフ3">
+<meta name="twitter:description" content="Quandl、xts、lattice、gridExtra、plotrix、RColorBrewer パッケージ">
+
+  
+    <link rel="alternative" href="/atom.xml" title="統計ソフトRの備忘録２" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">統計ソフトRの備忘録２</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-21世紀の資本グラフ3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/02/14/21世紀の資本グラフ3/" class="article-date">
+  <time datetime="2015-02-14T09:02:37.000Z" itemprop="datePublished">Feb 14 2015</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/R/">R</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      21世紀の資本グラフ3
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Quandl、xts、lattice、gridExtra、plotrix、RColorBrewer_パッケージ">Quandl、xts、lattice、gridExtra、plotrix、RColorBrewer パッケージ</h2>
+<a id="more"></a>
+
+<p>「21世紀の資本」のデータが公開されてるのでRを使ってグラフ化してみます。<br>（グラフもすでに公開されているのであまり意味はありません。）<br>（参考）<br><a href="https://www.quandl.com/c/piketty-codes" target="_blank" rel="external">Piketty Codes</a><br><a href="http://cruel.org/books/capital21c/" target="_blank" rel="external">『21世紀の資本』日本語版サポートページ</a>  </p>
+<h4 id="Chapter_3:_The_Metamorphoses_of_Capital">Chapter 3: The Metamorphoses of Capital</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">##### Capital in Britain, 1700-2010</span></div></pre></td></tr></table></figure>
+
+<p>library(xts)<br>library(Quandl)<br>T3_1&lt;-Quandl(“PIKETTY/T3_1”)</p>
+<h1 id="並べ替え">並べ替え</h1>
+<p>sortlist &lt;- order(T3_1[,1])<br>dat &lt;- T3_1[sortlist,]<br>T3_1&lt;-dat<br>rownames(T3_1) &lt;- c(1:nrow(T3_1))</p>
+<h1 id="save(“T3_1”,_file=”T3_1-dat”)">save(“T3_1”, file=”T3_1.dat”)</h1>
+<h1 id="load(“T3_1-dat”)">load(“T3_1.dat”)</h1>
+<h5 id="T3_1">T3_1</h5>
+<h1 id="1_Year_年">1 Year 年</h1>
+<h1 id="2_National_capital_Wn_国民資本">2 National capital Wn 国民資本</h1>
+<h1 id="3_incl-_Land_土地">3 incl. Land 土地</h1>
+<h1 id="4_incl-_Housing_住宅">4 incl. Housing 住宅</h1>
+<h1 id="5_incl-_Other_domestic_capital_assets_その他の国内資本資産">5 incl. Other domestic capital assets その他の国内資本資産</h1>
+<h1 id="6_incl-_Net_foreign_capital_純外国資本">6 incl. Net foreign capital 純外国資本</h1>
+<h1 id="7_Public_capital_Wg_公的資本">7 Public capital Wg 公的資本</h1>
+<h1 id="8_incl-_Public_assets_公的資産">8 incl. Public assets 公的資産</h1>
+<h1 id="9_incl-_Public_debt_公的債務">9 incl. Public debt 公的債務</h1>
+<h1 id="10_Private_capital_W_民間資本">10 Private capital W 民間資本</h1>
+<p>library(“plotrix”)<br>library(RColorBrewer)</p>
+<h1 id="png(“Piketty3_1A-png”,width=1000,height=800)">png(“Piketty3_1A.png”,width=1000,height=800)</h1>
+<p>stackpoly(T3_1[,3:6],ylim=c(0,800),axis4=F,main=”イギリスの資本 1700-2010年”,col=brewer.pal(4,”Pastel1”),<br>xaxlab=c(“1700”,”1750”,”1810”,”1850”,”1880”,”1910”,”1920”,”1950”,”1970”,”1990”,”2010”),border=”gray36”,staxx=F,stack=TRUE)</p>
+<h1 id="boxed-labels(3,180,”土地”,border=F,bg=NA,col=”gray20”)">boxed.labels(3,180,”土地”,border=F,bg=NA,col=”gray20”)</h1>
+<h1 id="boxed-labels(4,300,”住宅”,border=F,bg=NA,col=”gray20”)">boxed.labels(4,300,”住宅”,border=F,bg=NA,col=”gray20”)</h1>
+<h1 id="boxed-labels(4,500,”その他国内資本”,border=F,bg=NA,col=”gray20”)">boxed.labels(4,500,”その他国内資本”,border=F,bg=NA,col=”gray20”)</h1>
+<h1 id="boxed-labels(5-4,620,”純外国資本”,border=F,bg=NA,col=”gray20”)">boxed.labels(5.4,620,”純外国資本”,border=F,bg=NA,col=”gray20”)</h1>
+<p>boxed.labels(c(3,4,4,5.4),c(180,300,500,620),c(“土地”,”住宅”,”その他国内資本”,”純外国資本”),border=F,bg=NA,col=”gray20”,cex=2)</p>
+<h1 id="dev-off()">dev.off()</h1>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">![](<span class="regexp">/images/</span><span class="constant">Piketty3_1A</span>.png)</div></pre></td></tr></table></figure>
+
+<p>library(knitr)<br>kable(T3_1[,c(1,8,9)]);kable(T3_1[,c(1,2,7,10)])</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"><span class="ruby"></span></div><div class="line">|<span class="constant">Year</span>       | incl. <span class="constant">Public</span> assets| incl. <span class="constant">Public</span> debt|</div><div class="line">|<span class="symbol">:----------|-------------------</span><span class="symbol">:|-----------------</span><span class="symbol">:|</span></div><div class="line">|<span class="number">1700</span>-<span class="number">12</span>-<span class="number">31</span> |            <span class="number">30.00000</span>|          <span class="number">23.00000</span>|</div><div class="line">|<span class="number">1750</span>-<span class="number">12</span>-<span class="number">31</span> |            <span class="number">50.00000</span>|         <span class="number">107.00000</span>|</div><div class="line">|<span class="number">1810</span>-<span class="number">12</span>-<span class="number">31</span> |            <span class="number">70.00000</span>|         <span class="number">187.00000</span>|</div><div class="line">|<span class="number">1850</span>-<span class="number">12</span>-<span class="number">31</span> |            <span class="number">52.82894</span>|         <span class="number">108.50827</span>|</div><div class="line">|<span class="number">1880</span>-<span class="number">12</span>-<span class="number">31</span> |            <span class="number">34.25263</span>|          <span class="number">57.62411</span>|</div><div class="line">|<span class="number">1910</span>-<span class="number">12</span>-<span class="number">31</span> |            <span class="number">46.19908</span>|          <span class="number">26.91437</span>|</div><div class="line">|<span class="number">1920</span>-<span class="number">12</span>-<span class="number">31</span> |            <span class="number">93.26282</span>|         <span class="number">142.75725</span>|</div><div class="line">|<span class="number">1950</span>-<span class="number">12</span>-<span class="number">31</span> |           <span class="number">110.00000</span>|         <span class="number">229.89309</span>|</div><div class="line">|<span class="number">1970</span>-<span class="number">12</span>-<span class="number">31</span> |           <span class="number">100.48936</span>|          <span class="number">76.36428</span>|</div><div class="line">|<span class="number">1990</span>-<span class="number">12</span>-<span class="number">31</span> |            <span class="number">90.31268</span>|          <span class="number">59.29002</span>|</div><div class="line">|<span class="number">2010</span>-<span class="number">12</span>-<span class="number">31</span> |            <span class="number">92.46243</span>|          <span class="number">91.78362</span>|</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">|<span class="constant">Year</span>       | <span class="constant">National</span> capital <span class="constant">Wn</span>| <span class="constant">Public</span> capital <span class="constant">Wg</span>| <span class="constant">Private</span> capital <span class="constant">W</span>|</div><div class="line">|<span class="symbol">:----------|-------------------</span><span class="symbol">:|-----------------</span><span class="symbol">:|-----------------</span><span class="symbol">:|</span></div><div class="line">|<span class="number">1700</span>-<span class="number">12</span>-<span class="number">31</span> |            <span class="number">703.4483</span>|           <span class="number">7.00000</span>|          <span class="number">696.4483</span>|</div><div class="line">|<span class="number">1750</span>-<span class="number">12</span>-<span class="number">31</span> |            <span class="number">681.1568</span>|         -<span class="number">57.00000</span>|          <span class="number">738.1568</span>|</div><div class="line">|<span class="number">1810</span>-<span class="number">12</span>-<span class="number">31</span> |            <span class="number">687.3726</span>|        -<span class="number">117.00000</span>|          <span class="number">804.3726</span>|</div><div class="line">|<span class="number">1850</span>-<span class="number">12</span>-<span class="number">31</span> |            <span class="number">694.3233</span>|         -<span class="number">55.67933</span>|          <span class="number">750.0026</span>|</div><div class="line">|<span class="number">1880</span>-<span class="number">12</span>-<span class="number">31</span> |            <span class="number">672.0366</span>|         -<span class="number">23.37148</span>|          <span class="number">695.4081</span>|</div><div class="line">|<span class="number">1910</span>-<span class="number">12</span>-<span class="number">31</span> |            <span class="number">679.3364</span>|          <span class="number">19.28471</span>|          <span class="number">660.0517</span>|</div><div class="line">|<span class="number">1920</span>-<span class="number">12</span>-<span class="number">31</span> |            <span class="number">287.7173</span>|         -<span class="number">49.49443</span>|          <span class="number">337.2117</span>|</div><div class="line">|<span class="number">1950</span>-<span class="number">12</span>-<span class="number">31</span> |            <span class="number">234.6592</span>|        -<span class="number">119.89309</span>|          <span class="number">354.5523</span>|</div><div class="line">|<span class="number">1970</span>-<span class="number">12</span>-<span class="number">31</span> |            <span class="number">333.0994</span>|          <span class="number">24.12508</span>|          <span class="number">308.9744</span>|</div><div class="line">|<span class="number">1990</span>-<span class="number">12</span>-<span class="number">31</span> |            <span class="number">462.2802</span>|          <span class="number">31.02266</span>|          <span class="number">431.2576</span>|</div><div class="line">|<span class="number">2010</span>-<span class="number">12</span>-<span class="number">31</span> |            <span class="number">522.5548</span>|           <span class="number">0</span>.<span class="number">67881</span>|          <span class="number">521.8760</span>|</div></pre></td></tr></table></figure>
+
+<p>library(lattice)<br>library(gridExtra)<br>T3_1.xts &lt;- as.xts(read.zoo(T3_1))</p>
+<h5 id="T3_1-xts">T3_1.xts</h5>
+<h1 id="1_National_capital_Wn_国民資本">1 National capital Wn 国民資本</h1>
+<h1 id="2_incl-_Land_土地">2 incl. Land 土地</h1>
+<h1 id="3_incl-_Housing_住宅">3 incl. Housing 住宅</h1>
+<h1 id="4_incl-_Other_domestic_capital_assets_その他の国内資本資産">4 incl. Other domestic capital assets その他の国内資本資産</h1>
+<h1 id="5_incl-_Net_foreign_capital_純外国資本">5 incl. Net foreign capital 純外国資本</h1>
+<h1 id="6_Public_capital_Wg_公的資本">6 Public capital Wg 公的資本</h1>
+<h1 id="7_incl-_Public_assets_公的資産">7 incl. Public assets 公的資産</h1>
+<h1 id="8_incl-_Public_debt_公的債務">8 incl. Public debt 公的債務</h1>
+<h1 id="9_Private_capital_W_民間資本">9 Private capital W 民間資本</h1>
+<h1 id="png(“Piketty3_1B-png”,width=1200,height=800)">png(“Piketty3_1B.png”,width=1200,height=800)</h1>
+<p>p1&lt;-xyplot(T3_1.xts[,c(7,8)],superpose=TRUE,xlab=”year”,ylab=””,main=”イギリスの公的資本 1700-2010年”,lwd=2,grid = TRUE, scales = list( y = list( rot = 0 )))<br>p2&lt;-xyplot(T3_1.xts[,c(1,6,9)],superpose=TRUE,xlab=”year”,ylab=””,main=”イギリスの民間資本と公的資本 1700-2010年”,lwd=2,grid = TRUE, scales = list( y = list( rot = 0 )))<br>grid.arrange(p1,p2,ncol=2)</p>
+<h1 id="dev-off()-1">dev.off()</h1>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">![](<span class="regexp">/images/</span><span class="constant">Piketty3_1B.</span>png)</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">##### Capital in the France, 1700-2010</span></div></pre></td></tr></table></figure>
+
+<p>library(xts)<br>library(Quandl)<br>T3_2&lt;-Quandl(“PIKETTY/T3_2”)</p>
+<h1 id="並べ替え-1">並べ替え</h1>
+<p>sortlist &lt;- order(T3_2[,1])<br>dat &lt;- T3_2[sortlist,]<br>T3_2&lt;-dat<br>rownames(T3_2) &lt;- c(1:nrow(T3_2))</p>
+<h1 id="save(“T3_2”,_file=”T3_2-dat”)">save(“T3_2”, file=”T3_2.dat”)</h1>
+<h1 id="load(“T3_2-dat”)">load(“T3_2.dat”)</h1>
+<h5 id="T3_2">T3_2</h5>
+<h1 id="1_Year_年-1">1 Year 年</h1>
+<h1 id="2_National_capital_Wn_国民資本-1">2 National capital Wn 国民資本</h1>
+<h1 id="3_incl-_Land_土地-1">3 incl. Land 土地</h1>
+<h1 id="4_incl-_Housing_住宅-1">4 incl. Housing 住宅</h1>
+<h1 id="5_incl-_Other_domestic_capital_assets_その他の国内資本資産-1">5 incl. Other domestic capital assets その他の国内資本資産</h1>
+<h1 id="6_incl-_Net_foreign_capital_純外国資本-1">6 incl. Net foreign capital 純外国資本</h1>
+<h1 id="7_Public_capital_Wg_公的資本-1">7 Public capital Wg 公的資本</h1>
+<h1 id="8_incl-_Public_assets_公的資産-1">8 incl. Public assets 公的資産</h1>
+<h1 id="9_incl-_Public_debt_公的債務-1">9 incl. Public debt 公的債務</h1>
+<h1 id="10_Private_capital_W_民間資本-1">10 Private capital W 民間資本</h1>
+<h1 id="11_incl-_private_assets_民間資産">11 incl. private assets 民間資産</h1>
+<h1 id="12_incl-_private_debt_民間負債">12 incl. private debt 民間負債</h1>
+<p>library(“plotrix”)<br>library(RColorBrewer)</p>
+<h1 id="png(“Piketty3_2A-png”,width=1000,height=800)">png(“Piketty3_2A.png”,width=1000,height=800)</h1>
+<p>stackpoly(T3_2[,3:6],ylim=c(0,800),axis4=F,main=”フランスの資本 1700-2010年”,col=brewer.pal(4,”Pastel1”),<br>xaxlab=c(“1700”,”1750”,”1780”,”1810”,”1850”,”1880”,”1910”,”1920”,”1950”,”1970”,”1990”,”2000”,”2010”),border=”gray36”,staxx=F,stack=TRUE)</p>
+<h1 id="boxed-labels(3,180,”土地”,border=F,bg=NA,col=”gray20”)-1">boxed.labels(3,180,”土地”,border=F,bg=NA,col=”gray20”)</h1>
+<h1 id="boxed-labels(4,400,”住宅”,border=F,bg=NA,col=”gray20”)">boxed.labels(4,400,”住宅”,border=F,bg=NA,col=”gray20”)</h1>
+<h1 id="boxed-labels(4,600,”その他国内資本”,border=F,bg=NA,col=”gray20”)">boxed.labels(4,600,”その他国内資本”,border=F,bg=NA,col=”gray20”)</h1>
+<h1 id="boxed-labels(6,670,”純外国資本”,border=F,bg=NA,col=”gray20”)">boxed.labels(6,670,”純外国資本”,border=F,bg=NA,col=”gray20”)</h1>
+<p>boxed.labels(c(3,4,4,6),c(180,400,600,670),c(“土地”,”住宅”,”その他国内資本”,”純外国資本”),border=F,bg=NA,col=”gray20”,cex=2)</p>
+<h1 id="dev-off()-1">dev.off()</h1>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">![](<span class="regexp">/images/</span><span class="constant">Piketty3_2A</span>.png)</div></pre></td></tr></table></figure>
+
+<p>library(knitr)<br>kable(T3_2[,c(1,8,9)]);kable(T3_2[,c(1,2,7,10)])</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"><span class="ruby"></span></div><div class="line">|<span class="constant">Year</span>       | incl. <span class="constant">Public</span> assets| incl. <span class="constant">Public</span> debt|</div><div class="line">|<span class="symbol">:----------|-------------------</span><span class="symbol">:|-----------------</span><span class="symbol">:|</span></div><div class="line">|<span class="number">1700</span>-<span class="number">12</span>-<span class="number">31</span> |                  <span class="number">40</span>|                <span class="number">50</span>|</div><div class="line">|<span class="number">1750</span>-<span class="number">12</span>-<span class="number">31</span> |                  <span class="number">40</span>|                <span class="number">70</span>|</div><div class="line">|<span class="number">1780</span>-<span class="number">12</span>-<span class="number">31</span> |                  <span class="number">45</span>|                <span class="number">90</span>|</div><div class="line">|<span class="number">1810</span>-<span class="number">12</span>-<span class="number">31</span> |                  <span class="number">45</span>|                <span class="number">14</span>|</div><div class="line">|<span class="number">1850</span>-<span class="number">12</span>-<span class="number">31</span> |                  <span class="number">88</span>|                <span class="number">47</span>|</div><div class="line">|<span class="number">1880</span>-<span class="number">12</span>-<span class="number">31</span> |                  <span class="number">89</span>|                <span class="number">92</span>|</div><div class="line">|<span class="number">1910</span>-<span class="number">12</span>-<span class="number">31</span> |                  <span class="number">62</span>|                <span class="number">73</span>|</div><div class="line">|<span class="number">1920</span>-<span class="number">12</span>-<span class="number">31</span> |                  <span class="number">70</span>|                <span class="number">73</span>|</div><div class="line">|<span class="number">1950</span>-<span class="number">12</span>-<span class="number">31</span> |                 <span class="number">110</span>|                <span class="number">36</span>|</div><div class="line">|<span class="number">1970</span>-<span class="number">12</span>-<span class="number">31</span> |                  <span class="number">90</span>|                <span class="number">40</span>|</div><div class="line">|<span class="number">1990</span>-<span class="number">12</span>-<span class="number">31</span> |                  <span class="number">97</span>|                <span class="number">71</span>|</div><div class="line">|<span class="number">2000</span>-<span class="number">12</span>-<span class="number">31</span> |                 <span class="number">119</span>|                <span class="number">91</span>|</div><div class="line">|<span class="number">2010</span>-<span class="number">12</span>-<span class="number">31</span> |                 <span class="number">145</span>|               <span class="number">114</span>|</div><div class="line"></div><div class="line"></div><div class="line">|<span class="constant">Year</span>       | <span class="constant">National</span> capital <span class="constant">Wn</span>| <span class="constant">Public</span> capital <span class="constant">Wg</span>| <span class="constant">Private</span> capital <span class="constant">W</span>|</div><div class="line">|<span class="symbol">:----------|-------------------</span><span class="symbol">:|-----------------</span><span class="symbol">:|-----------------</span><span class="symbol">:|</span></div><div class="line">|<span class="number">1700</span>-<span class="number">12</span>-<span class="number">31</span> |                 <span class="number">717</span>|               -<span class="number">10</span>|               <span class="number">727</span>|</div><div class="line">|<span class="number">1750</span>-<span class="number">12</span>-<span class="number">31</span> |                 <span class="number">705</span>|               -<span class="number">30</span>|               <span class="number">735</span>|</div><div class="line">|<span class="number">1780</span>-<span class="number">12</span>-<span class="number">31</span> |                 <span class="number">706</span>|               -<span class="number">45</span>|               <span class="number">751</span>|</div><div class="line">|<span class="number">1810</span>-<span class="number">12</span>-<span class="number">31</span> |                 <span class="number">734</span>|                <span class="number">31</span>|               <span class="number">703</span>|</div><div class="line">|<span class="number">1850</span>-<span class="number">12</span>-<span class="number">31</span> |                 <span class="number">720</span>|                <span class="number">41</span>|               <span class="number">679</span>|</div><div class="line">|<span class="number">1880</span>-<span class="number">12</span>-<span class="number">31</span> |                 <span class="number">719</span>|                -<span class="number">3</span>|               <span class="number">722</span>|</div><div class="line">|<span class="number">1910</span>-<span class="number">12</span>-<span class="number">31</span> |                 <span class="number">681</span>|               -<span class="number">10</span>|               <span class="number">692</span>|</div><div class="line">|<span class="number">1920</span>-<span class="number">12</span>-<span class="number">31</span> |                 <span class="number">291</span>|                -<span class="number">3</span>|               <span class="number">293</span>|</div><div class="line">|<span class="number">1950</span>-<span class="number">12</span>-<span class="number">31</span> |                 <span class="number">278</span>|                <span class="number">74</span>|               <span class="number">204</span>|</div><div class="line">|<span class="number">1970</span>-<span class="number">12</span>-<span class="number">31</span> |                 <span class="number">363</span>|                <span class="number">50</span>|               <span class="number">311</span>|</div><div class="line">|<span class="number">1990</span>-<span class="number">12</span>-<span class="number">31</span> |                 <span class="number">368</span>|                <span class="number">26</span>|               <span class="number">341</span>|</div><div class="line">|<span class="number">2000</span>-<span class="number">12</span>-<span class="number">31</span> |                 <span class="number">503</span>|                <span class="number">28</span>|               <span class="number">474</span>|</div><div class="line">|<span class="number">2010</span>-<span class="number">12</span>-<span class="number">31</span> |                 <span class="number">605</span>|                <span class="number">31</span>|               <span class="number">575</span>|</div></pre></td></tr></table></figure>
+
+<p>library(lattice)<br>library(gridExtra)<br>T3_2.xts &lt;- as.xts(read.zoo(T3_2))</p>
+<h5 id="T3_2-xts">T3_2.xts</h5>
+<h1 id="1_National_capital_Wn_国民資本-1">1 National capital Wn 国民資本</h1>
+<h1 id="2_incl-_Land_土地-1">2 incl. Land 土地</h1>
+<h1 id="3_incl-_Housing_住宅-1">3 incl. Housing 住宅</h1>
+<h1 id="4_incl-_Other_domestic_capital_assets_その他の国内資本資産-1">4 incl. Other domestic capital assets その他の国内資本資産</h1>
+<h1 id="5_incl-_Net_foreign_capital_純外国資本-1">5 incl. Net foreign capital 純外国資本</h1>
+<h1 id="6_Public_capital_Wg_公的資本-1">6 Public capital Wg 公的資本</h1>
+<h1 id="7_incl-_Public_assets_公的資産-1">7 incl. Public assets 公的資産</h1>
+<h1 id="8_incl-_Public_debt_公的債務-1">8 incl. Public debt 公的債務</h1>
+<h1 id="9_Private_capital_W_民間資本-1">9 Private capital W 民間資本</h1>
+<h1 id="10_incl-_private_assets_民間資産">10 incl. private assets 民間資産</h1>
+<h1 id="11_incl-_private_debt_民間負債">11 incl. private debt 民間負債</h1>
+<h1 id="png(“Piketty3_2B-png”,width=1200,height=800)">png(“Piketty3_2B.png”,width=1200,height=800)</h1>
+<p>p1&lt;-xyplot(T3_2.xts[,c(7,8)],superpose=TRUE,xlab=”year”,ylab=””,main=”フランスの公的資本 1700-2010年”,lwd=2,grid = TRUE, scales = list( y = list( rot = 0 )))<br>p2&lt;-xyplot(T3_2.xts[,c(1,6,9)],superpose=TRUE,xlab=”year”,ylab=””,main=”フランスの民間資本と公的資本 1700-2010年”,lwd=2,grid = TRUE, scales = list( y = list( rot = 0 )))<br>grid.arrange(p1,p2,ncol=2)</p>
+<h1 id="dev-off()-1">dev.off()</h1>
+<p>```</p>
+<p><img src="/images/Piketty3_2B.png" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/02/14/21世紀の資本グラフ3/" data-id="3irmf687brnpjve8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/21世紀の資本/">21世紀の資本</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/02/14/21世紀の資本グラフ1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">21世紀の資本グラフ1</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Gambit/">Gambit</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gnumeric/">Gnumeric</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Graphviz/">Graphviz</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NetworkX/">NetworkX</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">31</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sqlite3/">sqlite3</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/放送大学/">放送大学</a><span class="category-list-count">45</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/21世紀の資本/">21世紀の資本</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graphviz/">Graphviz</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/オープンデータ/">オープンデータ</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データベース/">データベース</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原因をさぐる統計学/">原因をさぐる統計学</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/因子分析＆確証的因子分析/">因子分析＆確証的因子分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/地図/">地図</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/成長曲線モデル/">成長曲線モデル</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/時系列解析/">時系列解析</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/潜在変数間の因果関係/">潜在変数間の因果関係</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/21世紀の資本/" style="font-size: 12.86px;">21世紀の資本</a><a href="/tags/Graphviz/" style="font-size: 10.00px;">Graphviz</a><a href="/tags/HEXO/" style="font-size: 11.43px;">HEXO</a><a href="/tags/Rパッケージ/" style="font-size: 11.43px;">Rパッケージ</a><a href="/tags/オープンデータ/" style="font-size: 17.14px;">オープンデータ</a><a href="/tags/データからの知識発見/" style="font-size: 15.71px;">データからの知識発見</a><a href="/tags/データベース/" style="font-size: 11.43px;">データベース</a><a href="/tags/原因をさぐる統計学/" style="font-size: 17.14px;">原因をさぐる統計学</a><a href="/tags/問題解決の数理/" style="font-size: 20.00px;">問題解決の数理</a><a href="/tags/因子分析＆確証的因子分析/" style="font-size: 10.00px;">因子分析＆確証的因子分析</a><a href="/tags/地図/" style="font-size: 10.00px;">地図</a><a href="/tags/心理・教育統計法特論/" style="font-size: 14.29px;">心理・教育統計法特論</a><a href="/tags/心理統計法/" style="font-size: 18.57px;">心理統計法</a><a href="/tags/成長曲線モデル/" style="font-size: 10.00px;">成長曲線モデル</a><a href="/tags/時系列解析/" style="font-size: 11.43px;">時系列解析</a><a href="/tags/潜在変数間の因果関係/" style="font-size: 10.00px;">潜在変数間の因果関係</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">32</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">34</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/02/14/21世紀の資本グラフ3/">21世紀の資本グラフ3</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/14/21世紀の資本グラフ1/">21世紀の資本グラフ1</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/14/21世紀の資本グラフ0/">21世紀の資本グラフ0</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/14/原油価格推移2/">原油価格推移2</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/14/賃金構造基本統計調査/">賃金構造基本統計調査</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 統計ソフトRの備忘録２<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
