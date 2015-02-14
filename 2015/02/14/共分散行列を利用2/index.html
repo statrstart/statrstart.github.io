@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>共分散行列を利用2 | 統計ソフトRの備忘録２</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="lavaanパッケージ　gawk graphviz">
+<meta property="og:type" content="article">
+<meta property="og:title" content="共分散行列を利用2">
+<meta property="og:url" content="http://yoursite.com/2015/02/14/共分散行列を利用2/">
+<meta property="og:site_name" content="統計ソフトRの備忘録２">
+<meta property="og:description" content="lavaanパッケージ　gawk graphviz">
+<meta property="og:image" content="/images/cov01.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="共分散行列を利用2">
+<meta name="twitter:description" content="lavaanパッケージ　gawk graphviz">
+
+  
+    <link rel="alternative" href="/atom.xml" title="統計ソフトRの備忘録２" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">統計ソフトRの備忘録２</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-共分散行列を利用2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/02/14/共分散行列を利用2/" class="article-date">
+  <time datetime="2015-02-14T01:49:33.000Z" itemprop="datePublished">Feb 14 2015</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/R/">R</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      共分散行列を利用2
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="lavaanパッケージ_gawk_graphviz">lavaanパッケージ　gawk graphviz</h2>
+<a id="more"></a>
+
+<p>(参考)blue backs「原因をさぐる統計学」</p>
+<p>OSはlinux(zorinOS)<br>windowsではlavaan:::sem使用時に変数名が日本語だとエラーになりました。</p>
+<p>(準備)「因子分析＆確証的因子分析」にあるmakeawk関数を読み込んでおく。</p>
+<h4 id="「原因をさぐる統計学」p-204_p-243図表_補-8">「原因をさぐる統計学」p.204  p.243図表　補-8</h4>
+<h5 id="産業化と民主化の因果モデル">産業化と民主化の因果モデル</h5>
+<p>母数に等価の制約を置く</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">library(lavaan)</div><div class="line"><span class="comment">#Sample Size は 75</span></div><div class="line"><span class="comment">#本では「標準化された母数の値が等しい」という制約だが、</span></div><div class="line"><span class="comment">#ここでは「標準化される前の母数の値が等しい」という制約で行う。</span></div><div class="line"><span class="comment">#この方が一般的とのこと(p.206)</span></div><div class="line">mat&lt;-'</div><div class="line"><span class="number">0.54</span></div><div class="line"><span class="number">0.99</span> <span class="number">2.28</span></div><div class="line"><span class="number">0.82</span> <span class="number">1.81</span> <span class="number">1.98</span></div><div class="line"><span class="number">0.73</span> <span class="number">1.27</span> <span class="number">0.91</span> <span class="number">6.89</span></div><div class="line"><span class="number">0.62</span> <span class="number">1.49</span> <span class="number">1.17</span> <span class="number">6.25</span> <span class="number">15.58</span></div><div class="line"><span class="number">0.79</span> <span class="number">1.55</span> <span class="number">1.04</span> <span class="number">5.84</span> <span class="number">5.84</span> <span class="number">10.76</span></div><div class="line"><span class="number">1.08</span> <span class="number">2.06</span> <span class="number">1.58</span> <span class="number">5.06</span> <span class="number">5.60</span> <span class="number">4.94</span> <span class="number">6.83</span></div><div class="line"><span class="number">0.85</span> <span class="number">1.81</span> <span class="number">1.57</span> <span class="number">5.75</span> <span class="number">9.39</span> <span class="number">4.73</span> <span class="number">4.987</span> <span class="number">11.38</span></div><div class="line"><span class="number">0.94</span> <span class="number">2.00</span> <span class="number">1.63</span> <span class="number">5.81</span> <span class="number">7.54</span> <span class="number">7.01</span> <span class="number">5.82</span> <span class="number">6.75</span> <span class="number">10.80</span></div><div class="line">'</div><div class="line">wheaton.cov &lt;- getCov(mat,<span class="variable">names=</span>c(<span class="string">"x1"</span>,<span class="string">"x2"</span>,<span class="string">"x3"</span>,<span class="string">"x4"</span>,<span class="string">"x5"</span>,<span class="string">"x6"</span>,<span class="string">"x7"</span>,<span class="string">"x8"</span>,<span class="string">"x9"</span>))</div><div class="line">model&lt;-'</div><div class="line"><span class="variable">F1=</span>~x1+x2+x3</div><div class="line"><span class="variable">F2=</span>~x4+a*x5+b*x6</div><div class="line"><span class="variable">F3=</span>~x7+a*x8+b*x9</div><div class="line">F2~F1</div><div class="line">F3~F1+F2</div><div class="line">x4~~c*x4</div><div class="line">x7~~c*x7</div><div class="line">x4~~x7</div><div class="line">x5~~d*x5</div><div class="line">x8~~d*x8</div><div class="line">x5~~x8</div><div class="line">x6~~e*x6</div><div class="line">x9~~e*x9</div><div class="line">x6~~x9</div><div class="line">'</div><div class="line">fit &lt;- lavaan:::sem(model, sample.<span class="variable">cov=</span>wheaton.cov, sample.<span class="variable">nobs=</span><span class="number">75</span>)</div><div class="line">summary(fit, <span class="variable">standardized=</span>TRUE)</div><div class="line">latent&lt;-c(<span class="string">"F1"</span>,<span class="string">"F2"</span>,<span class="string">"F3"</span>)</div><div class="line">makeawk(latent)</div><div class="line">pars &lt;- parameterEstimates(fit)  <span class="comment">#, standardized = TRUE</span></div><div class="line">g&lt;-data.frame(pars$lhs,pars$op,pars$rhs,<span class="string">" [label="</span>,signif(pars$est,<span class="variable">digits=</span><span class="number">3</span>),<span class="string">"];"</span>)</div><div class="line"><span class="comment">#非標準化推定値。値は共分散</span></div><div class="line">write.table(g,<span class="string">"out"</span>,<span class="variable">sep=</span><span class="string">" "</span>,col.<span class="variable">names=</span>FALSE,row.<span class="variable">names=</span>FALSE,<span class="variable">quote=</span>FALSE, <span class="variable">na=</span><span class="string">""</span>)</div><div class="line">system( 'gawk -f <span class="string">"lavaan_dot.awk"</span> <span class="string">"out"</span>&gt;out.dot')</div></pre></td></tr></table></figure>
+
+<p>かなり手を入れないと(絶対位置指定を指定する。ラベルをつける。等々)きれいな図にはなりません。  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">system</span>(<span class="string">'neato -Tpng out.dot -o cov01.png'</span>)</div></pre></td></tr></table></figure>
+
+<p><a href="/data/cov01.dot">cov01.dot</a><br><img src="/images/cov01.png" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/02/14/共分散行列を利用2/" data-id="rn3ddv0a5p9fjlkw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/原因をさぐる統計学/">原因をさぐる統計学</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/02/14/共分散行列を利用3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          共分散行列を利用3
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/02/14/因子分析＆確証的因子分析/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">因子分析＆確証的因子分析</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Gambit/">Gambit</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gnumeric/">Gnumeric</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Graphviz/">Graphviz</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NetworkX/">NetworkX</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">29</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sqlite3/">sqlite3</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/放送大学/">放送大学</a><span class="category-list-count">45</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/21世紀の資本/">21世紀の資本</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graphviz/">Graphviz</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/オープンデータ/">オープンデータ</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データベース/">データベース</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原因をさぐる統計学/">原因をさぐる統計学</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/因子分析＆確証的因子分析/">因子分析＆確証的因子分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/地図/">地図</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/成長曲線モデル/">成長曲線モデル</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/時系列解析/">時系列解析</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/潜在変数間の因果関係/">潜在変数間の因果関係</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/21世紀の資本/" style="font-size: 10.00px;">21世紀の資本</a><a href="/tags/Graphviz/" style="font-size: 10.00px;">Graphviz</a><a href="/tags/HEXO/" style="font-size: 11.67px;">HEXO</a><a href="/tags/Rパッケージ/" style="font-size: 11.67px;">Rパッケージ</a><a href="/tags/オープンデータ/" style="font-size: 16.67px;">オープンデータ</a><a href="/tags/データからの知識発見/" style="font-size: 15.00px;">データからの知識発見</a><a href="/tags/データベース/" style="font-size: 11.67px;">データベース</a><a href="/tags/原因をさぐる統計学/" style="font-size: 16.67px;">原因をさぐる統計学</a><a href="/tags/問題解決の数理/" style="font-size: 20.00px;">問題解決の数理</a><a href="/tags/因子分析＆確証的因子分析/" style="font-size: 10.00px;">因子分析＆確証的因子分析</a><a href="/tags/地図/" style="font-size: 10.00px;">地図</a><a href="/tags/心理・教育統計法特論/" style="font-size: 13.33px;">心理・教育統計法特論</a><a href="/tags/心理統計法/" style="font-size: 18.33px;">心理統計法</a><a href="/tags/成長曲線モデル/" style="font-size: 10.00px;">成長曲線モデル</a><a href="/tags/時系列解析/" style="font-size: 11.67px;">時系列解析</a><a href="/tags/潜在変数間の因果関係/" style="font-size: 10.00px;">潜在変数間の因果関係</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">34</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/02/14/21世紀の資本グラフ0/">21世紀の資本グラフ0</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/14/原油価格推移2/">原油価格推移2</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/14/賃金構造基本統計調査/">賃金構造基本統計調査</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/14/家計調査3/">家計調査3</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/14/原油価格推移/">原油価格推移</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 統計ソフトRの備忘録２<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
