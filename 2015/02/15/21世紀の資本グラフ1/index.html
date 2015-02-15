@@ -8,7 +8,7 @@
   <meta name="description" content="Quandl、xts、lattice、gridExtra、plotrix、RColorBrewer パッケージ">
 <meta property="og:type" content="article">
 <meta property="og:title" content="21世紀の資本グラフ1">
-<meta property="og:url" content="http://yoursite.com/2015/02/14/21世紀の資本グラフ1/">
+<meta property="og:url" content="http://yoursite.com/2015/02/15/21世紀の資本グラフ1/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
 <meta property="og:description" content="Quandl、xts、lattice、gridExtra、plotrix、RColorBrewer パッケージ">
 <meta property="og:image" content="/images/Piketty1_1A.png">
@@ -100,8 +100,8 @@
       <div class="outer">
         <section id="main"><article id="post-21世紀の資本グラフ1" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/02/14/21世紀の資本グラフ1/" class="article-date">
-  <time datetime="2015-02-14T06:11:31.000Z" itemprop="datePublished">Feb 14 2015</time>
+    <a href="/2015/02/15/21世紀の資本グラフ1/" class="article-date">
+  <time datetime="2015-02-15T12:43:55.000Z" itemprop="datePublished">Feb 15 2015</time>
 </a>
     
   <div class="article-category">
@@ -131,7 +131,7 @@
 <h4 id="Chapter_1:_Income_and_Output">Chapter 1: Income and Output</h4>
 <h3 id="（注意）TS1_1A_～_TS1_3B_のQuandlデータ_:_Date_“2011-08-19”、正しくは_“0001-12-31”です。確認の上、訂正。">（注意）TS1_1A ～ TS1_3B のQuandlデータ : Date “2011-08-19”、正しくは “0001-12-31”です。確認の上、訂正。</h3>
 <h5 id="Distribution_of_World_Output,_AD1-2012">Distribution of World Output, AD1-2012</h5>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">library(xts)</div><div class="line">library(Quandl)</div><div class="line"><span class="comment">#Distribution of World Output, AD1-2012</span></div><div class="line">TS1_1A&lt;-Quandl(<span class="string">"PIKETTY/TS1_1A"</span>)</div><div class="line"><span class="comment">#確認</span></div><div class="line">TS1_1A</div><div class="line">TS1_1A[<span class="number">11</span>,<span class="number">1</span>]&lt;-<span class="string">"0001-12-31"</span></div><div class="line">TS1_1A </div><div class="line"><span class="comment">#並べ替え</span></div><div class="line">sortlist &lt;- order(TS1_1A[,<span class="number">1</span>])</div><div class="line">dat &lt;- TS1_1A[sortlist,]</div><div class="line">TS1_1A&lt;-dat</div><div class="line">rownames(TS1_1A) &lt;- c(<span class="number">1</span>:nrow(TS1_1A))</div><div class="line"><span class="comment">#save("TS1_1A", file="TS1_1A.dat")</span></div><div class="line"><span class="comment">#load("TS1_1A.dat")</span></div><div class="line">library(<span class="string">"plotrix"</span>)</div><div class="line">library(RColorBrewer)</div><div class="line"><span class="comment">#png("Piketty1_1A.png",width=1000,height=800)</span></div><div class="line">stackpoly(TS1_1A[,<span class="number">3</span>:<span class="number">6</span>],<span class="variable">ylim=</span>c(<span class="number">0</span>,<span class="number">100</span>),<span class="variable">axis4=</span>F,<span class="variable">main=</span><span class="string">"世界産出の分配　1～2012年"</span>,<span class="variable">col=</span>brewer.pal(<span class="number">4</span>,<span class="string">"Pastel1"</span>),</div><div class="line"><span class="variable">xaxlab=</span>c(<span class="string">"0001"</span>,<span class="string">"1000"</span>,<span class="string">"1500"</span>,<span class="string">"1700"</span>,<span class="string">"1820"</span>,<span class="string">"1870"</span>,<span class="string">"1913"</span>,<span class="string">"1950"</span>,<span class="string">"1970"</span>,<span class="string">"1990"</span>,<span class="string">"2012"</span>),<span class="variable">border=</span><span class="string">"gray36"</span>,<span class="variable">staxx=</span>F,<span class="variable">stack=</span>TRUE)</div><div class="line">boxed.labels(<span class="number">8</span>,<span class="number">20</span>,<span class="string">"Europe"</span>,<span class="variable">border=</span>F,<span class="variable">ypad=</span><span class="number">1.8</span>,<span class="variable">bg=</span><span class="string">"white"</span>)</div><div class="line">boxed.labels(<span class="number">8</span>,<span class="number">55</span>,<span class="string">"America"</span>,<span class="variable">border=</span>F,<span class="variable">ypad=</span><span class="number">1.8</span>)</div><div class="line">boxed.labels(<span class="number">3</span>,<span class="number">33</span>,<span class="string">"Africa"</span>,<span class="variable">border=</span>F,<span class="variable">ypad=</span><span class="number">1.8</span>)</div><div class="line">boxed.labels(<span class="number">4</span>,<span class="number">70</span>,<span class="string">"Asia"</span>,<span class="variable">border=</span>F,<span class="variable">xpad=</span><span class="number">1.5</span>,<span class="variable">ypad=</span><span class="number">1.8</span>)</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">library(xts)</div><div class="line">library(Quandl)</div><div class="line"><span class="comment">#Distribution of World Output, AD1-2012</span></div><div class="line">TS1_1A&lt;-Quandl(<span class="string">"PIKETTY/TS1_1A"</span>)</div><div class="line"><span class="comment">#確認</span></div><div class="line">TS1_1A</div><div class="line">TS1_1A[<span class="number">11</span>,<span class="number">1</span>]&lt;-<span class="string">"0001-12-31"</span></div><div class="line">TS1_1A </div><div class="line"><span class="comment">#並べ替え</span></div><div class="line">sortlist &lt;- order(TS1_1A[,<span class="number">1</span>])</div><div class="line">dat &lt;- TS1_1A[sortlist,]</div><div class="line">TS1_1A&lt;-dat</div><div class="line">rownames(TS1_1A) &lt;- c(<span class="number">1</span>:nrow(TS1_1A))</div><div class="line"><span class="comment">#save("TS1_1A", file="TS1_1A.dat")</span></div><div class="line"><span class="comment">#load("TS1_1A.dat")</span></div><div class="line">library(<span class="string">"plotrix"</span>)</div><div class="line">library(RColorBrewer)</div><div class="line"><span class="comment">#png("Piketty1_1A.png",width=1000,height=800)</span></div><div class="line">stackpoly(TS1_1A[,<span class="number">3</span>:<span class="number">6</span>],<span class="variable">ylim=</span>c(<span class="number">0</span>,<span class="number">100</span>),<span class="variable">axis4=</span>F,<span class="variable">main=</span><span class="string">"世界産出の分配　1～2012年"</span>,<span class="variable">col=</span>brewer.pal(<span class="number">4</span>,<span class="string">"Pastel1"</span>),</div><div class="line"><span class="variable">xaxlab=</span>c(<span class="string">"0001"</span>,<span class="string">"1000"</span>,<span class="string">"1500"</span>,<span class="string">"1700"</span>,<span class="string">"1820"</span>,<span class="string">"1870"</span>,<span class="string">"1913"</span>,<span class="string">"1950"</span>,<span class="string">"1970"</span>,<span class="string">"1990"</span>,<span class="string">"2012"</span>),<span class="variable">border=</span><span class="string">"gray36"</span>,<span class="variable">staxx=</span>F,<span class="variable">stack=</span>TRUE)</div><div class="line"><span class="comment">#boxed.labels(8,20,"Europe",border=F,ypad=1.8,bg="white")</span></div><div class="line"><span class="comment">#boxed.labels(8,55,"America",border=F,ypad=1.8)</span></div><div class="line"><span class="comment">#boxed.labels(3,33,"Africa",border=F,ypad=1.8)</span></div><div class="line"><span class="comment">#boxed.labels(4,70,"Asia",border=F,xpad=1.5,ypad=1.8)</span></div><div class="line">boxed.labels(c(<span class="number">8</span>,<span class="number">8</span>,<span class="number">3</span>,<span class="number">4</span>),c(<span class="number">20</span>,<span class="number">55</span>,<span class="number">33</span>,<span class="number">70</span>),colnames(TS1_1A[<span class="number">3</span>:<span class="number">6</span>]),<span class="variable">border=</span>F,<span class="variable">xpad=</span>c(<span class="number">1.2</span>,<span class="number">1.2</span>,<span class="number">1.2</span>,<span class="number">1.5</span>),<span class="variable">ypad=</span><span class="number">1.8</span>)</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
 
 <p><img src="/images/Piketty1_1A.png" alt=""></p>
 <h5 id="Detailed_Data_on_the_Distribution_of_World_Output,_AD1-2012">Detailed Data on the Distribution of World Output, AD1-2012</h5>
@@ -165,7 +165,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/02/14/21世紀の資本グラフ1/" data-id="vp0rfoen7y34f3ig" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/02/15/21世紀の資本グラフ1/" data-id="vp0rfoen7y34f3ig" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/21世紀の資本/">21世紀の資本</a></li></ul>
@@ -176,11 +176,11 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/02/14/21世紀の資本グラフ3/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2015/02/15/21世紀の資本グラフ2/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          21世紀の資本グラフ3
+          21世紀の資本グラフ2
         
       </div>
     </a>
@@ -243,15 +243,15 @@
       <ul>
         
           <li>
+            <a href="/2015/02/15/21世紀の資本グラフ3/">21世紀の資本グラフ3</a>
+          </li>
+        
+          <li>
             <a href="/2015/02/15/21世紀の資本グラフ2/">21世紀の資本グラフ2</a>
           </li>
         
           <li>
-            <a href="/2015/02/14/21世紀の資本グラフ3/">21世紀の資本グラフ3</a>
-          </li>
-        
-          <li>
-            <a href="/2015/02/14/21世紀の資本グラフ1/">21世紀の資本グラフ1</a>
+            <a href="/2015/02/15/21世紀の資本グラフ1/">21世紀の資本グラフ1</a>
           </li>
         
           <li>
