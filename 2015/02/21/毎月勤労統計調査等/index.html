@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>毎月勤労統計調査、TOPIX、購買力平価 | 統計ソフトRの備忘録２</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="xts、TTR パッケージ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="毎月勤労統計調査、TOPIX、購買力平価">
+<meta property="og:url" content="http://yoursite.com/2015/02/21/毎月勤労統計調査等/">
+<meta property="og:site_name" content="統計ソフトRの備忘録２">
+<meta property="og:description" content="xts、TTR パッケージ">
+<meta property="og:image" content="/images/laborservice01.png">
+<meta property="og:image" content="/images/laborservice02.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="毎月勤労統計調査、TOPIX、購買力平価">
+<meta name="twitter:description" content="xts、TTR パッケージ">
+
+  
+    <link rel="alternative" href="/atom.xml" title="統計ソフトRの備忘録２" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">統計ソフトRの備忘録２</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-毎月勤労統計調査等" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/02/21/毎月勤労統計調査等/" class="article-date">
+  <time datetime="2015-02-21T09:00:38.000Z" itemprop="datePublished">Feb 21 2015</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/R/">R</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      毎月勤労統計調査、TOPIX、購買力平価
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="xts、TTR_パッケージ">xts、TTR パッケージ</h2>
+<a id="more"></a>
+
+<h5 id="毎月勤労統計調査">毎月勤労統計調査</h5>
+<p><a href="http://www.e-stat.go.jp/SG1/estat/GL08020102.do?_toGL08020102_&amp;tclassID=000001025429&amp;cycleCode=1&amp;requestSender=estat" target="_blank" rel="external">毎月勤労統計調査　全国調査 長期時系列表 月次 2014年12月 (2015年2月18日 更新)</a></p>
+<p>25    実質賃金　指数及び増減率－現金給与総額（５人以上）（調査産業計，製造業）</p>
+<p>平成22年平均＝１００(2010 average = 100)</p>
+<p>ダウンロードしたエクセルファイルからデータセットを作成</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">d &lt;- read.table(<span class="string">"clipboard"</span>, <span class="variable">header=</span>F, <span class="variable">sep=</span><span class="string">"\t"</span>, na.<span class="variable">strings=</span><span class="string">"NA"</span>,   <span class="variable">dec=</span><span class="string">"."</span>, strip.<span class="variable">white=</span>TRUE)</div><div class="line">Industries_covered &lt;- stack(d[, c(<span class="string">"V1"</span>,<span class="string">"V2"</span>,<span class="string">"V3"</span>,<span class="string">"V4"</span>,<span class="string">"V5"</span>,<span class="string">"V6"</span>,<span class="string">"V7"</span>,<span class="string">"V8"</span>,<span class="string">"V9"</span>,<span class="string">"V10"</span>,<span class="string">"V11"</span>,<span class="string">"V12"</span>,<span class="string">"V13"</span>,<span class="string">"V14"</span>,<span class="string">"V15"</span>,<span class="string">"V16"</span>,<span class="string">"V17"</span>,<span class="string">"V18"</span>,<span class="string">"V19"</span>,<span class="string">"V20"</span>,<span class="string">"V21"</span>,<span class="string">"V22"</span>,<span class="string">"V23"</span>,<span class="string">"V24"</span>,<span class="string">"V25"</span>)])</div><div class="line">Industries_covered.ts&lt;-ts(Industries_covered[,<span class="number">1</span>],<span class="variable">start=</span><span class="number">1990</span>,<span class="variable">freq=</span><span class="number">12</span>)</div><div class="line"><span class="comment">#save(Industries_covered.ts,file="Industries_covered.dat")</span></div><div class="line">d &lt;- read.table(<span class="string">"clipboard"</span>, <span class="variable">header=</span>F, <span class="variable">sep=</span><span class="string">"\t"</span>, na.<span class="variable">strings=</span><span class="string">"NA"</span>,   <span class="variable">dec=</span><span class="string">"."</span>, strip.<span class="variable">white=</span>TRUE)</div><div class="line"><span class="comment">#軸をそろえるために1990年のデータは、NAとする</span></div><div class="line">YeaOnYear_growth_rates&lt;- stack(d[, c(<span class="string">"V1"</span>,<span class="string">"V2"</span>,<span class="string">"V3"</span>,<span class="string">"V4"</span>,<span class="string">"V5"</span>,<span class="string">"V6"</span>,<span class="string">"V7"</span>,<span class="string">"V8"</span>,<span class="string">"V9"</span>,<span class="string">"V10"</span>,<span class="string">"V11"</span>,<span class="string">"V12"</span>,<span class="string">"V13"</span>,<span class="string">"V14"</span>,<span class="string">"V15"</span>,<span class="string">"V16"</span>,<span class="string">"V17"</span>,<span class="string">"V18"</span>,<span class="string">"V19"</span>,<span class="string">"V20"</span>,<span class="string">"V21"</span>,<span class="string">"V22"</span>,<span class="string">"V23"</span>,<span class="string">"V24"</span>,<span class="string">"V25"</span>)])</div><div class="line">YeaOnYear_growth_rates.ts&lt;-ts(YeaOnYear_growth_rates[,<span class="number">1</span>],<span class="variable">start=</span><span class="number">1990</span>,<span class="variable">freq=</span><span class="number">12</span>)</div><div class="line"><span class="comment">#save(YeaOnYear_growth_rates.ts,file="YeaOnYear_growth_rates.dat")</span></div></pre></td></tr></table></figure>
+
+<h5 id="TOPIXデータは「日銀買入額」で使用したもの">TOPIXデータは「日銀買入額」で使用したもの</h5>
+<p><a href="/data/topix1991_2014.dat">topix1991_2014.dat</a></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">library(xts)</div><div class="line">library(TTR)</div><div class="line">load(<span class="string">"topix1991_2014.dat"</span>)</div><div class="line">topix.xts &lt;- as.xts(read.zoo(topix1991_2014))</div><div class="line">topix1991_2014.xts&lt;-apply.monthly(topix.xts$Close,mean)</div><div class="line">as.vector(coredata(topix1991_2014.xts))</div><div class="line">rep(NA,<span class="number">12</span>)</div><div class="line">topix1991_2014&lt;-c(rep(NA,<span class="number">12</span>),as.vector(coredata(topix1991_2014.xts)))</div><div class="line">topix_monthly.ts&lt;-ts(topix1991_2014,<span class="variable">start=</span><span class="number">1990</span>,<span class="variable">freq=</span><span class="number">12</span>)</div><div class="line"><span class="comment">#save(topix_monthly.ts,file="topix_monthly.dat")</span></div><div class="line">load(<span class="string">"Industries_covered.dat"</span>)</div><div class="line">load(<span class="string">"YeaOnYear_growth_rates.dat"</span>)</div><div class="line"><span class="comment">#load("topix_monthly.dat")</span></div><div class="line"><span class="comment">#この場合、as.xtsで変換すると、yearmonクラスになる</span></div><div class="line">Industries_covered.xts&lt;-as.xts(Industries_covered.ts)</div><div class="line">YeaOnYear_growth_rates.xts&lt;-as.xts(YeaOnYear_growth_rates.ts)</div><div class="line">topix_monthly.xts&lt;-as.xts(topix_monthly.ts)</div><div class="line"><span class="comment">#png("laborservice01.png",width=1000,height=800)</span></div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">2</span>,<span class="number">1</span>),<span class="variable">mar =</span> c(<span class="number">2</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">5</span>))</div><div class="line">plot.zoo(SMA(Industries_covered.xts,<span class="variable">n=</span><span class="number">12</span>),<span class="variable">las=</span><span class="number">1</span>,<span class="variable">main=</span><span class="string">"毎月勤労統計調査 実質賃金指数(調査産業計)"</span>,<span class="variable">xlab=</span><span class="string">""</span>,<span class="variable">ylab=</span><span class="string">""</span>,<span class="variable">col=</span><span class="string">"red"</span>,<span class="variable">lwd=</span><span class="number">2</span>,<span class="variable">yaxt=</span><span class="string">"n"</span>,<span class="variable">ylim=</span>c(<span class="number">96</span>,<span class="number">112</span>))</div><div class="line">axis(<span class="number">2</span>,<span class="variable">las=</span><span class="number">1</span>,col.<span class="variable">axis=</span><span class="string">"red"</span>) </div><div class="line">mtext(<span class="string">"12ヶ月移動平均"</span>,<span class="variable">side=</span><span class="number">2</span>,<span class="variable">line=</span><span class="number">3</span>,<span class="variable">col=</span><span class="string">"red"</span>)</div><div class="line">par(<span class="variable">new=</span>T)</div><div class="line">plot.zoo(Industries_covered.xts,<span class="variable">xaxt=</span><span class="string">"n"</span>,<span class="variable">yaxt=</span><span class="string">"n"</span>,<span class="variable">xlab=</span><span class="string">""</span>,<span class="variable">ylab=</span><span class="string">""</span>)</div><div class="line">mtext(<span class="string">"実質賃金指数(2010年平均=100)"</span>,<span class="variable">side=</span><span class="number">4</span>,<span class="variable">line=</span><span class="number">3</span>)</div><div class="line">axis(<span class="number">4</span>,<span class="variable">las=</span><span class="number">1</span>) </div><div class="line">abline(<span class="variable">v=</span>as.yearmon(<span class="string">"2009-09"</span>),<span class="variable">col=</span><span class="string">"blue"</span>,<span class="variable">lty=</span><span class="number">2</span>) <span class="comment">#2009-09-16</span></div><div class="line">abline(<span class="variable">v=</span>as.yearmon(<span class="string">"2012-12"</span>),<span class="variable">col=</span><span class="string">"blue"</span>,<span class="variable">lty=</span><span class="number">2</span>) <span class="comment">#2012-12-26</span></div><div class="line">text(as.yearmon(<span class="string">"2009-12"</span>),<span class="number">210</span>,<span class="string">"民主党政権"</span>,<span class="variable">pos=</span><span class="number">4</span>,<span class="variable">col=</span><span class="string">"blue"</span>,<span class="variable">cex=</span><span class="number">1</span>,<span class="variable">font =</span> <span class="number">2</span>)</div><div class="line">abline(<span class="variable">v=</span>as.yearmon(<span class="string">"1997-04"</span>),<span class="variable">col=</span><span class="string">"red"</span>,<span class="variable">lty=</span><span class="number">3</span>) <span class="comment">#1997年4月1日から５％</span></div><div class="line">text(as.yearmon(<span class="string">"1996-01"</span>),<span class="number">220</span>,<span class="string">"消費税 5%"</span>,<span class="variable">pos=</span><span class="number">4</span>,<span class="variable">col=</span>rgb(<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>, <span class="variable">alpha=</span><span class="number">0.7</span>),<span class="variable">cex=</span><span class="number">1</span>,<span class="variable">font =</span> <span class="number">2</span>)</div><div class="line">abline(<span class="variable">v=</span>as.yearmon(<span class="string">"2014-04"</span>),<span class="variable">col=</span><span class="string">"red"</span>,<span class="variable">lty=</span><span class="number">3</span>) <span class="comment">#2014-04-01</span></div><div class="line">text(as.yearmon(<span class="string">"2013-01"</span>),<span class="number">220</span>,<span class="string">"消費税 8%"</span>,<span class="variable">pos=</span><span class="number">4</span>,<span class="variable">col=</span>rgb(<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>, <span class="variable">alpha=</span><span class="number">0.7</span>),<span class="variable">cex=</span><span class="number">1</span>,<span class="variable">font =</span> <span class="number">2</span>)</div><div class="line">plot.zoo(YeaOnYear_growth_rates.xts,<span class="variable">type=</span><span class="string">"h"</span>,<span class="variable">las=</span><span class="number">1</span>,<span class="variable">main=</span><span class="string">"実質賃金指数(調査産業計) 前年比(%) & TOPIX"</span>,<span class="variable">xlab=</span><span class="string">""</span>,<span class="variable">ylab=</span><span class="string">"前年比(%)"</span>,<span class="variable">lwd=</span><span class="number">2.5</span>)</div><div class="line">abline(<span class="variable">v=</span>as.yearmon(<span class="string">"2009-09"</span>),<span class="variable">col=</span><span class="string">"blue"</span>,<span class="variable">lty=</span><span class="number">2</span>) <span class="comment">#2009-09-16</span></div><div class="line">abline(<span class="variable">v=</span>as.yearmon(<span class="string">"2012-12"</span>),<span class="variable">col=</span><span class="string">"blue"</span>,<span class="variable">lty=</span><span class="number">2</span>) <span class="comment">#2012-12-26</span></div><div class="line">text(as.yearmon(<span class="string">"2009-12"</span>),<span class="number">5</span>,<span class="string">"民主党政権"</span>,<span class="variable">pos=</span><span class="number">4</span>,<span class="variable">col=</span><span class="string">"blue"</span>,<span class="variable">cex=</span><span class="number">1</span>,<span class="variable">font =</span> <span class="number">2</span>)</div><div class="line">abline(<span class="variable">v=</span>as.yearmon(<span class="string">"1997-04"</span>),<span class="variable">col=</span><span class="string">"red"</span>,<span class="variable">lty=</span><span class="number">3</span>) <span class="comment">#1997年4月1日から５％</span></div><div class="line">text(as.yearmon(<span class="string">"1996-01"</span>),<span class="number">6</span>,<span class="string">"消費税 5%"</span>,<span class="variable">pos=</span><span class="number">4</span>, <span class="variable">col=</span>rgb(<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>, <span class="variable">alpha=</span><span class="number">0.7</span>),<span class="variable">cex=</span><span class="number">1</span>,<span class="variable">font =</span> <span class="number">2</span>)</div><div class="line">abline(<span class="variable">v=</span>as.yearmon(<span class="string">"2014-04"</span>),<span class="variable">col=</span><span class="string">"red"</span>,<span class="variable">lty=</span><span class="number">3</span>) <span class="comment">#2014-04-01</span></div><div class="line">text(as.yearmon(<span class="string">"2013-01"</span>),<span class="number">6</span>,<span class="string">"消費税 8%"</span>,<span class="variable">pos=</span><span class="number">4</span>,<span class="variable">col=</span>rgb(<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>, <span class="variable">alpha=</span><span class="number">0.7</span>),<span class="variable">cex=</span><span class="number">1</span>,<span class="variable">font =</span> <span class="number">2</span>)</div><div class="line">par(<span class="variable">new=</span>T)</div><div class="line">plot.zoo(topix_monthly.xts,<span class="variable">xaxt=</span><span class="string">"n"</span>,<span class="variable">yaxt=</span><span class="string">"n"</span>,<span class="variable">xlab=</span><span class="string">""</span>,<span class="variable">ylab=</span><span class="string">""</span>,<span class="variable">col=</span>rgb(<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>, <span class="variable">alpha=</span><span class="number">1</span>))</div><div class="line">mtext(<span class="string">"TOPIX"</span>,<span class="variable">side=</span><span class="number">4</span>,<span class="variable">line=</span><span class="number">3</span>)</div><div class="line">axis(<span class="number">4</span>,<span class="variable">las=</span><span class="number">1</span>) </div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">1</span>,<span class="number">1</span>))</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/laborservice01.png" alt=""></p>
+<h5 id="購買力平価">購買力平価</h5>
+<p><a href="http://www.iima.or.jp/index.html" target="_blank" rel="external">国際通貨研究所</a>のデータ</p>
+<p>消費者物価ＰＰＰ（1973年基準）<br>企業物価ＰＰＰ（1973年基準）<br>輸出物価ＰＰＰ（1990年基準）   </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">load(<span class="string">"PPP.data"</span>)</div><div class="line">library(xts)</div><div class="line">library(TTR)</div><div class="line"><span class="comment">#library(lattice)</span></div><div class="line"><span class="comment">#library(latticeExtra)</span></div><div class="line">PPP.xts&lt;-as.xts(PPP.ts)</div><div class="line"><span class="comment">#png("laborservice02.png",width=1000,height=800)</span></div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">2</span>,<span class="number">1</span>),<span class="variable">mar =</span> c(<span class="number">2</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">6</span>))</div><div class="line">plot.zoo(SMA(Industries_covered.xts,<span class="variable">n=</span><span class="number">12</span>)[<span class="string">"2007-01::"</span>],<span class="variable">las=</span><span class="number">1</span>,<span class="variable">main=</span><span class="string">"毎月勤労統計調査 実質賃金指数(調査産業計)12ヶ月移動平均 & TOPIX"</span>,<span class="variable">xlab=</span><span class="string">""</span>,<span class="variable">ylab=</span><span class="string">""</span>,<span class="variable">col=</span><span class="string">"red"</span>,<span class="variable">lwd=</span><span class="number">2</span>,<span class="variable">yaxt=</span><span class="string">"n"</span>,<span class="variable">ylim=</span>c(<span class="number">96</span>,<span class="number">105</span>))</div><div class="line">axis(<span class="number">2</span>,<span class="variable">las=</span><span class="number">1</span>,col.<span class="variable">axis=</span><span class="string">"red"</span>) </div><div class="line">mtext(<span class="string">"12ヶ月移動平均"</span>,<span class="variable">side=</span><span class="number">2</span>,<span class="variable">line=</span><span class="number">3</span>,<span class="variable">col=</span><span class="string">"red"</span>)</div><div class="line">par(<span class="variable">new=</span>T)</div><div class="line">plot.zoo(topix_monthly.xts[<span class="string">"2007-01::"</span>],<span class="variable">xaxt=</span><span class="string">"n"</span>,<span class="variable">yaxt=</span><span class="string">"n"</span>,<span class="variable">xlab=</span><span class="string">""</span>,<span class="variable">ylab=</span><span class="string">""</span>,<span class="variable">col=</span><span class="string">"black"</span>)</div><div class="line">mtext(<span class="string">"TOPIX"</span>,<span class="variable">side=</span><span class="number">4</span>,<span class="variable">line=</span><span class="number">3</span>)</div><div class="line">axis(<span class="number">4</span>,<span class="variable">las=</span><span class="number">1</span>) </div><div class="line">abline(<span class="variable">v=</span>as.yearmon(<span class="string">"2009-09"</span>),<span class="variable">col=</span><span class="string">"blue"</span>,<span class="variable">lty=</span><span class="number">2</span>) <span class="comment">#2009-09-16</span></div><div class="line">abline(<span class="variable">v=</span>as.yearmon(<span class="string">"2012-12"</span>),<span class="variable">col=</span><span class="string">"blue"</span>,<span class="variable">lty=</span><span class="number">2</span>) <span class="comment">#2012-12-26</span></div><div class="line">text(as.yearmon(<span class="string">"2010-12"</span>),<span class="number">1600</span>,<span class="string">"民主党政権"</span>,<span class="variable">pos=</span><span class="number">4</span>,<span class="variable">col=</span><span class="string">"blue"</span>,<span class="variable">cex=</span><span class="number">1</span>,<span class="variable">font =</span> <span class="number">2</span>)</div><div class="line">abline(<span class="variable">v=</span>as.yearmon(<span class="string">"2014-04"</span>),<span class="variable">col=</span><span class="string">"red"</span>,<span class="variable">lty=</span><span class="number">3</span>) <span class="comment">#2014-04-01</span></div><div class="line">text(as.yearmon(<span class="string">"2013-10"</span>),<span class="number">1700</span>,<span class="string">"消費税 8%"</span>,<span class="variable">pos=</span><span class="number">4</span>,<span class="variable">col=</span>rgb(<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>, <span class="variable">alpha=</span><span class="number">1</span>),<span class="variable">cex=</span><span class="number">1</span>,<span class="variable">font =</span> <span class="number">2</span>)</div><div class="line">plot.zoo(PPP.xts,<span class="variable">main=</span><span class="string">"ドル円購買力平価と実勢相場 2007-2014年(国際通貨研究所のデータ)"</span>,plot.<span class="variable">type=</span><span class="string">"single"</span>,<span class="variable">col=</span><span class="number">1</span>:<span class="number">4</span>,<span class="variable">lwd=</span><span class="number">2</span>,<span class="variable">xlab=</span><span class="string">"年"</span>,<span class="variable">ylab=</span><span class="string">""</span>)</div><div class="line">axis(<span class="number">4</span>,PPP.xts[nrow(PPP.xts),],colnames(PPP.xts),col.<span class="variable">axis=</span><span class="string">"black"</span> ,<span class="variable">las=</span><span class="number">1</span>)</div><div class="line">abline(<span class="variable">v=</span>as.yearmon(<span class="string">"2009-09"</span>),<span class="variable">col=</span><span class="string">"blue"</span>,<span class="variable">lty=</span><span class="number">2</span>) <span class="comment">#2009-09-16</span></div><div class="line">abline(<span class="variable">v=</span>as.yearmon(<span class="string">"2012-12"</span>),<span class="variable">col=</span><span class="string">"blue"</span>,<span class="variable">lty=</span><span class="number">2</span>) <span class="comment">#2012-12-26</span></div><div class="line">abline(<span class="variable">v=</span>as.yearmon(<span class="string">"2014-04"</span>),<span class="variable">col=</span><span class="string">"red"</span>,<span class="variable">lty=</span><span class="number">3</span>) <span class="comment">#2014-04-01</span></div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/laborservice02.png" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/02/21/毎月勤労統計調査等/" data-id="s9e6owcxrckpo9s0" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/オープンデータ/">オープンデータ</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/02/15/21世紀の資本グラフ3/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">21世紀の資本グラフ3</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Gambit/">Gambit</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gnumeric/">Gnumeric</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Graphviz/">Graphviz</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NetworkX/">NetworkX</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">33</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sqlite3/">sqlite3</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/放送大学/">放送大学</a><span class="category-list-count">45</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/21世紀の資本/">21世紀の資本</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graphviz/">Graphviz</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/オープンデータ/">オープンデータ</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データベース/">データベース</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原因をさぐる統計学/">原因をさぐる統計学</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/因子分析＆確証的因子分析/">因子分析＆確証的因子分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/地図/">地図</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/成長曲線モデル/">成長曲線モデル</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/時系列解析/">時系列解析</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/潜在変数間の因果関係/">潜在変数間の因果関係</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/21世紀の資本/" style="font-size: 12.50px;">21世紀の資本</a><a href="/tags/Graphviz/" style="font-size: 10.00px;">Graphviz</a><a href="/tags/HEXO/" style="font-size: 11.25px;">HEXO</a><a href="/tags/Rパッケージ/" style="font-size: 11.25px;">Rパッケージ</a><a href="/tags/オープンデータ/" style="font-size: 17.50px;">オープンデータ</a><a href="/tags/データからの知識発見/" style="font-size: 15.00px;">データからの知識発見</a><a href="/tags/データベース/" style="font-size: 11.25px;">データベース</a><a href="/tags/原因をさぐる統計学/" style="font-size: 16.25px;">原因をさぐる統計学</a><a href="/tags/問題解決の数理/" style="font-size: 20.00px;">問題解決の数理</a><a href="/tags/因子分析＆確証的因子分析/" style="font-size: 10.00px;">因子分析＆確証的因子分析</a><a href="/tags/地図/" style="font-size: 10.00px;">地図</a><a href="/tags/心理・教育統計法特論/" style="font-size: 13.75px;">心理・教育統計法特論</a><a href="/tags/心理統計法/" style="font-size: 18.75px;">心理統計法</a><a href="/tags/成長曲線モデル/" style="font-size: 10.00px;">成長曲線モデル</a><a href="/tags/時系列解析/" style="font-size: 11.25px;">時系列解析</a><a href="/tags/潜在変数間の因果関係/" style="font-size: 10.00px;">潜在変数間の因果関係</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">34</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">34</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/02/21/毎月勤労統計調査等/">毎月勤労統計調査、TOPIX、購買力平価</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/15/21世紀の資本グラフ3/">21世紀の資本グラフ3</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/15/21世紀の資本グラフ2/">21世紀の資本グラフ2</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/15/21世紀の資本グラフ1/">21世紀の資本グラフ1</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/14/21世紀の資本グラフ0/">21世紀の資本グラフ0</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 統計ソフトRの備忘録２<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
