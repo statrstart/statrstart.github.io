@@ -8,7 +8,7 @@
   <meta name="description" content="Quandl、xts、lattice、gridExtra、plotrix、RColorBrewer パッケージ">
 <meta property="og:type" content="article">
 <meta property="og:title" content="21世紀の資本グラフ3">
-<meta property="og:url" content="http://yoursite.com/2015/02/15/21世紀の資本グラフ3/">
+<meta property="og:url" content="http://yoursite.com/2015/02/28/21世紀の資本グラフ3/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
 <meta property="og:description" content="Quandl、xts、lattice、gridExtra、plotrix、RColorBrewer パッケージ">
 <meta property="og:image" content="/images/Piketty3_1A.png">
@@ -96,8 +96,8 @@
       <div class="outer">
         <section id="main"><article id="post-21世紀の資本グラフ3" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/02/15/21世紀の資本グラフ3/" class="article-date">
-  <time datetime="2015-02-15T12:45:58.000Z" itemprop="datePublished">Feb 15 2015</time>
+    <a href="/2015/02/28/21世紀の資本グラフ3/" class="article-date">
+  <time datetime="2015-02-28T07:56:18.000Z" itemprop="datePublished">Feb 28 2015</time>
 </a>
     
   <div class="article-category">
@@ -124,6 +124,7 @@
 <a id="more"></a>
 
 <p>「21世紀の資本」のデータが公開されてるのでRを使ってグラフ化してみます。<br>（グラフもすでに公開されているのであまり意味はありません。）<br>（参考）<br><a href="https://www.quandl.com/c/piketty-codes" target="_blank" rel="external">Piketty Codes</a><br><a href="http://cruel.org/books/capital21c/" target="_blank" rel="external">『21世紀の資本』日本語版サポートページ</a>  </p>
+<h3 id="積み上げ折れ線グラフ・・純外国資本の「マイナス」が表現できていません。「21世紀の資本グラフ4」では色の透過率を使って表現してみました。">積み上げ折れ線グラフ・・純外国資本の「マイナス」が表現できていません。「21世紀の資本グラフ4」では色の透過率を使って表現してみました。</h3>
 <h4 id="Chapter_3:_The_Metamorphoses_of_Capital">Chapter 3: The Metamorphoses of Capital</h4>
 <h5 id="Capital_in_Britain,_1700-2010">Capital in Britain, 1700-2010</h5>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">library(xts)</div><div class="line">library(Quandl)</div><div class="line">T3_1&lt;-Quandl(<span class="string">"PIKETTY/T3_1"</span>)</div><div class="line"><span class="preprocessor">#並べ替え</span></div><div class="line">sortlist &lt;- order(T3_1[,<span class="number">1</span>])</div><div class="line">dat &lt;- T3_1[sortlist,]</div><div class="line">T3_1&lt;-dat</div><div class="line">rownames(T3_1) &lt;- c(<span class="number">1</span>:nrow(T3_1))</div><div class="line"><span class="preprocessor">#save("T3_1", file="T3_1.dat")</span></div><div class="line"><span class="preprocessor">#load("T3_1.dat")</span></div><div class="line"><span class="preprocessor">##### T3_1 #####</span></div><div class="line"><span class="preprocessor">#1 Year 年</span></div><div class="line"><span class="preprocessor">#2 National capital Wn 国民資本</span></div><div class="line"><span class="preprocessor">#3 incl. Land 土地</span></div><div class="line"><span class="preprocessor">#4 incl. Housing 住宅</span></div><div class="line"><span class="preprocessor">#5 incl. Other domestic capital assets その他の国内資本資産</span></div><div class="line"><span class="preprocessor">#6 incl. Net foreign capital 純外国資本</span></div><div class="line"><span class="preprocessor">#7 Public capital Wg 公的資本</span></div><div class="line"><span class="preprocessor">#8 incl. Public assets 公的資産</span></div><div class="line"><span class="preprocessor">#9 incl. Public debt 公的債務</span></div><div class="line"><span class="preprocessor">#10 Private capital W 民間資本</span></div><div class="line">library(<span class="string">"plotrix"</span>)</div><div class="line">library(RColorBrewer)</div><div class="line"><span class="preprocessor">#png("Piketty3_1A.png",width=1000,height=800)</span></div><div class="line">stackpoly(T3_1[,<span class="number">3</span>:<span class="number">6</span>],ylim=c(<span class="number">0</span>,<span class="number">800</span>),axis4=F,main=<span class="string">"イギリスの資本 1700-2010年"</span>,col=brewer.pal(<span class="number">4</span>,<span class="string">"Pastel1"</span>),</div><div class="line">xaxlab=c(<span class="string">"1700"</span>,<span class="string">"1750"</span>,<span class="string">"1810"</span>,<span class="string">"1850"</span>,<span class="string">"1880"</span>,<span class="string">"1910"</span>,<span class="string">"1920"</span>,<span class="string">"1950"</span>,<span class="string">"1970"</span>,<span class="string">"1990"</span>,<span class="string">"2010"</span>),border=<span class="string">"gray36"</span>,staxx=F,stack=TRUE)</div><div class="line"><span class="preprocessor">#boxed.labels(3,180,"土地",border=F,bg=NA,col="gray20")</span></div><div class="line"><span class="preprocessor">#boxed.labels(4,300,"住宅",border=F,bg=NA,col="gray20")</span></div><div class="line"><span class="preprocessor">#boxed.labels(4,500,"その他国内資本",border=F,bg=NA,col="gray20")</span></div><div class="line"><span class="preprocessor">#boxed.labels(5.4,620,"純外国資本",border=F,bg=NA,col="gray20")</span></div><div class="line">boxed.labels(c(<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">5.4</span>),c(<span class="number">180</span>,<span class="number">300</span>,<span class="number">500</span>,<span class="number">620</span>),c(<span class="string">"土地"</span>,<span class="string">"住宅"</span>,<span class="string">"その他国内資本"</span>,<span class="string">"純外国資本"</span>),border=F,bg=NA,col=<span class="string">"gray20"</span>,cex=<span class="number">2</span>)</div><div class="line"><span class="preprocessor">#dev.off()</span></div></pre></td></tr></table></figure>
@@ -457,7 +458,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/02/15/21世紀の資本グラフ3/" data-id="3irmf687brnpjve8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/02/28/21世紀の資本グラフ3/" data-id="3irmf687brnpjve8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/21世紀の資本/">21世紀の資本</a></li></ul>
@@ -468,19 +469,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/02/21/毎月勤労統計調査等/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2015/02/28/21世紀の資本グラフ4/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          毎月勤労統計調査、TOPIX、購買力平価
+          21世紀の資本グラフ4
         
       </div>
     </a>
   
   
-    <a href="/2015/02/15/21世紀の資本グラフ2/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2015/02/28/家計調査時系列1/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">21世紀の資本グラフ2</div>
+      <div class="article-nav-title">家計調査時系列1</div>
     </a>
   
 </nav>
@@ -496,7 +497,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Gambit/">Gambit</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gnumeric/">Gnumeric</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Graphviz/">Graphviz</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NetworkX/">NetworkX</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">35</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sqlite3/">sqlite3</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/放送大学/">放送大学</a><span class="category-list-count">45</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Gambit/">Gambit</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gnumeric/">Gnumeric</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Graphviz/">Graphviz</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NetworkX/">NetworkX</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">36</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sqlite3/">sqlite3</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/放送大学/">放送大学</a><span class="category-list-count">45</span></li></ul>
     </div>
   </div>
 
@@ -505,7 +506,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/21世紀の資本/">21世紀の資本</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graphviz/">Graphviz</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/オープンデータ/">オープンデータ</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データベース/">データベース</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原因をさぐる統計学/">原因をさぐる統計学</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/因子分析＆確証的因子分析/">因子分析＆確証的因子分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/地図/">地図</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/成長曲線モデル/">成長曲線モデル</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/時系列解析/">時系列解析</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/潜在変数間の因果関係/">潜在変数間の因果関係</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/21世紀の資本/">21世紀の資本</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graphviz/">Graphviz</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/オープンデータ/">オープンデータ</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データベース/">データベース</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原因をさぐる統計学/">原因をさぐる統計学</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/因子分析＆確証的因子分析/">因子分析＆確証的因子分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/地図/">地図</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/成長曲線モデル/">成長曲線モデル</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/時系列解析/">時系列解析</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/潜在変数間の因果関係/">潜在変数間の因果関係</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -523,7 +524,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">36</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">34</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">37</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">34</span></li></ul>
     </div>
   </div>
 
@@ -535,6 +536,14 @@
       <ul>
         
           <li>
+            <a href="/2015/02/28/21世紀の資本グラフ4/">21世紀の資本グラフ4</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/28/21世紀の資本グラフ3/">21世紀の資本グラフ3</a>
+          </li>
+        
+          <li>
             <a href="/2015/02/28/家計調査時系列1/">家計調査時系列1</a>
           </li>
         
@@ -544,14 +553,6 @@
         
           <li>
             <a href="/2015/02/21/毎月勤労統計調査等/">毎月勤労統計調査、TOPIX、購買力平価</a>
-          </li>
-        
-          <li>
-            <a href="/2015/02/15/21世紀の資本グラフ3/">21世紀の資本グラフ3</a>
-          </li>
-        
-          <li>
-            <a href="/2015/02/15/21世紀の資本グラフ2/">21世紀の資本グラフ2</a>
           </li>
         
       </ul>
