@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>地震動のスペクトル1(Hanningウィンドウ) | 統計ソフトRの備忘録２</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="quantmod , RSEIS パッケージ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="地震動のスペクトル1(Hanningウィンドウ)">
+<meta property="og:url" content="http://yoursite.com/2015/03/29/地震動のスペクトル1/">
+<meta property="og:site_name" content="統計ソフトRの備忘録２">
+<meta property="og:description" content="quantmod , RSEIS パッケージ">
+<meta property="og:image" content="/images/hakei01.png">
+<meta property="og:image" content="/images/spec01.png">
+<meta property="og:image" content="/images/spec02.png">
+<meta property="og:image" content="/images/spec03.png">
+<meta property="og:image" content="/images/hakei02.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="地震動のスペクトル1(Hanningウィンドウ)">
+<meta name="twitter:description" content="quantmod , RSEIS パッケージ">
+
+  
+    <link rel="alternative" href="/atom.xml" title="統計ソフトRの備忘録２" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">統計ソフトRの備忘録２</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-地震動のスペクトル1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/03/29/地震動のスペクトル1/" class="article-date">
+  <time datetime="2015-03-29T01:10:38.000Z" itemprop="datePublished">Mar 29 2015</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/R/">R</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      地震動のスペクトル1(Hanningウィンドウ)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="quantmod_,_RSEIS_パッケージ">quantmod , RSEIS パッケージ</h2>
+<a id="more"></a>
+
+<p>（データ）気象庁<br><a href="http://www.data.jma.go.jp/svd/eqev/data/kyoshin/jishin/001006_tottori-seibu/" target="_blank" rel="external">強震波形（平成12年(2000年)鳥取県西部地震）</a>の<br><a href="http://www.data.jma.go.jp/svd/eqev/data/kyoshin/jishin/001006_tottori-seibu/dat/AA06E9E1.csv" target="_blank" rel="external">境港市東本町</a><br>（参考）<br><a href="http://wiki.arch.ues.tmu.ac.jp/KyoshinTebiki/index.php?%A5%D5%A1%BC%A5%EA%A5%A8%A5%B9%A5%DA%A5%AF%A5%C8%A5%EB%B2%F2%C0%CF" target="_blank" rel="external">フーリエスペクトル解析</a><br><a href="http://tamori.3zoku.com/tokuron/octave_fft.html" target="_blank" rel="external">Octaveによるフーリエ解析</a><br><a href="http://civilyarou.web.fc2.com/WANtaroHP_F90_html5/jsubTIPS_R.html" target="_blank" rel="external">WANtaroHP (R tips)</a>の「フーリエスペクトル」（SWIN関数:Parzenウィンドウ）</p>
+<h5 id="OSはzorin_linuxです。">OSはzorin linuxです。</h5>
+<p>Hanning Window の関数を定義</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="title">hanningR</span>&lt;-function(pd,nhan){</div><div class="line"><span class="title">y</span>&lt;-<span class="type">NULL</span>;yp1&lt;-<span class="type">NULL</span>;ym1&lt;-<span class="type">NULL</span>;temp&lt;-<span class="type">NULL</span></div><div class="line"><span class="title">y</span>&lt;-pd</div><div class="line"><span class="title">yp1</span>&lt;-pd[<span class="number">2</span>:length(y)]</div><div class="line"><span class="title">yp1</span>[length(y)]&lt;-pd[<span class="number">1</span>]</div><div class="line"><span class="title">ym1</span>[<span class="number">1</span>]&lt;-pd[<span class="number">2</span>]</div><div class="line"><span class="title">ym1</span>[<span class="number">2</span>:length(y)]&lt;-pd[<span class="number">1</span>:(length(y)-<span class="number">1</span>)]</div><div class="line"><span class="title">for</span> (i <span class="keyword">in</span> <span class="number">1</span>:nhan) {</div><div class="line"><span class="title">temp</span>&lt;-<span class="number">0.25</span>*ym1+<span class="number">0.5</span>*y+<span class="number">0.25</span>*yp1</div><div class="line"><span class="title">y</span>&lt;-temp</div><div class="line"><span class="title">yp1</span>&lt;-temp[<span class="number">2</span>:length(temp)]</div><div class="line"><span class="title">yp1</span>[length(temp)]&lt;-temp[<span class="number">1</span>]</div><div class="line"><span class="title">ym1</span>[<span class="number">1</span>]&lt;-temp[<span class="number">2</span>]</div><div class="line"><span class="title">ym1</span>[<span class="number">2</span>:length(temp)]&lt;-temp[<span class="number">1</span>:(length(temp)-<span class="number">1</span>)]</div><div class="line">}</div><div class="line"><span class="title">return</span> (temp)</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>データを取り込み波形をplot</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#加速度　境港市東本町</span></div><div class="line">seibu1&lt;-read.csv(<span class="string">"http://www.data.jma.go.jp/svd/eqev/data/kyoshin/jishin/001006_tottori-seibu/dat/AA06E9E1.csv"</span>,<span class="variable">skip=</span><span class="number">6</span>,<span class="variable">header=</span>T)</div><div class="line"><span class="comment">#波形を見る(ts class)</span></div><div class="line">seibu1.ts&lt;-ts(seibu1,<span class="variable">start=</span><span class="number">0</span>,<span class="variable">freq=</span><span class="number">100</span>)</div><div class="line">head(seibu1.ts)</div><div class="line">max(seibu1);min(seibu1)</div><div class="line"><span class="comment">#png("hakei01.png",width=1000,height=800)</span></div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">3</span>,<span class="number">1</span>))</div><div class="line">plot(seibu1.ts[,<span class="number">1</span>],<span class="variable">ylim=</span>c(-<span class="number">750</span>,<span class="number">750</span>),<span class="variable">ylab=</span><span class="string">"NS"</span>)</div><div class="line">title(<span class="string">"波形（加速度）"</span>)</div><div class="line">plot(seibu1.ts[,<span class="number">2</span>],<span class="variable">ylim=</span>c(-<span class="number">750</span>,<span class="number">750</span>),<span class="variable">ylab=</span><span class="string">"EW"</span>)</div><div class="line">plot(seibu1.ts[,<span class="number">3</span>],<span class="variable">ylim=</span>c(-<span class="number">750</span>,<span class="number">750</span>),<span class="variable">ylab=</span><span class="string">"UD"</span>)</div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">1</span>,<span class="number">1</span>))</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/hakei01.png" alt=""></p>
+<p>メイン</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#サンプリング周期</span></div><div class="line"><span class="title">dt</span>     &lt;- <span class="number">0.01</span></div><div class="line"><span class="preprocessor">#windowのバンド幅</span></div><div class="line"><span class="title">bd</span>&lt;-<span class="number">1</span></div><div class="line"><span class="title">for</span> (direction <span class="keyword">in</span> <span class="number">1</span>:<span class="number">3</span>){</div><div class="line"><span class="title">if</span> (direction==<span class="number">1</span>) {d&lt;-seibu1$<span class="type">NS</span>}</div><div class="line"><span class="title">if</span> (direction==<span class="number">2</span>) {d&lt;-seibu1$<span class="type">EW</span>}</div><div class="line"><span class="title">if</span> (direction==<span class="number">3</span>) {d&lt;-seibu1$<span class="type">UD</span>}</div><div class="line">    k  &lt;- length(d)</div><div class="line"><span class="preprocessor">#入力データ数が２の乗数になるように調整</span></div><div class="line">    nn &lt;- <span class="number">2</span></div><div class="line">    while( nn &lt; k) nn &lt;- nn*<span class="number">2</span></div><div class="line">    x      &lt;- numeric(nn)</div><div class="line">    x[<span class="number">1</span>:k] &lt;- d[<span class="number">1</span>:k]</div><div class="line">    z      &lt;- fft(x)</div><div class="line">    z1     &lt;- <span class="type">Re</span>(z)/nn</div><div class="line">    z2     &lt;- <span class="type">Im</span>(z)/nn</div><div class="line">    nfold  &lt;- nn/<span class="number">2</span>+<span class="number">1</span></div><div class="line">    df     &lt;- <span class="number">1.0</span>/dt/nn</div><div class="line">    fs1    &lt;- numeric(nfold)</div><div class="line">    fs2    &lt;- numeric(nfold)</div><div class="line">    frq    &lt;- numeric(nfold)</div><div class="line">    fs1    &lt;- dt*nn*sqrt(z1[<span class="number">1</span>:nfold]^<span class="number">2</span>+z2[<span class="number">1</span>:nfold]^<span class="number">2</span>)</div><div class="line">    ii     &lt;- seq(<span class="number">0</span>,nfold-<span class="number">1</span>,by=<span class="number">1</span>)</div><div class="line">    frq    &lt;- ii*df</div><div class="line"><span class="preprocessor">#ウィンドウのバンド幅 bdのときの繰り返し回数nを計算 </span></div><div class="line"><span class="title">hann</span>&lt;-(bd*(<span class="number">3</span>*(length(x)*dt)/<span class="number">8</span>))^<span class="number">2</span></div><div class="line"><span class="title">n</span>=ceiling(hann)</div><div class="line"><span class="title">band</span>&lt;-round(<span class="number">8</span>/<span class="number">3</span>*sqrt(n)*(<span class="number">1</span>/(length(x)*dt)),<span class="number">3</span>)</div><div class="line"><span class="title">fs2</span>&lt;-hanningR(fs1,n)</div><div class="line"><span class="preprocessor">#fs2&lt;-hanningRcpp(list(acc=fs1,nhan=n)) </span></div><div class="line"><span class="preprocessor">#options(scipen=10)</span></div><div class="line"><span class="title">if</span> (direction==<span class="number">1</span>) {resNS&lt;-<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(<span class="title">frq</span>,<span class="title">fs1</span>,<span class="title">fs2</span>)</span>}</span></div><div class="line"><span class="title">if</span> (direction==<span class="number">2</span>) {resEW&lt;-<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(<span class="title">frq</span>,<span class="title">fs1</span>,<span class="title">fs2</span>)</span>}</span></div><div class="line"><span class="title">if</span> (direction==<span class="number">3</span>) {resUD&lt;-<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(<span class="title">frq</span>,<span class="title">fs1</span>,<span class="title">fs2</span>)</span>}</span></div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>plot1</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#png("spec01.png",width=1000,height=800)</span></div><div class="line"><span class="comment">#gridx=c(seq(2*dt,0.09,0.01),seq(0.1,0.9,0.1),seq(1,10,1))</span></div><div class="line"><span class="variable">gridx=</span>c(seq(<span class="number">0</span>,<span class="number">20</span>,<span class="number">1</span>))</div><div class="line"><span class="variable">gridy=</span>c(seq(<span class="number">0.001</span>,<span class="number">0.009</span>,<span class="number">0.001</span>),seq(<span class="number">0.01</span>,<span class="number">0.09</span>,<span class="number">0.01</span>),seq(<span class="number">0.1</span>,<span class="number">0.9</span>,<span class="number">0.1</span>),seq(<span class="number">1</span>,<span class="number">9</span>,<span class="number">1</span>),seq(<span class="number">10</span>,<span class="number">90</span>,<span class="number">10</span>),seq(<span class="number">100</span>,<span class="number">900</span>,<span class="number">100</span>),seq(<span class="number">1000</span>,<span class="number">10000</span>,<span class="number">1000</span>))</div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">1</span>,<span class="number">3</span>))</div><div class="line">plot(resNS$frq,resNS$fs1,<span class="variable">type=</span><span class="string">"l"</span>,<span class="variable">log=</span><span class="string">"y"</span>,<span class="variable">las=</span><span class="number">1</span>,<span class="variable">col=</span><span class="string">"red"</span>,<span class="variable">xlab=</span><span class="string">"Frequency (Hz)"</span>,<span class="variable">ylab=</span><span class="string">""</span>,<span class="variable">yaxt=</span><span class="string">"n"</span>,</div><div class="line">panel.<span class="variable">first =</span> abline(<span class="variable">v=</span>gridx,<span class="variable">h=</span>gridy,<span class="variable">col=</span><span class="string">"lightgray"</span>,<span class="variable">lty =</span><span class="string">"dotted"</span>),<span class="variable">xlim=</span>c(<span class="number">0</span>,<span class="number">20</span>),<span class="variable">ylim=</span>c(<span class="number">1</span>e-<span class="number">2</span>,<span class="number">7</span>e+<span class="number">2</span>))</div><div class="line">axis(<span class="number">2</span>,c(<span class="number">0.00001</span>,<span class="number">0.0001</span>,<span class="number">0.001</span>,<span class="number">0.01</span>,<span class="number">0.1</span>,<span class="number">1</span>,<span class="number">10</span>,<span class="number">100</span>,<span class="number">1000</span>,<span class="number">10000</span>),</div><div class="line">c(<span class="string">"0.00001"</span>,<span class="string">"0.0001"</span>,<span class="string">"0.001"</span>,<span class="string">"0.01"</span>,<span class="string">"0.1"</span>,<span class="string">"1"</span>,<span class="string">"10"</span>,<span class="string">"100"</span>,<span class="string">"1000"</span>,<span class="string">"10000"</span>),<span class="variable">las=</span><span class="number">1</span>) </div><div class="line">lines(resNS$frq,resNS$fs2,<span class="variable">col=</span><span class="string">"black"</span>,<span class="variable">lwd=</span><span class="number">2</span>)</div><div class="line">title(<span class="string">"Fourier spectrum (gal * sec) NS"</span>)</div><div class="line">legend(</div><div class="line">    <span class="string">"bottomleft"</span>,</div><div class="line">    c(<span class="string">"Original"</span>,paste(<span class="string">"Hanning Window :band="</span>,band,<span class="string">"Hz : n="</span>,n)),</div><div class="line">    <span class="variable">col =</span> c(<span class="string">"red"</span>,<span class="string">"black"</span>),</div><div class="line">    <span class="variable">lty =</span> <span class="number">1</span>,</div><div class="line">    <span class="variable">lwd =</span> <span class="number">2</span>,</div><div class="line">    <span class="variable">bg  =</span> <span class="string">"white"</span></div><div class="line">)</div><div class="line">plot(resEW$frq,resEW$fs1,<span class="variable">type=</span><span class="string">"l"</span>,<span class="variable">log=</span><span class="string">"y"</span>,<span class="variable">las=</span><span class="number">1</span>,<span class="variable">col=</span><span class="string">"red"</span>,<span class="variable">xlab=</span><span class="string">"Frequency (Hz)"</span>,<span class="variable">ylab=</span><span class="string">""</span>,<span class="variable">yaxt=</span><span class="string">"n"</span>,</div><div class="line">panel.<span class="variable">first =</span> abline(<span class="variable">v=</span>gridx,<span class="variable">h=</span>gridy,<span class="variable">col=</span><span class="string">"lightgray"</span>,<span class="variable">lty =</span><span class="string">"dotted"</span>),<span class="variable">xlim=</span>c(<span class="number">0</span>,<span class="number">20</span>),<span class="variable">ylim=</span>c(<span class="number">1</span>e-<span class="number">2</span>,<span class="number">7</span>e+<span class="number">2</span>))</div><div class="line">axis(<span class="number">2</span>,c(<span class="number">0.00001</span>,<span class="number">0.0001</span>,<span class="number">0.001</span>,<span class="number">0.01</span>,<span class="number">0.1</span>,<span class="number">1</span>,<span class="number">10</span>,<span class="number">100</span>,<span class="number">1000</span>,<span class="number">10000</span>),</div><div class="line">c(<span class="string">"0.00001"</span>,<span class="string">"0.0001"</span>,<span class="string">"0.001"</span>,<span class="string">"0.01"</span>,<span class="string">"0.1"</span>,<span class="string">"1"</span>,<span class="string">"10"</span>,<span class="string">"100"</span>,<span class="string">"1000"</span>,<span class="string">"10000"</span>),<span class="variable">las=</span><span class="number">1</span>) </div><div class="line">lines(resEW$frq,resEW$fs2,<span class="variable">col=</span><span class="string">"black"</span>,<span class="variable">lwd=</span><span class="number">2</span>)</div><div class="line">title(<span class="string">"Fourier spectrum (gal * sec) EW"</span>)</div><div class="line">legend(</div><div class="line">    <span class="string">"bottomleft"</span>,</div><div class="line">    c(<span class="string">"Original"</span>,paste(<span class="string">"Hanning Window :band="</span>,band,<span class="string">"Hz : n="</span>,n)),</div><div class="line">    <span class="variable">col =</span> c(<span class="string">"red"</span>,<span class="string">"black"</span>),</div><div class="line">    <span class="variable">lty =</span> <span class="number">1</span>,</div><div class="line">    <span class="variable">lwd =</span> <span class="number">2</span>,</div><div class="line">    <span class="variable">bg  =</span> <span class="string">"white"</span></div><div class="line">)</div><div class="line">plot(resUD$frq,resUD$fs1,<span class="variable">type=</span><span class="string">"l"</span>,<span class="variable">log=</span><span class="string">"y"</span>,<span class="variable">las=</span><span class="number">1</span>,<span class="variable">col=</span><span class="string">"red"</span>,<span class="variable">xlab=</span><span class="string">"Frequency (Hz)"</span>,<span class="variable">ylab=</span><span class="string">""</span>,<span class="variable">yaxt=</span><span class="string">"n"</span>,</div><div class="line">panel.<span class="variable">first =</span> abline(<span class="variable">v=</span>gridx,<span class="variable">h=</span>gridy,<span class="variable">col=</span><span class="string">"lightgray"</span>,<span class="variable">lty =</span><span class="string">"dotted"</span>),<span class="variable">xlim=</span>c(<span class="number">0</span>,<span class="number">20</span>),<span class="variable">ylim=</span>c(<span class="number">1</span>e-<span class="number">2</span>,<span class="number">7</span>e+<span class="number">2</span>))</div><div class="line">axis(<span class="number">2</span>,c(<span class="number">0.00001</span>,<span class="number">0.0001</span>,<span class="number">0.001</span>,<span class="number">0.01</span>,<span class="number">0.1</span>,<span class="number">1</span>,<span class="number">10</span>,<span class="number">100</span>,<span class="number">1000</span>,<span class="number">10000</span>),</div><div class="line">c(<span class="string">"0.00001"</span>,<span class="string">"0.0001"</span>,<span class="string">"0.001"</span>,<span class="string">"0.01"</span>,<span class="string">"0.1"</span>,<span class="string">"1"</span>,<span class="string">"10"</span>,<span class="string">"100"</span>,<span class="string">"1000"</span>,<span class="string">"10000"</span>),<span class="variable">las=</span><span class="number">1</span>) </div><div class="line">lines(resUD$frq,resUD$fs2,<span class="variable">col=</span><span class="string">"black"</span>,<span class="variable">lwd=</span><span class="number">2</span>)</div><div class="line">title(<span class="string">"Fourier spectrum (gal * sec) UD"</span>)</div><div class="line">legend(</div><div class="line">    <span class="string">"bottomleft"</span>,</div><div class="line">    c(<span class="string">"Original"</span>,paste(<span class="string">"Hanning Window :band="</span>,band,<span class="string">"Hz : n="</span>,n)),</div><div class="line">    <span class="variable">col =</span> c(<span class="string">"red"</span>,<span class="string">"black"</span>),</div><div class="line">    <span class="variable">lty =</span> <span class="number">1</span>,</div><div class="line">    <span class="variable">lwd =</span> <span class="number">2</span>,</div><div class="line">    <span class="variable">bg  =</span> <span class="string">"white"</span></div><div class="line">)</div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">1</span>,<span class="number">1</span>))</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/spec01.png" alt=""></p>
+<p>plot2</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#png("spec02.png",width=1000,height=800)</span></div><div class="line">gridx=c(se<span class="string">q(2*dt,0.09,0.01)</span>,se<span class="string">q(0.1,0.9,0.1)</span>,se<span class="string">q(1,10,1)</span>)</div><div class="line"><span class="comment">#gridx=c(seq(0,20,1))</span></div><div class="line">gridy=c(se<span class="string">q(0.001,0.009,0.001)</span>,se<span class="string">q(0.01,0.09,0.01)</span>,se<span class="string">q(0.1,0.9,0.1)</span>,se<span class="string">q(1,9,1)</span>,se<span class="string">q(10,90,10)</span>,se<span class="string">q(100,900,100)</span>,se<span class="string">q(1000,10000,1000)</span>)</div><div class="line">plot(<span class="number">1</span>/resEW<span class="variable">$frq</span>[-<span class="number">1</span>],resEW<span class="variable">$fs2</span>[-<span class="number">1</span>],type=<span class="string">"l"</span>,<span class="keyword">log</span>=<span class="string">"xy"</span>,las=<span class="number">1</span>,col=<span class="string">"red"</span>,xlab=<span class="string">"Period(sec)"</span>,ylab=<span class="string">""</span>,yaxt=<span class="string">"n"</span>,</div><div class="line">panel.first = abline(v=gridx,h=gridy,col=<span class="string">"lightgray"</span>,lty =<span class="string">"dotted"</span>),xlim=c(<span class="number">0</span>.<span class="number">027</span>,<span class="number">10</span>),ylim=c(<span class="number">0</span>.<span class="number">1</span>,<span class="number">500</span>))</div><div class="line">axis(<span class="number">2</span>,c(<span class="number">0</span>.<span class="number">00001</span>,<span class="number">0</span>.<span class="number">0001</span>,<span class="number">0</span>.<span class="number">001</span>,<span class="number">0</span>.<span class="number">01</span>,<span class="number">0</span>.<span class="number">1</span>,<span class="number">1</span>,<span class="number">10</span>,<span class="number">100</span>,<span class="number">1000</span>,<span class="number">10000</span>),</div><div class="line">c(<span class="string">"0.00001"</span>,<span class="string">"0.0001"</span>,<span class="string">"0.001"</span>,<span class="string">"0.01"</span>,<span class="string">"0.1"</span>,<span class="string">"1"</span>,<span class="string">"10"</span>,<span class="string">"100"</span>,<span class="string">"1000"</span>,<span class="string">"10000"</span>),las=<span class="number">1</span>) </div><div class="line">lines(<span class="number">1</span>/resNS<span class="variable">$frq</span>[-<span class="number">1</span>],resNS<span class="variable">$fs2</span>[-<span class="number">1</span>],col=<span class="string">"blue"</span>)</div><div class="line">lines(<span class="number">1</span>/resUD<span class="variable">$frq</span>[-<span class="number">1</span>],resUD<span class="variable">$fs2</span>[-<span class="number">1</span>],col=<span class="string">"green"</span>)</div><div class="line">title(paste(<span class="string">"Fourier spectrum (gal * sec) [band="</span>,band,<span class="string">"Hz]"</span>))</div><div class="line">legend(</div><div class="line">    <span class="string">"bottomright"</span>,</div><div class="line">    c(<span class="string">"NS"</span>,<span class="string">"EW"</span>,<span class="string">"EW"</span>),</div><div class="line">    col = c(<span class="string">"blue"</span>,<span class="string">"red"</span>,<span class="string">"green"</span>),</div><div class="line">    lty = c(<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>),</div><div class="line">    lwd = c(<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>),</div><div class="line">    bg  = <span class="string">"white"</span></div><div class="line">)</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/spec02.png" alt=""></p>
+<p>plot3</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#png("spec03.png",width=1000,height=800)</span></div><div class="line">gridx=c(se<span class="string">q(0,20,1)</span>)</div><div class="line">gridy=c(se<span class="string">q(0.001,0.009,0.001)</span>,se<span class="string">q(0.01,0.09,0.01)</span>,se<span class="string">q(0.1,0.9,0.1)</span>,se<span class="string">q(1,9,1)</span>,se<span class="string">q(10,90,10)</span>,se<span class="string">q(100,900,100)</span>,se<span class="string">q(1000,10000,1000)</span>)</div><div class="line">plot(resNS<span class="variable">$frq</span>,resNS<span class="variable">$fs1</span>,type=<span class="string">"l"</span>,<span class="keyword">log</span>=<span class="string">"y"</span>,las=<span class="number">1</span>,col=<span class="string">"red"</span>,xlab=<span class="string">"Frequency (Hz)"</span>,ylab=<span class="string">""</span>,yaxt=<span class="string">"n"</span>,</div><div class="line">panel.first = abline(v=gridx,h=gridy,col=<span class="string">"lightgray"</span>,lty =<span class="string">"dotted"</span>),xlim=c(<span class="number">0</span>,<span class="number">20</span>),ylim=c(<span class="number">1</span>e-<span class="number">2</span>,<span class="number">7</span>e+<span class="number">2</span>))</div><div class="line">axis(<span class="number">2</span>,c(<span class="number">0</span>.<span class="number">00001</span>,<span class="number">0</span>.<span class="number">0001</span>,<span class="number">0</span>.<span class="number">001</span>,<span class="number">0</span>.<span class="number">01</span>,<span class="number">0</span>.<span class="number">1</span>,<span class="number">1</span>,<span class="number">10</span>,<span class="number">100</span>,<span class="number">1000</span>,<span class="number">10000</span>),</div><div class="line">c(<span class="string">"0.00001"</span>,<span class="string">"0.0001"</span>,<span class="string">"0.001"</span>,<span class="string">"0.01"</span>,<span class="string">"0.1"</span>,<span class="string">"1"</span>,<span class="string">"10"</span>,<span class="string">"100"</span>,<span class="string">"1000"</span>,<span class="string">"10000"</span>),las=<span class="number">1</span>) </div><div class="line">lines(resNS<span class="variable">$frq</span>,resNS<span class="variable">$fs2</span>,col=<span class="string">"black"</span>,lwd=<span class="number">2</span>)</div><div class="line">title(<span class="string">"Fourier spectrum (gal * sec) NS"</span>)</div><div class="line">legend(</div><div class="line">    <span class="string">"bottomleft"</span>,</div><div class="line">    c(<span class="string">"Original"</span>,paste(<span class="string">"Hanning Window :band="</span>,band,<span class="string">"Hz : n="</span>,n)),</div><div class="line">    col = c(<span class="string">"red"</span>,<span class="string">"black"</span>),</div><div class="line">    lty = <span class="number">1</span>,</div><div class="line">    lwd = <span class="number">2</span>,</div><div class="line">    bg  = <span class="string">"white"</span></div><div class="line">)</div><div class="line"><span class="comment">#ピーク検出</span></div><div class="line"><span class="comment">#quantmodパッケージのfindPeaks関数</span></div><div class="line">library(quantmod)</div><div class="line">peak&lt;-data.frame(frq=resNS<span class="variable">$frq</span>,fs2=resNS<span class="variable">$fs2</span>)</div><div class="line">p=findPeaks(subset(peak, subset=fr<span class="string">q&lt;=21)<span class="variable">$fs2</span>)</span></div><div class="line">points(peak<span class="variable">$frq</span>[p],peak<span class="variable">$fs2</span>[p], col=rgb(0,0,1,0.7),pch=20,cex=3)</div><div class="line">#dev.off()</div><div class="line">library(knitr)</div><div class="line">kable(data.frame(Frequency=peak<span class="variable">$frq</span>[p],Peak=peak<span class="variable">$fs2</span>[p]))</div></pre></td></tr></table></figure>
+
+<p><img src="/images/spec03.png" alt=""></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">Frequency</th>
+<th style="text-align:right">Peak</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0.6500244</td>
+<td style="text-align:right">113.352854</td>
+</tr>
+<tr>
+<td style="text-align:right">2.3406982</td>
+<td style="text-align:right">108.850808</td>
+</tr>
+<tr>
+<td style="text-align:right">3.4667969</td>
+<td style="text-align:right">69.430107</td>
+</tr>
+<tr>
+<td style="text-align:right">4.9743652</td>
+<td style="text-align:right">55.929940</td>
+</tr>
+<tr>
+<td style="text-align:right">8.6975098</td>
+<td style="text-align:right">10.572927</td>
+</tr>
+<tr>
+<td style="text-align:right">10.9344482</td>
+<td style="text-align:right">8.278958</td>
+</tr>
+<tr>
+<td style="text-align:right">12.4053955</td>
+<td style="text-align:right">3.793472</td>
+</tr>
+<tr>
+<td style="text-align:right">13.5284424</td>
+<td style="text-align:right">4.100282</td>
+</tr>
+<tr>
+<td style="text-align:right">15.3930664</td>
+<td style="text-align:right">2.175454</td>
+</tr>
+<tr>
+<td style="text-align:right">16.9860840</td>
+<td style="text-align:right">2.018440</td>
+</tr>
+<tr>
+<td style="text-align:right">18.2647705</td>
+<td style="text-align:right">1.555040</td>
+</tr>
+<tr>
+<td style="text-align:right">19.7082520</td>
+<td style="text-align:right">1.035607</td>
+</tr>
+<tr>
+<td style="text-align:right">20.8465576</td>
+<td style="text-align:right">1.068462</td>
+</tr>
+</tbody>
+</table>
+<p><a href="http://www.data.jma.go.jp/svd/eqev/data/kyoshin/kaisetsu/calc_wave.htm" target="_blank" rel="external">速度波形・変位波形の求め方</a>によると<br>「<br>速度波形はカットオフ5秒の３次のバターワースフィルターを用いて積分を行っている。」とのこと  </p>
+<p>これであっているの？？？</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">library(RSEIS)</div><div class="line">xNS &lt;- butfilt(seibu1.ts[,<span class="number">1</span>],<span class="variable">fl=</span><span class="number">0.2</span>,<span class="variable">fh=</span><span class="number">50</span>,<span class="variable">deltat=</span><span class="number">0.01</span>,<span class="string">"HP"</span>,<span class="string">"BU"</span>,<span class="variable">npoles=</span><span class="number">3</span>)</div><div class="line">velNS&lt;-<span class="number">0.01</span>*cumsum(xNS) ; velNS.ts&lt;-ts(velNS,<span class="variable">start=</span><span class="number">0</span>,<span class="variable">freq=</span><span class="number">100</span>)</div><div class="line">xEW &lt;- butfilt(seibu1.ts[,<span class="number">2</span>],<span class="variable">fl=</span><span class="number">0.2</span>,<span class="variable">fh=</span><span class="number">50</span>,<span class="variable">deltat=</span><span class="number">0.01</span>,<span class="string">"HP"</span>,<span class="string">"BU"</span>,<span class="variable">npoles=</span><span class="number">3</span>)</div><div class="line">velEW&lt;-<span class="number">0.01</span>*cumsum(xEW) ; velEW.ts&lt;-ts(velEW,<span class="variable">start=</span><span class="number">0</span>,<span class="variable">freq=</span><span class="number">100</span>)</div><div class="line">xUD &lt;- butfilt(seibu1.ts[,<span class="number">3</span>],<span class="variable">fl=</span><span class="number">0.2</span>,<span class="variable">fh=</span><span class="number">50</span>,<span class="variable">deltat=</span><span class="number">0.01</span>,<span class="string">"HP"</span>,<span class="string">"BU"</span>,<span class="variable">npoles=</span><span class="number">3</span>)</div><div class="line">velUD&lt;-<span class="number">0.01</span>*cumsum(xUD) ; velUD.ts&lt;-ts(velUD,<span class="variable">start=</span><span class="number">0</span>,<span class="variable">freq=</span><span class="number">100</span>)</div><div class="line"><span class="comment">#png("hakei02.png",width=1000,height=800)</span></div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">3</span>,<span class="number">1</span>))</div><div class="line">plot(velNS.ts,<span class="variable">ylab=</span><span class="string">"NS"</span>,<span class="variable">ylim=</span>c(-<span class="number">40</span>,<span class="number">40</span>))</div><div class="line">title(<span class="string">"波形（速度）"</span>)</div><div class="line">plot(velEW.ts,<span class="variable">ylab=</span><span class="string">"EW"</span>)</div><div class="line">plot(velUD.ts,<span class="variable">ylab=</span><span class="string">"UD"</span>,<span class="variable">ylim=</span>c(-<span class="number">40</span>,<span class="number">40</span>))</div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">3</span>,<span class="number">1</span>))</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/hakei02.png" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/03/29/地震動のスペクトル1/" data-id="trv5oiqud7giwg5p" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/オープンデータ/">オープンデータ</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/03/29/地震動のスペクトル2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          地震動のスペクトル2(Hanningウィンドウ)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/03/28/応答スペクトル/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">応答スペクトル</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Gambit/">Gambit</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gnumeric/">Gnumeric</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Graphviz/">Graphviz</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NetworkX/">NetworkX</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">40</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sqlite3/">sqlite3</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/放送大学/">放送大学</a><span class="category-list-count">45</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/21世紀の資本/">21世紀の資本</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graphviz/">Graphviz</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/オープンデータ/">オープンデータ</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データベース/">データベース</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原因をさぐる統計学/">原因をさぐる統計学</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/因子分析＆確証的因子分析/">因子分析＆確証的因子分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/地図/">地図</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/成長曲線モデル/">成長曲線モデル</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/時系列解析/">時系列解析</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/潜在変数間の因果関係/">潜在変数間の因果関係</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/21世紀の資本/" style="font-size: 12.50px;">21世紀の資本</a><a href="/tags/Graphviz/" style="font-size: 10.00px;">Graphviz</a><a href="/tags/HEXO/" style="font-size: 11.25px;">HEXO</a><a href="/tags/Rパッケージ/" style="font-size: 11.25px;">Rパッケージ</a><a href="/tags/オープンデータ/" style="font-size: 18.75px;">オープンデータ</a><a href="/tags/データからの知識発見/" style="font-size: 15.00px;">データからの知識発見</a><a href="/tags/データベース/" style="font-size: 11.25px;">データベース</a><a href="/tags/原因をさぐる統計学/" style="font-size: 16.25px;">原因をさぐる統計学</a><a href="/tags/問題解決の数理/" style="font-size: 20.00px;">問題解決の数理</a><a href="/tags/因子分析＆確証的因子分析/" style="font-size: 10.00px;">因子分析＆確証的因子分析</a><a href="/tags/地図/" style="font-size: 10.00px;">地図</a><a href="/tags/心理・教育統計法特論/" style="font-size: 13.75px;">心理・教育統計法特論</a><a href="/tags/心理統計法/" style="font-size: 17.50px;">心理統計法</a><a href="/tags/成長曲線モデル/" style="font-size: 10.00px;">成長曲線モデル</a><a href="/tags/時系列解析/" style="font-size: 11.25px;">時系列解析</a><a href="/tags/潜在変数間の因果関係/" style="font-size: 10.00px;">潜在変数間の因果関係</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03">March 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">36</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">34</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/03/29/地震動のスペクトル2/">地震動のスペクトル2(Hanningウィンドウ)</a>
+          </li>
+        
+          <li>
+            <a href="/2015/03/29/地震動のスペクトル1/">地震動のスペクトル1(Hanningウィンドウ)</a>
+          </li>
+        
+          <li>
+            <a href="/2015/03/28/応答スペクトル/">応答スペクトル</a>
+          </li>
+        
+          <li>
+            <a href="/2015/03/01/FRED01/">FRED</a>
+          </li>
+        
+          <li>
+            <a href="/2015/03/01/21世紀の資本グラフ4/">21世紀の資本グラフ4</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 統計ソフトRの備忘録２<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
