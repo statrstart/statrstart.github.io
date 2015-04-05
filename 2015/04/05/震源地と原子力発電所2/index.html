@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>震源地と原子力発電所2 | 統計ソフトRの備忘録２</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="GMT(Generic Mapping Tools) とRのgmt  パッケージ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="震源地と原子力発電所2">
+<meta property="og:url" content="http://yoursite.com/2015/04/05/震源地と原子力発電所2/">
+<meta property="og:site_name" content="統計ソフトRの備忘録２">
+<meta property="og:description" content="GMT(Generic Mapping Tools) とRのgmt  パッケージ">
+<meta property="og:image" content="/images/quake.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="震源地と原子力発電所2">
+<meta name="twitter:description" content="GMT(Generic Mapping Tools) とRのgmt  パッケージ">
+
+  
+    <link rel="alternative" href="/atom.xml" title="統計ソフトRの備忘録２" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">統計ソフトRの備忘録２</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-震源地と原子力発電所2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/05/震源地と原子力発電所2/" class="article-date">
+  <time datetime="2015-04-05T12:25:26.000Z" itemprop="datePublished">Apr 5 2015</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/GMT/">GMT</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      震源地と原子力発電所2
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="GMT(Generic_Mapping_Tools)_とRのgmt_パッケージ">GMT(Generic Mapping Tools) とRのgmt  パッケージ</h2>
+<a id="more"></a>
+
+<p>OSはZORIN OS<br>GMT(Generic Mapping Tools)のバージョンは 4.5.13  </p>
+<p>インストール用のシェルスクリプト<br><a href="http://gmt.soest.hawaii.edu/gmt4/gmt/install_gmt4.sh" target="_blank" rel="external">install_gmt4.sh</a>  </p>
+<p>netcdf<br>$ sudo apt-get install libnetcdf-dev</p>
+<p>gdal<br>$ sudo apt-get install gdal-bin<br>$ sudo apt-get install libgdal-dev</p>
+<p>gmt4<br>$ sudo ./install_gmt4.sh  </p>
+<p>環境変数の追加: デフォルトではパスが通らない。~/.bashrcの末尾に実行ファイルのパスを追加</p>
+<p>(例)インストールしたディレクトリによって異なる。<br>export GMTHOME=/usr/lib/gmt/<br>export PATH=/usr/lib/gmt/bin:$PATH  </p>
+<p>GMT+R+gmt パッケージ  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">library(gmt)</div><div class="line">load(<span class="string">"in_service.dat"</span>) <span class="comment">#稼働中の原発  </span></div><div class="line">load(<span class="string">"under_construction.dat"</span>) <span class="comment">#建設中の原発  </span></div><div class="line">load(<span class="string">"eq1900_20150121.dat"</span>) <span class="comment">#地震のデータ   </span></div><div class="line">eqdata &lt;- subset(eq,<span class="variable">subset=</span>mag&gt;=<span class="number">6</span>, <span class="variable">select=</span>c(latitude,longitude,mag,depth))  </div><div class="line">pscoast(<span class="string">"-Jm1:25000000 -R120/155/20/50 -W -P -Ba10f5WeSn -Glightgray -K -Y5"</span>,<span class="string">"quake.eps"</span>)</div><div class="line">psxy(data.frame(<span class="variable">lon=</span>in_service$longitude, <span class="variable">lat=</span>in_service$latitude),<span class="string">"-J -R -St0.5 -W0.4 -Gpurple -K -O"</span>, <span class="string">"quake.eps"</span>)</div><div class="line">psxy(data.frame(<span class="variable">lon=</span>under_construction$longitude, <span class="variable">lat=</span>under_construction$latitude),<span class="string">"-J -R -St0.5 -W0.4 -Gorange -K -O"</span>, <span class="string">"quake.eps"</span>)</div><div class="line">eq0&lt;-subset(eqdata, <span class="variable">subset=</span>depth&gt;<span class="number">300</span>)</div><div class="line">psxy(data.frame(<span class="variable">lon=</span>eq0$longitude, <span class="variable">lat=</span>eq0$latitude, <span class="variable">mag=</span><span class="number">10</span>^((eq0$mag-<span class="number">5.9</span>)/<span class="number">2</span>)),<span class="string">"-J -R -Scp -W0.5p,magenta -K -O"</span>, <span class="string">"quake.eps"</span>)</div><div class="line">eq0&lt;-subset(eqdata, <span class="variable">subset=</span>depth&gt;<span class="number">50</span> & depth&lt;=<span class="number">300</span>)</div><div class="line">psxy(data.frame(<span class="variable">lon=</span>eq0$longitude, <span class="variable">lat=</span>eq0$latitude, <span class="variable">mag=</span><span class="number">10</span>^((eq0$mag-<span class="number">5.9</span>)/<span class="number">2</span>)),<span class="string">"-J -R -Scp -W0.5p,blue -K -O"</span>, <span class="string">"quake.eps"</span>)</div><div class="line">eq0&lt;-subset(eqdata, <span class="variable">subset=</span>depth&gt;<span class="number">20</span> & depth&lt;=<span class="number">50</span>)</div><div class="line">psxy(data.frame(<span class="variable">lon=</span>eq0$longitude, <span class="variable">lat=</span>eq0$latitude, <span class="variable">mag=</span><span class="number">10</span>^((eq0$mag-<span class="number">5.9</span>)/<span class="number">2</span>)),<span class="string">"-J -R -Scp -W0.5p,green -K -O"</span>, <span class="string">"quake.eps"</span>)</div><div class="line">eq0&lt;-subset(eqdata, <span class="variable">subset=</span>depth&lt;=<span class="number">20</span>)</div><div class="line">psxy(data.frame(<span class="variable">lon=</span>eq0$longitude, <span class="variable">lat=</span>eq0$latitude, <span class="variable">mag=</span><span class="number">10</span>^((eq0$mag-<span class="number">5.9</span>)/<span class="number">2</span>)),<span class="string">"-J -R -Scp -W0.5p,red -K -O"</span>, <span class="string">"quake.eps"</span>)</div><div class="line">gmt.system(<span class="string">"pslegend legend.txt -R -J -Dx15.5/0.2/4c/5c/BR -C0.35c/0.35c -F -L2 -G255 -K -O -S"</span>,<span class="string">"legend3.sh"</span>)</div></pre></td></tr></table></figure>
+
+<p>legend3.shの実行権限がなしになっていることがある。</p>
+<p>ファイルのプロパティ -&gt; パーミッション -&gt; 実行できるようにする</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">system(<span class="string">"./legend3.sh&gt;&gt;quake.eps"</span>)</div><div class="line">system(<span class="string">"psscale -D8/0/15c/0.5ch -Cdepth.cpt -Ba100f50g100 -K -O -Y-1&gt;&gt;quake.eps"</span>)</div><div class="line">pstext(data.frame(<span class="variable">Lon=</span><span class="number">150</span>,<span class="variable">Lat=</span><span class="number">33.5</span>,<span class="variable">Size=</span><span class="number">15</span>,<span class="variable">Angle=</span><span class="number">0</span>,<span class="variable">Font=</span><span class="number">21</span>,<span class="variable">Justify=</span><span class="string">"CM"</span>,<span class="variable">Text=</span><span class="string">"Magnitude"</span>),<span class="string">"-J -R -K -O"</span>, <span class="string">"quake.eps"</span>)</div><div class="line">pstext(data.frame(<span class="variable">Lon=</span><span class="number">137.5</span>,<span class="variable">Lat=</span><span class="number">16</span>,<span class="variable">Size=</span><span class="number">15</span>,<span class="variable">Angle=</span><span class="number">0</span>,<span class="variable">Font=</span><span class="number">21</span>,<span class="variable">Justify=</span><span class="string">"CM"</span>,<span class="variable">Text=</span><span class="string">"Depth"</span>),<span class="string">"-J -R -N -K -O"</span>, <span class="string">"quake.eps"</span>)</div><div class="line">pstext(data.frame(<span class="variable">Lon=</span><span class="number">137.5</span>,<span class="variable">Lat=</span><span class="number">53</span>,<span class="variable">Size=</span><span class="number">17</span>,<span class="variable">Angle=</span><span class="number">0</span>,<span class="variable">Font=</span><span class="number">21</span>,<span class="variable">Justify=</span><span class="string">"CM"</span>,<span class="variable">Text=</span><span class="string">"Earthquake M&gt;=6.0 (1900_2015/1/21) & Nuclear power stations"</span>),<span class="string">"-J -R -N -O"</span>, <span class="string">"quake.eps"</span>)</div></pre></td></tr></table></figure>
+
+<p>gmt.system関数が使えなくてもsystemがある。  </p>
+<p>legend.txtの内容</p>
+<p>N 1<br>S 0.5c c 1.12p 255/0/0 0.5p 1.5c mag6.0<br>S 0.5c c 3.55p 255/0/0 0.5p 1.5c mag7.0<br>S 0.5c c 11.22p 255/0/0 0.5p 1.5c mag8.0<br>S 0.5c c 35.48p 255/0/0 0.5p 1.5c mag9.0  </p>
+<p>depth.cptの内容</p>
+<p>0   255   0   0  20 255   0   0<br>20    0 255   0  50   0 255   0<br>50    0   0 255 300   0   0 255<br>300 255   0 255 720 255   0 255<br>B   0   0   0<br>F 255 255 255<br>N 128 128 128  </p>
+<p>Inkscapeでpng ファイルに変換 </p>
+<p><img src="/images/quake.png" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/04/05/震源地と原子力発電所2/" data-id="3gbhyvqdi6a93vda" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/オープンデータ/">オープンデータ</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/03/29/地震動のスペクトル2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">地震動のスペクトル2(Hanningウィンドウ)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GMT/">GMT</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gambit/">Gambit</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gnumeric/">Gnumeric</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Graphviz/">Graphviz</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NetworkX/">NetworkX</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">40</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sqlite3/">sqlite3</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/放送大学/">放送大学</a><span class="category-list-count">45</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/21世紀の資本/">21世紀の資本</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graphviz/">Graphviz</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/オープンデータ/">オープンデータ</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データベース/">データベース</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原因をさぐる統計学/">原因をさぐる統計学</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/因子分析＆確証的因子分析/">因子分析＆確証的因子分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/地図/">地図</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/成長曲線モデル/">成長曲線モデル</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/時系列解析/">時系列解析</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/潜在変数間の因果関係/">潜在変数間の因果関係</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/21世紀の資本/" style="font-size: 12.50px;">21世紀の資本</a><a href="/tags/Graphviz/" style="font-size: 10.00px;">Graphviz</a><a href="/tags/HEXO/" style="font-size: 11.25px;">HEXO</a><a href="/tags/Rパッケージ/" style="font-size: 11.25px;">Rパッケージ</a><a href="/tags/オープンデータ/" style="font-size: 18.75px;">オープンデータ</a><a href="/tags/データからの知識発見/" style="font-size: 15.00px;">データからの知識発見</a><a href="/tags/データベース/" style="font-size: 11.25px;">データベース</a><a href="/tags/原因をさぐる統計学/" style="font-size: 16.25px;">原因をさぐる統計学</a><a href="/tags/問題解決の数理/" style="font-size: 20.00px;">問題解決の数理</a><a href="/tags/因子分析＆確証的因子分析/" style="font-size: 10.00px;">因子分析＆確証的因子分析</a><a href="/tags/地図/" style="font-size: 10.00px;">地図</a><a href="/tags/心理・教育統計法特論/" style="font-size: 13.75px;">心理・教育統計法特論</a><a href="/tags/心理統計法/" style="font-size: 17.50px;">心理統計法</a><a href="/tags/成長曲線モデル/" style="font-size: 10.00px;">成長曲線モデル</a><a href="/tags/時系列解析/" style="font-size: 11.25px;">時系列解析</a><a href="/tags/潜在変数間の因果関係/" style="font-size: 10.00px;">潜在変数間の因果関係</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04">April 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03">March 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">36</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">34</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/04/05/震源地と原子力発電所2/">震源地と原子力発電所2</a>
+          </li>
+        
+          <li>
+            <a href="/2015/03/29/地震動のスペクトル2/">地震動のスペクトル2(Hanningウィンドウ)</a>
+          </li>
+        
+          <li>
+            <a href="/2015/03/29/地震動のスペクトル1/">地震動のスペクトル1(Hanningウィンドウ)</a>
+          </li>
+        
+          <li>
+            <a href="/2015/03/28/応答スペクトル/">応答スペクトル</a>
+          </li>
+        
+          <li>
+            <a href="/2015/03/01/FRED01/">FRED</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 統計ソフトRの備忘録２<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
