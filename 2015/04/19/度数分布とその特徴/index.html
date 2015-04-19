@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>度数分布とその特徴 | 統計ソフトRの備忘録２</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="放送大学「心理統計法」第2章 度数分布とその特徴">
+<meta property="og:type" content="article">
+<meta property="og:title" content="度数分布とその特徴">
+<meta property="og:url" content="http://yoursite.com/2015/04/19/度数分布とその特徴/">
+<meta property="og:site_name" content="統計ソフトRの備忘録２">
+<meta property="og:description" content="放送大学「心理統計法」第2章 度数分布とその特徴">
+<meta property="og:image" content="/images/hist01.png">
+<meta property="og:image" content="/images/pareto01.png">
+<meta property="og:image" content="/images/pareto02.png">
+<meta property="og:image" content="/images/pareto03.png">
+<meta property="og:image" content="/images/pareto04.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="度数分布とその特徴">
+<meta name="twitter:description" content="放送大学「心理統計法」第2章 度数分布とその特徴">
+
+  
+    <link rel="alternative" href="/atom.xml" title="統計ソフトRの備忘録２" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">統計ソフトRの備忘録２</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-度数分布とその特徴" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/19/度数分布とその特徴/" class="article-date">
+  <time datetime="2015-04-19T02:13:55.000Z" itemprop="datePublished">Apr 19 2015</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/放送大学/">放送大学</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      度数分布とその特徴
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="放送大学「心理統計法」第2章_度数分布とその特徴">放送大学「心理統計法」第2章 度数分布とその特徴</h2>
+<a id="more"></a>
+
+
+<h4 id="「問題解決の数理第6章_在庫管理」ABC分析_にも関連あり">「問題解決の数理第6章 在庫管理」ABC分析 にも関連あり</h4>
+<p>ヒストグラム</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">math&lt;-c(<span class="number">52</span>,<span class="number">50</span>,<span class="number">91</span>,<span class="number">58</span>,<span class="number">81</span>,<span class="number">18</span>,<span class="number">69</span>,<span class="number">94</span>,<span class="number">84</span>,<span class="number">73</span>,<span class="number">71</span>,<span class="number">93</span>,<span class="number">51</span>,<span class="number">89</span>,<span class="number">83</span>,<span class="number">50</span>,<span class="number">71</span>,<span class="number">94</span>,<span class="number">52</span>,<span class="number">89</span>,</div><div class="line"><span class="number">92</span>,<span class="number">60</span>,<span class="number">77</span>,<span class="number">70</span>,<span class="number">19</span>,<span class="number">71</span>,<span class="number">51</span>,<span class="number">95</span>,<span class="number">92</span>,<span class="number">5</span>,<span class="number">63</span>,<span class="number">71</span>,<span class="number">88</span>,<span class="number">55</span>,<span class="number">84</span>,<span class="number">74</span>,<span class="number">19</span>,<span class="number">80</span>,<span class="number">54</span>,<span class="number">95</span>,<span class="number">88</span>,<span class="number">32</span>,<span class="number">64</span>,<span class="number">68</span>,<span class="number">88</span>,<span class="number">64</span>,<span class="number">80</span>,<span class="number">73</span>,<span class="number">14</span>,<span class="number">67</span>,<span class="number">49</span>,<span class="number">90</span>,<span class="number">88</span>,<span class="number">48</span>,<span class="number">57</span>,<span class="number">74</span>,<span class="number">48</span>,<span class="number">99</span>,<span class="number">77</span>,<span class="number">44</span>,</div><div class="line"><span class="number">77</span>,<span class="number">78</span>,<span class="number">24</span>,<span class="number">23</span>,<span class="number">36</span>,<span class="number">91</span>,<span class="number">67</span>,<span class="number">8</span>,<span class="number">68</span>,<span class="number">62</span>,<span class="number">48</span>,<span class="number">99</span>,<span class="number">78</span>,<span class="number">55</span>,<span class="number">77</span>,<span class="number">66</span>,<span class="number">29</span>,<span class="number">41</span>,<span class="number">38</span>,<span class="number">34</span>,<span class="number">78</span>,<span class="number">21</span>,<span class="number">57</span>,<span class="number">68</span>,<span class="number">69</span>,<span class="number">100</span>,<span class="number">48</span>,<span class="number">99</span>,<span class="number">88</span>,<span class="number">55</span>,<span class="number">77</span>,<span class="number">39</span>,<span class="number">47</span>,<span class="number">20</span>,<span class="number">49</span>,<span class="number">31</span>,<span class="number">88</span>,<span class="number">8</span>,<span class="number">57</span>,<span class="number">39</span>)</div><div class="line"><span class="comment">#ヒストグラム</span></div><div class="line"><span class="comment">#png("hist01.png",width=1000,height=800)</span></div><div class="line">h &lt;- hist(math,breaks=se<span class="string">q(0,100,10)</span>,xlab=<span class="string">"class"</span>,main=<span class="string">"ヒストグラム"</span>)</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/hist01.png" alt=""></p>
+<p>関数histの戻り値を使う</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">library(knitr)</div><div class="line"><span class="comment">#度数分布表(縦長)</span></div><div class="line"><span class="keyword">break</span>1&lt;-h<span class="variable">$breaks</span>[<span class="number">1</span>:(length(h<span class="variable">$breaks</span>)-<span class="number">1</span>)]</div><div class="line"><span class="keyword">break</span>2&lt;-h<span class="variable">$breaks</span>[<span class="number">2</span>:length(h<span class="variable">$breaks</span>)]</div><div class="line"><span class="comment">#class分けの表示に工夫が必要</span></div><div class="line">class_names&lt;-paste(<span class="keyword">break</span>1+<span class="number">1</span>,<span class="string">"～"</span>,<span class="keyword">break</span>2,sep=<span class="string">""</span>)</div><div class="line"><span class="comment">#1～10を0～10に書き換え</span></div><div class="line">class_names[<span class="number">1</span>]&lt;-<span class="string">"0～10"</span></div><div class="line">number_table &lt;- data.frame(class=class_names,freq=h<span class="variable">$counts</span>) </div><div class="line">kable(number_table)</div></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">class</th>
+<th style="text-align:right">freq</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">0～10</td>
+<td style="text-align:right">3</td>
+</tr>
+<tr>
+<td style="text-align:left">11～20</td>
+<td style="text-align:right">5</td>
+</tr>
+<tr>
+<td style="text-align:left">21～30</td>
+<td style="text-align:right">4</td>
+</tr>
+<tr>
+<td style="text-align:left">31～40</td>
+<td style="text-align:right">7</td>
+</tr>
+<tr>
+<td style="text-align:left">41～50</td>
+<td style="text-align:right">11</td>
+</tr>
+<tr>
+<td style="text-align:left">51～60</td>
+<td style="text-align:right">13</td>
+</tr>
+<tr>
+<td style="text-align:left">61～70</td>
+<td style="text-align:right">13</td>
+</tr>
+<tr>
+<td style="text-align:left">71～80</td>
+<td style="text-align:right">18</td>
+</tr>
+<tr>
+<td style="text-align:left">81～90</td>
+<td style="text-align:right">13</td>
+</tr>
+<tr>
+<td style="text-align:left">91～100</td>
+<td style="text-align:right">13</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#度数分布表(横長)</div><div class="line">number_table2&lt;<span class="function">-t</span>(number_table<span class="attr_selector">[,2]</span>)</div><div class="line"><span class="function">rownames</span>(number_table2)&lt;-"freq";<span class="function">colnames</span>(number_table2)&lt;<span class="function">-t</span>(number_table<span class="attr_selector">[,1]</span>)</div><div class="line"><span class="function">kable</span>(number_table2)</div></pre></td></tr></table></figure>
+
+<p>kable関数で打ち出された表に文字列「class」を記入</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">class</th>
+<th style="text-align:right">0～10</th>
+<th style="text-align:right">11～20</th>
+<th style="text-align:right">21～30</th>
+<th style="text-align:right">31～40</th>
+<th style="text-align:right">41～50</th>
+<th style="text-align:right">51～60</th>
+<th style="text-align:right">61～70</th>
+<th style="text-align:right">71～80</th>
+<th style="text-align:right">81～90</th>
+<th style="text-align:right">91～100</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">freq</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">5</td>
+<td style="text-align:right">4</td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">11</td>
+<td style="text-align:right">13</td>
+<td style="text-align:right">13</td>
+<td style="text-align:right">18</td>
+<td style="text-align:right">13</td>
+<td style="text-align:right">13</td>
+</tr>
+</tbody>
+</table>
+<p>パレート図</p>
+<p>その１(qccパッケージのpareto.chart)</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="title">library</span>(qcc)</div><div class="line"><span class="title">freq</span>&lt;-c(<span class="number">15</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">12</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">1</span>)</div><div class="line"><span class="title">names</span>(freq)&lt;-c(<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>,<span class="string">"E"</span>,<span class="string">"F"</span>,<span class="string">"G"</span>,<span class="string">"H"</span>,<span class="string">"I"</span>,<span class="string">"J"</span>)</div><div class="line"><span class="preprocessor">#png("pareto01.png",width=1000,height=800)</span></div><div class="line"><span class="title">pareto</span>.chart(freq,las=<span class="number">1</span>)</div><div class="line"><span class="preprocessor">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/pareto01.png" alt=""></p>
+<p>その2(qichartsパッケージのparetochart)</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">library(qicharts)</div><div class="line">x&lt;-c(<span class="keyword">rep</span>(<span class="string">"A"</span>,<span class="number">15</span>),<span class="keyword">rep</span>(<span class="string">"B"</span>,<span class="number">2</span>),<span class="keyword">rep</span>(<span class="string">"C"</span>,<span class="number">4</span>),<span class="keyword">rep</span>(<span class="string">"D"</span>,<span class="number">12</span>),<span class="keyword">rep</span>(<span class="string">"E"</span>,<span class="number">1</span>),<span class="keyword">rep</span>(<span class="string">"F"</span>,<span class="number">5</span>),<span class="keyword">rep</span>(<span class="string">"G"</span>,<span class="number">1</span>),<span class="keyword">rep</span>(<span class="string">"H"</span>,<span class="number">3</span>),<span class="keyword">rep</span>(<span class="string">"I"</span>,<span class="number">6</span>),<span class="keyword">rep</span>(<span class="string">"J"</span>,<span class="number">1</span>))</div><div class="line">#png(<span class="string">"pareto02.png"</span>,width=<span class="number">1000</span>,height=<span class="number">800</span>)</div><div class="line">paretochart(x,las=<span class="number">1</span>)</div><div class="line">#dev.off()</div></pre></td></tr></table></figure>
+
+<p><img src="/images/pareto02.png" alt=""></p>
+<p>その3(関数を定義して使うときに調整する)</p>
+<h4 id="データフレームの１列目：クラスや選択肢、２列目：度数に固定">データフレームの１列目：クラスや選択肢、２列目：度数に固定</h4>
+<p>関数を定義</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#色はお好みで。</span></div><div class="line">abc.chart&lt;-function(df){</div><div class="line"><span class="comment">#降順にしないときは,行頭に#をつけてコメントアウト</span></div><div class="line">df&lt;-df[order(df[,<span class="number">2</span>],<span class="variable">decreasing=</span>T),]</div><div class="line">par(<span class="variable">mar =</span> c(<span class="number">5</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">6</span>))</div><div class="line"><span class="comment"># barplot関数の戻り値は、各バーの座標位置</span></div><div class="line">barx &lt;- barplot(df[,<span class="number">2</span>],names.<span class="variable">arg=</span>df[,<span class="number">1</span>],<span class="variable">las=</span><span class="number">1</span>,<span class="variable">ylim=</span>c(<span class="number">0</span>,sum(df[,<span class="number">2</span>])),panel.<span class="variable">first=</span>grid(NA,NULL),<span class="variable">col=</span><span class="string">"lightblue"</span>,<span class="variable">ylab=</span><span class="string">"frequency"</span>)</div><div class="line">lines(barx,cumsum(df[,<span class="number">2</span>]),<span class="variable">col=</span><span class="string">"red"</span>)</div><div class="line">par(<span class="variable">xpd=</span>T)</div><div class="line">points(barx,cumsum(df[,<span class="number">2</span>]),<span class="variable">col=</span><span class="string">"red"</span>,<span class="variable">pch=</span><span class="number">20</span>)</div><div class="line">par(<span class="variable">xpd=</span>F)</div><div class="line">abline(<span class="variable">h=</span><span class="number">0.8</span>*sum(df[,<span class="number">2</span>]),<span class="variable">col=</span><span class="string">"blue"</span>,<span class="variable">lty=</span><span class="number">3</span>)</div><div class="line">axis(<span class="number">4</span>,c(<span class="number">0</span>,<span class="number">0.2</span>*sum(df[,<span class="number">2</span>]),<span class="number">0.4</span>*sum(df[,<span class="number">2</span>]),<span class="number">0.6</span>*sum(df[,<span class="number">2</span>]),<span class="number">0.8</span>*sum(df[,<span class="number">2</span>]),sum(df[,<span class="number">2</span>])),c(<span class="string">"0%"</span>,<span class="string">"20%"</span>,<span class="string">"40%"</span>,<span class="string">"60%"</span>,<span class="string">"80%"</span>,<span class="string">"100%"</span>),<span class="variable">las=</span><span class="number">1</span>)</div><div class="line">mtext(<span class="string">"累計(パーセント)"</span>,<span class="number">4</span>,<span class="number">3</span>)</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>定義したabc.chart関数を使ってグラフ作成</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">選択肢&lt;-c(<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>,<span class="string">"E"</span>,<span class="string">"F"</span>,<span class="string">"G"</span>,<span class="string">"H"</span>,<span class="string">"I"</span>,<span class="string">"J"</span>)</div><div class="line">度数&lt;-c(<span class="number">15</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">12</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">1</span>)</div><div class="line"><span class="title">df</span>&lt;-<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(選択肢,度数)</span></span></div><div class="line"><span class="preprocessor">#png("pareto03.png",width=1000,height=800)</span></div><div class="line"><span class="title">abc</span>.chart(df)</div><div class="line"><span class="title">title</span>(<span class="string">"パレート図"</span>)</div><div class="line"><span class="preprocessor">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/pareto03.png" alt=""></p>
+<p>abc.chart関数を調整してこの記事の最初で作成したデータフレーム　number_tableをグラフ化</p>
+<p>(以下のとおり変更)<br>並べ替えしない。ヒストグラムの色を変える。折れ線を点線。80%lineを50%lineに。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#色はお好みで。</span></div><div class="line">abc.chart&lt;-function(df){</div><div class="line"><span class="comment">#降順にしないときは,行頭に#をつけてコメントアウト</span></div><div class="line"><span class="comment">#df&lt;-df[order(df[,2],decreasing=T),]</span></div><div class="line">par(<span class="variable">mar =</span> c(<span class="number">5</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">6</span>))</div><div class="line"><span class="comment"># barplot関数の戻り値は、各バーの座標位置</span></div><div class="line">barx &lt;- barplot(df[,<span class="number">2</span>],names.<span class="variable">arg=</span>df[,<span class="number">1</span>],<span class="variable">las=</span><span class="number">1</span>,<span class="variable">ylim=</span>c(<span class="number">0</span>,sum(df[,<span class="number">2</span>])),panel.<span class="variable">first=</span>grid(NA,NULL),<span class="variable">col=</span><span class="string">"lightgreen"</span>,<span class="variable">ylab=</span><span class="string">"frequency"</span>)</div><div class="line">lines(barx,cumsum(df[,<span class="number">2</span>]),<span class="variable">col=</span><span class="string">"red"</span>,<span class="variable">lty=</span><span class="number">3</span>)</div><div class="line">par(<span class="variable">xpd=</span>T)</div><div class="line">points(barx,cumsum(df[,<span class="number">2</span>]),<span class="variable">col=</span><span class="string">"red"</span>,<span class="variable">pch=</span><span class="number">20</span>)</div><div class="line">par(<span class="variable">xpd=</span>F)</div><div class="line">abline(<span class="variable">h=</span><span class="number">0.5</span>*sum(df[,<span class="number">2</span>]),<span class="variable">col=</span><span class="string">"blue"</span>,<span class="variable">lty=</span><span class="number">3</span>)</div><div class="line">axis(<span class="number">4</span>,c(<span class="number">0</span>,<span class="number">0.2</span>*sum(df[,<span class="number">2</span>]),<span class="number">0.4</span>*sum(df[,<span class="number">2</span>]),<span class="number">0.6</span>*sum(df[,<span class="number">2</span>]),<span class="number">0.8</span>*sum(df[,<span class="number">2</span>]),sum(df[,<span class="number">2</span>])),c(<span class="string">"0%"</span>,<span class="string">"20%"</span>,<span class="string">"40%"</span>,<span class="string">"60%"</span>,<span class="string">"80%"</span>,<span class="string">"100%"</span>),<span class="variable">las=</span><span class="number">1</span>)</div><div class="line">mtext(<span class="string">"累計(パーセント)"</span>,<span class="number">4</span>,<span class="number">3</span>)</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>調整して読み込み直したabc.chart関数を使ってグラフ作成</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#png("pareto04.png",width=1000,height=800)</span></div><div class="line">abc.chart(number_table)</div><div class="line">title(<span class="string">"ヒストグラムと累計"</span>)</div><div class="line"><span class="preprocessor">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/pareto04.png" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/04/19/度数分布とその特徴/" data-id="clm98q2d0pv5xwkb" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心理統計法/">心理統計法</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/04/05/震源地と原子力発電所2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">震源地と原子力発電所2</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GMT/">GMT</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gambit/">Gambit</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gnumeric/">Gnumeric</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Graphviz/">Graphviz</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NetworkX/">NetworkX</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">40</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sqlite3/">sqlite3</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/放送大学/">放送大学</a><span class="category-list-count">46</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/21世紀の資本/">21世紀の資本</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graphviz/">Graphviz</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/オープンデータ/">オープンデータ</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データベース/">データベース</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原因をさぐる統計学/">原因をさぐる統計学</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/因子分析＆確証的因子分析/">因子分析＆確証的因子分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/地図/">地図</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/成長曲線モデル/">成長曲線モデル</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/時系列解析/">時系列解析</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/潜在変数間の因果関係/">潜在変数間の因果関係</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/21世紀の資本/" style="font-size: 12.50px;">21世紀の資本</a><a href="/tags/Graphviz/" style="font-size: 10.00px;">Graphviz</a><a href="/tags/HEXO/" style="font-size: 11.25px;">HEXO</a><a href="/tags/Rパッケージ/" style="font-size: 11.25px;">Rパッケージ</a><a href="/tags/オープンデータ/" style="font-size: 18.75px;">オープンデータ</a><a href="/tags/データからの知識発見/" style="font-size: 15.00px;">データからの知識発見</a><a href="/tags/データベース/" style="font-size: 11.25px;">データベース</a><a href="/tags/原因をさぐる統計学/" style="font-size: 16.25px;">原因をさぐる統計学</a><a href="/tags/問題解決の数理/" style="font-size: 20.00px;">問題解決の数理</a><a href="/tags/因子分析＆確証的因子分析/" style="font-size: 10.00px;">因子分析＆確証的因子分析</a><a href="/tags/地図/" style="font-size: 10.00px;">地図</a><a href="/tags/心理・教育統計法特論/" style="font-size: 13.75px;">心理・教育統計法特論</a><a href="/tags/心理統計法/" style="font-size: 17.50px;">心理統計法</a><a href="/tags/成長曲線モデル/" style="font-size: 10.00px;">成長曲線モデル</a><a href="/tags/時系列解析/" style="font-size: 11.25px;">時系列解析</a><a href="/tags/潜在変数間の因果関係/" style="font-size: 10.00px;">潜在変数間の因果関係</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03">March 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">36</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">34</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/04/19/度数分布とその特徴/">度数分布とその特徴</a>
+          </li>
+        
+          <li>
+            <a href="/2015/04/05/震源地と原子力発電所2/">震源地と原子力発電所2</a>
+          </li>
+        
+          <li>
+            <a href="/2015/03/29/地震動のスペクトル2/">地震動のスペクトル2(Hanningウィンドウ)</a>
+          </li>
+        
+          <li>
+            <a href="/2015/03/29/地震動のスペクトル1/">地震動のスペクトル1(Hanningウィンドウ)</a>
+          </li>
+        
+          <li>
+            <a href="/2015/03/28/応答スペクトル/">応答スペクトル</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 統計ソフトRの備忘録２<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
