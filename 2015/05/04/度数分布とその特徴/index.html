@@ -8,7 +8,7 @@
   <meta name="description" content="放送大学「心理統計法」第2章 度数分布とその特徴">
 <meta property="og:type" content="article">
 <meta property="og:title" content="度数分布とその特徴">
-<meta property="og:url" content="http://yoursite.com/2015/04/19/度数分布とその特徴/">
+<meta property="og:url" content="http://yoursite.com/2015/05/04/度数分布とその特徴/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
 <meta property="og:description" content="放送大学「心理統計法」第2章 度数分布とその特徴">
 <meta property="og:image" content="/images/hist01.png">
@@ -97,8 +97,8 @@
       <div class="outer">
         <section id="main"><article id="post-度数分布とその特徴" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/04/19/度数分布とその特徴/" class="article-date">
-  <time datetime="2015-04-19T02:13:55.000Z" itemprop="datePublished">Apr 19 2015</time>
+    <a href="/2015/05/04/度数分布とその特徴/" class="article-date">
+  <time datetime="2015-05-03T21:09:42.000Z" itemprop="datePublished">May 4 2015</time>
 </a>
     
   <div class="article-category">
@@ -220,11 +220,11 @@
 </table>
 <p>パレート図</p>
 <p>その１(qccパッケージのpareto.chart)</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="title">library</span>(qcc)</div><div class="line"><span class="title">freq</span>&lt;-c(<span class="number">15</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">12</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">1</span>)</div><div class="line"><span class="title">names</span>(freq)&lt;-c(<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>,<span class="string">"E"</span>,<span class="string">"F"</span>,<span class="string">"G"</span>,<span class="string">"H"</span>,<span class="string">"I"</span>,<span class="string">"J"</span>)</div><div class="line"><span class="preprocessor">#png("pareto01.png",width=1000,height=800)</span></div><div class="line"><span class="title">pareto</span>.chart(freq,las=<span class="number">1</span>)</div><div class="line"><span class="preprocessor">#dev.off()</span></div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="title">library</span>(qcc)</div><div class="line"><span class="title">freq</span>&lt;-c(<span class="number">15</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">12</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">1</span>)</div><div class="line"><span class="title">names</span>(freq)&lt;-<span class="type">LETTERS</span>[<span class="number">1</span>:<span class="number">10</span>]</div><div class="line"><span class="preprocessor">#png("pareto01.png",width=1000,height=800)</span></div><div class="line"><span class="title">pareto</span>.chart(freq,las=<span class="number">1</span>)</div><div class="line"><span class="preprocessor">#dev.off()</span></div></pre></td></tr></table></figure>
 
 <p><img src="/images/pareto01.png" alt=""></p>
 <p>その2(qichartsパッケージのparetochart)</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">library(qicharts)</div><div class="line">x&lt;-c(<span class="keyword">rep</span>(<span class="string">"A"</span>,<span class="number">15</span>),<span class="keyword">rep</span>(<span class="string">"B"</span>,<span class="number">2</span>),<span class="keyword">rep</span>(<span class="string">"C"</span>,<span class="number">4</span>),<span class="keyword">rep</span>(<span class="string">"D"</span>,<span class="number">12</span>),<span class="keyword">rep</span>(<span class="string">"E"</span>,<span class="number">1</span>),<span class="keyword">rep</span>(<span class="string">"F"</span>,<span class="number">5</span>),<span class="keyword">rep</span>(<span class="string">"G"</span>,<span class="number">1</span>),<span class="keyword">rep</span>(<span class="string">"H"</span>,<span class="number">3</span>),<span class="keyword">rep</span>(<span class="string">"I"</span>,<span class="number">6</span>),<span class="keyword">rep</span>(<span class="string">"J"</span>,<span class="number">1</span>))</div><div class="line">#png(<span class="string">"pareto02.png"</span>,width=<span class="number">1000</span>,height=<span class="number">800</span>)</div><div class="line">paretochart(x,las=<span class="number">1</span>)</div><div class="line">#dev.off()</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">library(qicharts)</div><div class="line">x&lt;-rep(LETTERS[<span class="number">1</span>:<span class="number">10</span>], c(<span class="number">15</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">12</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">1</span>))</div><div class="line"><span class="preprocessor">#png("pareto02.png",width=1000,height=800)</span></div><div class="line">paretochart(x,las=<span class="number">1</span>)</div><div class="line"><span class="preprocessor">#dev.off()</span></div></pre></td></tr></table></figure>
 
 <p><img src="/images/pareto02.png" alt=""></p>
 <p>その3(関数を定義して使うときに調整する)</p>
@@ -233,7 +233,7 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#色はお好みで。</span></div><div class="line">abc.chart&lt;-function(df){</div><div class="line"><span class="comment">#降順にしないときは,行頭に#をつけてコメントアウト</span></div><div class="line">df&lt;-df[order(df[,<span class="number">2</span>],<span class="variable">decreasing=</span>T),]</div><div class="line">par(<span class="variable">mar =</span> c(<span class="number">5</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">6</span>))</div><div class="line"><span class="comment"># barplot関数の戻り値は、各バーの座標位置</span></div><div class="line">barx &lt;- barplot(df[,<span class="number">2</span>],names.<span class="variable">arg=</span>df[,<span class="number">1</span>],<span class="variable">las=</span><span class="number">1</span>,<span class="variable">ylim=</span>c(<span class="number">0</span>,sum(df[,<span class="number">2</span>])),panel.<span class="variable">first=</span>grid(NA,NULL),<span class="variable">col=</span><span class="string">"lightblue"</span>,<span class="variable">ylab=</span><span class="string">"frequency"</span>)</div><div class="line">lines(barx,cumsum(df[,<span class="number">2</span>]),<span class="variable">col=</span><span class="string">"red"</span>)</div><div class="line">par(<span class="variable">xpd=</span>T)</div><div class="line">points(barx,cumsum(df[,<span class="number">2</span>]),<span class="variable">col=</span><span class="string">"red"</span>,<span class="variable">pch=</span><span class="number">20</span>)</div><div class="line">par(<span class="variable">xpd=</span>F)</div><div class="line">abline(<span class="variable">h=</span><span class="number">0.8</span>*sum(df[,<span class="number">2</span>]),<span class="variable">col=</span><span class="string">"blue"</span>,<span class="variable">lty=</span><span class="number">3</span>)</div><div class="line">axis(<span class="number">4</span>,c(<span class="number">0</span>,<span class="number">0.2</span>*sum(df[,<span class="number">2</span>]),<span class="number">0.4</span>*sum(df[,<span class="number">2</span>]),<span class="number">0.6</span>*sum(df[,<span class="number">2</span>]),<span class="number">0.8</span>*sum(df[,<span class="number">2</span>]),sum(df[,<span class="number">2</span>])),c(<span class="string">"0%"</span>,<span class="string">"20%"</span>,<span class="string">"40%"</span>,<span class="string">"60%"</span>,<span class="string">"80%"</span>,<span class="string">"100%"</span>),<span class="variable">las=</span><span class="number">1</span>)</div><div class="line">mtext(<span class="string">"累計(パーセント)"</span>,<span class="number">4</span>,<span class="number">3</span>)</div><div class="line">}</div></pre></td></tr></table></figure>
 
 <p>定義したabc.chart関数を使ってグラフ作成</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">選択肢&lt;-c(<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>,<span class="string">"E"</span>,<span class="string">"F"</span>,<span class="string">"G"</span>,<span class="string">"H"</span>,<span class="string">"I"</span>,<span class="string">"J"</span>)</div><div class="line">度数&lt;-c(<span class="number">15</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">12</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">1</span>)</div><div class="line"><span class="title">df</span>&lt;-<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(選択肢,度数)</span></span></div><div class="line"><span class="preprocessor">#png("pareto03.png",width=1000,height=800)</span></div><div class="line"><span class="title">abc</span>.chart(df)</div><div class="line"><span class="title">title</span>(<span class="string">"パレート図"</span>)</div><div class="line"><span class="preprocessor">#dev.off()</span></div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">選択肢&lt;-<span class="type">LETTERS</span>[<span class="number">1</span>:<span class="number">10</span>]</div><div class="line">度数&lt;-c(<span class="number">15</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">12</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">1</span>)</div><div class="line"><span class="title">df</span>&lt;-<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(選択肢,度数)</span></span></div><div class="line"><span class="preprocessor">#png("pareto03.png",width=1000,height=800)</span></div><div class="line"><span class="title">abc</span>.chart(df)</div><div class="line"><span class="title">title</span>(<span class="string">"パレート図"</span>)</div><div class="line"><span class="preprocessor">#dev.off()</span></div></pre></td></tr></table></figure>
 
 <p><img src="/images/pareto03.png" alt=""></p>
 <p>abc.chart関数を調整してこの記事の最初で作成したデータフレーム　number_tableをグラフ化</p>
@@ -248,7 +248,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/04/19/度数分布とその特徴/" data-id="clm98q2d0pv5xwkb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/05/04/度数分布とその特徴/" data-id="clm98q2d0pv5xwkb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心理統計法/">心理統計法</a></li></ul>
@@ -259,19 +259,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/04/19/Rで計測震度の算出/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Rで計測震度の算出
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/04/05/震源地と原子力発電所2/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2015/05/02/縦書き帯グラフ棒グラフ/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">震源地と原子力発電所2</div>
+      <div class="article-nav-title">縦書き帯グラフ棒グラフ</div>
     </a>
   
 </nav>
@@ -314,7 +305,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05">May 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04">April 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03">March 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">36</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">34</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05">May 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03">March 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">36</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">34</span></li></ul>
     </div>
   </div>
 
@@ -326,15 +317,15 @@
       <ul>
         
           <li>
+            <a href="/2015/05/04/度数分布とその特徴/">度数分布とその特徴</a>
+          </li>
+        
+          <li>
             <a href="/2015/05/02/縦書き帯グラフ棒グラフ/">縦書き帯グラフ棒グラフ</a>
           </li>
         
           <li>
             <a href="/2015/04/19/Rで計測震度の算出/">Rで計測震度の算出</a>
-          </li>
-        
-          <li>
-            <a href="/2015/04/19/度数分布とその特徴/">度数分布とその特徴</a>
           </li>
         
           <li>
