@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>大阪市塗り分け地図まとめ | 統計ソフトRの備忘録２</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="TeachingDemos,mapplots,RColorBrewer パッケージ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大阪市塗り分け地図まとめ">
+<meta property="og:url" content="http://yoursite.com/2015/05/31/大阪市塗り分け地図まとめ/">
+<meta property="og:site_name" content="統計ソフトRの備忘録２">
+<meta property="og:description" content="TeachingDemos,mapplots,RColorBrewer パッケージ">
+<meta property="og:image" content="/images/osaka06.png">
+<meta property="og:image" content="/images/osaka07.png">
+<meta property="og:image" content="/images/osaka08.png">
+<meta property="og:image" content="/images/osaka09.png">
+<meta property="og:image" content="/images/osaka10.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="大阪市塗り分け地図まとめ">
+<meta name="twitter:description" content="TeachingDemos,mapplots,RColorBrewer パッケージ">
+
+  
+    <link rel="alternative" href="/atom.xml" title="統計ソフトRの備忘録２" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">統計ソフトRの備忘録２</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-大阪市塗り分け地図まとめ" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/31/大阪市塗り分け地図まとめ/" class="article-date">
+  <time datetime="2015-05-31T05:15:54.000Z" itemprop="datePublished">May 31 2015</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/グラフまとめ/">グラフまとめ</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      大阪市塗り分け地図まとめ
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="TeachingDemos,mapplots,RColorBrewer_パッケージ">TeachingDemos,mapplots,RColorBrewer パッケージ</h2>
+<a id="more"></a>
+
+
+<p>(参考・使用したデータ等)<br><a href="http://oku.edu.mie-u.ac.jp/~okumura/stat/osaka2015.html" target="_blank" rel="external">大阪市における特別区の設置についての投票</a><br><a href="http://oku.edu.mie-u.ac.jp/~okumura/stat/data/osaka2015.csv" target="_blank" rel="external">大阪各区の開票結果</a>  </p>
+<p>(地図のデータ)<br><a href="http://www.city.osaka.lg.jp/toshikeikaku/page/0000250227.html" target="_blank" rel="external">マップナビおおさかオープンデータ一覧</a>の<br>地図情報（マップナビおおさか掲載情報以外）区域画像（Shapefile）</p>
+<p>（準備）<br>地図データをダウンロードー＞解凍<br>ー＞ファイル名「24区画像」を「osaka」（例えば、「24区画像.shp」は「osaka.shp」）　にリネーム<br>ー＞作業ディレクトリに保存</p>
+<p>(参考・使用したデータ等)<br><a href="https://raw.githubusercontent.com/yutannihilation/osaka_age_composition/master/osaka_age_composition.csv" target="_blank" rel="external">区ごとの年齢構成</a></p>
+<p>使用するOS、Rのバージョンによってデータを取り込む命令が異なる。<br>使うデータはあらかじめダウンロードしておくのが一番よい。</p>
+<p>ここではOSはzorin。RのバージョンR3.1.2</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">library(maptools)</div><div class="line">library(RColorBrewer)</div><div class="line"><span class="comment">#osaka &lt;- readShapePoly("osaka.shp")</span></div><div class="line">library(rgdal)</div><div class="line">osaka&lt;-readOGR(<span class="string">"osaka.shp"</span>, <span class="variable">layer=</span><span class="string">"osaka"</span>,<span class="variable">encoding=</span><span class="string">"Shift_JIS"</span>)</div><div class="line">osakadata &lt;- osaka@data</div><div class="line">vote &lt;- read.csv(<span class="string">"http://oku.edu.mie-u.ac.jp/~okumura/stat/data/osaka2015.csv"</span>, <span class="variable">header=</span>TRUE,<span class="variable">fileEncoding=</span><span class="string">"UTF-8"</span>)</div><div class="line"><span class="comment">#vote &lt;- read.csv("osaka2015.csv", header=TRUE)</span></div><div class="line">head(vote)</div><div class="line">osakadata&lt;-merge(<span class="variable">x=</span>osakadata,<span class="variable">y=</span>vote,by.<span class="variable">x=</span><span class="string">"ATTR2"</span>,by.<span class="variable">y=</span><span class="string">"区名"</span>,<span class="variable">sort=</span>F)</div><div class="line">library(downloader)</div><div class="line">download(<span class="string">"https://raw.githubusercontent.com/yutannihilation/osaka_age_composition/master/osaka_age_composition.csv"</span>,<span class="string">"age.csv"</span>)</div><div class="line">age&lt;-read.csv(<span class="string">"age.csv"</span>,<span class="variable">fileEncoding=</span><span class="string">"UTF-8"</span>)</div><div class="line"><span class="comment">#層別集計作業(80歳以上まとめた)</span></div><div class="line">age$class&lt;- cut(age$age,<span class="variable">breaks=</span>c(seq(<span class="number">0</span>,<span class="number">80</span>,<span class="number">10</span>),<span class="number">101</span>), <span class="variable">right=</span>F, <span class="variable">ordered_result=</span>TRUE)</div><div class="line">age2 &lt;- subset(age, class!=<span class="string">"[0,10)"</span> & class!=<span class="string">"[10,20)"</span>, <span class="variable">select=</span>c(class,district,total))</div><div class="line">unique(osakadata$ATTR2);unique(age2$district)</div></pre></td></tr></table></figure>
+
+<p> [1] 此花区   城東区   生野区   西区     西成区   鶴見区   都島区   大正区   中央区   住之江区 西淀川区 天王寺区 東住吉区 東成区   東淀川区<br>[16] 平野区   北区     淀川区   阿倍野区 福島区   浪速区   旭区     港区     住吉区<br>24 Levels: 阿倍野区 旭区 港区 此花区 住吉区 住之江区 城東区 生野区 西区 西成区 西淀川区 大正区 中央区 鶴見区 天王寺区 都島区 … 浪速区<br> [1] 北     都島   福島   此花   中央   西     港     大正   天王寺 浪速   西淀川 淀川   東淀川 東成   生野   旭     城東   鶴見   阿倍野<br>[20] 住之江 住吉   東住吉 平野   西成<br>Levels: 阿倍野 旭 港 此花 住吉 住之江 城東 生野 西 西成 西淀川 大正 中央 鶴見 天王寺 都島 東住吉 東成 東淀川 福島 平野 北 淀川 浪速</p>
+<h3 id="地図上に年齢構成割合の円グラフを書くためにはオブジェクトageの並び順をosakadata$ATTR2の並び順にに合わせる必要あり。">地図上に年齢構成割合の円グラフを書くためにはオブジェクトageの並び順をosakadata$ATTR2の並び順にに合わせる必要あり。</h3>
+<p>方法１:年齢構成割合も投票数のようにosakadataにマージする</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">temp&lt;-xtabs(as.vector(total)~as.vector(district)+as.vector(class),age2)</div><div class="line">age3&lt;-data.frame(paste(rownames(temp),<span class="string">"区"</span>,<span class="variable">sep=</span><span class="string">""</span>),temp[,])</div><div class="line">colnames(age3)&lt;-c(<span class="string">"district"</span>,colnames(temp))</div><div class="line">osakadata&lt;-merge(<span class="variable">x=</span>osakadata,<span class="variable">y=</span>age3,by.<span class="variable">x=</span><span class="string">"ATTR2"</span>,by.<span class="variable">y=</span><span class="string">"district"</span>,<span class="variable">sort=</span>F)</div><div class="line"><span class="comment">#library(RColorBrewer)</span></div><div class="line"><span class="comment">#library(mapplots)</span></div><div class="line"><span class="comment">#png("osaka06.png",width=1000,height=800)</span></div><div class="line">plot(osaka)</div><div class="line"><span class="comment">#区名を書く座標(ポリゴンの重心を得る)</span></div><div class="line">cents &lt;- coordinates(osaka)</div><div class="line">x &lt;- cents[,<span class="number">1</span>]</div><div class="line">y &lt;- cents[,<span class="number">2</span>]</div><div class="line">rr &lt;- (max(cents[,<span class="number">2</span>])-min(cents[,<span class="number">2</span>]))/<span class="number">20</span></div><div class="line">box()</div><div class="line"><span class="variable">j=</span><span class="number">1</span></div><div class="line">for(i <span class="keyword">in</span> unique(osakadata[,<span class="string">"ATTR2"</span>])){</div><div class="line">	<span class="variable">df=</span> subset(osakadata,<span class="variable">ATTR2=</span>=i)</div><div class="line">	add.pie(<span class="variable">z=</span>as.numeric(df[,c(<span class="string">"[20,30)"</span>, <span class="string">"[30,40)"</span>, <span class="string">"[40,50)"</span>, <span class="string">"[50,60)"</span>, <span class="string">"[60,70)"</span>, <span class="string">"[70,80)"</span>, <span class="string">"[80,101)"</span>)]),</div><div class="line">        <span class="variable">x=</span>cents[j,<span class="number">1</span>], <span class="variable">y=</span>cents[j,<span class="number">2</span>],<span class="variable">radius=</span>rr,label.<span class="variable">dist=</span>NA,<span class="variable">col=</span>brewer.pal(<span class="number">7</span>, <span class="string">"Set3"</span>))</div><div class="line">	<span class="variable">j=</span>j+<span class="number">1</span></div><div class="line">}</div><div class="line">legend(<span class="string">"topright"</span>,<span class="variable">legend=</span>c(<span class="string">"二十代"</span>,<span class="string">"三十代"</span>,<span class="string">"四十代"</span>,<span class="string">"五十代"</span>,<span class="string">"六十代"</span>,<span class="string">"七十代"</span>,<span class="string">"八十以上"</span>),</div><div class="line"><span class="variable">cex=</span><span class="number">0.7</span>,<span class="variable">fill=</span>brewer.pal(<span class="number">7</span>, <span class="string">"Set3"</span>),text.<span class="variable">col=</span>'black',<span class="variable">ncol=</span><span class="number">2</span>)</div><div class="line">title(<span class="string">"年齢構成"</span>)</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/osaka06.png" alt=""></p>
+<p>方法２:age2の行順をosakadataの行順に合わせる。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">#district</span>に区をつけてage<span class="char">$d</span>istrict2に保存（osakadata<span class="char">$A</span>TTR2には区がついている）</div><div class="line">age2<span class="char">$d</span>istrict2&lt;-paste(age2<span class="char">$d</span>istrict,<span class="comment">"区"</span>,sep=<span class="comment">""</span>)</div><div class="line"><span class="symbol">#osakadata</span><span class="char">$A</span>TTR2の順序をvalsに入れる</div><div class="line">vals &lt;- as.vector(unique(osakadata<span class="char">$A</span>TTR2))</div><div class="line"><span class="symbol">#levels</span>=<span class="method">vals:</span>osakadata<span class="char">$A</span>TTR2の順序</div><div class="line">age2<span class="char">$d</span>istrict2&lt;-factor(age2<span class="char">$d</span>istrict2,levels=vals) </div><div class="line"><span class="symbol">#levels</span>の順番のsortlistを作り、</div><div class="line">sortlist &lt;- order(age2<span class="char">$d</span>istrict2)</div><div class="line">#並べ替える。</div><div class="line"><span class="class">D</span>&lt;-age2[sortlist,]</div><div class="line">unique(<span class="class">D</span><span class="char">$d</span>istrict2)</div></pre></td></tr></table></figure>
+
+<p> [1] 此花区   城東区   生野区   西区     西成区   鶴見区   都島区   大正区   中央区   住之江区 西淀川区 天王寺区<br>[13] 東住吉区 東成区   東淀川区 平野区   北区     淀川区   阿倍野区 福島区   浪速区   旭区     港区     住吉区<br>24 Levels: 此花区 城東区 生野区 西区 西成区 鶴見区 都島区 大正区 中央区 住之江区 西淀川区 天王寺区 東住吉区 … 住吉区</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#library(RColorBrewer)</span></div><div class="line">options(<span class="variable">scipen=</span><span class="number">10</span>)</div><div class="line"><span class="comment">#縦書き関数を定義</span></div><div class="line">tate &lt;- function(x){</div><div class="line">x&lt;-as.vector(x)  </div><div class="line">for(i <span class="keyword">in</span> <span class="number">1</span>:length(x)){</div><div class="line">xx&lt;-chartr(<span class="string">"ー"</span>, <span class="string">"｜"</span>,x[i])</div><div class="line">xx&lt;-unlist(strsplit(xx,<span class="string">""</span>))</div><div class="line">x[i]&lt;-paste(xx,<span class="variable">collapse=</span> <span class="string">"\n"</span>)</div><div class="line">}</div><div class="line">return(x)</div><div class="line">}</div><div class="line"><span class="comment"># 層別グラフ（画面24分割）</span></div><div class="line"><span class="comment">#png("osaka07.png",width=1000,height=800)</span></div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">4</span>,<span class="number">6</span>))</div><div class="line">for(i <span class="keyword">in</span> unique(D[,<span class="string">"district"</span>])){</div><div class="line">	<span class="variable">df=</span> subset(D,<span class="variable">district=</span>=i)</div><div class="line">	b&lt;-barplot(aggregate(total~class,df,sum)$total,names.<span class="variable">arg=</span>NA,</div><div class="line">	<span class="variable">horiz=</span>F,<span class="variable">las=</span><span class="number">1</span>,cex.<span class="variable">names=</span><span class="number">0.8</span>,<span class="variable">col=</span>brewer.pal(<span class="number">8</span>, <span class="string">"Set3"</span>),<span class="variable">ylim=</span>c(<span class="number">0</span>,max(xtabs(total~class+district,D))))</div><div class="line">	text(b[<span class="number">1</span>:<span class="number">7</span>,],-<span class="number">1000</span>,<span class="variable">labels=</span>tate(c(<span class="string">"二十代"</span>,<span class="string">"三十代"</span>,<span class="string">"四十代"</span>,<span class="string">"五十代"</span>,<span class="string">"六十代"</span>,<span class="string">"七十代"</span>,<span class="string">"八十以上"</span>)),</div><div class="line">	<span class="variable">srt=</span><span class="number">0</span>,<span class="variable">col=</span>c(rep(<span class="string">"black"</span>,<span class="number">30</span>),<span class="string">"red"</span>,rep(<span class="string">"black"</span>,<span class="number">16</span>)),<span class="variable">xpd=</span>TRUE,<span class="variable">pos=</span><span class="number">1</span>)</div><div class="line">	mtext(<span class="variable">side=</span><span class="number">3</span>, <span class="variable">line=</span><span class="number">1</span>, <span class="variable">text=</span>paste(<span class="string">"年齢構成(20～):"</span>,i,<span class="string">"区"</span>,<span class="variable">sep=</span><span class="string">""</span>))</div><div class="line">}</div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">1</span>,<span class="number">1</span>))</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/osaka07.png" alt=""></p>
+<p>osakadataの区順と同じになるので比較が容易</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#png("osaka08.png",width=1000,height=800)</span></div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">4</span>,<span class="number">6</span>))</div><div class="line">DD1 &lt;- osakadata$賛成/(osakadata$賛成+osakadata$反対)</div><div class="line">DD2 &lt;- <span class="number">1</span>-DD1</div><div class="line">for (i <span class="keyword">in</span> <span class="number">1</span>:nrow(osakadata)) {</div><div class="line">pie(c(<span class="variable">yes=</span>DD1[i],<span class="variable">no=</span>DD2[i]),<span class="variable">clockwise =</span> T)</div><div class="line">mtext(<span class="variable">side=</span><span class="number">3</span>, <span class="variable">line=</span><span class="number">1</span>,<span class="variable">text=</span>paste(osakadata$ATTR2[i]))</div><div class="line">}</div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">1</span>,<span class="number">1</span>))</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/osaka08.png" alt=""></p>
+<p>塗り分け地図＋円グラフ</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#library(mapplots)</span></div><div class="line"><span class="comment">#賛成の割合、反対の割合に応じて色の濃さを変える</span></div><div class="line"><span class="comment">#</span></div><div class="line">DD &lt;- osakadata$賛成/(osakadata$投票者男+osakadata$投票者女)</div><div class="line">cutnum&lt;-<span class="number">20</span></div><div class="line">classes &lt;- cut(DD,seq(<span class="number">0.4</span>,<span class="number">0.6</span>,<span class="variable">length=</span>cutnum+<span class="number">1</span>),include.<span class="variable">lowest=</span>T)</div><div class="line"><span class="comment">#区名を書く座標(ポリゴンの重心を得る)</span></div><div class="line">cents &lt;- coordinates(osaka)</div><div class="line">x &lt;- cents[,<span class="number">1</span>]</div><div class="line">y &lt;- cents[,<span class="number">2</span>]</div><div class="line">rr &lt;- (max(cents[,<span class="number">2</span>])-min(cents[,<span class="number">2</span>]))/<span class="number">20</span></div><div class="line"><span class="comment">#plot</span></div><div class="line">par(<span class="variable">cex=</span><span class="number">0.9</span>)</div><div class="line">colblue &lt;- colorRampPalette(c(<span class="string">"blue"</span>,<span class="string">"#C6C6FF"</span>))</div><div class="line">colred &lt;- colorRampPalette(c(<span class="string">"#FFC6C6"</span>,<span class="string">"red"</span>))</div><div class="line">cols&lt;-rev(c(colblue(<span class="number">10</span>),colred(<span class="number">10</span>)))</div><div class="line"><span class="comment">#png("osaka09.png",width=1000,height=800)</span></div><div class="line">plot(osaka,<span class="variable">col=</span>cols[classes],<span class="variable">xlab=</span><span class="string">""</span>,<span class="variable">ylab=</span><span class="string">""</span>,<span class="variable">axes=</span>F)</div><div class="line">box()</div><div class="line"><span class="variable">j=</span><span class="number">1</span></div><div class="line">for(i <span class="keyword">in</span> unique(D[,<span class="string">"district"</span>])){</div><div class="line">	<span class="variable">df=</span> subset(D,<span class="variable">district=</span>=i)</div><div class="line">	add.pie(<span class="variable">z=</span>aggregate(total~class,df,sum)$total,<span class="variable">x=</span>cents[j,<span class="number">1</span>], <span class="variable">y=</span>cents[j,<span class="number">2</span>],<span class="variable">radius=</span>rr,label.<span class="variable">dist=</span>NA,<span class="variable">col=</span>brewer.pal(<span class="number">7</span>, <span class="string">"Set3"</span>))</div><div class="line">	<span class="variable">j=</span>j+<span class="number">1</span></div><div class="line">}</div><div class="line"><span class="comment">#区名を書く</span></div><div class="line"><span class="comment">#text(x,y,as.character(osakadata$ATTR2),cex=0.7,pos=1,offset=0,col="black")</span></div><div class="line"><span class="comment">#凡例とタイトル</span></div><div class="line">cols2 &lt;- c(colblue(<span class="number">10</span>),colred(<span class="number">10</span>))</div><div class="line">legend(<span class="string">"topleft"</span>,<span class="variable">legend=</span>names(rev(table(classes))),<span class="variable">cex=</span><span class="number">0.7</span>,<span class="variable">fill=</span>cols2,text.<span class="variable">col=</span>'black',<span class="variable">ncol=</span><span class="number">2</span>)</div><div class="line">legend(<span class="string">"topright"</span>,<span class="variable">legend=</span>c(<span class="string">"二十代"</span>,<span class="string">"三十代"</span>,<span class="string">"四十代"</span>,<span class="string">"五十代"</span>,<span class="string">"六十代"</span>,<span class="string">"七十代"</span>,<span class="string">"八十以上"</span>),</div><div class="line"><span class="variable">cex=</span><span class="number">0.7</span>,<span class="variable">fill=</span>brewer.pal(<span class="number">7</span>, <span class="string">"Set3"</span>),text.<span class="variable">col=</span>'black',<span class="variable">ncol=</span><span class="number">2</span>)</div><div class="line">title(<span class="string">"色分け：都構想に賛成の割合・年齢構成：円グラフ"</span>)</div><div class="line"><span class="comment">#legend.pie("bottomleft",labels=c("二十代","三十代","四十代","五十代","六十代","七十代","八十以上"), radius=1.5*rr, bty="n", col=brewer.pal(7, "Set3"),</span></div><div class="line"><span class="comment">#cex=0.8, label.dist=1.3)</span></div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/osaka09.png" alt=""></p>
+<p>地図上に棒グラフ</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">library(TeachingDemos)</div><div class="line"><span class="comment">#png("osaka10.png",width=1000,height=800)</span></div><div class="line">plot(osaka)</div><div class="line"><span class="variable">j=</span><span class="number">1</span></div><div class="line">for(i <span class="keyword">in</span> unique(D[,<span class="string">"district"</span>])){</div><div class="line">	<span class="variable">df=</span> subset(D,<span class="variable">district=</span>=i)</div><div class="line">	subplot(barplot(<span class="variable">height=</span>aggregate(total~class,df,sum)$total,<span class="variable">axes=</span>F,<span class="variable">col=</span>brewer.pal(<span class="number">7</span>, <span class="string">"Set3"</span>),<span class="variable">ylim=</span>c(<span class="number">0</span>,max(xtabs(total~class+district,D)))),</div><div class="line">        <span class="variable">x=</span>as.numeric(cents[j,<span class="number">1</span>]), <span class="variable">y=</span>as.numeric(cents[j,<span class="number">2</span>]), <span class="variable">size=</span>c(<span class="number">0.8</span>,<span class="number">1</span>))</div><div class="line">	<span class="variable">j=</span>j+<span class="number">1</span></div><div class="line">}</div><div class="line"><span class="comment">#凡例とタイトル</span></div><div class="line">legend(<span class="string">"topright"</span>,<span class="variable">legend=</span>c(<span class="string">"二十代"</span>,<span class="string">"三十代"</span>,<span class="string">"四十代"</span>,<span class="string">"五十代"</span>,<span class="string">"六十代"</span>,<span class="string">"七十代"</span>,<span class="string">"八十以上"</span>),</div><div class="line"><span class="variable">cex=</span><span class="number">0.7</span>,<span class="variable">fill=</span>brewer.pal(<span class="number">7</span>, <span class="string">"Set3"</span>),text.<span class="variable">col=</span>'black',<span class="variable">ncol=</span><span class="number">2</span>)</div><div class="line">title(<span class="string">"年齢構成：棒グラフ"</span>)</div><div class="line">box()</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/osaka10.png" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/05/31/大阪市塗り分け地図まとめ/" data-id="ejqo10s2c31mme5v" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/グラフ/">グラフ</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/05/31/大阪市棒グラフ/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">大阪市棒グラフ</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GMT/">GMT</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gambit/">Gambit</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gnumeric/">Gnumeric</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Graphviz/">Graphviz</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NetworkX/">NetworkX</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">41</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sqlite3/">sqlite3</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/グラフまとめ/">グラフまとめ</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/放送大学/">放送大学</a><span class="category-list-count">46</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/21世紀の資本/">21世紀の資本</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graphviz/">Graphviz</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/オープンデータ/">オープンデータ</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/グラフ/">グラフ</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データベース/">データベース</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原因をさぐる統計学/">原因をさぐる統計学</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/因子分析＆確証的因子分析/">因子分析＆確証的因子分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/地図/">地図</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/成長曲線モデル/">成長曲線モデル</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/時系列解析/">時系列解析</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/潜在変数間の因果関係/">潜在変数間の因果関係</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/21世紀の資本/" style="font-size: 12.22px;">21世紀の資本</a><a href="/tags/Graphviz/" style="font-size: 10.00px;">Graphviz</a><a href="/tags/HEXO/" style="font-size: 11.11px;">HEXO</a><a href="/tags/Rパッケージ/" style="font-size: 11.11px;">Rパッケージ</a><a href="/tags/オープンデータ/" style="font-size: 18.89px;">オープンデータ</a><a href="/tags/グラフ/" style="font-size: 14.44px;">グラフ</a><a href="/tags/データからの知識発見/" style="font-size: 15.56px;">データからの知識発見</a><a href="/tags/データベース/" style="font-size: 11.11px;">データベース</a><a href="/tags/原因をさぐる統計学/" style="font-size: 16.67px;">原因をさぐる統計学</a><a href="/tags/問題解決の数理/" style="font-size: 20.00px;">問題解決の数理</a><a href="/tags/因子分析＆確証的因子分析/" style="font-size: 10.00px;">因子分析＆確証的因子分析</a><a href="/tags/地図/" style="font-size: 10.00px;">地図</a><a href="/tags/心理・教育統計法特論/" style="font-size: 13.33px;">心理・教育統計法特論</a><a href="/tags/心理統計法/" style="font-size: 17.78px;">心理統計法</a><a href="/tags/成長曲線モデル/" style="font-size: 10.00px;">成長曲線モデル</a><a href="/tags/時系列解析/" style="font-size: 11.11px;">時系列解析</a><a href="/tags/潜在変数間の因果関係/" style="font-size: 10.00px;">潜在変数間の因果関係</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05">May 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03">March 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">35</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">34</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/05/31/大阪市塗り分け地図まとめ/">大阪市塗り分け地図まとめ</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/31/大阪市棒グラフ/">大阪市棒グラフ</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/31/大阪市塗り分け/">大阪市塗り分け</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/16/ウインドローズ2/">wind rose(風配図) 2</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/16/ウインドローズ/">wind rose(風配図)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 統計ソフトRの備忘録２<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
