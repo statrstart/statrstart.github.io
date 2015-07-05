@@ -3,18 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>組み合わせ計画法 | 統計ソフトRの備忘録２</title>
+  <title>毎月勤労統計調査2 | 統計ソフトRの備忘録２</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="第12章 組み合わせ計画法">
+  <meta name="description" content="積み上げ折れ線グラフ　plotrix パッケージ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="組み合わせ計画法">
-<meta property="og:url" content="http://yoursite.com/2014/10/12/第12章組み合わせ計画法/">
+<meta property="og:title" content="毎月勤労統計調査2">
+<meta property="og:url" content="http://yoursite.com/2015/07/05/日銀資産の推移/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
-<meta property="og:description" content="第12章 組み合わせ計画法">
-<meta property="og:image" content="/images/mst01.png">
+<meta property="og:description" content="積み上げ折れ線グラフ　plotrix パッケージ">
+<meta property="og:image" content="/images/shisan01.png">
+<meta property="og:image" content="/images/shisan02.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="組み合わせ計画法">
-<meta name="twitter:description" content="第12章 組み合わせ計画法">
+<meta name="twitter:title" content="毎月勤労統計調査2">
+<meta name="twitter:description" content="積み上げ折れ線グラフ　plotrix パッケージ">
 
   
     <link rel="alternative" href="/atom.xml" title="統計ソフトRの備忘録２" type="application/atom+xml">
@@ -91,14 +92,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-第12章組み合わせ計画法" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-日銀資産の推移" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/10/12/第12章組み合わせ計画法/" class="article-date">
-  <time datetime="2014-10-12T09:53:15.000Z" itemprop="datePublished">Oct 12 2014</time>
+    <a href="/2015/07/05/日銀資産の推移/" class="article-date">
+  <time datetime="2015-07-05T05:43:08.000Z" itemprop="datePublished">Jul 5 2015</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/放送大学/">放送大学</a>
+    <a class="article-category-link" href="/categories/グラフまとめ/">グラフまとめ</a>
   </div>
 
   </div>
@@ -109,7 +110,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      組み合わせ計画法
+      毎月勤労統計調査2
     </h1>
   
 
@@ -117,66 +118,32 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="第12章_組み合わせ計画法">第12章 組み合わせ計画法</h2>
-<p><a id="more"></a></p>
-<h3 id="p-160_最小木問題">p.160 最小木問題</h3>
-<p>igraphパッケージのminimum.spanning.treeを使う<br>この関数のアルゴリズムは<a href="http://ja.wikipedia.org/wiki/%E3%83%97%E3%83%AA%E3%83%A0%E6%B3%95" target="_blank" rel="external">プリム法</a></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">library(igraph)</div><div class="line"><span class="comment">#エッジリストの作成</span></div><div class="line">d &lt;- data.frame(matrix(c( <span class="string">"1"</span>,<span class="string">"2"</span>, <span class="string">"1"</span>,<span class="string">"3"</span>, <span class="string">"1"</span>,<span class="string">"4"</span>, <span class="string">"1"</span>,<span class="string">"5"</span>, <span class="string">"2"</span>,<span class="string">"3"</span>, <span class="string">"2"</span>,<span class="string">"4"</span>, <span class="string">"4"</span>, <span class="string">"5"</span>),<span class="variable">nc=</span><span class="number">2</span>,<span class="variable">byrow=</span>TRUE),<span class="variable">stringsAsFactors=</span>FALSE)</div><div class="line"><span class="comment">#ノードリストの作成</span></div><div class="line">vers &lt;- data.frame(c(<span class="string">"1"</span>,<span class="string">"2"</span>,<span class="string">"3"</span>,<span class="string">"4"</span>,<span class="string">"5"</span>),<span class="variable">stringsAsFactors=</span>FALSE)</div><div class="line"><span class="comment">#グラフの作成</span></div><div class="line"><span class="comment">#無向グラフ(directed=F)</span></div><div class="line">g &lt;- graph.data.frame(d,<span class="variable">directed=</span>F,<span class="variable">vertices=</span>vers)</div><div class="line"><span class="comment">#ウエイトの指定</span></div><div class="line">E(g)$weight &lt;- c(<span class="number">1</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">6</span>,<span class="number">7</span>)</div><div class="line">V(g)$size &lt;-<span class="number">35</span></div><div class="line"><span class="comment">#ノードの座標の指定</span></div><div class="line">v1&lt;- c(<span class="number">1</span>,<span class="number">2</span>); v2 &lt;- c(<span class="number">2</span>,<span class="number">3</span>); v3 &lt;- c(<span class="number">3</span>,<span class="number">3</span>); v4 &lt;- c(<span class="number">3</span>,<span class="number">1</span>); v5 &lt;- c(<span class="number">2</span>,<span class="number">1</span>)</div><div class="line">lay &lt;- rbind(v1,v2,v3,v4,v5)</div><div class="line">mst &lt;- minimum.spanning.tree(g)</div><div class="line"><span class="comment">#プロット</span></div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">1</span>,<span class="number">2</span>))</div><div class="line">plot(g,<span class="variable">layout=</span>lay,vertex.<span class="variable">label=</span>V(g)$name,edge.<span class="variable">label=</span>E(g)$weight)</div><div class="line">plot(mst,<span class="variable">layout=</span>lay,vertex.<span class="variable">label=</span>V(mst)$name,edge.<span class="variable">label=</span>E(mst)$weight)</div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">1</span>,<span class="number">1</span>))</div></pre></td></tr></table></figure>
+        <h2 id="積み上げ折れ線グラフ_plotrix_パッケージ">積み上げ折れ線グラフ　plotrix パッケージ</h2>
+<a id="more"></a>
 
-<p><img src="/images/mst01.png" alt=""></p>
-<p>RBGLパッケージのmstree.kruskal関数はクラスカル法を使う。<br>このパッケージにはプリム法を使うmstree.prim関数も含まれる。<br>CRANには今のところ登録されていないのでインストールにちょっと手間がかかる。試行錯誤してやっとうまくできた。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#source("http://bioconductor.org/biocLite.R")</span></div><div class="line"><span class="comment">#biocLite("RBGL")</span></div><div class="line">library(graph)</div><div class="line">library(igraph)</div><div class="line">library(RBGL)</div><div class="line">d &lt;- data.frame(matrix(c( <span class="string">"1"</span>,<span class="string">"2"</span>, <span class="string">"1"</span>,<span class="string">"3"</span>, <span class="string">"1"</span>,<span class="string">"4"</span>, <span class="string">"1"</span>,<span class="string">"5"</span>, <span class="string">"2"</span>,<span class="string">"3"</span>, <span class="string">"2"</span>,<span class="string">"4"</span>, <span class="string">"4"</span>, <span class="string">"5"</span>),<span class="variable">nc=</span><span class="number">2</span>,<span class="variable">byrow=</span>TRUE),<span class="variable">stringsAsFactors=</span>FALSE)</div><div class="line">weight &lt;- c(<span class="number">1</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">6</span>,<span class="number">7</span>)</div><div class="line">df&lt;-as.data.frame(cbind(d,weight))</div><div class="line">adjMST&lt;-ftM2adjM(as.matrix(df[,<span class="number">1</span>:<span class="number">2</span>]),<span class="variable">W=</span>df[,<span class="number">3</span>],<span class="variable">edgemode=</span><span class="string">"undirected"</span>)</div><div class="line">dist.g&lt;-as(adjMST,<span class="variable">Class=</span><span class="string">"graphNEL"</span>)</div><div class="line">gg&lt;-mstree.kruskal(dist.g)</div><div class="line"><span class="comment">#Compute minimum spanning tree for an undirected graph</span></div><div class="line"><span class="comment">#gg&lt;-mstree.prim(g1)</span></div><div class="line">gg1&lt;- data.frame(cbind(t(gg$edgeList),t(gg$weight)))</div><div class="line"><span class="comment">#convert back to igraph package</span></div><div class="line">mstKruskal &lt;- graph.data.frame(gg1,<span class="variable">directed=</span>FALSE)</div><div class="line"><span class="comment">#ノードの座標の指定</span></div><div class="line">v1&lt;- c(<span class="number">1</span>,<span class="number">2</span>); v2 &lt;- c(<span class="number">2</span>,<span class="number">3</span>); v3 &lt;- c(<span class="number">3</span>,<span class="number">3</span>); v4 &lt;- c(<span class="number">3</span>,<span class="number">1</span>); v5 &lt;- c(<span class="number">2</span>,<span class="number">1</span>)</div><div class="line"><span class="comment">#ノード3とノード4の順番が入れ替わってしまったのでレイアウトの指定順も入れ替えた。</span></div><div class="line">lay &lt;- rbind(v1,v2,v4,v3,v5)</div><div class="line">plot(mstKruskal, <span class="variable">layout =</span> lay,vertex.<span class="variable">label=</span>V(mstKruskal)$name,edge.<span class="variable">label=</span>E(mstKruskal)$weight)</div></pre></td></tr></table></figure>
+<p>OSはzorin os</p>
+<p>データは<a href="https://www.stat-search.boj.or.jp/ssi/cgi-bin/famecgi2?cgi=$nme_a000&amp;lstSelection=1" target="_blank" rel="external">日本銀行時系列統計データ 日本銀行関連（BJ）</a>を基に作成した。</p>
+<ul>
+<li>変数名を短く  </li>
+<li>欠損値や空白は0に変更  </li>
+<li>資産合計から長期国債,CP等,社債,ETF,REIT,貸出金の金額をひいて、「その他」とした。  </li>
+</ul>
+<p><a href="/data/d2010_201506.RData">d2010_201506.RData</a></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">load(<span class="string">"d2010_201506.RData"</span>)</div><div class="line"><span class="comment">#変数名が文字化けを起こす可能性があるので、変数名を付け直す。</span></div><div class="line">names(d2010_201506)&lt;-c(<span class="string">"系列名称"</span>,<span class="string">"資産合計"</span>,<span class="string">"長期国債"</span>,<span class="string">"CP等"</span>,<span class="string">"社債"</span>,<span class="string">"ETF"</span>,<span class="string">"REIT"</span>,<span class="string">"貸出金"</span>,<span class="string">"その他"</span>)</div><div class="line">library(plotrix)</div><div class="line">library(RColorBrewer)</div><div class="line"><span class="comment">#png("shisan01.png",width=1000,height=800)</span></div><div class="line"><span class="comment">#par(family="TakaoMincho")</span></div><div class="line">stackpoly(d2010_201506[,<span class="number">3</span>:<span class="number">9</span>],<span class="variable">ylim=</span>c(<span class="number">0</span>,<span class="number">350</span>),<span class="variable">col=</span>brewer.pal(<span class="number">7</span>, <span class="string">"Set3"</span>),<span class="variable">stack=</span>T,<span class="variable">axis4=</span>F,</div><div class="line"><span class="variable">xaxlab=</span>d2010_201506[,<span class="number">1</span>],<span class="variable">main=</span><span class="string">"日銀資産の推移（単位：兆円）"</span>)</div><div class="line"><span class="comment">#legend("topleft",colnames(d2010_201506[,3:9]),fill=brewer.pal(7, "Set3"))</span></div><div class="line">legend(<span class="string">"topleft"</span>,rev(colnames(d2010_201506[,<span class="number">3</span>:<span class="number">9</span>])),<span class="variable">fill=</span>rev(brewer.pal(<span class="number">7</span>, <span class="string">"Set3"</span>)))</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
 
-<h3 id="p-164_ナップサック問題">p.164 ナップサック問題</h3>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="title">library</span>(<span class="string">"adagio"</span>)</div><div class="line"><span class="title">library</span>(knitr)</div><div class="line"><span class="title">profit</span>&lt;- c(<span class="number">9</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">3</span>)</div><div class="line"><span class="title">weight</span>&lt;- c(<span class="number">6</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">3</span>)</div><div class="line"><span class="title">table</span>&lt;-cbind(profit,weight)</div><div class="line"><span class="title">row</span>.names(table)&lt;-c(<span class="string">"1"</span>,<span class="string">"2"</span>,<span class="string">"3"</span>,<span class="string">"4"</span>,<span class="string">"5"</span>)</div><div class="line"><span class="title">kable</span>(table,row.names =<span class="type">T</span>)</div><div class="line"><span class="title">capacity</span> &lt;- <span class="number">17</span></div><div class="line"><span class="preprocessor">#0-1 Knapsack Problem</span></div><div class="line">(is &lt;- knapsack(w=weight, p=profit, cap=capacity))</div></pre></td></tr></table></figure>
+<p><img src="/images/shisan01.png" alt=""></p>
+<p>CP等,社債,ETF,REITをとりだして積み上げ折れ線グラフ</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="array">#png</span>(<span class="string">"shisan02.png"</span>,width=<span class="number">1000</span>,height=<span class="number">800</span>)</div><div class="line"><span class="array">#par</span>(family=<span class="string">"TakaoMincho"</span>)</div><div class="line">stackpoly(d2010_201506[,<span class="number">4</span>:<span class="number">7</span>],ylim=c(<span class="number">0</span>,<span class="number">12</span>),col=c(<span class="string">"#FFFFB3"</span> ,<span class="string">"#BEBADA"</span> ,<span class="string">"#FB8072"</span> ,<span class="string">"#80B1D3"</span>),stack=T,axis4=F,</div><div class="line">xaxlab=d2010_201506[,<span class="number">1</span>],main=<span class="string">"日銀資産(CP等,社債,ETF,REIT)の推移（単位：兆円）"</span>)</div><div class="line"><span class="array">#legend</span>(<span class="string">"topleft"</span>,colnames(d2010_201506[,<span class="number">4</span>:<span class="number">7</span>]),fill=c(<span class="string">"#FFFFB3"</span> ,<span class="string">"#BEBADA"</span> ,<span class="string">"#FB8072"</span> ,<span class="string">"#80B1D3"</span>))</div><div class="line">legend(<span class="string">"topleft"</span>,rev(colnames(d2010_201506[,<span class="number">4</span>:<span class="number">7</span>])),fill=rev(c(<span class="string">"#FFFFB3"</span> ,<span class="string">"#BEBADA"</span> ,<span class="string">"#FB8072"</span> ,<span class="string">"#80B1D3"</span>)))</div><div class="line"><span class="array">#dev.off</span>()</div></pre></td></tr></table></figure>
 
-<table>
-<thead>
-<tr>
-<th style="text-align:left"></th>
-<th style="text-align:right">profit</th>
-<th style="text-align:right">weight</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">1</td>
-<td style="text-align:right">9</td>
-<td style="text-align:right">6</td>
-</tr>
-<tr>
-<td style="text-align:left">2</td>
-<td style="text-align:right">7</td>
-<td style="text-align:right">4</td>
-</tr>
-<tr>
-<td style="text-align:left">3</td>
-<td style="text-align:right">6</td>
-<td style="text-align:right">5</td>
-</tr>
-<tr>
-<td style="text-align:left">4</td>
-<td style="text-align:right">5</td>
-<td style="text-align:right">3</td>
-</tr>
-<tr>
-<td style="text-align:left">5</td>
-<td style="text-align:right">3</td>
-<td style="text-align:right">3</td>
-</tr>
-</tbody>
-</table>
-<p>$capacity<br>[1] 16</p>
-<p>$profit<br>[1] 24</p>
-<p>$indices<br>[1] 1 2 4 5</p>
+<p><img src="/images/shisan02.png" alt=""></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/10/12/第12章組み合わせ計画法/" data-id="k931c3sufjiai8aa" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/07/05/日銀資産の推移/" data-id="2vtqd7t1x76fvcl7" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/グラフ/">グラフ</a></li></ul>
 
     </footer>
   </div>
@@ -184,19 +151,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2014/10/13/第13章非線形計画法2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          非線形計画法2
-        
-      </div>
-    </a>
   
-  
-    <a href="/2014/10/11/第13章非線形計画法/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2015/07/05/毎月勤労統計調査2/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">非線形計画法1</div>
+      <div class="article-nav-title">毎月勤労統計調査2</div>
     </a>
   
 </nav>
