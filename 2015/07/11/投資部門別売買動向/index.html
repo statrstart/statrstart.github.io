@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>投資部門別売買動向 | 統計ソフトRの備忘録２</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="zoo,xts,gdata パッケージ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="投資部門別売買動向">
+<meta property="og:url" content="http://yoursite.com/2015/07/11/投資部門別売買動向/">
+<meta property="og:site_name" content="統計ソフトRの備忘録２">
+<meta property="og:description" content="zoo,xts,gdata パッケージ">
+<meta property="og:image" content="/images/doukou01.png">
+<meta property="og:image" content="/images/doukou02.png">
+<meta property="og:image" content="/images/doukou03.png">
+<meta property="og:image" content="/images/doukou04.png">
+<meta property="og:image" content="/images/doukou05.png">
+<meta property="og:image" content="/images/doukou06.png">
+<meta property="og:image" content="/images/doukou07.png">
+<meta property="og:image" content="/images/doukou08.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="投資部門別売買動向">
+<meta name="twitter:description" content="zoo,xts,gdata パッケージ">
+
+  
+    <link rel="alternative" href="/atom.xml" title="統計ソフトRの備忘録２" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">統計ソフトRの備忘録２</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-投資部門別売買動向" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/07/11/投資部門別売買動向/" class="article-date">
+  <time datetime="2015-07-11T09:54:20.000Z" itemprop="datePublished">Jul 11 2015</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/グラフまとめ/">グラフまとめ</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      投資部門別売買動向
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="zoo,xts,gdata_パッケージ">zoo,xts,gdata パッケージ</h2>
+<a id="more"></a>
+
+<p>「年金基金は信託銀行などを通じて株式運用を行っており、投資部門別売買動向調査では信託銀行に年金基金の動向が現れる。」  とのことなのでグラフにしてみる。  </p>
+<p>(参考)<br><a href="http://www.morningstar.co.jp/event/1412/ms3/id009/" target="_blank" rel="external">2015年の需給を読む</a></p>
+<p>(データ)<br><a href="http://www.jpx.co.jp/markets/statistics-equities/investor-type/index.html" target="_blank" rel="external">投資部門別売買状況</a></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">library(<span class="string">"gdata"</span>)</div><div class="line">data.url &lt;- <span class="string">"http://www.jpx.co.jp/markets/statistics-equities/investor-type/e61oi3000000d0ut-att/stock_val_1_y14.xls"</span></div><div class="line">data &lt;- read.xls(data.url,<span class="variable">sheet=</span><span class="number">5</span>,<span class="variable">skip=</span><span class="number">19</span>,<span class="variable">method=</span><span class="string">"tab"</span>,<span class="variable">fileEncoding=</span><span class="string">"UTF-8"</span>)</div><div class="line"><span class="comment">##単位千円 -&gt; 億円</span></div><div class="line">売買状況&lt;-data.frame(na.omit(as.numeric(gsub(<span class="string">","</span>,<span class="string">""</span>,data[<span class="number">1</span>:<span class="number">38</span>,<span class="number">7</span>])))[<span class="number">1</span>:<span class="number">12</span>]/<span class="number">100000</span>)</div><div class="line">names(売買状況)&lt;-<span class="string">"2014"</span></div><div class="line">売買状況$投資部門&lt;-c(<span class="string">"法人"</span>,<span class="string">"個人"</span>,<span class="string">"海外投資家"</span>,<span class="string">"証券会社"</span>,<span class="string">"投資信託"</span>,<span class="string">"事業法人"</span>,</div><div class="line"><span class="string">"その他法人等"</span>,<span class="string">"金融機関"</span>,<span class="string">"生保・損保"</span>,<span class="string">"都銀・地銀等"</span>,<span class="string">"信託銀行"</span>,<span class="string">"その他金融機関"</span>)</div><div class="line">売買状況$内訳&lt;-c(rep(<span class="string">"委託内訳"</span>,<span class="number">4</span>),rep(<span class="string">"法人内訳"</span>,<span class="number">4</span>),rep(<span class="string">"金融機関内訳"</span>,<span class="number">4</span>))</div><div class="line"><span class="comment">#png("doukou01.png", width=1000, height=800)</span></div><div class="line">par(<span class="variable">mar=</span>c(<span class="number">6</span>,<span class="number">8</span>,<span class="number">5</span>,<span class="number">5</span>))</div><div class="line">barplot(rev(t(売買状況[,<span class="number">1</span>])),names.<span class="variable">arg =</span>rev(売買状況$投資部門),<span class="variable">horiz =</span> T ,<span class="variable">las=</span><span class="number">1</span>,<span class="variable">col=</span>c(rep(<span class="string">"gray"</span>,<span class="number">4</span>),rep(<span class="string">"lightblue"</span>,<span class="number">4</span>),rep(<span class="string">"pink"</span>,<span class="number">4</span>)))</div><div class="line">abline(<span class="variable">v=</span><span class="number">0</span>,<span class="variable">lty=</span><span class="number">1</span>,<span class="variable">col=</span><span class="string">"gray25"</span>)</div><div class="line">title(<span class="string">"２０１４年　投資部門別売買動向（東京、名古屋証券取引所１・２部等合計）単位：億円"</span>)</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/doukou01.png" alt=""></p>
+<ul>
+<li>委託内訳・・・”法人”,”個人”,”海外投資家”,”証券会社”</li>
+<li>法人内訳・・・”投資信託”,”事業法人”,”その他法人等”,”金融機関”</li>
+<li>金融機関内訳・・・”生保・損保”,”都銀・地銀等”,”信託銀行”,”その他金融機関”</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#2014年</span></div><div class="line">data.url &lt;- <span class="string">"http://www.jpx.co.jp/files/tse/market/data/sector/equities_m/2014/stock_val_1_m1401.xls"</span></div><div class="line">data &lt;- read.xls(data.url,sheet=<span class="number">5</span>,skip=<span class="number">19</span>,<span class="keyword">method</span>=<span class="string">"tab"</span>,fileEncoding=<span class="string">"UTF-8"</span>)</div><div class="line">d14_1506&lt;-na.omit(<span class="keyword">as</span>.numeric(gsub(<span class="string">","</span>,<span class="string">""</span>,data[<span class="number">1</span>:<span class="number">38</span>,<span class="number">7</span>])))[<span class="number">1</span>:<span class="number">12</span>]/<span class="number">100000</span></div><div class="line"><span class="comment">#rm(data.url);rm(data)</span></div><div class="line">data.url &lt;- <span class="string">"http://www.jpx.co.jp/files/tse/market/data/sector/equities_m/2014/stock_val_1_m1402.xls"</span></div><div class="line">data &lt;- read.xls(data.url,sheet=<span class="number">5</span>,skip=<span class="number">19</span>,<span class="keyword">method</span>=<span class="string">"tab"</span>,fileEncoding=<span class="string">"UTF-8"</span>)</div><div class="line">d&lt;-na.omit(<span class="keyword">as</span>.numeric(gsub(<span class="string">","</span>,<span class="string">""</span>,data[<span class="number">1</span>:<span class="number">38</span>,<span class="number">7</span>])))[<span class="number">1</span>:<span class="number">12</span>]/<span class="number">100000</span></div><div class="line">d14_1506&lt;-rbind(d14_1506,d)</div><div class="line">data.url &lt;- <span class="string">"http://www.jpx.co.jp/files/tse/market/data/sector/equities_m/2014/stock_val_1_m1403.xls"</span></div><div class="line">data &lt;- read.xls(data.url,sheet=<span class="number">5</span>,skip=<span class="number">19</span>,<span class="keyword">method</span>=<span class="string">"tab"</span>,fileEncoding=<span class="string">"UTF-8"</span>)</div><div class="line">d&lt;-na.omit(<span class="keyword">as</span>.numeric(gsub(<span class="string">","</span>,<span class="string">""</span>,data[<span class="number">1</span>:<span class="number">38</span>,<span class="number">7</span>])))[<span class="number">1</span>:<span class="number">12</span>]/<span class="number">100000</span></div><div class="line">d14_1506&lt;-rbind(d14_1506,d)</div><div class="line">data.url &lt;- <span class="string">"http://www.jpx.co.jp/files/tse/market/data/sector/equities_m/2014/stock_val_1_m1404.xls"</span></div><div class="line">data &lt;- read.xls(data.url,sheet=<span class="number">5</span>,skip=<span class="number">19</span>,<span class="keyword">method</span>=<span class="string">"tab"</span>,fileEncoding=<span class="string">"UTF-8"</span>)</div><div class="line">d&lt;-na.omit(<span class="keyword">as</span>.numeric(gsub(<span class="string">","</span>,<span class="string">""</span>,data[<span class="number">1</span>:<span class="number">38</span>,<span class="number">7</span>])))[<span class="number">1</span>:<span class="number">12</span>]/<span class="number">100000</span></div><div class="line">d14_1506&lt;-rbind(d14_1506,d)</div><div class="line">data.url &lt;- <span class="string">"http://www.jpx.co.jp/files/tse/market/data/sector/equities_m/2014/stock_val_1_m1405.xls"</span></div><div class="line">data &lt;- read.xls(data.url,sheet=<span class="number">5</span>,skip=<span class="number">19</span>,<span class="keyword">method</span>=<span class="string">"tab"</span>,fileEncoding=<span class="string">"UTF-8"</span>)</div><div class="line">d&lt;-na.omit(<span class="keyword">as</span>.numeric(gsub(<span class="string">","</span>,<span class="string">""</span>,data[<span class="number">1</span>:<span class="number">38</span>,<span class="number">7</span>])))[<span class="number">1</span>:<span class="number">12</span>]/<span class="number">100000</span></div><div class="line">d14_1506&lt;-rbind(d14_1506,d)</div><div class="line">data.url &lt;- <span class="string">"http://www.jpx.co.jp/files/tse/market/data/sector/equities_m/2014/stock_val_1_m1406.xls"</span></div><div class="line">data &lt;- read.xls(data.url,sheet=<span class="number">5</span>,skip=<span class="number">19</span>,<span class="keyword">method</span>=<span class="string">"tab"</span>,fileEncoding=<span class="string">"UTF-8"</span>)</div><div class="line">d&lt;-na.omit(<span class="keyword">as</span>.numeric(gsub(<span class="string">","</span>,<span class="string">""</span>,data[<span class="number">1</span>:<span class="number">38</span>,<span class="number">7</span>])))[<span class="number">1</span>:<span class="number">12</span>]/<span class="number">100000</span></div><div class="line">d14_1506&lt;-rbind(d14_1506,d)</div><div class="line">data.url &lt;- <span class="string">"http://www.jpx.co.jp/files/tse/market/data/sector/equities_m/2014/stock_val_1_m1407.xls"</span></div><div class="line">data &lt;- read.xls(data.url,sheet=<span class="number">5</span>,skip=<span class="number">19</span>,<span class="keyword">method</span>=<span class="string">"tab"</span>,fileEncoding=<span class="string">"UTF-8"</span>)</div><div class="line">d&lt;-na.omit(<span class="keyword">as</span>.numeric(gsub(<span class="string">","</span>,<span class="string">""</span>,data[<span class="number">1</span>:<span class="number">38</span>,<span class="number">7</span>])))[<span class="number">1</span>:<span class="number">12</span>]/<span class="number">100000</span></div><div class="line">d14_1506&lt;-rbind(d14_1506,d)</div><div class="line">data.url &lt;- <span class="string">"http://www.jpx.co.jp/files/tse/market/data/sector/equities_m/2014/stock_val_1_m1408.xls"</span></div><div class="line">data &lt;- read.xls(data.url,sheet=<span class="number">5</span>,skip=<span class="number">19</span>,<span class="keyword">method</span>=<span class="string">"tab"</span>,fileEncoding=<span class="string">"UTF-8"</span>)</div><div class="line">d&lt;-na.omit(<span class="keyword">as</span>.numeric(gsub(<span class="string">","</span>,<span class="string">""</span>,data[<span class="number">1</span>:<span class="number">38</span>,<span class="number">7</span>])))[<span class="number">1</span>:<span class="number">12</span>]/<span class="number">100000</span></div><div class="line">d14_1506&lt;-rbind(d14_1506,d)</div><div class="line">data.url &lt;- <span class="string">"http://www.jpx.co.jp/files/tse/market/data/sector/equities_m/2014/stock_val_1_m1409.xls"</span></div><div class="line">data &lt;- read.xls(data.url,sheet=<span class="number">5</span>,skip=<span class="number">19</span>,<span class="keyword">method</span>=<span class="string">"tab"</span>,fileEncoding=<span class="string">"UTF-8"</span>)</div><div class="line">d&lt;-na.omit(<span class="keyword">as</span>.numeric(gsub(<span class="string">","</span>,<span class="string">""</span>,data[<span class="number">1</span>:<span class="number">38</span>,<span class="number">7</span>])))[<span class="number">1</span>:<span class="number">12</span>]/<span class="number">100000</span></div><div class="line">d14_1506&lt;-rbind(d14_1506,d)</div><div class="line">data.url &lt;- <span class="string">"http://www.jpx.co.jp/files/tse/market/data/sector/equities_m/2014/stock_val_1_m1410.xls"</span></div><div class="line">data &lt;- read.xls(data.url,sheet=<span class="number">5</span>,skip=<span class="number">19</span>,<span class="keyword">method</span>=<span class="string">"tab"</span>,fileEncoding=<span class="string">"UTF-8"</span>)</div><div class="line">d&lt;-na.omit(<span class="keyword">as</span>.numeric(gsub(<span class="string">","</span>,<span class="string">""</span>,data[<span class="number">1</span>:<span class="number">38</span>,<span class="number">7</span>])))[<span class="number">1</span>:<span class="number">12</span>]/<span class="number">100000</span></div><div class="line">d14_1506&lt;-rbind(d14_1506,d)</div><div class="line">data.url &lt;- <span class="string">"http://www.jpx.co.jp/files/tse/market/data/sector/equities_m/2014/stock_val_1_m1411.xls"</span></div><div class="line">data &lt;- read.xls(data.url,sheet=<span class="number">5</span>,skip=<span class="number">19</span>,<span class="keyword">method</span>=<span class="string">"tab"</span>,fileEncoding=<span class="string">"UTF-8"</span>)</div><div class="line">d&lt;-na.omit(<span class="keyword">as</span>.numeric(gsub(<span class="string">","</span>,<span class="string">""</span>,data[<span class="number">1</span>:<span class="number">38</span>,<span class="number">7</span>])))[<span class="number">1</span>:<span class="number">12</span>]/<span class="number">100000</span></div><div class="line">d14_1506&lt;-rbind(d14_1506,d)</div><div class="line">data.url &lt;- <span class="string">"http://www.jpx.co.jp/files/tse/market/data/sector/equities_m/2014/stock_val_1_m1412.xls"</span></div><div class="line">data &lt;- read.xls(data.url,sheet=<span class="number">5</span>,skip=<span class="number">19</span>,<span class="keyword">method</span>=<span class="string">"tab"</span>,fileEncoding=<span class="string">"UTF-8"</span>)</div><div class="line">d&lt;-na.omit(<span class="keyword">as</span>.numeric(gsub(<span class="string">","</span>,<span class="string">""</span>,data[<span class="number">1</span>:<span class="number">38</span>,<span class="number">7</span>])))[<span class="number">1</span>:<span class="number">12</span>]/<span class="number">100000</span></div><div class="line">d14_1506&lt;-rbind(d14_1506,d)</div><div class="line"><span class="comment">#2015年</span></div><div class="line">data.url &lt;- <span class="string">"http://www.jpx.co.jp/markets/statistics-equities/investor-type/nlsgeu00000039tz-att/stock_val_1_m1501.xls"</span></div><div class="line">data &lt;- read.xls(data.url,sheet=<span class="number">5</span>,skip=<span class="number">19</span>,<span class="keyword">method</span>=<span class="string">"tab"</span>,fileEncoding=<span class="string">"UTF-8"</span>)</div><div class="line">d&lt;-na.omit(<span class="keyword">as</span>.numeric(gsub(<span class="string">","</span>,<span class="string">""</span>,data[<span class="number">1</span>:<span class="number">38</span>,<span class="number">7</span>])))[<span class="number">1</span>:<span class="number">12</span>]/<span class="number">100000</span></div><div class="line">d14_1506&lt;-rbind(d14_1506,d)</div><div class="line">data.url &lt;- <span class="string">"http://www.jpx.co.jp/markets/statistics-equities/investor-type/nlsgeu000000hlek-att/stock_val_1_m1502.xls"</span></div><div class="line">data &lt;- read.xls(data.url,sheet=<span class="number">5</span>,skip=<span class="number">19</span>,<span class="keyword">method</span>=<span class="string">"tab"</span>,fileEncoding=<span class="string">"UTF-8"</span>)</div><div class="line">d&lt;-na.omit(<span class="keyword">as</span>.numeric(gsub(<span class="string">","</span>,<span class="string">""</span>,data[<span class="number">1</span>:<span class="number">38</span>,<span class="number">7</span>])))[<span class="number">1</span>:<span class="number">12</span>]/<span class="number">100000</span></div><div class="line">d14_1506&lt;-rbind(d14_1506,d)</div><div class="line">data.url &lt;- <span class="string">"http://www.jpx.co.jp/markets/statistics-equities/investor-type/nlsgeu000000ukiy-att/stock_val_1_m1503.xls"</span></div><div class="line">data &lt;- read.xls(data.url,sheet=<span class="number">5</span>,skip=<span class="number">19</span>,<span class="keyword">method</span>=<span class="string">"tab"</span>,fileEncoding=<span class="string">"UTF-8"</span>)</div><div class="line">d&lt;-na.omit(<span class="keyword">as</span>.numeric(gsub(<span class="string">","</span>,<span class="string">""</span>,data[<span class="number">1</span>:<span class="number">38</span>,<span class="number">7</span>])))[<span class="number">1</span>:<span class="number">12</span>]/<span class="number">100000</span></div><div class="line">d14_1506&lt;-rbind(d14_1506,d)</div><div class="line">data.url &lt;- <span class="string">"http://www.jpx.co.jp/markets/statistics-equities/investor-type/nlsgeu000000xecb-att/stock_val_1_m1504.xls"</span></div><div class="line">data &lt;- read.xls(data.url,sheet=<span class="number">5</span>,skip=<span class="number">19</span>,<span class="keyword">method</span>=<span class="string">"tab"</span>,fileEncoding=<span class="string">"UTF-8"</span>)</div><div class="line">d&lt;-na.omit(<span class="keyword">as</span>.numeric(gsub(<span class="string">","</span>,<span class="string">""</span>,data[<span class="number">1</span>:<span class="number">38</span>,<span class="number">7</span>])))[<span class="number">1</span>:<span class="number">12</span>]/<span class="number">100000</span></div><div class="line">d14_1506&lt;-rbind(d14_1506,d)</div><div class="line">data.url &lt;- <span class="string">"http://www.jpx.co.jp/markets/statistics-equities/investor-type/nlsgeu000000ziuo-att/stock_val_1_m1505.xls"</span></div><div class="line">data &lt;- read.xls(data.url,sheet=<span class="number">5</span>,skip=<span class="number">19</span>,<span class="keyword">method</span>=<span class="string">"tab"</span>,fileEncoding=<span class="string">"UTF-8"</span>)</div><div class="line">d&lt;-na.omit(<span class="keyword">as</span>.numeric(gsub(<span class="string">","</span>,<span class="string">""</span>,data[<span class="number">1</span>:<span class="number">38</span>,<span class="number">7</span>])))[<span class="number">1</span>:<span class="number">12</span>]/<span class="number">100000</span></div><div class="line">d14_1506&lt;-rbind(d14_1506,d)</div><div class="line">data.url &lt;- <span class="string">"http://www.jpx.co.jp/markets/statistics-equities/investor-type/nlsgeu0000011pw4-att/stock_val_1_m1506.xls"</span></div><div class="line">data &lt;- read.xls(data.url,sheet=<span class="number">5</span>,skip=<span class="number">19</span>,<span class="keyword">method</span>=<span class="string">"tab"</span>,fileEncoding=<span class="string">"UTF-8"</span>)</div><div class="line">d&lt;-na.omit(<span class="keyword">as</span>.numeric(gsub(<span class="string">","</span>,<span class="string">""</span>,data[<span class="number">1</span>:<span class="number">38</span>,<span class="number">7</span>])))[<span class="number">1</span>:<span class="number">12</span>]/<span class="number">100000</span></div><div class="line">d14_1506&lt;-rbind(d14_1506,d)</div><div class="line">doukou&lt;-data.frame(d14_1506)</div><div class="line">names(doukou)&lt;-c(<span class="string">"法人"</span>,<span class="string">"個人"</span>,<span class="string">"海外投資家"</span>,<span class="string">"証券会社"</span>,<span class="string">"投資信託"</span>,<span class="string">"事業法人"</span>,<span class="string">"その他法人等"</span>,<span class="string">"金融機関"</span>,<span class="string">"生保・損保"</span>,<span class="string">"都銀・地銀等"</span>,<span class="string">"信託銀行"</span>,<span class="string">"その他金融機関"</span>)</div><div class="line">save(<span class="string">"doukou"</span>, file=<span class="string">"doukou.RData"</span>)</div></pre></td></tr></table></figure>
+
+<p>作成したデータ<a href="/data/doukou.RData">doukou.RData</a></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">load(url(<span class="string">"http://statrstart.github.io/data/doukou.RData"</span>))</div><div class="line"><span class="comment">#osによっては文字化けする</span></div><div class="line">names(doukou)&lt;-c(<span class="string">"法人"</span>,<span class="string">"個人"</span>,<span class="string">"海外投資家"</span>,<span class="string">"証券会社"</span>,<span class="string">"投資信託"</span>,<span class="string">"事業法人"</span>,<span class="string">"その他法人等"</span>,<span class="string">"金融機関"</span>,<span class="string">"生保・損保"</span>,<span class="string">"都銀・地銀等"</span>,<span class="string">"信託銀行"</span>,<span class="string">"その他金融機関"</span>)</div><div class="line">doukou.ts&lt;-ts(doukou,<span class="variable">start=</span><span class="number">2014</span>,<span class="variable">freq=</span><span class="number">12</span>)</div><div class="line">library(xts)</div><div class="line">doukou.xts&lt;-as.xts(doukou.ts)</div><div class="line"><span class="comment">#２０１４年１月〜２０１５年６月 </span></div><div class="line"><span class="comment">#mgp は，プロットの周縁から文字列何行分離れたことろに軸のタイトル，数字などのラベル， そして軸（線）を描くか</span></div><div class="line"><span class="comment">#mar は，四方の余白（margin)を文字列何行分とるか</span></div><div class="line"><span class="comment">#png("doukou02.png", width=1000, height=800)</span></div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">1</span>,<span class="number">3</span>),<span class="variable">mgp=</span>c(<span class="number">3</span>,<span class="number">1</span>,<span class="number">0</span>),<span class="variable">mar=</span>c(<span class="number">6</span>,<span class="number">4.5</span>,<span class="number">4</span>,<span class="number">1</span>))</div><div class="line">plot.zoo(doukou.xts[,<span class="number">1</span>:<span class="number">4</span>], <span class="variable">col =</span> c(<span class="string">"red"</span>, <span class="string">"blue"</span>,<span class="string">"green"</span>,<span class="string">"orange"</span>), plot.<span class="variable">type =</span> <span class="string">"single"</span>,<span class="variable">las=</span><span class="number">1</span>,<span class="variable">xlab=</span><span class="string">""</span>,<span class="variable">ylab=</span><span class="string">""</span>)</div><div class="line">abline(<span class="variable">h=</span><span class="number">0</span>,<span class="variable">lty=</span><span class="number">3</span>,<span class="variable">col=</span><span class="string">"gray"</span>)</div><div class="line">legend(<span class="string">"topleft"</span>,names(doukou.xts[,<span class="number">1</span>:<span class="number">4</span>]), <span class="variable">col=</span> c(<span class="string">"red"</span>, <span class="string">"blue"</span>,<span class="string">"green"</span>,<span class="string">"orange"</span>),<span class="variable">lty=</span><span class="number">1</span>)</div><div class="line">title(<span class="string">""</span>,<span class="string">"委託内訳"</span>)</div><div class="line">plot.zoo(doukou.xts[,<span class="number">5</span>:<span class="number">8</span>], <span class="variable">col =</span> c(<span class="string">"red"</span>, <span class="string">"blue"</span>,<span class="string">"green"</span>,<span class="string">"orange"</span>), plot.<span class="variable">type =</span> <span class="string">"single"</span>,<span class="variable">las=</span><span class="number">1</span>,<span class="variable">xlab=</span><span class="string">""</span>,<span class="variable">ylab=</span><span class="string">""</span>)</div><div class="line">abline(<span class="variable">h=</span><span class="number">0</span>,<span class="variable">lty=</span><span class="number">3</span>,<span class="variable">col=</span><span class="string">"gray"</span>)</div><div class="line">legend(<span class="string">"topleft"</span>,names(doukou.xts[,<span class="number">5</span>:<span class="number">8</span>]), <span class="variable">col=</span> c(<span class="string">"red"</span>, <span class="string">"blue"</span>,<span class="string">"green"</span>,<span class="string">"orange"</span>),<span class="variable">lty=</span><span class="number">1</span>)</div><div class="line">title(<span class="string">"投資部門別売買動向推移(2014/1〜2015/6 :億円)"</span>,<span class="string">"法人内訳"</span>)</div><div class="line">plot.zoo(doukou.xts[,<span class="number">9</span>:<span class="number">12</span>], <span class="variable">col =</span> c(<span class="string">"red"</span>, <span class="string">"blue"</span>,<span class="string">"green"</span>,<span class="string">"orange"</span>), plot.<span class="variable">type =</span> <span class="string">"single"</span>,<span class="variable">las=</span><span class="number">1</span>,<span class="variable">xlab=</span><span class="string">""</span>,<span class="variable">ylab=</span><span class="string">""</span>)</div><div class="line">abline(<span class="variable">h=</span><span class="number">0</span>,<span class="variable">lty=</span><span class="number">3</span>,<span class="variable">col=</span><span class="string">"gray"</span>)</div><div class="line">legend(<span class="string">"topleft"</span>,names(doukou.xts[,<span class="number">9</span>:<span class="number">12</span>]), <span class="variable">col=</span> c(<span class="string">"red"</span>, <span class="string">"blue"</span>,<span class="string">"green"</span>,<span class="string">"orange"</span>),<span class="variable">lty=</span><span class="number">1</span>)</div><div class="line">title(<span class="string">""</span>,<span class="string">"金融機関内訳"</span>)</div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">1</span>,<span class="number">1</span>))</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/doukou02.png" alt=""></p>
+<p>colSumsを使うと上記の「２０１４年　投資部門別売買動向」のグラフは</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">par(<span class="variable">mar=</span>c(<span class="number">6</span>,<span class="number">8</span>,<span class="number">5</span>,<span class="number">5</span>))</div><div class="line">barplot(rev(colSums(doukou[<span class="number">1</span>:<span class="number">12</span>,])),names.<span class="variable">arg =</span>rev(colnames(doukou)),<span class="variable">horiz =</span> T ,<span class="variable">las=</span><span class="number">1</span>,<span class="variable">col=</span>c(rep(<span class="string">"gray"</span>,<span class="number">4</span>),rep(<span class="string">"lightblue"</span>,<span class="number">4</span>),rep(<span class="string">"pink"</span>,<span class="number">4</span>)))</div><div class="line">abline(<span class="variable">v=</span><span class="number">0</span>,<span class="variable">lty=</span><span class="number">1</span>,<span class="variable">col=</span><span class="string">"gray25"</span>)</div><div class="line">title(<span class="string">"２０１４年　投資部門別売買動向（東京、名古屋証券取引所１・２部等合計）単位：億円"</span>)</div></pre></td></tr></table></figure>
+
+<p>２０１５年上半期　投資部門別売買動向のグラフは</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#png("doukou03.png", width=1000, height=800)</span></div><div class="line">par(<span class="variable">mar=</span>c(<span class="number">6</span>,<span class="number">8</span>,<span class="number">5</span>,<span class="number">5</span>))</div><div class="line">barplot(rev(colSums(doukou[<span class="number">13</span>:<span class="number">18</span>,])),names.<span class="variable">arg =</span>rev(colnames(doukou)),<span class="variable">horiz =</span> T ,<span class="variable">las=</span><span class="number">1</span>,<span class="variable">col=</span>c(rep(<span class="string">"gray"</span>,<span class="number">4</span>),rep(<span class="string">"lightblue"</span>,<span class="number">4</span>),rep(<span class="string">"pink"</span>,<span class="number">4</span>)))</div><div class="line">abline(<span class="variable">v=</span><span class="number">0</span>,<span class="variable">lty=</span><span class="number">1</span>,<span class="variable">col=</span><span class="string">"gray25"</span>)</div><div class="line">title(<span class="string">"２０１５年上半期　投資部門別売買動向（東京、名古屋証券取引所１・２部等合計）単位：億円"</span>)</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/doukou03.png" alt=""></p>
+<p>２０１４年　投資部門別売買動向（ETF）</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">library(<span class="string">"gdata"</span>)</div><div class="line">data.url &lt;- <span class="string">"http://www.jpx.co.jp/markets/statistics-equities/investor-type/nlsgeu0000003a9h-att/etf_y14.xls"</span></div><div class="line">data &lt;- read.xls(data.url,<span class="variable">sheet=</span><span class="number">2</span>,<span class="variable">skip=</span><span class="number">19</span>,<span class="variable">method=</span><span class="string">"tab"</span>,<span class="variable">fileEncoding=</span><span class="string">"UTF-8"</span>)</div><div class="line"><span class="comment">##単位千円 -&gt; 億円</span></div><div class="line">売買状況&lt;-data.frame(na.omit(as.numeric(gsub(<span class="string">","</span>,<span class="string">""</span>,data[<span class="number">1</span>:<span class="number">35</span>,<span class="number">7</span>])))[<span class="number">1</span>:<span class="number">11</span>]/<span class="number">100000</span>)</div><div class="line">names(売買状況)&lt;-<span class="string">"2014"</span></div><div class="line">売買状況$投資部門&lt;-c(<span class="string">"法人"</span>,<span class="string">"個人"</span>,<span class="string">"海外投資家"</span>,<span class="string">"証券会社"</span>,<span class="string">"投資信託"</span>,<span class="string">"事業法人"</span>,</div><div class="line"><span class="string">"その他法人等"</span>,<span class="string">"金融機関"</span>,<span class="string">"生保・損保"</span>,<span class="string">"銀行"</span>,<span class="string">"その他金融機関"</span>)</div><div class="line">売買状況$内訳&lt;-c(rep(<span class="string">"委託内訳"</span>,<span class="number">4</span>),rep(<span class="string">"法人内訳"</span>,<span class="number">4</span>),rep(<span class="string">"金融機関内訳"</span>,<span class="number">3</span>))</div><div class="line"><span class="comment">#png("doukou04.png", width=1000, height=800)</span></div><div class="line">par(<span class="variable">mar=</span>c(<span class="number">6</span>,<span class="number">8</span>,<span class="number">5</span>,<span class="number">5</span>))</div><div class="line">barplot(rev(t(売買状況[,<span class="number">1</span>])),names.<span class="variable">arg =</span>rev(売買状況$投資部門),<span class="variable">horiz =</span> T ,<span class="variable">las=</span><span class="number">1</span>,<span class="variable">col=</span>c(rep(<span class="string">"gray"</span>,<span class="number">3</span>),rep(<span class="string">"lightblue"</span>,<span class="number">4</span>),rep(<span class="string">"pink"</span>,<span class="number">4</span>)))</div><div class="line">abline(<span class="variable">v=</span><span class="number">0</span>,<span class="variable">lty=</span><span class="number">1</span>,<span class="variable">col=</span><span class="string">"gray25"</span>)</div><div class="line">title(<span class="string">"２０１４年　投資部門別売買動向（ETF）単位：億円"</span>)</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/doukou04.png" alt=""></p>
+<p>２０１４年　投資部門別売買動向（J-REIT）</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">library(<span class="string">"gdata"</span>)</div><div class="line">data.url &lt;- <span class="string">"http://www.jpx.co.jp/markets/statistics-equities/investor-type/nlsgeu0000003asn-att/reit_y14.xls"</span></div><div class="line">data &lt;- read.xls(data.url,<span class="variable">sheet=</span><span class="number">2</span>,<span class="variable">skip=</span><span class="number">19</span>,<span class="variable">method=</span><span class="string">"tab"</span>,<span class="variable">fileEncoding=</span><span class="string">"UTF-8"</span>)</div><div class="line"><span class="comment">##単位千円 -&gt; 億円</span></div><div class="line">売買状況&lt;-data.frame(na.omit(as.numeric(gsub(<span class="string">","</span>,<span class="string">""</span>,data[<span class="number">1</span>:<span class="number">35</span>,<span class="number">7</span>])))[<span class="number">1</span>:<span class="number">11</span>]/<span class="number">100000</span>)</div><div class="line">names(売買状況)&lt;-<span class="string">"2014"</span></div><div class="line">売買状況$投資部門&lt;-c(<span class="string">"法人"</span>,<span class="string">"個人"</span>,<span class="string">"海外投資家"</span>,<span class="string">"証券会社"</span>,<span class="string">"投資信託"</span>,<span class="string">"事業法人"</span>,</div><div class="line"><span class="string">"その他法人等"</span>,<span class="string">"金融機関"</span>,<span class="string">"生保・損保"</span>,<span class="string">"銀行"</span>,<span class="string">"その他金融機関"</span>)</div><div class="line">売買状況$内訳&lt;-c(rep(<span class="string">"委託内訳"</span>,<span class="number">4</span>),rep(<span class="string">"法人内訳"</span>,<span class="number">4</span>),rep(<span class="string">"金融機関内訳"</span>,<span class="number">3</span>))</div><div class="line"><span class="comment">#png("doukou05.png", width=1000, height=800)</span></div><div class="line">par(<span class="variable">mar=</span>c(<span class="number">6</span>,<span class="number">8</span>,<span class="number">5</span>,<span class="number">5</span>))</div><div class="line">barplot(rev(t(売買状況[,<span class="number">1</span>])),names.<span class="variable">arg =</span>rev(売買状況$投資部門),<span class="variable">horiz =</span> T ,<span class="variable">las=</span><span class="number">1</span>,<span class="variable">col=</span>c(rep(<span class="string">"gray"</span>,<span class="number">3</span>),rep(<span class="string">"lightblue"</span>,<span class="number">4</span>),rep(<span class="string">"pink"</span>,<span class="number">4</span>)))</div><div class="line">abline(<span class="variable">v=</span><span class="number">0</span>,<span class="variable">lty=</span><span class="number">1</span>,<span class="variable">col=</span><span class="string">"gray25"</span>)</div><div class="line">title(<span class="string">"２０１４年　投資部門別売買動向（J-REIT）単位：億円"</span>)</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/doukou05.png" alt=""></p>
+<p>海外投資家地域別株券売買状況 2013</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">library(<span class="string">"gdata"</span>)</div><div class="line">data.url &lt;- <span class="string">"http://www.jpx.co.jp/markets/statistics-equities/investor-type/tvdivq000001fdru-att/region_1_y13.xls"</span></div><div class="line">data &lt;- read.xls(data.url,<span class="variable">sheet=</span><span class="number">1</span>,<span class="variable">skip=</span><span class="number">4</span>,<span class="variable">method=</span><span class="string">"tab"</span>,<span class="variable">fileEncoding=</span><span class="string">"UTF-8"</span>)</div><div class="line"><span class="comment">##単位千円 -&gt; 億円</span></div><div class="line">売買状況&lt;-data.frame(na.omit(as.numeric(gsub(<span class="string">","</span>,<span class="string">""</span>,data[<span class="number">1</span>:<span class="number">15</span>,<span class="number">11</span>])))[<span class="number">1</span>:<span class="number">5</span>]/<span class="number">100000</span>)</div><div class="line">names(売買状況)&lt;-<span class="string">"2014"</span></div><div class="line">売買状況$地域&lt;-c(<span class="string">"北米"</span>,<span class="string">"欧州"</span>,<span class="string">"アジア"</span>,<span class="string">"その他地域"</span>,<span class="string">"合計"</span>)</div><div class="line"><span class="comment">#png("doukou06.png", width=1000, height=800)</span></div><div class="line">par(<span class="variable">mar=</span>c(<span class="number">6</span>,<span class="number">8</span>,<span class="number">5</span>,<span class="number">5</span>))</div><div class="line">barplot(rev(t(売買状況[,<span class="number">1</span>])),names.<span class="variable">arg =</span>rev(売買状況$地域),<span class="variable">horiz =</span> T ,<span class="variable">las=</span><span class="number">1</span>,<span class="variable">col=</span>rev(c(rep(<span class="string">"lightblue"</span>,<span class="number">4</span>),<span class="string">"pink"</span>)))</div><div class="line">abline(<span class="variable">v=</span><span class="number">0</span>,<span class="variable">lty=</span><span class="number">1</span>,<span class="variable">col=</span><span class="string">"gray25"</span>)</div><div class="line">title(<span class="string">"２０１３年　海外投資家地域別株券売買状況 単位：億円"</span>)</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/doukou06.png" alt=""></p>
+<p>海外投資家地域別株券売買状況 2014</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">library(<span class="string">"gdata"</span>)</div><div class="line">data.url &lt;- <span class="string">"http://www.jpx.co.jp/markets/statistics-equities/investor-type/nlsgeu0000003bar-att/region_1_y14.xls"</span></div><div class="line">data &lt;- read.xls(data.url,<span class="variable">sheet=</span><span class="number">1</span>,<span class="variable">skip=</span><span class="number">4</span>,<span class="variable">method=</span><span class="string">"tab"</span>,<span class="variable">fileEncoding=</span><span class="string">"UTF-8"</span>)</div><div class="line"><span class="comment">##単位千円 -&gt; 億円</span></div><div class="line">売買状況&lt;-data.frame(na.omit(as.numeric(gsub(<span class="string">","</span>,<span class="string">""</span>,data[<span class="number">1</span>:<span class="number">15</span>,<span class="number">11</span>])))[<span class="number">1</span>:<span class="number">5</span>]/<span class="number">100000</span>)</div><div class="line">names(売買状況)&lt;-<span class="string">"2014"</span></div><div class="line">売買状況$地域&lt;-c(<span class="string">"北米"</span>,<span class="string">"欧州"</span>,<span class="string">"アジア"</span>,<span class="string">"その他地域"</span>,<span class="string">"合計"</span>)</div><div class="line"><span class="comment">#png("doukou07.png", width=1000, height=800)</span></div><div class="line">par(<span class="variable">mar=</span>c(<span class="number">6</span>,<span class="number">8</span>,<span class="number">5</span>,<span class="number">5</span>))</div><div class="line">barplot(rev(t(売買状況[,<span class="number">1</span>])),names.<span class="variable">arg =</span>rev(売買状況$地域),<span class="variable">horiz =</span> T ,<span class="variable">las=</span><span class="number">1</span>,<span class="variable">col=</span>rev(c(rep(<span class="string">"lightblue"</span>,<span class="number">4</span>),<span class="string">"pink"</span>)))</div><div class="line">abline(<span class="variable">v=</span><span class="number">0</span>,<span class="variable">lty=</span><span class="number">1</span>,<span class="variable">col=</span><span class="string">"gray25"</span>)</div><div class="line">title(<span class="string">"２０１４年　海外投資家地域別株券売買状況 単位：億円"</span>)</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/doukou07.png" alt=""></p>
+<p>２０１５年１月〜５月　海外投資家地域別株券売買状況</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">library(<span class="string">"gdata"</span>)</div><div class="line">data.url &lt;- <span class="string">"http://www.jpx.co.jp/markets/statistics-equities/investor-type/nlsgeu0000006djz-att/region_1_m1501.xls"</span></div><div class="line">data &lt;- read.xls(data.url,sheet=<span class="number">1</span>,skip=<span class="number">4</span>,<span class="keyword">method</span>=<span class="string">"tab"</span>,fileEncoding=<span class="string">"UTF-8"</span>)</div><div class="line">d15&lt;-na.omit(<span class="keyword">as</span>.numeric(gsub(<span class="string">","</span>,<span class="string">""</span>,data[<span class="number">1</span>:<span class="number">15</span>,<span class="number">11</span>])))[<span class="number">1</span>:<span class="number">5</span>]/<span class="number">100000</span></div><div class="line"><span class="comment">#rm(data.url);rm(data)</span></div><div class="line">data.url &lt;- <span class="string">"http://www.jpx.co.jp/markets/statistics-equities/investor-type/nlsgeu000000qng2-att/region_1_m1502.xls"</span></div><div class="line">data &lt;- read.xls(data.url,sheet=<span class="number">1</span>,skip=<span class="number">4</span>,<span class="keyword">method</span>=<span class="string">"tab"</span>,fileEncoding=<span class="string">"UTF-8"</span>)</div><div class="line">d&lt;-na.omit(<span class="keyword">as</span>.numeric(gsub(<span class="string">","</span>,<span class="string">""</span>,data[<span class="number">1</span>:<span class="number">15</span>,<span class="number">11</span>])))[<span class="number">1</span>:<span class="number">5</span>]/<span class="number">100000</span></div><div class="line">d15&lt;-rbind(d15,d)</div><div class="line">data.url &lt;- <span class="string">"http://www.jpx.co.jp/markets/statistics-equities/investor-type/nlsgeu000000vnvx-att/region_1_m1503.xls"</span></div><div class="line">data &lt;- read.xls(data.url,sheet=<span class="number">1</span>,skip=<span class="number">4</span>,<span class="keyword">method</span>=<span class="string">"tab"</span>,fileEncoding=<span class="string">"UTF-8"</span>)</div><div class="line">d&lt;-na.omit(<span class="keyword">as</span>.numeric(gsub(<span class="string">","</span>,<span class="string">""</span>,data[<span class="number">1</span>:<span class="number">15</span>,<span class="number">11</span>])))[<span class="number">1</span>:<span class="number">5</span>]/<span class="number">100000</span></div><div class="line">d15&lt;-rbind(d15,d)</div><div class="line">data.url &lt;- <span class="string">"http://www.jpx.co.jp/markets/statistics-equities/investor-type/nlsgeu000000yakk-att/region_1_m1504.xls"</span></div><div class="line">data &lt;- read.xls(data.url,sheet=<span class="number">1</span>,skip=<span class="number">4</span>,<span class="keyword">method</span>=<span class="string">"tab"</span>,fileEncoding=<span class="string">"UTF-8"</span>)</div><div class="line">d&lt;-na.omit(<span class="keyword">as</span>.numeric(gsub(<span class="string">","</span>,<span class="string">""</span>,data[<span class="number">1</span>:<span class="number">15</span>,<span class="number">11</span>])))[<span class="number">1</span>:<span class="number">5</span>]/<span class="number">100000</span></div><div class="line">d15&lt;-rbind(d15,d)</div><div class="line">data.url &lt;- <span class="string">"http://www.jpx.co.jp/markets/statistics-equities/investor-type/nlsgeu0000010ky7-att/region_1_m1505.xls"</span></div><div class="line">data &lt;- read.xls(data.url,sheet=<span class="number">1</span>,skip=<span class="number">4</span>,<span class="keyword">method</span>=<span class="string">"tab"</span>,fileEncoding=<span class="string">"UTF-8"</span>)</div><div class="line">d&lt;-na.omit(<span class="keyword">as</span>.numeric(gsub(<span class="string">","</span>,<span class="string">""</span>,data[<span class="number">1</span>:<span class="number">15</span>,<span class="number">11</span>])))[<span class="number">1</span>:<span class="number">5</span>]/<span class="number">100000</span></div><div class="line">d15&lt;-rbind(d15,d)</div><div class="line">chiiki&lt;-data.frame(d15)</div><div class="line">names(chiiki)&lt;-c(<span class="string">"北米"</span>,<span class="string">"欧州"</span>,<span class="string">"アジア"</span>,<span class="string">"その他地域"</span>,<span class="string">"合計"</span>)</div><div class="line"><span class="comment">#png("doukou08.png", width=1000, height=800)</span></div><div class="line">par(mar=c(<span class="number">6</span>,<span class="number">8</span>,<span class="number">5</span>,<span class="number">5</span>))</div><div class="line">barplot(rev(colSums(chiiki)),names.arg =rev(colnames(chiiki)),horiz = T ,las=<span class="number">1</span>,col=rev(c(rep(<span class="string">"lightblue"</span>,<span class="number">4</span>),<span class="string">"pink"</span>)))</div><div class="line">abline(v=<span class="number">0</span>,lty=<span class="number">1</span>,col=<span class="string">"gray25"</span>)</div><div class="line">title(<span class="string">"２０１５年１月〜５月　海外投資家地域別株券売買状況 単位：億円"</span>)</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/doukou08.png" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/07/11/投資部門別売買動向/" data-id="glhet85pyf43makk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/グラフ/">グラフ</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/07/11/日銀買入額2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">日銀買入額(2010-12-15～2015-07-09)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GMT/">GMT</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gambit/">Gambit</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gnumeric/">Gnumeric</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Graphviz/">Graphviz</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NetworkX/">NetworkX</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">41</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sqlite3/">sqlite3</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/グラフまとめ/">グラフまとめ</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/放送大学/">放送大学</a><span class="category-list-count">46</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/21世紀の資本/">21世紀の資本</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graphviz/">Graphviz</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/オープンデータ/">オープンデータ</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/グラフ/">グラフ</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データベース/">データベース</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原因をさぐる統計学/">原因をさぐる統計学</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/因子分析＆確証的因子分析/">因子分析＆確証的因子分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/地図/">地図</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/成長曲線モデル/">成長曲線モデル</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/時系列解析/">時系列解析</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/潜在変数間の因果関係/">潜在変数間の因果関係</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/21世紀の資本/" style="font-size: 12.22px;">21世紀の資本</a><a href="/tags/Graphviz/" style="font-size: 10.00px;">Graphviz</a><a href="/tags/HEXO/" style="font-size: 11.11px;">HEXO</a><a href="/tags/Rパッケージ/" style="font-size: 11.11px;">Rパッケージ</a><a href="/tags/オープンデータ/" style="font-size: 18.89px;">オープンデータ</a><a href="/tags/グラフ/" style="font-size: 16.67px;">グラフ</a><a href="/tags/データからの知識発見/" style="font-size: 14.44px;">データからの知識発見</a><a href="/tags/データベース/" style="font-size: 11.11px;">データベース</a><a href="/tags/原因をさぐる統計学/" style="font-size: 15.56px;">原因をさぐる統計学</a><a href="/tags/問題解決の数理/" style="font-size: 20.00px;">問題解決の数理</a><a href="/tags/因子分析＆確証的因子分析/" style="font-size: 10.00px;">因子分析＆確証的因子分析</a><a href="/tags/地図/" style="font-size: 10.00px;">地図</a><a href="/tags/心理・教育統計法特論/" style="font-size: 13.33px;">心理・教育統計法特論</a><a href="/tags/心理統計法/" style="font-size: 17.78px;">心理統計法</a><a href="/tags/成長曲線モデル/" style="font-size: 10.00px;">成長曲線モデル</a><a href="/tags/時系列解析/" style="font-size: 11.11px;">時系列解析</a><a href="/tags/潜在変数間の因果関係/" style="font-size: 10.00px;">潜在変数間の因果関係</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07">July 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06">June 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05">May 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03">March 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">35</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">34</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/07/11/投資部門別売買動向/">投資部門別売買動向</a>
+          </li>
+        
+          <li>
+            <a href="/2015/07/11/日銀買入額2/">日銀買入額(2010-12-15～2015-07-09)</a>
+          </li>
+        
+          <li>
+            <a href="/2015/07/11/日銀資産の推移/">日銀資産の推移</a>
+          </li>
+        
+          <li>
+            <a href="/2015/07/05/毎月勤労統計調査2/">毎月勤労統計調査2</a>
+          </li>
+        
+          <li>
+            <a href="/2015/06/28/サンキー・ダイアグラム2/">サンキー・ダイアグラム2</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 統計ソフトRの備忘録２<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
