@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>地形データ（鳥取県とその周辺） | 統計ソフトRの備忘録２</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="raster ,marmap, lattice パッケージ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="地形データ（鳥取県とその周辺）">
+<meta property="og:url" content="http://yoursite.com/2015/08/13/地形データ/">
+<meta property="og:site_name" content="統計ソフトRの備忘録２">
+<meta property="og:description" content="raster ,marmap, lattice パッケージ">
+<meta property="og:image" content="/images/tottori001.png">
+<meta property="og:image" content="/images/tottori002.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="地形データ（鳥取県とその周辺）">
+<meta name="twitter:description" content="raster ,marmap, lattice パッケージ">
+
+  
+    <link rel="alternative" href="/atom.xml" title="統計ソフトRの備忘録２" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">統計ソフトRの備忘録２</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-地形データ" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/08/13/地形データ/" class="article-date">
+  <time datetime="2015-08-13T13:20:26.000Z" itemprop="datePublished">Aug 13 2015</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/R/">R</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      地形データ（鳥取県とその周辺）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="raster_,marmap,_lattice_パッケージ">raster ,marmap, lattice パッケージ</h2>
+<a id="more"></a>
+
+<p>今回は3秒角（約90m）メッシュのSRTM-3データとrasterパッケージを使います。（海底地形のデータはない）</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">library(raster)</div><div class="line"><span class="variable">zipfile=</span>tempfile()</div><div class="line">download.file(<span class="string">"http://dds.cr.usgs.gov/srtm/version2_1/SRTM3/Eurasia/N35E133.hgt.zip"</span>,zipfile)</div><div class="line">unzip(zipfile)</div><div class="line"><span class="variable">t1 =</span> raster('N35E133.hgt')</div><div class="line">download.file(<span class="string">"http://dds.cr.usgs.gov/srtm/version2_1/SRTM3/Eurasia/N35E134.hgt.zip"</span>,zipfile)</div><div class="line">unzip(zipfile)</div><div class="line"><span class="variable">t2 =</span> raster('N35E134.hgt')</div><div class="line"><span class="comment">#raster::merge関数はfilenameオプションで保存もできる</span></div><div class="line">tottori&lt;-merge(t1,t2)</div><div class="line">slope &lt;- terrain(tottori, <span class="variable">opt=</span>'slope')</div><div class="line">aspect &lt;- terrain(tottori, <span class="variable">opt=</span>'aspect')</div><div class="line">hill &lt;- hillShade(slope, aspect, <span class="number">40</span>, <span class="number">270</span>)</div><div class="line">brks&lt;-c(<span class="number">1</span>,seq(<span class="number">100</span>,<span class="number">2000</span>,<span class="number">100</span>))</div><div class="line">arg &lt;- list(<span class="variable">at=</span>c(<span class="number">0</span>,<span class="number">500</span>,<span class="number">1000</span>,<span class="number">1500</span>,<span class="number">2000</span>), <span class="variable">labels=</span>c(<span class="string">"0"</span>,<span class="string">"500"</span>,<span class="string">"1000"</span>,<span class="string">"1500"</span>,<span class="string">"2000"</span>))</div><div class="line"><span class="comment">#png("tottori001.png",width=1000,height=1000)</span></div><div class="line">plot(hill, <span class="variable">col=</span>grey(<span class="number">0</span>:<span class="number">100</span>/<span class="number">100</span>), <span class="variable">legend=</span>FALSE, <span class="variable">main=</span>'Tottori')</div><div class="line">plot(tottori,<span class="variable">breaks=</span>brks,<span class="variable">col=</span>terrain.colors(<span class="number">25</span>,<span class="variable">alpha=</span><span class="number">0.35</span>), <span class="variable">add=</span>TRUE, axis.<span class="variable">args=</span>arg)</div><div class="line">yonago_city&lt;-c(<span class="number">133.331</span>,<span class="number">35.428</span>)</div><div class="line">tottori_city&lt;-c(<span class="number">134.235</span>,<span class="number">35.501</span>)</div><div class="line">points(yonago_city[<span class="number">1</span>],yonago_city[<span class="number">2</span>],<span class="variable">pch=</span><span class="number">16</span>,<span class="variable">cex=</span><span class="number">0.5</span>, <span class="variable">col=</span><span class="string">"red"</span>) </div><div class="line">points(tottori_city[<span class="number">1</span>],tottori_city[<span class="number">2</span>],<span class="variable">pch=</span><span class="number">16</span>,<span class="variable">cex=</span><span class="number">0.5</span>, <span class="variable">col=</span><span class="string">"red"</span>) </div><div class="line">segments(yonago_city[<span class="number">1</span>],yonago_city[<span class="number">2</span>],tottori_city[<span class="number">1</span>],tottori_city[<span class="number">2</span>],<span class="variable">col=</span><span class="string">"red"</span>,<span class="variable">lwd=</span><span class="number">1.5</span>)</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/tottori001.png" alt=""></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="title">library</span>(marmap)</div><div class="line"><span class="title">tba</span>&lt;-<span class="keyword">as</span>.bathy(tottori)</div><div class="line"><span class="preprocessor">#png("tottori002.png",width=1000,height=1000)</span></div><div class="line"><span class="title">trsect</span>&lt;-get.transect(tba,yonago_city[<span class="number">1</span>],yonago_city[<span class="number">2</span>],tottori_city[<span class="number">1</span>],tottori_city[<span class="number">2</span>],distance = <span class="type">TRUE</span>)</div><div class="line"><span class="title">plotProfile</span>(trsect)</div><div class="line"><span class="preprocessor">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/tottori002.png" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/08/13/地形データ/" data-id="or0wwl0lk9flml33" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/地図/">地図</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/08/13/海底地形と地形データ/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">海底地形と地形データ</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GMT/">GMT</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gambit/">Gambit</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gnumeric/">Gnumeric</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Graphviz/">Graphviz</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NetworkX/">NetworkX</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">43</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sqlite3/">sqlite3</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/グラフまとめ/">グラフまとめ</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/放送大学/">放送大学</a><span class="category-list-count">46</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/21世紀の資本/">21世紀の資本</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graphviz/">Graphviz</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/オープンデータ/">オープンデータ</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/グラフ/">グラフ</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データベース/">データベース</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原因をさぐる統計学/">原因をさぐる統計学</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/因子分析＆確証的因子分析/">因子分析＆確証的因子分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/地図/">地図</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/成長曲線モデル/">成長曲線モデル</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/時系列解析/">時系列解析</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/潜在変数間の因果関係/">潜在変数間の因果関係</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/21世紀の資本/" style="font-size: 13.00px;">21世紀の資本</a><a href="/tags/Graphviz/" style="font-size: 10.00px;">Graphviz</a><a href="/tags/HEXO/" style="font-size: 11.00px;">HEXO</a><a href="/tags/Rパッケージ/" style="font-size: 11.00px;">Rパッケージ</a><a href="/tags/オープンデータ/" style="font-size: 19.00px;">オープンデータ</a><a href="/tags/グラフ/" style="font-size: 17.00px;">グラフ</a><a href="/tags/データからの知識発見/" style="font-size: 15.00px;">データからの知識発見</a><a href="/tags/データベース/" style="font-size: 11.00px;">データベース</a><a href="/tags/原因をさぐる統計学/" style="font-size: 16.00px;">原因をさぐる統計学</a><a href="/tags/問題解決の数理/" style="font-size: 20.00px;">問題解決の数理</a><a href="/tags/因子分析＆確証的因子分析/" style="font-size: 10.00px;">因子分析＆確証的因子分析</a><a href="/tags/地図/" style="font-size: 12.00px;">地図</a><a href="/tags/心理・教育統計法特論/" style="font-size: 14.00px;">心理・教育統計法特論</a><a href="/tags/心理統計法/" style="font-size: 18.00px;">心理統計法</a><a href="/tags/成長曲線モデル/" style="font-size: 10.00px;">成長曲線モデル</a><a href="/tags/時系列解析/" style="font-size: 11.00px;">時系列解析</a><a href="/tags/潜在変数間の因果関係/" style="font-size: 10.00px;">潜在変数間の因果関係</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08">August 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07">July 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06">June 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05">May 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03">March 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">35</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">34</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/08/13/地形データ/">地形データ（鳥取県とその周辺）</a>
+          </li>
+        
+          <li>
+            <a href="/2015/08/13/海底地形と地形データ/">海底地形と地形データ</a>
+          </li>
+        
+          <li>
+            <a href="/2015/07/18/賃金構造基本統計調査2/">賃金構造基本統計調査2</a>
+          </li>
+        
+          <li>
+            <a href="/2015/07/11/投資部門別売買動向/">投資部門別売買動向</a>
+          </li>
+        
+          <li>
+            <a href="/2015/07/11/日銀買入額2/">日銀買入額(2010-12-15～2015-07-09)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 統計ソフトRの備忘録２<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
