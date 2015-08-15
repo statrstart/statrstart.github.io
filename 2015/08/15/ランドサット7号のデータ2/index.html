@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ランドサット7号のデータ2 | 統計ソフトRの備忘録２</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="raster ,cluster, som パッケージ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ランドサット7号のデータ2">
+<meta property="og:url" content="http://yoursite.com/2015/08/15/ランドサット7号のデータ2/">
+<meta property="og:site_name" content="統計ソフトRの備忘録２">
+<meta property="og:description" content="raster ,cluster, som パッケージ">
+<meta property="og:image" content="/images/Classification01.png">
+<meta property="og:image" content="/images/Classification02.png">
+<meta property="og:image" content="/images/Classification03.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ランドサット7号のデータ2">
+<meta name="twitter:description" content="raster ,cluster, som パッケージ">
+
+  
+    <link rel="alternative" href="/atom.xml" title="統計ソフトRの備忘録２" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">統計ソフトRの備忘録２</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ランドサット7号のデータ2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/08/15/ランドサット7号のデータ2/" class="article-date">
+  <time datetime="2015-08-15T12:04:23.000Z" itemprop="datePublished">Aug 15 2015</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/R/">R</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ランドサット7号のデータ2
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="raster_,cluster,_som_パッケージ">raster ,cluster, som パッケージ</h2>
+<a id="more"></a>
+
+<h5 id="全然分からないけど土地被覆分類してみた">全然分からないけど土地被覆分類してみた</h5>
+<p>作業フォルダをtottori_city.tifのあるフォルダに変更</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#setwd("tottori_city.tifのあるフォルダ")</span></div><div class="line"><span class="title">library</span>(raster)</div><div class="line"><span class="title">library</span>(<span class="type">RColorBrewer</span>)</div><div class="line"><span class="type">A_crop</span>&lt;- stack(<span class="string">"tottori_city.tif"</span>)</div><div class="line"><span class="preprocessor">#欠損値がないのを確認</span></div><div class="line"><span class="title">summary</span>(<span class="type">A_crop</span>)  </div><div class="line"><span class="type">DF</span> &lt;- <span class="keyword">as</span>.<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(<span class="type">A_crop</span>)</span></span></div></pre></td></tr></table></figure>
+
+<p>bandの情報を知る。（例）バンド２</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">A_crop<span class="string">[[2]]</span></div><div class="line"># some basic statistics using cellStats()</div><div class="line">cellStats(A_crop<span class="string">[[2]]</span>, stat=max)</div><div class="line">cellStats(A_crop<span class="string">[[2]]</span>, stat=mean)</div><div class="line"># This is equivalent to:</div><div class="line">maxValue(A_crop<span class="string">[[2]]</span>)</div><div class="line"># what is the maximum value of all three bands?</div><div class="line">max(c(maxValue(A_crop<span class="string">[[1]]</span>), maxValue(A_crop<span class="string">[[2]]</span>), maxValue(A_crop<span class="string">[[3]]</span>)))</div><div class="line"># summary() is useful <span class="function"><span class="keyword">function</span> <span class="title">for</span> <span class="title">a</span> <span class="title">quick</span> <span class="title">overview</span></span></div><div class="line"><span class="title">summary</span><span class="params">(A_crop[[2]])</span></div></pre></td></tr></table></figure>
+
+<p>結果は省略</p>
+<h5 id="土地被覆分類(3パターン)">土地被覆分類(3パターン)</h5>
+<p>12種類に分類</p>
+<p>k-means によるクラスタリングを行う<br>結果は、最初のクラスタのランダムな割り振りに大きく依存する。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">E &lt;- kmeans(DF, <span class="number">12</span>) <span class="comment">#遅い</span></div><div class="line">clusters &lt;- raster(A_crop)   <span class="comment">## create an empty raster with same extent than ICE</span></div><div class="line">clusters &lt;- <span class="keyword">set</span>Values(clusters, E<span class="variable">$cluster</span>) </div><div class="line">clusters</div><div class="line"><span class="comment">#png("Classification01.png",width=1000,height=1000)</span></div><div class="line">plot(clusters,col=brewer.pal(<span class="number">12</span>, <span class="string">"Paired"</span>))</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/Classification01.png" alt=""></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="id">#cluster</span><span class="value">::claraを使う(kmeans関数を使うよりかなり速い)</span></div><div class="line"><span class="function">library</span>(cluster)</div><div class="line">E=<span class="function">clara</span>(DF,<span class="number">12</span>)</div><div class="line">clusters &lt;- <span class="function">raster</span>(A_crop)   ## create an empty raster with same extent than ICE</div><div class="line">clusters &lt;- <span class="function">setValues</span>(clusters, E<span class="variable">$clustering</span>) </div><div class="line">clusters</div><div class="line">#<span class="function">png</span>(<span class="string">"Classification02.png"</span>,width=<span class="number">1000</span>,height=<span class="number">1000</span>)</div><div class="line"><span class="function">plot</span>(clusters,col=brewer.<span class="function">pal</span>(<span class="number">12</span>, <span class="string">"Paired"</span>))</div><div class="line"><span class="hexcolor">#de</span>v.<span class="function">off</span>()</div></pre></td></tr></table></figure>
+
+<p><img src="/images/Classification02.png" alt=""></p>
+<p>自己組織化マップによるクラスタリング</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">library(som)</div><div class="line">E.som&lt;-som(DF, <span class="variable">xdim=</span><span class="number">12</span>, <span class="variable">ydim=</span><span class="number">1</span>)</div><div class="line"><span class="comment">#E.som$visual[,1]</span></div><div class="line">clusters &lt;- raster(A_crop)   <span class="comment">## create an empty raster with same extent than ICE</span></div><div class="line">clusters &lt;- setValues(clusters, E.som$visual[,<span class="number">1</span>]+<span class="number">1</span>)  <span class="comment">#番号を1から12にするために1加える</span></div><div class="line">clusters</div><div class="line"><span class="comment">#png("Classification03.png",width=1000,height=1000)</span></div><div class="line">plot(clusters,<span class="variable">col=</span>brewer.pal(<span class="number">12</span>, <span class="string">"Paired"</span>))</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/Classification03.png" alt=""></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#ゾーン統計（Zonal Statistics）</span></div><div class="line"><span class="type">E</span>.mean &lt;- zonal(<span class="type">A_crop</span>, clusters, fun=<span class="string">"mean"</span>)  </div><div class="line"><span class="type">E</span>.min &lt;- zonal(<span class="type">A_crop</span>, clusters, fun=<span class="string">"min"</span>)</div><div class="line"><span class="type">E</span>.max &lt;- zonal(<span class="type">A_crop</span>, clusters, fun=<span class="string">"max"</span>)</div><div class="line"><span class="type">E</span>.sum &lt;- zonal(<span class="type">A_crop</span>, clusters, fun=<span class="string">"sum"</span>)</div></pre></td></tr></table></figure>
+
+<p>結果は省略</p>
+<h4 id="放射輝度への変換方法を見つけたのでやってみた。">放射輝度への変換方法を見つけたのでやってみた。</h4>
+<p><a href="http://www.geocities.jp/kensuke_kawamura/Others/LandsatCalibration/DNtoRad_L7.html" target="_blank" rel="external">DNから放射輝度(Radiance)を求める方法Landsat-7 ETM+</a></p>
+<p>デジタルカウント値を放射輝度に変換するには、各衛星データの仕様が必要。</p>
+<p><a href="ftp://ftp.glcf.umd.edu/glcf/Landsat/WRS2/p111/r035/p111r035_7x20001019.ETM-EarthSat-Orthorectified/p111r035_7x20001019.met" target="_blank" rel="external">p111r035_7x20001019.met</a></p>
+<p>ダウンロードしたデータの必要な部分をコピペしてRに入力</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#使用するデータによって異なる</span></div><div class="line"><span class="variable">LMAX_BAND1 =</span> <span class="number">191.600</span>           </div><div class="line"><span class="variable">LMIN_BAND1 =</span> -<span class="number">6.200</span>          </div><div class="line"><span class="variable">LMAX_BAND2 =</span> <span class="number">196.500</span>          </div><div class="line"><span class="variable">LMIN_BAND2 =</span> -<span class="number">6.400</span>           </div><div class="line"><span class="variable">LMAX_BAND3 =</span> <span class="number">152.900</span>          </div><div class="line"><span class="variable">LMIN_BAND3 =</span> -<span class="number">5.000</span>    </div><div class="line"><span class="variable">LMAX_BAND4 =</span> <span class="number">157.400</span>          </div><div class="line"><span class="variable">LMIN_BAND4 =</span> -<span class="number">5.100</span>          </div><div class="line"><span class="variable">LMAX_BAND5 =</span> <span class="number">31.060</span>           </div><div class="line"><span class="variable">LMIN_BAND5 =</span> -<span class="number">1.000</span>         </div><div class="line"><span class="comment">#LMAX_BAND61 = 17.040           </span></div><div class="line"><span class="comment">#LMIN_BAND61 = 0.000           </span></div><div class="line"><span class="comment">#LMAX_BAND62 = 12.650           </span></div><div class="line"><span class="comment">#LMIN_BAND62 = 3.200           </span></div><div class="line"><span class="variable">LMAX_BAND7 =</span> <span class="number">10.800</span>           </div><div class="line"><span class="variable">LMIN_BAND7 =</span> -<span class="number">0.350</span>         </div><div class="line"><span class="comment">#LMAX_BAND8 = 243.100         </span></div><div class="line"><span class="comment">#LMIN_BAND8 = -4.700          </span></div><div class="line"><span class="comment">##</span></div><div class="line"><span class="variable">QCALMAX_BAND1 =</span> <span class="number">255.0</span>            </div><div class="line"><span class="variable">QCALMIN_BAND1 =</span> <span class="number">1.0</span>             </div><div class="line"><span class="variable">QCALMAX_BAND2 =</span> <span class="number">255.0</span>            </div><div class="line"><span class="variable">QCALMIN_BAND2 =</span> <span class="number">1.0</span>               </div><div class="line"><span class="variable">QCALMAX_BAND3 =</span> <span class="number">255.0</span>              </div><div class="line"><span class="variable">QCALMIN_BAND3 =</span> <span class="number">1.0</span>            </div><div class="line"><span class="variable">QCALMAX_BAND4 =</span> <span class="number">255.0</span>              </div><div class="line"><span class="variable">QCALMIN_BAND4 =</span> <span class="number">1.0</span>           </div><div class="line"><span class="variable">QCALMAX_BAND5 =</span> <span class="number">255.0</span>             </div><div class="line"><span class="variable">QCALMIN_BAND5 =</span> <span class="number">1.0</span>           </div><div class="line"><span class="comment">#QCALMAX_BAND61 = 255.0             </span></div><div class="line"><span class="comment">#QCALMIN_BAND61 = 1.0            </span></div><div class="line"><span class="comment">#QCALMAX_BAND62 = 255.0              </span></div><div class="line"><span class="comment">#QCALMIN_BAND62 = 1.0            </span></div><div class="line"><span class="variable">QCALMAX_BAND7 =</span> <span class="number">255.0</span>             </div><div class="line"><span class="variable">QCALMIN_BAND7 =</span> <span class="number">1.0</span>           </div><div class="line"><span class="comment">#QCALMAX_BAND8 = 255.0             </span></div><div class="line"><span class="comment">#QCALMIN_BAND8 = 1.0</span></div></pre></td></tr></table></figure>
+
+<p>デジタルカウント値(DN)を放射輝度(L)に変換</p>
+<p>計算式は<br>Radiance = ((Lmax-Lmin)/(QCALmax-Qcalmin)) * (QCAL-QCALmin) + Lmin</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">L1=((LMAX_BAND1 - LMIN_BAND1)/(QCALMAX_BAND1 - QCALMIN_BAND1))*(A_crop<span class="string">[[1]]</span>-QCALMIN_BAND1)+ LMIN_BAND1</div><div class="line">L2=((LMAX_BAND2 - LMIN_BAND2)/(QCALMAX_BAND2 - QCALMIN_BAND2))*(A_crop<span class="string">[[2]]</span>-QCALMIN_BAND2)+ LMIN_BAND2</div><div class="line">L3=((LMAX_BAND3 - LMIN_BAND3)/(QCALMAX_BAND3 - QCALMIN_BAND3))*(A_crop<span class="string">[[3]]</span>-QCALMIN_BAND3)+ LMIN_BAND3</div><div class="line">L4=((LMAX_BAND4 - LMIN_BAND4)/(QCALMAX_BAND4 - QCALMIN_BAND4))*(A_crop<span class="string">[[4]]</span>-QCALMIN_BAND4)+ LMIN_BAND4</div><div class="line">L5=((LMAX_BAND5 - LMIN_BAND5)/(QCALMAX_BAND5 - QCALMIN_BAND5))*(A_crop<span class="string">[[5]]</span>-QCALMIN_BAND5)+ LMIN_BAND5</div><div class="line">#L7の場合  A_crop<span class="string">[[6]]</span>になるので注意 band=<span class="number">6</span>は使っていないため</div><div class="line">L7=((LMAX_BAND7 - LMIN_BAND7)/(QCALMAX_BAND7 - QCALMIN_BAND7))*(A_crop<span class="string">[[6]]</span>-QCALMIN_BAND7)+ LMIN_BAND7</div><div class="line">L &lt;- stack(L1,L2,L3,L4,L5,L7)</div><div class="line">A_crop</div><div class="line">L</div></pre></td></tr></table></figure>
+
+<blockquote>
+<p>A_crop</p>
+</blockquote>
+<p>class       : RasterStack<br>dimensions  : 302, 351, 106002, 6  (nrow, ncol, ncell, nlayers)<br>resolution  : 28.5, 28.5  (x, y)<br>extent      : 419990.2, 429993.8, 3926003, 3934610  (xmin, xmax, ymin, ymax)<br>coord. ref. : +proj=utm +zone=53 +datum=WGS84 +units=m +no_defs +ellps=WGS84 +towgs84=0,0,0<br>names       : tottori_city.1, tottori_city.2, tottori_city.3, tottori_city.4, tottori_city.5, tottori_city.6<br>min values  :             40,             18,              1,              1,              1,              1<br>max values  :            255,            254,            255,            255,            255,            255   </p>
+<blockquote>
+<p>L</p>
+</blockquote>
+<p>class       : RasterStack<br>dimensions  : 302, 351, 106002, 6  (nrow, ncol, ncell, nlayers)<br>resolution  : 28.5, 28.5  (x, y)<br>extent      : 419990.2, 429993.8, 3926003, 3934610  (xmin, xmax, ymin, ymax)<br>coord. ref. : +proj=utm +zone=53 +datum=WGS84 +units=m +no_defs +ellps=WGS84 +towgs84=0,0,0<br>names       : tottori_city.1, tottori_city.2, tottori_city.3, tottori_city.4, tottori_city.5, tottori_city.6<br>min values  :      24.170866,       7.179921,      -5.000000,      -5.100000,      -1.000000,      -0.350000<br>max values  :       191.6000,       195.7012,       152.9000,       157.4000,        31.0600,        10.8000   </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/08/15/ランドサット7号のデータ2/" data-id="2iescmtpzmirkwbz" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/地図/">地図</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/08/14/ランドサット7号のデータ/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">ランドサット7号のデータ</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GMT/">GMT</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gambit/">Gambit</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gnumeric/">Gnumeric</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Graphviz/">Graphviz</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NetworkX/">NetworkX</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sqlite3/">sqlite3</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/グラフまとめ/">グラフまとめ</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/放送大学/">放送大学</a><span class="category-list-count">46</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/21世紀の資本/">21世紀の資本</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graphviz/">Graphviz</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/オープンデータ/">オープンデータ</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/グラフ/">グラフ</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データベース/">データベース</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原因をさぐる統計学/">原因をさぐる統計学</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/因子分析＆確証的因子分析/">因子分析＆確証的因子分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/地図/">地図</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/成長曲線モデル/">成長曲線モデル</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/時系列解析/">時系列解析</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/潜在変数間の因果関係/">潜在変数間の因果関係</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/21世紀の資本/" style="font-size: 12.22px;">21世紀の資本</a><a href="/tags/Graphviz/" style="font-size: 10.00px;">Graphviz</a><a href="/tags/HEXO/" style="font-size: 11.11px;">HEXO</a><a href="/tags/Rパッケージ/" style="font-size: 11.11px;">Rパッケージ</a><a href="/tags/オープンデータ/" style="font-size: 18.89px;">オープンデータ</a><a href="/tags/グラフ/" style="font-size: 16.67px;">グラフ</a><a href="/tags/データからの知識発見/" style="font-size: 14.44px;">データからの知識発見</a><a href="/tags/データベース/" style="font-size: 11.11px;">データベース</a><a href="/tags/原因をさぐる統計学/" style="font-size: 15.56px;">原因をさぐる統計学</a><a href="/tags/問題解決の数理/" style="font-size: 20.00px;">問題解決の数理</a><a href="/tags/因子分析＆確証的因子分析/" style="font-size: 10.00px;">因子分析＆確証的因子分析</a><a href="/tags/地図/" style="font-size: 12.22px;">地図</a><a href="/tags/心理・教育統計法特論/" style="font-size: 13.33px;">心理・教育統計法特論</a><a href="/tags/心理統計法/" style="font-size: 17.78px;">心理統計法</a><a href="/tags/成長曲線モデル/" style="font-size: 10.00px;">成長曲線モデル</a><a href="/tags/時系列解析/" style="font-size: 11.11px;">時系列解析</a><a href="/tags/潜在変数間の因果関係/" style="font-size: 10.00px;">潜在変数間の因果関係</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08">August 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07">July 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06">June 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05">May 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03">March 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">35</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">34</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/08/15/ランドサット7号のデータ2/">ランドサット7号のデータ2</a>
+          </li>
+        
+          <li>
+            <a href="/2015/08/14/ランドサット7号のデータ/">ランドサット7号のデータ</a>
+          </li>
+        
+          <li>
+            <a href="/2015/08/14/地形データ/">地形データ（鳥取県とその周辺）</a>
+          </li>
+        
+          <li>
+            <a href="/2015/08/13/海底地形と地形データ/">海底地形と地形データ</a>
+          </li>
+        
+          <li>
+            <a href="/2015/07/18/賃金構造基本統計調査2/">賃金構造基本統計調査2</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 統計ソフトRの備忘録２<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
