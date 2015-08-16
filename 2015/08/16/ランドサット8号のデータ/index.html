@@ -96,7 +96,7 @@
         <section id="main"><article id="post-ランドサット8号のデータ" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/08/16/ランドサット8号のデータ/" class="article-date">
-  <time datetime="2015-08-16T08:07:32.000Z" itemprop="datePublished">Aug 16 2015</time>
+  <time datetime="2015-08-16T11:12:38.000Z" itemprop="datePublished">Aug 16 2015</time>
 </a>
     
   <div class="article-category">
@@ -124,7 +124,8 @@
 
 <h4 id="rLandsat8_パッケージを使ってみた（バージョンは0-1-0）">rLandsat8 パッケージを使ってみた（バージョンは0.1.0）</h4>
 <p>(参考)<br><a href="http://www.aist.go.jp/aist_j/new_research/2013/nr20131122/nr20131122.html" target="_blank" rel="external">ランドサット8号の日本上空からのデータを即時公開</a></p>
-<p><a href="http://map-ogccsw.rhcloud.com/" target="_blank" rel="external">データ検索＆ダウンロード　AIST CS-W Client (デスクトップ用）</a><br>path:111-111,row:35-35,start:適当<br>今回は、2015-08-02のデータ(bz2)をダウンロードした。</p>
+<p><a href="http://landbrowser.geogrid.org/landbrowser/index.html" target="_blank" rel="external">LandBrowser</a><br>今回は、LC81110352015214LGN00.tar.bz2(2015-08-02のデータ)をダウンロードした。</p>
+<p>(注意：ファイル名が～KUJ00.tar.bz2となっているファイル)<br><a href="http://map-ogccsw.rhcloud.com/" target="_blank" rel="external">データ検索＆ダウンロード　AIST CS-W Client (デスクトップ用）</a><br>path:111-111,row:35-35で検索したデータ例えば<br>「LC81110352015214KUJ00.tar.bz2」 LGNではなくKUJとなっているデータは  B10.TIF B11.TIF がない。<br>読み込めなかった。</p>
 <p>(rLandsat8 パッケージの使い方)<br><a href="http://terradue.github.io/rLandsat8/" target="_blank" rel="external">rLandsat8 - an R interface to Landsat8</a></p>
 <p>インストール方法</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#library(devtools)</span></div><div class="line"><span class="preprocessor">#install_url("https://github.com/Terradue/rLandsat8/releases/download/v0.1-SNAPSHOT/rLandsat8_0.1.0.tar.gz")</span></div></pre></td></tr></table></figure>
