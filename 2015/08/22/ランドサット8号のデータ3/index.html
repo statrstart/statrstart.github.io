@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ランドサット8号のデータ3 | 統計ソフトRの備忘録２</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="rLandsat8 , raster , sp , colorRamps パッケージ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ランドサット8号のデータ3">
+<meta property="og:url" content="http://yoursite.com/2015/08/22/ランドサット8号のデータ3/">
+<meta property="og:site_name" content="統計ソフトRの備忘録２">
+<meta property="og:description" content="rLandsat8 , raster , sp , colorRamps パッケージ">
+<meta property="og:image" content="/images/tottori20150802_1.png">
+<meta property="og:image" content="/images/temp.jpg">
+<meta property="og:image" content="/images/tottori20150802_2.png">
+<meta property="og:image" content="/images/tottori20150802_3.png">
+<meta property="og:image" content="/images/tottori20150802_4.png">
+<meta property="og:image" content="/images/class.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ランドサット8号のデータ3">
+<meta name="twitter:description" content="rLandsat8 , raster , sp , colorRamps パッケージ">
+
+  
+    <link rel="alternative" href="/atom.xml" title="統計ソフトRの備忘録２" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">統計ソフトRの備忘録２</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ランドサット8号のデータ3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/08/22/ランドサット8号のデータ3/" class="article-date">
+  <time datetime="2015-08-22T14:56:36.000Z" itemprop="datePublished">Aug 22 2015</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/R/">R</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ランドサット8号のデータ3
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="rLandsat8_,_raster_,_sp_,_colorRamps_パッケージ">rLandsat8 , raster , sp , colorRamps パッケージ</h2>
+<a id="more"></a>
+
+<h5 id="「ランドサット8号のデータ」のまとめ">「ランドサット8号のデータ」のまとめ</h5>
+<p>ランドサット８号のデータを入手<br><a href="http://landbrowser.geogrid.org/landbrowser/index.html" target="_blank" rel="external">LandBrowser</a><br><a href="http://map-ogccsw.rhcloud.com/" target="_blank" rel="external">データ検索＆ダウンロード</a></p>
+<p>Path/RowとLatitude/Longitudeの変換<br><a href="https://landsat.usgs.gov/tools_latlong.php" target="_blank" rel="external">WRS-2 Path/Row to Latitude/Longitude Converter</a></p>
+<p><a href="http://asp.ncm-git.co.jp/QuickConvert/BL2UTM.aspx" target="_blank" rel="external">緯度経度座標をＵＴＭ座標に変換する</a></p>
+<p>Rを使って緯度経度座標をＵＴＭ座標に変換する</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">library(rgdal)</div><div class="line">cord.<span class="variable">dec =</span> SpatialPoints(cbind(<span class="number">130.59</span>,<span class="number">31.545</span>), <span class="variable">proj4string=</span>CRS(<span class="string">"+proj=longlat"</span>))</div><div class="line">spTransform(cord.dec, CRS(<span class="string">"+proj=utm +zone=52"</span>))</div><div class="line"><span class="comment">##</span></div><div class="line">cord.<span class="variable">dec =</span> SpatialPoints(cbind(<span class="number">130.73</span>,<span class="number">31.63</span>), <span class="variable">proj4string=</span>CRS(<span class="string">"+proj=longlat"</span>))</div><div class="line">spTransform(cord.dec, CRS(<span class="string">"+proj=utm +zone=52"</span>))</div></pre></td></tr></table></figure>
+
+<p>ダウンロードしたデータを解凍して作業フォルダに置く（ここでは /home/user/landsat8 とする）</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">setwd(<span class="string">"/home/user/landsat8"</span>)</div><div class="line"><span class="keyword">library</span>(raster)</div><div class="line"><span class="keyword">library</span>(colorRamps)</div><div class="line"><span class="keyword">library</span>(RColorBrewer)</div><div class="line">#<span class="keyword">library</span>(devtools)</div><div class="line">#install_url(<span class="string">"https://github.com/Terradue/rLandsat8/releases/download/v0.1-SNAPSHOT/rLandsat8_0.1.0.tar.gz"</span>)</div><div class="line"><span class="keyword">library</span>(rLandsat8)</div><div class="line">#source(<span class="string">"rLandsat8fix.R"</span>) #変更した関数付け加えた関数をrLandsat8fix.Rというファイル名で作業フォルダに保存。</div></pre></td></tr></table></figure>
+
+<p>rLandsat8パッケージの関数を少し変更</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#反射率（Reflectance）</span></div><div class="line"><span class="comment">#太陽天頂角を考慮する（変更後）</span></div><div class="line">ToTOAReflectance &lt;- <span class="function"><span class="keyword">function</span>(<span class="title">landsat8</span>, <span class="title">band</span>) {</span></div><div class="line">    bandnames &lt;- c(<span class="string">"aerosol"</span>, <span class="string">"blue"</span>, <span class="string">"green"</span>, <span class="string">"red"</span>, <span class="string">"nir"</span>, </div><div class="line">        <span class="string">"swir1"</span>, <span class="string">"swir2"</span>, <span class="string">"panchromatic"</span>, <span class="string">"cirrus"</span>, <span class="string">"tirs1"</span>, </div><div class="line">        <span class="string">"tirs2"</span>)</div><div class="line">    idx &lt;- seq_along(bandnames)[sapply(bandnames, <span class="function"><span class="keyword">function</span>(<span class="title">x</span>) <span class="title">band</span> %<span class="title">in</span>% </span></div><div class="line">        x)]</div><div class="line">    ml &lt;- <span class="keyword">as</span>.<span class="keyword">numeric</span>(landsat8$metadata[[paste0(<span class="string">"reflectance_mult_band_"</span>, </div><div class="line">        idx)]])</div><div class="line">    al &lt;- <span class="keyword">as</span>.<span class="keyword">numeric</span>(landsat8$metadata[[paste0(<span class="string">"reflectance_add_band_"</span>, </div><div class="line">        idx)]])</div><div class="line"> <span class="comment">#   TOAref &lt;- landsat8$band[[band]] * ml + al</span></div><div class="line">    TOAref &lt;- (landsat8$band[[band]] * ml + al)/<span class="built_in">sin</span>(<span class="keyword">as</span>.<span class="keyword">numeric</span>(landsat8$metadata$sun_elevation) * <span class="constant">pi</span> /<span class="number">180</span>)</div><div class="line">    <span class="constant">return</span>(TOAref)</div><div class="line">}</div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#改良型正規化水指数（MNDWI)</span></div><div class="line"><span class="comment">#greenがgreebになっていたのを直した。</span></div><div class="line">ToMNDWI &lt;- <span class="function"><span class="keyword">function</span>(<span class="title">landsat8</span>) {</span></div><div class="line">  <span class="comment"># MNDWI=(Green - SWIR1)/(Green + SWIR1) </span></div><div class="line">  green &lt;- ToTOAReflectance(landsat8, <span class="string">"green"</span>)</div><div class="line">  swir1 &lt;- ToTOAReflectance(landsat8, <span class="string">"swir1"</span>)</div><div class="line"><span class="comment"># mndwi &lt;- (greeb - swir1)/(green + swir1)</span></div><div class="line">  mndwi &lt;- (green - swir1) / (green + swir1)</div><div class="line">  <span class="constant">return</span>(mndwi)</div><div class="line">}</div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#付け加えた関数（landsat8のメタファイル(ファイル名の後ろが"_MTL.txt")を読み込む）</span></div><div class="line"><span class="built_in">read</span>.meta&lt;- <span class="function"><span class="keyword">function</span>(<span class="title">product</span>){</span></div><div class="line">meta.<span class="built_in">file</span> &lt;- paste0(product, <span class="string">"/"</span>, product, <span class="string">"_MTL.txt"</span>)</div><div class="line">    textLines &lt;- readLines(meta.<span class="built_in">file</span>)</div><div class="line">    met &lt;- <span class="built_in">read</span>.table(<span class="keyword">text</span>=textLines[grep(<span class="string">"="</span>, textLines)],header = <span class="constant">FALSE</span>, sep = <span class="string">"="</span>, strip.white = <span class="constant">TRUE</span>, </div><div class="line">    stringsAsFactors = <span class="constant">FALSE</span>,row.names = <span class="constant">NULL</span>, col.names = c(<span class="string">"name"</span>, <span class="string">"value"</span>))</div><div class="line">    met &lt;- met[!met$name == <span class="string">"GROUP"</span>, ]</div><div class="line">    met &lt;- met[!met$name == <span class="string">"END_GROUP"</span>, ]</div><div class="line">    rownames(met) &lt;- tolower(met[, <span class="string">"name"</span>])</div><div class="line">    met[, <span class="string">"name"</span>] &lt;- <span class="constant">NULL</span></div><div class="line">    met &lt;- <span class="keyword">as</span>.list(<span class="keyword">as</span>.data.frame(t(met), stringsAsFactors = <span class="constant">FALSE</span>))</div><div class="line"><span class="constant">return</span>(met)       </div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>最初にデータの一部を切り出してからデータ処理をする。<br>記事「ランドサット8号のデータ1」のやり方より速い。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="title">product</span>  &lt;- <span class="string">"LC81110352015214LGN00"</span></div><div class="line"><span class="preprocessor">#メタデータを読み込む</span></div><div class="line"><span class="title">meta</span>&lt;-read.meta(product)</div><div class="line"><span class="preprocessor">#例えば、utm_zoneは as.numeric(meta$utm_zone)</span></div><div class="line"><span class="preprocessor">#鳥取市の切り出し場所</span></div><div class="line"><span class="preprocessor">#「緯度経度座標をＵＴＭ座標に変換」を参考にする</span></div><div class="line"><span class="type">Crop</span> &lt;- c(<span class="number">420000</span>,<span class="number">430000</span>,<span class="number">3926000</span>,<span class="number">3934600</span>)</div><div class="line"><span class="preprocessor">#解像度=30m</span></div><div class="line"><span class="type">OLI</span>&lt;-stack(c(aerosol=paste0(product,<span class="string">"/"</span>,product, <span class="string">"_B1.TIF"</span>),blue=paste0(product,<span class="string">"/"</span>,product, <span class="string">"_B2.TIF"</span>),</div><div class="line"><span class="title">green</span>=paste0(product,<span class="string">"/"</span>,product, <span class="string">"_B3.TIF"</span>),red=paste0(product,<span class="string">"/"</span>,product, <span class="string">"_B4.TIF"</span>),</div><div class="line"><span class="title">nir</span>=paste0(product,<span class="string">"/"</span>,product, <span class="string">"_B5.TIF"</span>),swir1=paste0(product,<span class="string">"/"</span>,product, <span class="string">"_B6.TIF"</span>),</div><div class="line"><span class="title">swir2</span>=paste0(product,<span class="string">"/"</span>,product, <span class="string">"_B7.TIF"</span>),cirrus=paste0(product,<span class="string">"/"</span>,product, <span class="string">"_B9.TIF"</span>)))</div><div class="line"><span class="preprocessor">#解像度=15m</span></div><div class="line"><span class="type">PAN</span> &lt;-stack(paste0(product,<span class="string">"/"</span>,product, <span class="string">"_B8.TIF"</span>))</div><div class="line"><span class="title">names</span>(<span class="type">PAN</span>)&lt;-<span class="string">"panchromatic"</span></div><div class="line"><span class="preprocessor">#解像度=100m</span></div><div class="line"><span class="type">TIRS</span>&lt;-stack(c(tirs1=paste0(product,<span class="string">"/"</span>,product, <span class="string">"_B10.TIF"</span>),tirs2=paste0(product,<span class="string">"/"</span>,product, <span class="string">"_B11.TIF"</span>)))</div><div class="line"><span class="preprocessor">#切り出し</span></div><div class="line"><span class="title">subOLI</span> &lt;- crop(<span class="type">OLI</span>,<span class="type">Crop</span>)</div><div class="line"><span class="title">subPAN</span> &lt;- crop(<span class="type">PAN</span>,<span class="type">Crop</span>)</div><div class="line"><span class="title">subTIRS</span> &lt;- crop(<span class="type">TIRS</span>,<span class="type">Crop</span>)</div></pre></td></tr></table></figure>
+
+<p>可視光の地図</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#png("tottori20150802_1.png",width=1200,height=1000)</span></div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">1</span>,<span class="number">2</span>))</div><div class="line">plotRGB(subOLI,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>)</div><div class="line">plotRGB(subOLI,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="variable">stretch=</span><span class="string">"lin"</span>)</div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">1</span>,<span class="number">1</span>))</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/tottori20150802_1.png" alt=""></p>
+<p>rLandsat8パッケージの関数の関数が使えるようにする</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">bands=c(unstack(sub<span class="variable">OLI</span>)[<span class="number">1</span>:<span class="number">7</span>],unstack(sub<span class="variable">PAN</span>),unstack(sub<span class="variable">OLI</span>)[<span class="number">8</span>],unstack(sub<span class="variable">TIRS</span>))</div><div class="line">l&lt;-list(metadata = meta, <span class="keyword">band</span> = bands)</div><div class="line"><span class="function"><span class="title">names</span><span class="params">(l$band)</span>&lt;-<span class="title">c</span><span class="params">(<span class="string">"aerosol"</span>,<span class="string">"blue"</span>, <span class="string">"green"</span>, <span class="string">"red"</span>,<span class="string">"nir"</span>,<span class="string">"swir1"</span>,<span class="string">"swir2"</span>,<span class="string">"panchromatic"</span>,<span class="string">"cirrus"</span>,<span class="string">"tirs1"</span>,<span class="string">"tirs2"</span>)</span></span></div></pre></td></tr></table></figure>
+
+<h5 id="放射輝度（Radiance）">放射輝度（Radiance）</h5>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">#<span class="attribute">radiance.blue</span> &lt;<span class="attribute">-</span> <span class="attribute">ToTOARadiance</span>(<span class="attribute">landsat8</span>=<span class="value">l,</span> <span class="attribute">band</span>=<span class="value">"blue"</span><span class="value">)</span></span></span></div><div class="line">#<span class="attribute">radiance.green</span> &lt;<span class="attribute">-</span> <span class="attribute">ToTOARadiance</span>(<span class="attribute">landsat8</span>=<span class="value">l,</span> <span class="attribute">band</span>=<span class="value">"green"</span><span class="value">)</span></div><div class="line">#<span class="attribute">radiance.red</span> &lt;<span class="attribute">-</span> <span class="attribute">ToTOARadiance</span>(<span class="attribute">landsat8</span>=<span class="value">l,</span> <span class="attribute">band</span>=<span class="value">"red"</span><span class="value">)</span></div></pre></td></tr></table></figure>
+
+<h5 id="反射率（Reflectance）">反射率（Reflectance）</h5>
+<p>太陽天頂角を考慮しない(変更前)</p>
+<p>class       : RasterLayer<br>dimensions  : 287, 333, 95571  (nrow, ncol, ncell)<br>resolution  : 30, 30  (x, y)<br>extent      : 420015, 430005, 3925995, 3934605  (xmin, xmax, ymin, ymax)<br>coord. ref. : +proj=utm +zone=53 +datum=WGS84 +units=m +no_defs +ellps=WGS84 +towgs84=0,0,0<br>data source : in memory<br>names       : blue<br>values      : 0.09032, 0.3377  (min, max)  </p>
+<p>太陽天頂角を考慮する（変更後）</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#sin(as.numeric(l$metadata$sun_elevation) * pi /180) </span></div><div class="line"><span class="comment">#0.8912265  &lt;-この数で割る。</span></div><div class="line">ToTOAReflectance(<span class="variable">landsat8=</span>l, <span class="variable">band=</span><span class="string">"blue"</span>)</div></pre></td></tr></table></figure>
+
+<p>class       : RasterLayer<br>dimensions  : 287, 333, 95571  (nrow, ncol, ncell)<br>resolution  : 30, 30  (x, y)<br>extent      : 420015, 430005, 3925995, 3934605  (xmin, xmax, ymin, ymax)<br>coord. ref. : +proj=utm +zone=53 +datum=WGS84 +units=m +no_defs +ellps=WGS84 +towgs84=0,0,0<br>data source : in memory<br>names       : blue<br>values      : 0.1013435, 0.378916  (min, max)  </p>
+<h5 id="スペクトル放射輝度から温度(btemp:_絶対温度(K))">スペクトル放射輝度から温度(btemp: 絶対温度(K))</h5>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">btemp &lt;- ToAtSatelliteBrightnessTemperature(l, <span class="variable">band=</span><span class="string">"tirs1"</span>)</div><div class="line">SST &lt;- btemp - <span class="number">273.15</span>  <span class="comment"># 絶対温度を摂氏に変換</span></div><div class="line"><span class="comment">#google earthで扱うためにkmz(kml)形式で保存</span></div><div class="line">require(rgdal)</div><div class="line">newproj &lt;- <span class="string">"+proj=longlat +ellps=WGS84"</span></div><div class="line">SST_spdf &lt;- projectRaster(SST,<span class="variable">crs=</span>newproj) </div><div class="line">KML(SST_spdf, <span class="variable">file=</span>'tottori_temp',<span class="variable">col=</span>blue2green2red(<span class="number">30</span>))</div></pre></td></tr></table></figure>
+
+<p>google earthに重ねると</p>
+<p><img src="/images/temp.jpg" alt=""></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#正規化植生指数(NDVI)</span></div><div class="line">ndvi&lt;-ToNDVI(l)</div><div class="line"><span class="preprocessor">#地表水分指標(LSWI)</span></div><div class="line">lswi &lt;- ToLSWI(l)</div><div class="line"><span class="preprocessor">#改良型正規化水指数（MNDWI)</span></div><div class="line">mndwi&lt;-ToMNDWI(l)</div><div class="line"><span class="preprocessor">#png("tottori20150802_2.png",width=1200,height=1000)</span></div><div class="line">par(mfrow=c(<span class="number">2</span>,<span class="number">2</span>))</div><div class="line">plot(btemp-<span class="number">273.15</span>,col=blue2green2red(<span class="number">30</span>)) 　#絶対温度を摂氏にするために<span class="number">273.15</span>を引く</div><div class="line">plot(ndvi)</div><div class="line">plot(lswi)</div><div class="line">plot(mndwi)</div><div class="line">par(mfrow=c(<span class="number">1</span>,<span class="number">1</span>))</div><div class="line"><span class="preprocessor">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/tottori20150802_2.png" alt=""></p>
+<ul>
+<li>温度（左上）　正規化植生指数（右上）</li>
+<li>地表水分指標（左下）　改良型正規化水指数（右下）</li>
+</ul>
+<h5 id="クラスタリング">クラスタリング</h5>
+<p>aerosol 、 blue、 green、 red、 nir、 swir1、swir2 を使う</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">aerosol&lt;-ToTOAReflectance(<span class="variable">landsat8=</span>l,<span class="variable">band=</span><span class="string">"aerosol"</span>)</div><div class="line">blue&lt;-ToTOAReflectance(<span class="variable">landsat8=</span>l,<span class="variable">band=</span><span class="string">"blue"</span>)</div><div class="line">green&lt;-ToTOAReflectance(<span class="variable">landsat8=</span>l,<span class="variable">band=</span><span class="string">"green"</span>)</div><div class="line">red&lt;-ToTOAReflectance(<span class="variable">landsat8=</span>l,<span class="variable">band=</span><span class="string">"red"</span>)</div><div class="line">nir&lt;-ToTOAReflectance(<span class="variable">landsat8=</span>l,<span class="variable">band=</span><span class="string">"nir"</span>)</div><div class="line">swir1&lt;-ToTOAReflectance(<span class="variable">landsat8=</span>l,<span class="variable">band=</span><span class="string">"swir1"</span>)</div><div class="line">swir2&lt;-ToTOAReflectance(<span class="variable">landsat8=</span>l,<span class="variable">band=</span><span class="string">"swir2"</span>)</div><div class="line">cl&lt;- stack(aerosol,blue,green,red,nir,swir1,swir2) </div><div class="line">DF &lt;- as.data.frame(cl) ;head(cl);tail(cl)</div><div class="line"><span class="comment">#クラスタリング cluster::clara関数</span></div><div class="line">library(cluster)</div><div class="line"><span class="variable">E=</span>clara(DF,<span class="number">8</span>)</div><div class="line">clusters &lt;- raster(cl)   <span class="comment">## create an empty raster with same extent than ICE</span></div><div class="line">clusters &lt;- setValues(clusters, E$clustering) </div><div class="line">clusters</div><div class="line"><span class="comment">#自己組織化マップによるクラスタリング som::som</span></div><div class="line">library(som)</div><div class="line">E.som&lt;-som(DF, <span class="variable">xdim=</span><span class="number">8</span>, <span class="variable">ydim=</span><span class="number">1</span>)</div><div class="line"><span class="comment">#E.som$visual[,1]</span></div><div class="line">clusters1 &lt;- raster(cl)   <span class="comment">## create an empty raster with same extent than ICE</span></div><div class="line">clusters1 &lt;- setValues(clusters1, E.som$visual[,<span class="number">1</span>]+<span class="number">1</span>)  <span class="comment">#番号を1から12にするために1加える</span></div><div class="line">clusters1</div><div class="line"><span class="comment">#png("tottori20150802_3.png",width=1200,height=1000)</span></div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">1</span>,<span class="number">2</span>))</div><div class="line">plot(clusters,<span class="variable">col=</span>brewer.pal(<span class="number">8</span>, <span class="string">"Paired"</span>))</div><div class="line">plot(clusters1,<span class="variable">col=</span>brewer.pal(<span class="number">8</span>, <span class="string">"Paired"</span>))</div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">1</span>,<span class="number">1</span>))</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/tottori20150802_3.png" alt=""></p>
+<p>配色を変更</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#png("tottori20150802_4.png",width=1200,height=1000)</span></div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">1</span>,<span class="number">2</span>))</div><div class="line">plot(clusters,<span class="variable">col=</span>c(<span class="string">"#A6CEE3"</span>,<span class="string">"#E31A1C"</span>,<span class="string">"#FB9A99"</span>,<span class="string">"#FDBF6F"</span> ,<span class="string">"#FF7F00"</span>,<span class="string">"#B2DF8A"</span>,<span class="string">"#33A02C"</span>,<span class="string">"#1F78B4"</span> ))</div><div class="line">plot(clusters1,<span class="variable">col=</span>c(<span class="string">"#A6CEE3"</span>, <span class="string">"#1F78B4"</span>,<span class="string">"#E31A1C"</span>,<span class="string">"#FDBF6F"</span>,<span class="string">"#FB9A99"</span>,<span class="string">"#FF7F00"</span>, <span class="string">"#B2DF8A"</span>,<span class="string">"#33A02C"</span>))</div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">1</span>,<span class="number">1</span>))</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/tottori20150802_4.png" alt=""></p>
+<p>自己組織化マップによるクラスタリング の結果をgoogle earthで扱うためにkmz(kml)形式で保存  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">newproj &lt;- <span class="string">"+proj=longlat +ellps=WGS84"</span></div><div class="line">clusters1_spdf &lt;- projectRaster(clusters1,crs=newproj) </div><div class="line">KML(clusters1_spdf, <span class="keyword">file</span>=<span class="string">'tottori_cls'</span>,<span class="built_in">col</span>=<span class="keyword">c</span>(<span class="string">"#A6CEE3"</span>, <span class="string">"#1F78B4"</span>,<span class="string">"#E31A1C"</span>,<span class="string">"#FDBF6F"</span>,<span class="string">"#FB9A99"</span>,<span class="string">"#FF7F00"</span>, <span class="string">"#B2DF8A"</span>,<span class="string">"#33A02C"</span>))</div></pre></td></tr></table></figure>
+
+<p>google earthに重ねると　　</p>
+<p><img src="/images/class.jpg" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/08/22/ランドサット8号のデータ3/" data-id="8hhdvs3plgsrqxzu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/地図/">地図</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/08/22/googleとwikipediaのトレンド/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">googleとwikipediaのトレンド</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/GMT/">GMT</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gambit/">Gambit</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gnumeric/">Gnumeric</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Graphviz/">Graphviz</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NetworkX/">NetworkX</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">49</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sqlite3/">sqlite3</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/グラフまとめ/">グラフまとめ</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/放送大学/">放送大学</a><span class="category-list-count">46</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/21世紀の資本/">21世紀の資本</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graphviz/">Graphviz</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/オープンデータ/">オープンデータ</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/グラフ/">グラフ</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データベース/">データベース</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原因をさぐる統計学/">原因をさぐる統計学</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/因子分析＆確証的因子分析/">因子分析＆確証的因子分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/地図/">地図</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/成長曲線モデル/">成長曲線モデル</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/時系列解析/">時系列解析</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/潜在変数間の因果関係/">潜在変数間の因果関係</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/21世紀の資本/" style="font-size: 12.00px;">21世紀の資本</a><a href="/tags/Graphviz/" style="font-size: 10.00px;">Graphviz</a><a href="/tags/HEXO/" style="font-size: 11.00px;">HEXO</a><a href="/tags/Rパッケージ/" style="font-size: 11.00px;">Rパッケージ</a><a href="/tags/オープンデータ/" style="font-size: 19.00px;">オープンデータ</a><a href="/tags/グラフ/" style="font-size: 17.00px;">グラフ</a><a href="/tags/データからの知識発見/" style="font-size: 15.00px;">データからの知識発見</a><a href="/tags/データベース/" style="font-size: 11.00px;">データベース</a><a href="/tags/原因をさぐる統計学/" style="font-size: 16.00px;">原因をさぐる統計学</a><a href="/tags/問題解決の数理/" style="font-size: 20.00px;">問題解決の数理</a><a href="/tags/因子分析＆確証的因子分析/" style="font-size: 10.00px;">因子分析＆確証的因子分析</a><a href="/tags/地図/" style="font-size: 14.00px;">地図</a><a href="/tags/心理・教育統計法特論/" style="font-size: 13.00px;">心理・教育統計法特論</a><a href="/tags/心理統計法/" style="font-size: 18.00px;">心理統計法</a><a href="/tags/成長曲線モデル/" style="font-size: 10.00px;">成長曲線モデル</a><a href="/tags/時系列解析/" style="font-size: 11.00px;">時系列解析</a><a href="/tags/潜在変数間の因果関係/" style="font-size: 10.00px;">潜在変数間の因果関係</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08">August 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07">July 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06">June 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05">May 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03">March 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">35</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">34</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/08/22/ランドサット8号のデータ3/">ランドサット8号のデータ3</a>
+          </li>
+        
+          <li>
+            <a href="/2015/08/22/googleとwikipediaのトレンド/">googleとwikipediaのトレンド</a>
+          </li>
+        
+          <li>
+            <a href="/2015/08/16/ランドサット8号のデータ2/">ランドサット8号のデータ2</a>
+          </li>
+        
+          <li>
+            <a href="/2015/08/16/ランドサット8号のデータ/">ランドサット8号のデータ</a>
+          </li>
+        
+          <li>
+            <a href="/2015/08/15/ランドサット7号のデータ2/">ランドサット7号のデータ2</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 統計ソフトRの備忘録２<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
