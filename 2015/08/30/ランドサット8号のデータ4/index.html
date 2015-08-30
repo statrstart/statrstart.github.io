@@ -17,6 +17,7 @@
 <meta property="og:image" content="/images/pansharpen04.png">
 <meta property="og:image" content="/images/pansharpen05.png">
 <meta property="og:image" content="/images/pansharpen06.png">
+<meta property="og:image" content="/images/pansharpen07.png">
 <meta property="og:image" content="/images/tottori20150802_p1.png">
 <meta property="og:image" content="/images/tottori20150802_p2.png">
 <meta name="twitter:card" content="summary">
@@ -101,7 +102,7 @@
         <section id="main"><article id="post-ランドサット8号のデータ4" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/08/30/ランドサット8号のデータ4/" class="article-date">
-  <time datetime="2015-08-30T02:28:22.000Z" itemprop="datePublished">Aug 30 2015</time>
+  <time datetime="2015-08-30T09:20:29.000Z" itemprop="datePublished">Aug 30 2015</time>
 </a>
     
   <div class="article-category">
@@ -167,6 +168,16 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#png("pansharpen06.png",width=1200,height=800)</span></div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">1</span>,<span class="number">2</span>))</div><div class="line"><span class="comment">#r:tirs2 , g:swir2 , b:swir1</span></div><div class="line">plotRGB(temp,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="variable">stretch=</span><span class="string">"lin"</span>)</div><div class="line">plotRGB(RGBpan,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="variable">stretch=</span><span class="string">"lin"</span>)</div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">1</span>,<span class="number">1</span>))</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
 
 <p><img src="/images/pansharpen06.png" alt=""></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#png("pansharpen07.png",width=1200,height=800)</span></div><div class="line">par(mfrow=c(<span class="number">1</span>,<span class="number">2</span>))</div><div class="line">temp&lt;-brick(subOLI[[<span class="number">7</span>]],subOLI[[<span class="number">5</span>]]-subOLI[[<span class="number">6</span>]],subTIRS[[<span class="number">2</span>]])</div><div class="line"><span class="type">RGBpan</span> &lt;- panSharpen(temp,subPAN,r=<span class="number">1</span>,g=<span class="number">2</span>,b=<span class="number">3</span>,<span class="keyword">method</span>=<span class="string">"brovey"</span>)</div><div class="line"><span class="type">RGBpan</span></div><div class="line">plotRGB(<span class="type">RGBpan</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,stretch=<span class="string">"lin"</span>)</div><div class="line"><span class="type">RGBpan</span> &lt;- panSharpen(temp,subPAN,r=<span class="number">1</span>,g=<span class="number">2</span>,b=<span class="number">3</span>,<span class="keyword">method</span>=<span class="string">"ihs"</span>)</div><div class="line"><span class="type">RGBpan</span></div><div class="line">plotRGB(<span class="type">RGBpan</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,stretch=<span class="string">"lin"</span>)</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<h5 id="method=”brovey”">method=”brovey”</h5>
+<p>class       : RasterBrick<br>dimensions  : 333, 353, 117549, 3  (nrow, ncol, ncell, nlayers)<br>resolution  : 15, 15  (x, y)<br>extent      : 485707.5, 491002.5, 3011002, 3015998  (xmin, xmax, ymin, ymax)<br>coord. ref. : +proj=utm +zone=54 +datum=WGS84 +units=m +no_defs +ellps=WGS84 +towgs84=0,0,0<br>data source : in memory<br>names       : swir2_pan, layer_pan, tirs2_pan<br>min values  :  1109.156, -3894.012,  3082.163<br>max values  :  12201.97,  12617.71,  20296.91   </p>
+<h5 id="method=”ihs”">method=”ihs”</h5>
+<p>class       : RasterBrick<br>dimensions  : 333, 353, 117549, 3  (nrow, ncol, ncell, nlayers)<br>resolution  : 15, 15  (x, y)<br>extent      : 485707.5, 491002.5, 3011002, 3015998  (xmin, xmax, ymin, ymax)<br>coord. ref. : +proj=utm +zone=54 +datum=WGS84 +units=m +no_defs +ellps=WGS84 +towgs84=0,0,0<br>data source : in memory<br>names       : swir2_pan, layer_pan, tirs2_pan<br>min values  :   3070.52, -41392.57,  14583.00<br>max values  :  51729.43,  29823.67,  37736.17   </p>
+<p><img src="/images/pansharpen07.png" alt=""></p>
+<ul>
+<li>左：method=”brovey”　右：method = “ihs”</li>
+</ul>
 <h3 id="追記">追記</h3>
 <p>記事<a href="http://statrstart.github.io/2015/08/23/ランドサット8号のデータ3/#more" target="_blank" rel="external">ランドサット8号のデータ3</a><br>の可視光の画像をpanSharpen関数を使って処理した画像を載っけておきます。</p>
 <p>コードの前半部は記事[ランドサット8号のデータ3]と同じ</p>
