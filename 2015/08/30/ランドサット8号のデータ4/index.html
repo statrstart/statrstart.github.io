@@ -17,6 +17,8 @@
 <meta property="og:image" content="/images/pansharpen04.png">
 <meta property="og:image" content="/images/pansharpen05.png">
 <meta property="og:image" content="/images/pansharpen06.png">
+<meta property="og:image" content="/images/tottori20150802_p1.png">
+<meta property="og:image" content="/images/tottori20150802_p2.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ランドサットのデータ(パンシャープン画像)">
 <meta name="twitter:description" content="RStoolbox , raster ,  colorRamps パッケージ">
@@ -99,7 +101,7 @@
         <section id="main"><article id="post-ランドサット8号のデータ4" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/08/30/ランドサット8号のデータ4/" class="article-date">
-  <time datetime="2015-08-29T15:42:42.000Z" itemprop="datePublished">Aug 30 2015</time>
+  <time datetime="2015-08-30T02:28:22.000Z" itemprop="datePublished">Aug 30 2015</time>
 </a>
     
   <div class="article-category">
@@ -165,6 +167,29 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#png("pansharpen06.png",width=1200,height=800)</span></div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">1</span>,<span class="number">2</span>))</div><div class="line"><span class="comment">#r:tirs2 , g:swir2 , b:swir1</span></div><div class="line">plotRGB(temp,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="variable">stretch=</span><span class="string">"lin"</span>)</div><div class="line">plotRGB(RGBpan,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="variable">stretch=</span><span class="string">"lin"</span>)</div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">1</span>,<span class="number">1</span>))</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
 
 <p><img src="/images/pansharpen06.png" alt=""></p>
+<h3 id="追記">追記</h3>
+<p>記事<a href="http://statrstart.github.io/2015/08/23/ランドサット8号のデータ3/#more" target="_blank" rel="external">ランドサット8号のデータ3</a><br>の可視光の画像をpanSharpen関数を使って処理した画像を載っけておきます。</p>
+<p>コードの前半部は記事[ランドサット8号のデータ3]と同じ</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#library(devtools)</span></div><div class="line"><span class="comment">#install_github("bleutner/RStoolbox")</span></div><div class="line">library(<span class="type">RStoolbox</span>)</div><div class="line">library(raster)</div><div class="line">library(gridExtra)</div><div class="line"><span class="comment">## Brovey pan sharpening</span></div><div class="line"><span class="type">RGBpan</span> &lt;- panSharpen(subOLI,subPAN, r = <span class="number">4</span>, g = <span class="number">3</span>, b = <span class="number">2</span>, <span class="keyword">method</span> = <span class="string">"brovey"</span>)</div></pre></td></tr></table></figure>
+
+<h5 id="method_=_“brovey”">method = “brovey”</h5>
+<p>class       : RasterBrick<br>dimensions  : 573, 666, 381618, 3  (nrow, ncol, ncell, nlayers)<br>resolution  : 15, 15  (x, y)<br>extent      : 420007.5, 429997.5, 3926002, 3934598  (xmin, xmax, ymin, ymax)<br>coord. ref. : +proj=utm +zone=53 +datum=WGS84 +units=m +no_defs +ellps=WGS84 +towgs84=0,0,0<br>data source : in memory<br>names       : blue_pan, green_pan,  red_pan<br>min values  : 2619.071,  2475.423, 2129.057<br>max values  : 13156.09,  10957.79, 12615.13   </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#png("tottori20150802_p1.png",width=1200,height=1000)</span></div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">1</span>,<span class="number">2</span>))</div><div class="line">plotRGB(subOLI, <span class="variable">r =</span> <span class="number">4</span>, <span class="variable">g =</span> <span class="number">3</span>, <span class="variable">b =</span> <span class="number">2</span>, <span class="variable">stretch =</span> <span class="string">"lin"</span>)</div><div class="line">plotRGB(RGBpan,<span class="variable">r =</span> <span class="number">3</span>, <span class="variable">g =</span> <span class="number">2</span>, <span class="variable">b =</span> <span class="number">1</span>,<span class="variable">stretch=</span><span class="string">"lin"</span>)</div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">1</span>,<span class="number">1</span>))</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/tottori20150802_p1.png" alt=""></p>
+<ul>
+<li>左：処理なし　右：method = “brovey”</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#png("tottori20150802_p2.png",width=1200,height=1000)</span></div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">1</span>,<span class="number">2</span>))</div><div class="line">RGBpan &lt;- panSharpen(subOLI[[<span class="number">2</span>:<span class="number">4</span>]],subPAN, <span class="variable">method =</span> <span class="string">"pca"</span>)</div><div class="line">plotRGB(RGBpan,<span class="variable">r =</span> <span class="number">3</span>, <span class="variable">g =</span> <span class="number">2</span>, <span class="variable">b =</span> <span class="number">1</span>,<span class="variable">stretch=</span><span class="string">"lin"</span>)</div><div class="line">RGBpan &lt;- panSharpen(subOLI,subPAN, <span class="variable">r =</span> <span class="number">4</span>, <span class="variable">g =</span> <span class="number">3</span>, <span class="variable">b =</span> <span class="number">2</span>, )</div><div class="line">plotRGB(RGBpan,<span class="variable">r =</span> <span class="number">3</span>, <span class="variable">g =</span> <span class="number">2</span>, <span class="variable">b =</span> <span class="number">1</span>,<span class="variable">stretch=</span><span class="string">"lin"</span>)</div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">1</span>,<span class="number">1</span>))</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<h5 id="method_=_“pca”">method = “pca”</h5>
+<p>class       : RasterBrick<br>dimensions  : 573, 666, 381618, 3  (nrow, ncol, ncell, nlayers)<br>resolution  : 15, 15  (x, y)<br>extent      : 420007.5, 429997.5, 3926002, 3934598  (xmin, xmax, ymin, ymax)<br>coord. ref. : +proj=utm +zone=53 +datum=WGS84 +units=m +no_defs +ellps=WGS84 +towgs84=0,0,0<br>data source : in memory<br>names       :  blue_pan, green_pan,   red_pan<br>min values  : -1.819482, -1.535279, -1.619051<br>max values  :  15.90116,  11.70955,  12.47470   </p>
+<h5 id="method_=_“ihs”">method = “ihs”</h5>
+<p>class       : RasterBrick<br>dimensions  : 573, 666, 381618, 3  (nrow, ncol, ncell, nlayers)<br>resolution  : 15, 15  (x, y)<br>extent      : 420007.5, 429997.5, 3926002, 3934598  (xmin, xmax, ymin, ymax)<br>coord. ref. : +proj=utm +zone=53 +datum=WGS84 +units=m +no_defs +ellps=WGS84 +towgs84=0,0,0<br>data source : in memory<br>names       : blue_pan, green_pan,  red_pan<br>min values  : 6876.000,  8012.833, 9068.296<br>max values  : 26365.00,  23610.00, 25356.67   </p>
+<p><img src="/images/tottori20150802_p2.png" alt=""></p>
+<ul>
+<li>左：method = “pca”　右：method = “ihs”</li>
+</ul>
 
       
     </div>
