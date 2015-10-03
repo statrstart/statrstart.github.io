@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>西之島標高国土地理院のデータ</title>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/jquery.bxslider.min.js"></script>
+<link href="./css/jquery.bxslider2.css" rel="stylesheet">
+
+
+<!-- bxSlider用記述 Start-->
+<script>$(document).ready(function(){
+//メインスライド用の記述
+  $('.bxslider01').bxSlider({
+  pagerCustom: '#bx-pager',//ページャーをカスタマイズする（サムネイルにする）ための記述
+  controls:false//前後の矢印を消すための記述
+  });
+});
+ 
+//サムネイルをスライドさせるための記述
+$(document).ready(function(){
+  $('.bxslider02').bxSlider({
+  pager:false,
+  minSlides: 5,//１スライドに表示するサムネイルの数
+  maxSlides: 8,//１スライドに表示するサムネイルの最大数
+  slideWidth: 60,//サムネイルの横幅（単位はpx）
+  slideMargin: 2,//サムネイル間の余白（単位はpx）
+//  nextSelector: '#NextIcon',//"次へ”矢印をカスタマイズするための記述
+//  prevSelector: '#PrevIcon'//"前へ”矢印をカスタマイズするための記述
+      });
+});
+</script> 
+<!-- //bxSlider用記述 End -->
+
+</head>
+
+<body>
+
+
+<div class="slider">
+
+<!--メインスライダー Start -->
+ <ul class="bxslider01">
+
+  <li><img src="../images/nishinoshima_20131204.png" width="500" height="500" alt="slide01"></li>
+  <li><img src="../images/nishinoshima_20131217.png" width="500" height="500" alt="slide02"></li>
+  <li><img src="../images/nishinoshima_20140216.png" width="500" height="500" alt="slide03"></li>
+  <li><img src="../images/nishinoshima_20140322.png" width="500" height="500" alt="slide04"></li>
+  <li><img src="../images/nishinoshima_20140704.png" width="500" height="500" alt="slide05"></li>
+  <li><img src="../images/nishinoshima_20141204.png" width="500" height="500" alt="slide06"></li>
+  <li><img src="../images/nishinoshima_20150301.png" width="500" height="500" alt="slide07"></li>
+  <li><img src="../images/nishinoshima_20150728.png" width="500" height="500" alt="slide08"></li>
+
+</ul>
+<!--// メインスライダー End-->
+ 
+<!--サムネイル（ページャー）用スライダー Start-->
+<div class="controlWrap">
+<ul id="bx-pager" class="bxslider02">
+
+ <li><a data-slide-index="0" href=""><img src="../images/nishinoshima_20131204.png" width="60" height="80" alt="thumb01"></a></li>
+<li><a data-slide-index="1" href=""><img src="../images/nishinoshima_20131217.png" width="60" height="80" alt="thumb02"></a></li>
+<li><a data-slide-index="2" href=""><img src="../images/nishinoshima_20140216.png" width="60" height="80" alt="thumb03"></a></li>
+<li><a data-slide-index="3" href=""><img src="../images/nishinoshima_20140322.png" width="60" height="80" alt="thumb04"></a></li>
+<li><a data-slide-index="4" href=""><img src="../images/nishinoshima_20140704.png" width="60" height="80" alt="thumb05"></a></li>
+<li><a data-slide-index="5" href=""><img src="../images/nishinoshima_20141204.png" width="60" height="80" alt="thumb06"></a></li>
+<li><a data-slide-index="6" href=""><img src="../images/nishinoshima_20150301.png" width="60" height="80" alt="thumb07"></a></li>
+ <li class="last"><a data-slide-index="7" href=""><img src="../images/nishinoshima_20150728.png" width="60" height="80" alt="thumb08"></a></li>
+
+</ul>
+ <p id="PrevIcon"></p>
+ <p id="NextIcon"></p>
+ </div>
+ <!--サムネイル（ページャー）用スライダー End-->
+</div>        
+  
+</body>
+</html>
+
+
