@@ -13,6 +13,7 @@
 <meta property="og:description" content="ggmap パッケージ">
 <meta property="og:image" content="/images/eqgg01.png">
 <meta property="og:image" content="/images/eqgg02.png">
+<meta property="og:image" content="/images/eqgg03.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="気象庁地震カタログ(米子市周辺）">
 <meta name="twitter:description" content="ggmap パッケージ">
@@ -95,7 +96,7 @@
         <section id="main"><article id="post-気象庁地震カタログ05" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/01/24/気象庁地震カタログ05/" class="article-date">
-  <time datetime="2016-01-24T09:55:13.000Z" itemprop="datePublished">Jan 24 2016</time>
+  <time datetime="2016-01-24T10:51:11.000Z" itemprop="datePublished">Jan 24 2016</time>
 </a>
     
   <div class="article-category">
@@ -148,6 +149,10 @@
 <li>depth&lt;20:赤 </li>
 <li>depth&gt;=20:青</li>
 </ul>
+<p>プロットする順序を変えたもの</p>
+<p><img src="/images/eqgg03.png" alt=""></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#png("eqgg03.png")</span></div><div class="line"><span class="variable">alpha=</span><span class="number">0.2</span></div><div class="line">ggmap(<span class="built_in">map</span>) + </div><div class="line">geom_point(<span class="variable">data=</span>subeqdata4, aes(<span class="variable">x=</span>longitude, <span class="variable">y=</span>latitude), <span class="variable">color=</span>rgb(<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="variable">alpha=</span>alpha),<span class="variable">size=</span><span class="number">1</span>)+</div><div class="line">geom_point(<span class="variable">data=</span>subeqdata5, aes(<span class="variable">x=</span>longitude, <span class="variable">y=</span>latitude), <span class="variable">color=</span>rgb(<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="variable">alpha=</span>alpha),<span class="variable">size=</span><span class="number">1</span>)</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
 
       
     </div>
