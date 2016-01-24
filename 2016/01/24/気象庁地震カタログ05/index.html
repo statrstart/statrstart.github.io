@@ -3,21 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>ランドサット8号のデータ2 | 統計ソフトRの備忘録２</title>
+  <title>気象庁地震カタログ(米子市周辺） | 統計ソフトRの備忘録２</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="rLandsat8 , raster , sp , colorRamps パッケージ">
+  <meta name="description" content="ggmap パッケージ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ランドサット8号のデータ2">
-<meta property="og:url" content="http://yoursite.com/2015/08/16/ランドサット8号のデータ2/">
+<meta property="og:title" content="気象庁地震カタログ(米子市周辺）">
+<meta property="og:url" content="http://yoursite.com/2016/01/24/気象庁地震カタログ05/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
-<meta property="og:description" content="rLandsat8 , raster , sp , colorRamps パッケージ">
-<meta property="og:image" content="/images/landsat8_004.png">
-<meta property="og:image" content="/images/landsat8_005.png">
-<meta property="og:image" content="/images/landsat8_006.png">
-<meta property="og:image" content="/images/landsat8_007.png">
+<meta property="og:description" content="ggmap パッケージ">
+<meta property="og:image" content="/images/eqgg01.png">
+<meta property="og:image" content="/images/eqgg02.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ランドサット8号のデータ2">
-<meta name="twitter:description" content="rLandsat8 , raster , sp , colorRamps パッケージ">
+<meta name="twitter:title" content="気象庁地震カタログ(米子市周辺）">
+<meta name="twitter:description" content="ggmap パッケージ">
 
   
     <link rel="alternative" href="/atom.xml" title="統計ソフトRの備忘録２" type="application/atom+xml">
@@ -94,10 +92,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-ランドサット8号のデータ2" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-気象庁地震カタログ05" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/08/16/ランドサット8号のデータ2/" class="article-date">
-  <time datetime="2015-08-16T11:34:55.000Z" itemprop="datePublished">Aug 16 2015</time>
+    <a href="/2016/01/24/気象庁地震カタログ05/" class="article-date">
+  <time datetime="2016-01-24T09:55:13.000Z" itemprop="datePublished">Jan 24 2016</time>
 </a>
     
   <div class="article-category">
@@ -112,7 +110,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      ランドサット8号のデータ2
+      気象庁地震カタログ(米子市周辺）
     </h1>
   
 
@@ -120,35 +118,44 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="rLandsat8_,_raster_,_sp_,_colorRamps_パッケージ">rLandsat8 , raster , sp , colorRamps パッケージ</h2>
+        <h2 id="ggmap_パッケージ">ggmap パッケージ</h2>
 <a id="more"></a>
 
-<h5 id="記事「ランドサット8号のデータ」の続き">記事「ランドサット8号のデータ」の続き</h5>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#データは/home/user/landsat8/LC81110352015214LGN00 にあるとする</span></div><div class="line"><span class="preprocessor">#library(rLandsat8)</span></div><div class="line"><span class="preprocessor">#setwd("/home/user/landsat8")</span></div><div class="line"><span class="preprocessor">#product  &lt;- "LC81110352015214LGN00"</span></div><div class="line"><span class="preprocessor">#l &lt;- ReadLandsat8(product)</span></div></pre></td></tr></table></figure>
+<p>(参考)  </p>
+<p><a href="http://www.data.jma.go.jp/svd/eqev/data/daily_map/index.html" target="_blank" rel="external">気象庁 震源リスト(最近9ヶ月、日データ)</a><br>これより過去の震源については<a href="http://www.data.jma.go.jp/svd/eqev/data/bulletin/" target="_blank" rel="external">地震月報(カタログ編)</a>  </p>
+<p>記事「気象庁地震カタログ02」の続き</p>
+<p>ggmapパッケージを使って「米子市周辺」の震源マップを描く。</p>
+<h4 id="背景となる地図を得る">背景となる地図を得る</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">library(ggmap)</div><div class="line">library(mapproj)</div><div class="line"><span class="variable">#center</span> <span class="subst">&lt;-</span> geocode(<span class="string">'tottori'</span>)</div><div class="line"><span class="variable">#center</span> <span class="subst">&lt;-</span> geocode(<span class="string">'kurayoshi'</span>)</div><div class="line">center <span class="subst">&lt;-</span> geocode(<span class="string">'yonago'</span>)</div><div class="line"><span class="variable">#maptype</span> <span class="subst">=</span> c(“terrain”, “satellite”, “roadmap”, “hybrid”, “toner”, “watercolor”)</div><div class="line"><span class="built_in">map</span> <span class="subst">&lt;-</span> get_map(c(center<span class="variable">$lon</span>, center<span class="variable">$lat</span>), zoom <span class="subst">=</span> <span class="number">10</span>, maptype <span class="subst">=</span> <span class="string">'roadmap'</span>)</div><div class="line"><span class="variable">#ggmap</span>(<span class="built_in">map</span>)</div></pre></td></tr></table></figure>
 
-<p>記事「ランドサット7号のデータ」でやったように鳥取市周辺を切り出す。</p>
-<h5 id="可視光">可視光</h5>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">#library(raster)</div><div class="line">l8=stack(l<span class="string">[[2]]</span>$blue,l<span class="string">[[2]]</span>$green,l<span class="string">[[2]]</span>$red)</div><div class="line">Crop &lt;- c(<span class="number">420000</span>,<span class="number">430000</span>,<span class="number">3926000</span>,<span class="number">3934600</span>)</div><div class="line">tottoriRGB &lt;- crop(l8,Crop)</div><div class="line">#作成したデータを保存</div><div class="line">#writeRaster(tottoriRGB, filename=<span class="string">"tottori_RGB.tif"</span>)</div><div class="line">#このデータを使うときには</div><div class="line">#library(<span class="string">"raster"</span>)</div><div class="line">#band blue,green,red</div><div class="line">tottoriRGB&lt;- stack(<span class="string">"tottori_RGB.tif"</span>)</div><div class="line">#png(<span class="string">"landsat8_004.png"</span>,width=<span class="number">1000</span>,height=<span class="number">1000</span>)</div><div class="line">plotRGB(tottoriRGB,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,stretch=<span class="string">"lin"</span>)</div><div class="line">#dev.off()</div></pre></td></tr></table></figure>
+<h4 id="マグニチュードで色分け">マグニチュードで色分け</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#load("tottori1998_2014.RData")</span></div><div class="line"><span class="comment">#</span></div><div class="line">subeqdata&lt;-subset(eqdata,longitude&gt;=<span class="number">132.8</span> & longitude&lt;=<span class="number">133.8</span> & latitude&gt;=<span class="number">35</span> &  latitude&lt;=<span class="number">35.8</span>)</div><div class="line"><span class="comment">#M&gt;=3、微小地震、極微小地震で色を買えるので分類する</span></div><div class="line"><span class="comment">#極微小地震</span></div><div class="line">subeqdata1&lt;-subset(subeqdata,mag&lt;<span class="number">1</span>)</div><div class="line"><span class="comment">#微小地震</span></div><div class="line">subeqdata2&lt;-subset(subeqdata,mag&gt;=<span class="number">1</span> & mag&lt;<span class="number">3</span>)</div><div class="line"><span class="comment">#M&gt;=3(マグニチュードの昇順に並べ替え)</span></div><div class="line">subeqdata3&lt;-subset(subeqdata,mag&gt;=<span class="number">3</span>)</div><div class="line">sortlist &lt;- order(subeqdata3$mag)</div><div class="line">subeqdata3&lt;- subeqdata3[sortlist,]</div><div class="line"><span class="comment">#</span></div><div class="line">head(subeqdata1) ; tail(subeqdata1)</div><div class="line">head(subeqdata2) ; tail(subeqdata2)</div><div class="line">head(subeqdata3) ; tail(subeqdata3)</div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#png("eqgg01.png")</span></div><div class="line"><span class="variable">alpha=</span><span class="number">0.2</span></div><div class="line">ggmap(<span class="built_in">map</span>) + </div><div class="line">geom_point(<span class="variable">data=</span>subeqdata1, aes(<span class="variable">x=</span>longitude, <span class="variable">y=</span>latitude), <span class="variable">color=</span>rgb(<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="variable">alpha=</span>alpha),<span class="variable">size=</span><span class="number">1</span>)+ </div><div class="line">geom_point(<span class="variable">data=</span>subeqdata2, aes(<span class="variable">x=</span>longitude, <span class="variable">y=</span>latitude), <span class="variable">color=</span>rgb(<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="variable">alpha=</span>alpha),<span class="variable">size=</span><span class="number">1</span>)+</div><div class="line">geom_point(<span class="variable">data=</span>subeqdata3, aes(<span class="variable">x=</span>longitude, <span class="variable">y=</span>latitude), <span class="variable">color=</span>rgb(<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="variable">alpha=</span>alpha),<span class="variable">size=</span><span class="number">1</span>)</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
 
-<p><img src="/images/landsat8_004.png" alt=""></p>
-<h5 id="brightness_temperature,NDVI,LSWI">brightness temperature,NDVI,LSWI</h5>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#計算して</span></div><div class="line">btemp &lt;- ToAtSatelliteBrightnessTemperature(l, band=<span class="string">"tirs1"</span>)</div><div class="line">NDVI &lt;- ToNDVI(l)</div><div class="line">LSWI &lt;- ToLSWI(l)</div><div class="line">l8=stack(btemp,NDVI,LSWI)</div><div class="line"><span class="preprocessor">#Crop &lt;- c(420000,430000,3926000,3934600)</span></div><div class="line">tottoriDATA &lt;- crop(l8,Crop)</div><div class="line"><span class="preprocessor">#作成したデータを保存</span></div><div class="line"><span class="preprocessor">#writeRaster(tottoriDATA, filename="tottori_DATA.tif")</span></div><div class="line"><span class="preprocessor">#このデータを使うときには</span></div><div class="line"><span class="preprocessor">#library("raster")</span></div><div class="line">tottoriDATA&lt;- stack(<span class="string">"tottori_DATA.tif"</span>)</div><div class="line"><span class="preprocessor"># 絶対温度を摂氏に変換してからプロット</span></div><div class="line">library(colorRamps)</div><div class="line"><span class="preprocessor">#png("landsat8_005.png",width=1000,height=1000)</span></div><div class="line">plot(tottoriDATA[[<span class="number">1</span>]]- <span class="number">273.15</span>,col=blue2green2red(<span class="number">30</span>))</div><div class="line"><span class="preprocessor">#dev.off()</span></div></pre></td></tr></table></figure>
+<p>1998年から2014年までの震源マップ（マグニチュードで色分け）</p>
+<p><img src="/images/eqgg01.png" alt=""></p>
+<ul>
+<li>mag&lt;1:赤 </li>
+<li>mag&gt;=1 &amp; mag&lt;3:緑</li>
+<li>mag&gt;=3:青</li>
+<li></li>
+</ul>
+<h4 id="震源の深さで色分け">震源の深さで色分け</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#depthによって色分け</span></div><div class="line"><span class="comment">#depth&lt;20</span></div><div class="line">subeqdata4&lt;-subset(subeqdata,depth&lt;<span class="number">20</span>)</div><div class="line"><span class="comment">#depth&gt;=20</span></div><div class="line">subeqdata5&lt;-subset(subeqdata,depth&gt;=<span class="number">20</span>)</div><div class="line"><span class="comment">#</span></div><div class="line">head(subeqdata4) ; tail(subeqdata4)</div><div class="line">head(subeqdata5) ; tail(subeqdata5)</div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#png("eqgg02.png")</span></div><div class="line"><span class="variable">alpha=</span><span class="number">0.2</span></div><div class="line">ggmap(<span class="built_in">map</span>) + </div><div class="line">geom_point(<span class="variable">data=</span>subeqdata5, aes(<span class="variable">x=</span>longitude, <span class="variable">y=</span>latitude), <span class="variable">color=</span>rgb(<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="variable">alpha=</span>alpha),<span class="variable">size=</span><span class="number">1</span>)+ </div><div class="line">geom_point(<span class="variable">data=</span>subeqdata4, aes(<span class="variable">x=</span>longitude, <span class="variable">y=</span>latitude), <span class="variable">color=</span>rgb(<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="variable">alpha=</span>alpha),<span class="variable">size=</span><span class="number">1</span>)</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
 
-<p><img src="/images/landsat8_005.png" alt=""></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#Normalized Difference Vegetation Index(NDVI)</div><div class="line">#png(<span class="string">"landsat8_006.png"</span>,width=<span class="number">1000</span>,height=<span class="number">1000</span>)</div><div class="line">plot(tottoriDATA<span class="string">[[2]]</span>)</div><div class="line">#dev.off()</div></pre></td></tr></table></figure>
-
-<p><img src="/images/landsat8_006.png" alt=""></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#Land Surface Water Index(LSWI)</div><div class="line">#png(<span class="string">"landsat8_007.png"</span>,width=<span class="number">1000</span>,height=<span class="number">1000</span>)</div><div class="line">plot(tottoriDATA<span class="string">[[3]]</span>)</div><div class="line">#dev.off()</div></pre></td></tr></table></figure>
-
-<p><img src="/images/landsat8_007.png" alt=""></p>
+<p>1998年から2014年までの震源マップ(震源の深さで色分け)</p>
+<p><img src="/images/eqgg02.png" alt=""></p>
+<ul>
+<li>depth&lt;20:赤 </li>
+<li>depth&gt;=20:青</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/08/16/ランドサット8号のデータ2/" data-id="siemje05m9x72647" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/01/24/気象庁地震カタログ05/" data-id="k0atryo1c0yu54zq" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/地図/">地図</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/気象庁地震カタログ/">気象庁地震カタログ</a></li></ul>
 
     </footer>
   </div>
@@ -156,19 +163,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/08/29/googleとwikipediaのトレンド/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          googleとwikipediaのトレンド(追記あり)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/08/16/ランドサット8号のデータ/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/01/24/原油とドル円と日経２２５/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">ランドサット8号のデータ</div>
+      <div class="article-nav-title">原油とドル円と日経２２５</div>
     </a>
   
 </nav>
@@ -178,8 +176,8 @@
 
 
 
-<a href="http://yoursite.com/2015/08/16/ランドサット8号のデータ2/">
-  <img src="https://ga-beacon.appspot.com/UA-67242781-1/2015/08/16/ランドサット8号のデータ2/?pixel" /></a>
+<a href="http://yoursite.com/2016/01/24/気象庁地震カタログ05/">
+  <img src="https://ga-beacon.appspot.com/UA-67242781-1/2016/01/24/気象庁地震カタログ05/?pixel" /></a>
 
 </section>
         
