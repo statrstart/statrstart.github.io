@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>気象庁地震カタログ(鳥取県：震源の深さ） | 統計ソフトRの備忘録２</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ggmap , grid パッケージ（タイトルと凡例）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="気象庁地震カタログ(鳥取県：震源の深さ）">
+<meta property="og:url" content="http://yoursite.com/2016/02/07/気象庁地震カタログ06/">
+<meta property="og:site_name" content="統計ソフトRの備忘録２">
+<meta property="og:description" content="ggmap , grid パッケージ（タイトルと凡例）">
+<meta property="og:image" content="/images/eqgg10.png">
+<meta property="og:image" content="/images/eqgg12.png">
+<meta property="og:image" content="/images/eqgg14.png">
+<meta property="og:image" content="/images/eqgg11.png">
+<meta property="og:image" content="/images/eqgg13.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="気象庁地震カタログ(鳥取県：震源の深さ）">
+<meta name="twitter:description" content="ggmap , grid パッケージ（タイトルと凡例）">
+
+  
+    <link rel="alternative" href="/atom.xml" title="統計ソフトRの備忘録２" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">統計ソフトRの備忘録２</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-気象庁地震カタログ06" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/02/07/気象庁地震カタログ06/" class="article-date">
+  <time datetime="2016-02-07T08:43:38.000Z" itemprop="datePublished">Feb 7 2016</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/R/">R</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      気象庁地震カタログ(鳥取県：震源の深さ）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="ggmap_,_grid_パッケージ（タイトルと凡例）">ggmap , grid パッケージ（タイトルと凡例）</h2>
+<a id="more"></a>
+
+<p>(参考)  </p>
+<p><a href="http://www.data.jma.go.jp/svd/eqev/data/daily_map/index.html" target="_blank" rel="external">気象庁 震源リスト(最近9ヶ月、日データ)</a><br>これより過去の震源については<a href="http://www.data.jma.go.jp/svd/eqev/data/bulletin/" target="_blank" rel="external">地震月報(カタログ編)</a>  </p>
+<h3 id="鳥取県の震源分布">鳥取県の震源分布</h3>
+<p><img src="/images/eqgg10.png" alt=""></p>
+<h5 id="薄い赤の部分と薄い青の部分の震源の深さ">薄い赤の部分と薄い青の部分の震源の深さ</h5>
+<h3 id="米子市周辺(薄い赤の部分)">米子市周辺(薄い赤の部分)</h3>
+<p><img src="/images/eqgg12.png" alt=""></p>
+<h3 id="鳥取県中部から鳥取市周辺(薄い青の部分)">鳥取県中部から鳥取市周辺(薄い青の部分)</h3>
+<p><img src="/images/eqgg14.png" alt=""></p>
+<h3 id="拡大した震源分布図">拡大した震源分布図</h3>
+<p><img src="/images/eqgg11.png" alt=""></p>
+<p><img src="/images/eqgg13.png" alt=""></p>
+<h3 id="コード">コード</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div></pre></td><td class="code"><pre><div class="line">library(ggmap)</div><div class="line">library(mapproj)</div><div class="line">library(grid)</div><div class="line"><span class="comment">#あらかじめ作成していた震源データを読み込む</span></div><div class="line">load(<span class="string">"2015.RData"</span>)</div><div class="line">eq2015&lt;-eqdata</div><div class="line">load(<span class="string">"tottori1998_2014.RData"</span>)</div><div class="line">eqdata&lt;-rbind(eqdata[,-<span class="number">6</span>],eq2015)</div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#M&gt;=3、微小地震極微小地震で色を買えるので分類する</span></div><div class="line"><span class="comment">#極微小地震</span></div><div class="line">eqdata1&lt;-subset(eqdata,mag&lt;<span class="number">1</span>)</div><div class="line">eqdata1$Magnitude&lt;-<span class="string">"1 未満"</span></div><div class="line"><span class="comment">#微小地震</span></div><div class="line">eqdata2&lt;-subset(eqdata,mag&gt;=<span class="number">1</span> & mag&lt;<span class="number">3</span>)</div><div class="line">eqdata2$Magnitude&lt;-<span class="string">"1以上3未満"</span></div><div class="line"><span class="comment">#M&gt;=3</span></div><div class="line">eqdata3&lt;-subset(eqdata,mag&gt;=<span class="number">3</span>)</div><div class="line">eqdata3$Magnitude&lt;-<span class="string">"3 以上"</span></div><div class="line"><span class="comment">#</span></div><div class="line">head(eqdata1) ; tail(eqdata1)</div><div class="line">head(eqdata2) ; tail(eqdata2)</div><div class="line">head(eqdata3) ; tail(eqdata3)</div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#つなげる(ggmapで凡例を付けるため)</span></div><div class="line">eq&lt;-rbind(eqdata1,eqdata2,eqdata3)</div><div class="line"><span class="comment">#mag&gt;=4(mag&gt;=4の地震はマグニチュードの大きさでプロット)</span></div><div class="line">eqdata4&lt;-subset(eqdata,mag&gt;=<span class="number">4</span>)</div><div class="line"><span class="comment">#(マグニチュードの昇順に並べ替え)</span></div><div class="line">sortlist &lt;- order(eqdata4$mag)</div><div class="line">eqdata4&lt;- eqdata4[sortlist,]</div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">############### 鳥取県の震源分布図</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#倉吉を中心にzoom=9を指定する。</span></div><div class="line">center &lt;- geocode('kurayoshi')</div><div class="line"><span class="comment">#maptype = c(“terrain”, “satellite”, “roadmap”, “hybrid”, “toner”, “watercolor”)</span></div><div class="line">tottori &lt;- get_map(c(center$lon, center$lat), <span class="variable">zoom =</span> <span class="number">9</span>, <span class="variable">maptype =</span> 'terrain')</div><div class="line"><span class="comment">#</span></div><div class="line">lon1&lt;-c(<span class="number">133</span>,<span class="number">133.5</span>) ; lat1&lt;-c(<span class="number">35.1</span>,<span class="number">35.5</span>)</div><div class="line">lon2&lt;-c(<span class="number">133.5</span>,<span class="number">134.65</span>) ; lat2&lt;-c(<span class="number">35.2</span>,<span class="number">35.65</span>)</div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#png("eqgg10.png",width=800,height=800)</span></div><div class="line"><span class="variable">alpha=</span><span class="number">0.8</span> ; <span class="variable">size=</span><span class="number">1</span></div><div class="line">ggmap(tottori) + </div><div class="line">geom_point(<span class="variable">data=</span>eq, aes(<span class="variable">x=</span>longitude, <span class="variable">y=</span>latitude,<span class="variable">color=</span>Magnitude),<span class="variable">alpha=</span>alpha,<span class="variable">size=</span>size)+ </div><div class="line">geom_point(<span class="variable">data=</span>eqdata4, aes(<span class="variable">x=</span>longitude, <span class="variable">y=</span>latitude,<span class="variable">size=</span>mag),<span class="variable">alpha=</span><span class="number">1</span>,<span class="variable">shape=</span><span class="number">21</span>,<span class="variable">color=</span><span class="string">"gray"</span>,<span class="variable">fill=</span><span class="string">"black"</span>)+ </div><div class="line">geom_point(aes(<span class="variable">x=</span><span class="number">134.1844</span>,<span class="variable">y=</span><span class="number">35.4775</span>),<span class="variable">shape=</span><span class="string">"Ｘ"</span>,<span class="variable">color=</span><span class="string">"black"</span>,<span class="variable">size=</span><span class="number">7</span>)+ </div><div class="line">geom_rect(aes(<span class="variable">xmin=</span>lon1[<span class="number">1</span>], <span class="variable">xmax=</span>lon1[<span class="number">2</span>], <span class="variable">ymin=</span>lat1[<span class="number">1</span>],<span class="variable">ymax=</span>lat1[<span class="number">2</span>]), <span class="variable">fill=</span><span class="string">"red"</span>, <span class="variable">alpha=</span><span class="number">0.05</span>)+</div><div class="line">geom_rect(aes(<span class="variable">xmin=</span>lon2[<span class="number">1</span>], <span class="variable">xmax=</span>lon2[<span class="number">2</span>], <span class="variable">ymin=</span>lat2[<span class="number">1</span>],<span class="variable">ymax=</span>lat2[<span class="number">2</span>]), <span class="variable">fill=</span><span class="string">"blue"</span>, <span class="variable">alpha=</span><span class="number">0.05</span>)+</div><div class="line"><span class="comment">#プロットする色を指定したい場合</span></div><div class="line">scale_colour_manual(<span class="variable">values=</span>c(<span class="string">"red"</span>,<span class="string">"green"</span>,<span class="string">"blue"</span>), <span class="variable">breaks =</span> c(<span class="string">"1 未満"</span>,<span class="string">"1以上3未満"</span>,<span class="string">"3 以上"</span>))+</div><div class="line"><span class="comment">#プロットする大きさの範囲を指定したい場合（マグニチュード 4以上）</span></div><div class="line">scale_size(<span class="variable">range =</span> c(<span class="number">6</span>,<span class="number">10</span>))+</div><div class="line"><span class="comment"># 凡例のタイトルの指定</span></div><div class="line">labs(<span class="variable">colour=</span><span class="string">"マグニチュード"</span>,<span class="variable">size=</span><span class="string">"マグニチュード 4以上"</span>)+</div><div class="line"><span class="comment">#凡例の順番を入れ替える</span></div><div class="line">guides(<span class="variable">size =</span> guide_legend(<span class="variable">order =</span> <span class="number">2</span>), <span class="variable">colour =</span> guide_legend(<span class="variable">order =</span> <span class="number">1</span>)) +</div><div class="line">ggtitle(<span class="string">"震源分布 1998_2015 (Ｘ印:1943年鳥取地震)"</span>)</div><div class="line"><span class="comment">#dev.off()</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">############### 西部(薄い赤色)</span></div><div class="line"><span class="comment">#</span></div><div class="line">center &lt;- geocode('yonago')</div><div class="line"><span class="comment">#maptype = c(“terrain”, “satellite”, “roadmap”, “hybrid”, “toner”, “watercolor”)</span></div><div class="line">yonago &lt;- get_map(c(center$lon, center$lat), <span class="variable">zoom =</span> <span class="number">10</span>, <span class="variable">maptype =</span> 'terrain')</div><div class="line"><span class="comment">#png("eqgg11.png",width=800,height=800)</span></div><div class="line"><span class="variable">alpha=</span><span class="number">0.8</span> ; <span class="variable">size=</span><span class="number">1</span></div><div class="line">ggmap(yonago) + </div><div class="line">geom_point(<span class="variable">data=</span>eq, aes(<span class="variable">x=</span>longitude, <span class="variable">y=</span>latitude,<span class="variable">color=</span>Magnitude),<span class="variable">alpha=</span>alpha,<span class="variable">size=</span>size)+ </div><div class="line">geom_point(<span class="variable">data=</span>eqdata4, aes(<span class="variable">x=</span>longitude, <span class="variable">y=</span>latitude,<span class="variable">size=</span>mag),<span class="variable">alpha=</span><span class="number">1</span>,<span class="variable">shape=</span><span class="number">21</span>,<span class="variable">color=</span><span class="string">"gray"</span>,<span class="variable">fill=</span><span class="string">"black"</span>)+ </div><div class="line"><span class="comment">#プロットする色を指定したい場合</span></div><div class="line">scale_colour_manual(<span class="variable">values=</span>c(<span class="string">"red"</span>,<span class="string">"green"</span>,<span class="string">"blue"</span>), <span class="variable">breaks =</span> c(<span class="string">"1 未満"</span>,<span class="string">"1以上3未満"</span>,<span class="string">"3 以上"</span>))+</div><div class="line"><span class="comment">#プロットする大きさの範囲を指定したい場合（マグニチュード 4以上）</span></div><div class="line">scale_size(<span class="variable">range =</span> c(<span class="number">6</span>,<span class="number">10</span>))+</div><div class="line"><span class="comment"># 凡例のタイトルの指定</span></div><div class="line">labs(<span class="variable">colour=</span><span class="string">"マグニチュード"</span>,<span class="variable">size=</span><span class="string">"マグニチュード 4以上"</span>)+</div><div class="line"><span class="comment">#凡例の順番を入れ替える</span></div><div class="line">guides(<span class="variable">size =</span> guide_legend(<span class="variable">order =</span> <span class="number">2</span>), <span class="variable">colour =</span> guide_legend(<span class="variable">order =</span> <span class="number">1</span>)) +</div><div class="line">ggtitle(<span class="string">"震源分布 1998_2015"</span>)</div><div class="line"><span class="comment">#dev.off()</span></div><div class="line"><span class="comment">#</span></div><div class="line">subeqdata&lt;-subset(eq,longitude&gt;=lon1[<span class="number">1</span>] & longitude&lt;=lon1[<span class="number">2</span>] & latitude&gt;=lat1[<span class="number">1</span>] & latitude&lt;=lat1[<span class="number">2</span>])</div><div class="line">subeqdata4&lt;-subset(eqdata4,longitude&gt;=lon1[<span class="number">1</span>] & longitude&lt;=lon1[<span class="number">2</span>] & latitude&gt;=lat1[<span class="number">1</span>] & latitude&lt;=lat1[<span class="number">2</span>])</div><div class="line"><span class="comment">#</span></div><div class="line"><span class="variable">alpha=</span><span class="number">0.8</span> ; <span class="variable">size=</span><span class="number">1</span></div><div class="line">p1&lt;-ggplot()+</div><div class="line">geom_point(<span class="variable">data=</span>subeqdata,aes(<span class="variable">x=</span>longitude,<span class="variable">y=</span>-depth,<span class="variable">color=</span>Magnitude),<span class="variable">alpha=</span>alpha,<span class="variable">size=</span>size)+</div><div class="line">geom_point(<span class="variable">data=</span>subeqdata4, aes(<span class="variable">x=</span>longitude, <span class="variable">y=</span>-depth,<span class="variable">size=</span>mag),<span class="variable">alpha=</span><span class="number">1</span>,<span class="variable">shape=</span><span class="number">21</span>,<span class="variable">color=</span><span class="string">"gray"</span>,<span class="variable">fill=</span><span class="string">"black"</span>)+ </div><div class="line"><span class="comment">#geom_point(aes(x=134.1844,y=0),shape="Ｘ",color="black",size=7)+ </span></div><div class="line"><span class="comment">#プロットする色を指定したい場合</span></div><div class="line">scale_colour_manual(<span class="variable">values=</span>c(<span class="string">"red"</span>,<span class="string">"green"</span>,<span class="string">"blue"</span>), <span class="variable">breaks =</span> c(<span class="string">"1 未満"</span>,<span class="string">"1以上3未満"</span>,<span class="string">"3 以上"</span>))+</div><div class="line"><span class="comment">#プロットする大きさの範囲を指定したい場合（マグニチュード 4以上）</span></div><div class="line">scale_size(<span class="variable">range =</span> c(<span class="number">6</span>,<span class="number">10</span>))+</div><div class="line"><span class="comment"># 凡例のタイトルの指定</span></div><div class="line">labs(<span class="variable">colour=</span><span class="string">"マグニチュード"</span>,<span class="variable">size=</span><span class="string">"マグニチュード 4以上"</span>,<span class="variable">x=</span><span class="string">"Longitude"</span>,<span class="variable">y=</span><span class="string">"Depth"</span>)+</div><div class="line"><span class="comment">#凡例の順番を入れ替える</span></div><div class="line">guides(<span class="variable">size =</span> guide_legend(<span class="variable">order =</span> <span class="number">2</span>), <span class="variable">colour =</span> guide_legend(<span class="variable">order =</span> <span class="number">1</span>)) +</div><div class="line">ggtitle(<span class="string">"震源：経度・深さ 1998_2015"</span>)</div><div class="line"><span class="comment">#</span></div><div class="line">p2&lt;-ggplot()+</div><div class="line">geom_point(<span class="variable">data=</span>subeqdata,aes(<span class="variable">x=</span>latitude,<span class="variable">y=</span>-depth,<span class="variable">color=</span>Magnitude),<span class="variable">alpha=</span>alpha,<span class="variable">size=</span>size)+</div><div class="line">geom_point(<span class="variable">data=</span>subeqdata4, aes(<span class="variable">x=</span>latitude, <span class="variable">y=</span>-depth,<span class="variable">size=</span>mag),<span class="variable">alpha=</span><span class="number">1</span>,<span class="variable">shape=</span><span class="number">21</span>,<span class="variable">color=</span><span class="string">"gray"</span>,<span class="variable">fill=</span><span class="string">"black"</span>)+ </div><div class="line"><span class="comment">#geom_point(aes(x=35.4775,y=0),shape="Ｘ",color="black",size=7)+ </span></div><div class="line"><span class="comment">#プロットする色を指定したい場合</span></div><div class="line">scale_colour_manual(<span class="variable">values=</span>c(<span class="string">"red"</span>,<span class="string">"green"</span>,<span class="string">"blue"</span>), <span class="variable">breaks =</span> c(<span class="string">"1 未満"</span>,<span class="string">"1以上3未満"</span>,<span class="string">"3 以上"</span>))+</div><div class="line"><span class="comment">#プロットする大きさの範囲を指定したい場合（マグニチュード 4以上）</span></div><div class="line">scale_size(<span class="variable">range =</span> c(<span class="number">6</span>,<span class="number">10</span>))+</div><div class="line"><span class="comment"># 凡例のタイトルの指定</span></div><div class="line">labs(<span class="variable">colour=</span><span class="string">"マグニチュード"</span>,<span class="variable">size=</span><span class="string">"マグニチュード 4以上"</span>,<span class="variable">x=</span><span class="string">"Latitude"</span>,<span class="variable">y=</span><span class="string">"Depth"</span>)+</div><div class="line"><span class="comment">#凡例の順番を入れ替える</span></div><div class="line">guides(<span class="variable">size =</span> guide_legend(<span class="variable">order =</span> <span class="number">2</span>), <span class="variable">colour =</span> guide_legend(<span class="variable">order =</span> <span class="number">1</span>)) +</div><div class="line">ggtitle(<span class="string">"震源：緯度・深さ 1998_2015"</span>)</div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#png("eqgg12.png",width=800,height=800)</span></div><div class="line">grid.newpage() <span class="comment">#空の画面を作る</span></div><div class="line">pushViewport(viewport(<span class="variable">layout=</span>grid.layout(<span class="number">2</span>, <span class="number">1</span>))) <span class="comment">#画面を区切る</span></div><div class="line">print(p1, <span class="variable">vp=</span>viewport(layout.pos.<span class="variable">row=</span><span class="number">1</span>)  ) <span class="comment">#1行目</span></div><div class="line">print(p2, <span class="variable">vp=</span>viewport(layout.pos.<span class="variable">row=</span><span class="number">2</span>)  ) <span class="comment">#2行目</span></div><div class="line"><span class="comment">#dev.off()</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">############### 中部から鳥取市周辺(薄い青)</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#lon=134.1,lat=35.4を中心にzoom=10を指定</span></div><div class="line">center &lt;- data.frame(<span class="variable">lon=</span><span class="number">134.1</span>,<span class="variable">lat=</span><span class="number">35.4</span>)</div><div class="line">kurayoshi &lt;- get_map(c(center$lon, center$lat), <span class="variable">zoom =</span> <span class="number">10</span>, <span class="variable">maptype =</span> 'terrain')</div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#png("eqgg13.png",width=800,height=800)</span></div><div class="line"><span class="variable">alpha=</span><span class="number">0.8</span> ; <span class="variable">size=</span><span class="number">1</span></div><div class="line">ggmap(kurayoshi) + </div><div class="line">geom_point(<span class="variable">data=</span>eq, aes(<span class="variable">x=</span>longitude, <span class="variable">y=</span>latitude,<span class="variable">color=</span>Magnitude),<span class="variable">alpha=</span>alpha,<span class="variable">size=</span>size)+ </div><div class="line">geom_point(<span class="variable">data=</span>eqdata4, aes(<span class="variable">x=</span>longitude, <span class="variable">y=</span>latitude,<span class="variable">size=</span>mag),<span class="variable">alpha=</span><span class="number">1</span>,<span class="variable">shape=</span><span class="number">21</span>,<span class="variable">color=</span><span class="string">"gray"</span>,<span class="variable">fill=</span><span class="string">"black"</span>)+ </div><div class="line">geom_point(aes(<span class="variable">x=</span><span class="number">134.1844</span>,<span class="variable">y=</span><span class="number">35.4775</span>),<span class="variable">shape=</span><span class="string">"Ｘ"</span>,<span class="variable">color=</span><span class="string">"black"</span>,<span class="variable">size=</span><span class="number">7</span>)+ </div><div class="line"><span class="comment">#プロットする色を指定したい場合</span></div><div class="line">scale_colour_manual(<span class="variable">values=</span>c(<span class="string">"red"</span>,<span class="string">"green"</span>,<span class="string">"blue"</span>), <span class="variable">breaks =</span> c(<span class="string">"1 未満"</span>,<span class="string">"1以上3未満"</span>,<span class="string">"3 以上"</span>))+</div><div class="line"><span class="comment">#プロットする大きさの範囲を指定したい場合（マグニチュード 4以上）</span></div><div class="line">scale_size(<span class="variable">range =</span> c(<span class="number">6</span>,<span class="number">10</span>))+</div><div class="line"><span class="comment"># 凡例のタイトルの指定</span></div><div class="line">labs(<span class="variable">colour=</span><span class="string">"マグニチュード"</span>,<span class="variable">size=</span><span class="string">"マグニチュード 4以上"</span>)+</div><div class="line"><span class="comment">#凡例の順番を入れ替える</span></div><div class="line">guides(<span class="variable">size =</span> guide_legend(<span class="variable">order =</span> <span class="number">2</span>), <span class="variable">colour =</span> guide_legend(<span class="variable">order =</span> <span class="number">1</span>)) +</div><div class="line">ggtitle(<span class="string">"震源分布 1998_2015 (Ｘ印:1943年鳥取地震)"</span>)</div><div class="line"><span class="comment">#dev.off()</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#</span></div><div class="line">subeqdata&lt;-subset(eq,longitude&gt;=lon2[<span class="number">1</span>] & longitude&lt;=lon2[<span class="number">2</span>] & latitude&gt;=lat2[<span class="number">1</span>] & latitude&lt;=lat2[<span class="number">2</span>])</div><div class="line">subeqdata4&lt;-subset(eqdata4,longitude&gt;=lon2[<span class="number">1</span>] & longitude&lt;=lon2[<span class="number">2</span>] & latitude&gt;=lat2[<span class="number">1</span>] & latitude&lt;=lat2[<span class="number">2</span>])</div><div class="line"><span class="comment">#</span></div><div class="line"><span class="variable">alpha=</span><span class="number">0.8</span> ; <span class="variable">size=</span><span class="number">1</span></div><div class="line">p1&lt;-ggplot()+</div><div class="line">geom_point(<span class="variable">data=</span>subeqdata,aes(<span class="variable">x=</span>longitude,<span class="variable">y=</span>-depth,<span class="variable">color=</span>Magnitude),<span class="variable">alpha=</span>alpha,<span class="variable">size=</span>size)+</div><div class="line">geom_point(<span class="variable">data=</span>subeqdata4, aes(<span class="variable">x=</span>longitude, <span class="variable">y=</span>-depth,<span class="variable">size=</span>mag),<span class="variable">alpha=</span><span class="number">1</span>,<span class="variable">shape=</span><span class="number">21</span>,<span class="variable">color=</span><span class="string">"gray"</span>,<span class="variable">fill=</span><span class="string">"black"</span>)+ </div><div class="line">geom_point(aes(<span class="variable">x=</span><span class="number">134.1844</span>,<span class="variable">y=</span><span class="number">0</span>),<span class="variable">shape=</span><span class="string">"Ｘ"</span>,<span class="variable">color=</span><span class="string">"black"</span>,<span class="variable">size=</span><span class="number">7</span>)+ </div><div class="line"><span class="comment">#プロットする色を指定したい場合</span></div><div class="line">scale_colour_manual(<span class="variable">values=</span>c(<span class="string">"red"</span>,<span class="string">"green"</span>,<span class="string">"blue"</span>), <span class="variable">breaks =</span> c(<span class="string">"1 未満"</span>,<span class="string">"1以上3未満"</span>,<span class="string">"3 以上"</span>))+</div><div class="line"><span class="comment">#プロットする大きさの範囲を指定したい場合（マグニチュード 4以上）</span></div><div class="line">scale_size(<span class="variable">range =</span> c(<span class="number">6</span>,<span class="number">10</span>))+</div><div class="line"><span class="comment"># 凡例のタイトルの指定</span></div><div class="line">labs(<span class="variable">colour=</span><span class="string">"マグニチュード"</span>,<span class="variable">size=</span><span class="string">"マグニチュード 4以上"</span>,<span class="variable">x=</span><span class="string">"Longitude"</span>,<span class="variable">y=</span><span class="string">"Depth"</span>)+</div><div class="line"><span class="comment">#凡例の順番を入れ替える</span></div><div class="line">guides(<span class="variable">size =</span> guide_legend(<span class="variable">order =</span> <span class="number">2</span>), <span class="variable">colour =</span> guide_legend(<span class="variable">order =</span> <span class="number">1</span>)) +</div><div class="line">ggtitle(<span class="string">"震源：経度・深さ 1998_2015 (Ｘ印:1943年鳥取地震)"</span>)</div><div class="line"><span class="comment">#</span></div><div class="line">p2&lt;-ggplot()+</div><div class="line">geom_point(<span class="variable">data=</span>subeqdata,aes(<span class="variable">x=</span>latitude,<span class="variable">y=</span>-depth,<span class="variable">color=</span>Magnitude),<span class="variable">alpha=</span>alpha,<span class="variable">size=</span>size)+</div><div class="line">geom_point(<span class="variable">data=</span>subeqdata4, aes(<span class="variable">x=</span>latitude, <span class="variable">y=</span>-depth,<span class="variable">size=</span>mag),<span class="variable">alpha=</span><span class="number">1</span>,<span class="variable">shape=</span><span class="number">21</span>,<span class="variable">color=</span><span class="string">"gray"</span>,<span class="variable">fill=</span><span class="string">"black"</span>)+ </div><div class="line">geom_point(aes(<span class="variable">x=</span><span class="number">35.4775</span>,<span class="variable">y=</span><span class="number">0</span>),<span class="variable">shape=</span><span class="string">"Ｘ"</span>,<span class="variable">color=</span><span class="string">"black"</span>,<span class="variable">size=</span><span class="number">7</span>)+ </div><div class="line"><span class="comment">#プロットする色を指定したい場合</span></div><div class="line">scale_colour_manual(<span class="variable">values=</span>c(<span class="string">"red"</span>,<span class="string">"green"</span>,<span class="string">"blue"</span>), <span class="variable">breaks =</span> c(<span class="string">"1 未満"</span>,<span class="string">"1以上3未満"</span>,<span class="string">"3 以上"</span>))+</div><div class="line"><span class="comment">#プロットする大きさの範囲を指定したい場合（マグニチュード 4以上）</span></div><div class="line">scale_size(<span class="variable">range =</span> c(<span class="number">6</span>,<span class="number">10</span>))+</div><div class="line"><span class="comment"># 凡例のタイトルの指定</span></div><div class="line">labs(<span class="variable">colour=</span><span class="string">"マグニチュード"</span>,<span class="variable">size=</span><span class="string">"マグニチュード 4以上"</span>,<span class="variable">x=</span><span class="string">"Latitude"</span>,<span class="variable">y=</span><span class="string">"Depth"</span>)+</div><div class="line"><span class="comment">#凡例の順番を入れ替える</span></div><div class="line">guides(<span class="variable">size =</span> guide_legend(<span class="variable">order =</span> <span class="number">2</span>), <span class="variable">colour =</span> guide_legend(<span class="variable">order =</span> <span class="number">1</span>)) +</div><div class="line">ggtitle(<span class="string">"震源：緯度・深さ 1998_2015 (Ｘ印:1943年鳥取地震)"</span>)</div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#png("eqgg14.png",width=800,height=800)</span></div><div class="line">grid.newpage() <span class="comment">#空の画面を作る</span></div><div class="line">pushViewport(viewport(<span class="variable">layout=</span>grid.layout(<span class="number">2</span>, <span class="number">1</span>))) <span class="comment">#画面を区切る</span></div><div class="line">print(p1, <span class="variable">vp=</span>viewport(layout.pos.<span class="variable">row=</span><span class="number">1</span>)  ) <span class="comment">#1行目</span></div><div class="line">print(p2, <span class="variable">vp=</span>viewport(layout.pos.<span class="variable">row=</span><span class="number">2</span>)  ) <span class="comment">#2行目</span></div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<h3 id="覚え書き">覚え書き</h3>
+<p> lenovo S100 (メモリを2GBに増設) OS:ZORIN での話です。</p>
+<h4 id="data-frame_と_data-table_の処理速度">data.frame と data.table の処理速度</h4>
+<h5 id="data-frame">data.frame</h5>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#load("tottori1998_2014.RData")</span></div><div class="line">system.time(</div><div class="line">{</div><div class="line">	#M&gt;=3、微小地震、極微小地震で色を買えるので分類する</div><div class="line">	#極微小地震</div><div class="line">	eqdata1&lt;-subset(eqdata,mag&lt;1)</div><div class="line">	eqdata1$Magnitude&lt;-<span class="string">"1 未満"</span></div><div class="line">	#微小地震</div><div class="line">	eqdata2&lt;-subset(eqdata,mag&gt;=1 & mag&lt;3)</div><div class="line">	eqdata2$Magnitude&lt;-<span class="string">"1以上3未満"</span></div><div class="line">	#M&gt;=3</div><div class="line">	eqdata3&lt;-subset(eqdata,mag&gt;=3)</div><div class="line">	eqdata3$Magnitude&lt;-<span class="string">"3 以上"</span></div><div class="line">	#つなげる</div><div class="line">	eq&lt;-rbind(eqdata1,eqdata2,eqdata3)</div><div class="line">}</div><div class="line">)</div></pre></td></tr></table></figure>
+
+<p>   ユーザ   システム       経過<br>    21.864      0.784     22.716 </p>
+<h5 id="data-table">data.table</h5>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">library(data.table)</div><div class="line">system.time(</div><div class="line">{</div><div class="line">	eqdata.dt&lt;-setDT(eqdata)</div><div class="line">	setkey(eqdata.dt, <span class="string">"mag"</span>)</div><div class="line">	eqdata1&lt;-eqdata.dt[mag&lt;1,]</div><div class="line">	eqdata1$Magnitude&lt;-<span class="string">"1 未満"</span></div><div class="line">	eqdata2&lt;-eqdata.dt[mag&gt;=1 & mag&lt;3,]</div><div class="line">	eqdata2$Magnitude&lt;-<span class="string">"1以上3未満"</span></div><div class="line">	eqdata3&lt;-eqdata.dt[mag&gt;=3,]</div><div class="line">	eqdata3$Magnitude&lt;-<span class="string">"3 以上"</span></div><div class="line">	l = list(eqdata1,eqdata2,eqdata3)</div><div class="line">	# bind correctly by names</div><div class="line">	eq&lt;-rbindlist(l, use.names=TRUE)</div><div class="line">	eq&lt;-setDF(eq)</div><div class="line">}</div><div class="line">)</div></pre></td></tr></table></figure>
+
+<h5 id="キー設定なし">キー設定なし</h5>
+<p>   ユーザ   システム       経過<br>    16.288      0.420     16.757 </p>
+<h5 id="キー設定あり">キー設定あり</h5>
+<p>   ユーザ   システム       経過<br>    15.836      0.276     16.159 </p>
+<h4 id="save_いろいろ">save いろいろ</h4>
+<p>save(save,saveRDS,saves::saves)<br>load(load,readRDS,saves::loads)</p>
+<p><a href="https://cran.r-project.org/web/packages/saves/vignettes/saves.pdf" target="_blank" rel="external">The Saves Package</a></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">### save & load</span></div><div class="line"><span class="preprocessor">#save(eqdata,file="tottori1998_2014.RData")</span></div><div class="line"><span class="preprocessor">#保存前の名前でしか読み込めない</span></div><div class="line"><span class="preprocessor">#load("tottori1998_2014.RData")</span></div><div class="line"><span class="preprocessor">#</span></div><div class="line"><span class="preprocessor">### saveRDS & readRDS</span></div><div class="line"><span class="preprocessor">#saveRDS(eqdata,file="tottori1998_2014.RData")</span></div><div class="line"><span class="preprocessor">#好きな名前を付けることができる</span></div><div class="line"><span class="preprocessor">#eqdata&lt;-readRDS("tottori1998_2014.RData")</span></div><div class="line"><span class="preprocessor">#</span></div><div class="line"><span class="preprocessor">### saves & loads(saves パッケージ)</span></div><div class="line"><span class="preprocessor">#library(saves)</span></div><div class="line"><span class="preprocessor">#ファイル名を指定しない場合：ファイル名は「保存前の名前.RDatas」 となる</span></div><div class="line"><span class="preprocessor">#saves(eqdata, overwrite = T)</span></div><div class="line"><span class="preprocessor">#読み込む変数が指定できる（指定しないと読み込めない）</span></div><div class="line"><span class="preprocessor">#eqdata&lt;-loads("eqdata",variables =c("time" ,"longitude" ,"latitude" ,"depth" ,"mag","flag" ,"Magnitude"), to.data.frame=T)</span></div><div class="line"><span class="preprocessor">#</span></div></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/02/07/気象庁地震カタログ06/" data-id="4b64l9gnbhfku39f" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/気象庁地震カタログ/">気象庁地震カタログ</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/02/07/気象庁地震カタログ07/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">気象庁地震カタログ(密度分布）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+<a href="http://yoursite.com/2016/02/07/気象庁地震カタログ06/">
+  <img src="https://ga-beacon.appspot.com/UA-67242781-1/2016/02/07/気象庁地震カタログ06/?pixel" /></a>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CAD/">CAD</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/GMT/">GMT</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gambit/">Gambit</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gnumeric/">Gnumeric</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Graphviz/">Graphviz</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NetworkX/">NetworkX</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">71</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sqlite3/">sqlite3</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/グラフまとめ/">グラフまとめ</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/放送大学/">放送大学</a><span class="category-list-count">46</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/21世紀の資本/">21世紀の資本</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graphviz/">Graphviz</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenSCAD/">OpenSCAD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/オープンデータ/">オープンデータ</a><span class="tag-list-count">22</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/グラフ/">グラフ</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データベース/">データベース</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原因をさぐる統計学/">原因をさぐる統計学</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/因子分析＆確証的因子分析/">因子分析＆確証的因子分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/地図/">地図</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/成長曲線モデル/">成長曲線モデル</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/時系列解析/">時系列解析</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/気象庁地震カタログ/">気象庁地震カタログ</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/潜在変数間の因果関係/">潜在変数間の因果関係</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/21世紀の資本/" style="font-size: 12.22px;">21世紀の資本</a><a href="/tags/Graphviz/" style="font-size: 10.00px;">Graphviz</a><a href="/tags/HEXO/" style="font-size: 11.11px;">HEXO</a><a href="/tags/OpenSCAD/" style="font-size: 10.00px;">OpenSCAD</a><a href="/tags/Rパッケージ/" style="font-size: 11.11px;">Rパッケージ</a><a href="/tags/オープンデータ/" style="font-size: 20.00px;">オープンデータ</a><a href="/tags/グラフ/" style="font-size: 17.78px;">グラフ</a><a href="/tags/データからの知識発見/" style="font-size: 15.56px;">データからの知識発見</a><a href="/tags/データベース/" style="font-size: 11.11px;">データベース</a><a href="/tags/原因をさぐる統計学/" style="font-size: 16.67px;">原因をさぐる統計学</a><a href="/tags/問題解決の数理/" style="font-size: 18.89px;">問題解決の数理</a><a href="/tags/因子分析＆確証的因子分析/" style="font-size: 10.00px;">因子分析＆確証的因子分析</a><a href="/tags/地図/" style="font-size: 18.89px;">地図</a><a href="/tags/心理・教育統計法特論/" style="font-size: 13.33px;">心理・教育統計法特論</a><a href="/tags/心理統計法/" style="font-size: 17.78px;">心理統計法</a><a href="/tags/成長曲線モデル/" style="font-size: 10.00px;">成長曲線モデル</a><a href="/tags/時系列解析/" style="font-size: 11.11px;">時系列解析</a><a href="/tags/気象庁地震カタログ/" style="font-size: 14.44px;">気象庁地震カタログ</a><a href="/tags/潜在変数間の因果関係/" style="font-size: 10.00px;">潜在変数間の因果関係</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02">February 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01">January 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10">October 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09">September 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08">August 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07">July 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06">June 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05">May 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03">March 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">35</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">34</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/02/07/気象庁地震カタログ06/">気象庁地震カタログ(鳥取県：震源の深さ）</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/07/気象庁地震カタログ07/">気象庁地震カタログ(密度分布）</a>
+          </li>
+        
+          <li>
+            <a href="/2016/01/24/気象庁地震カタログ05/">気象庁地震カタログ(米子市周辺）</a>
+          </li>
+        
+          <li>
+            <a href="/2016/01/24/原油とドル円と日経２２５/">原油とドル円と日経２２５</a>
+          </li>
+        
+          <li>
+            <a href="/2016/01/24/気象庁地震カタログ04/">気象庁地震カタログ(最近9ヶ月 日データ)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 統計ソフトRの備忘録２<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
