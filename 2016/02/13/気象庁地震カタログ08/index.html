@@ -99,7 +99,7 @@
         <section id="main"><article id="post-気象庁地震カタログ08" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/02/13/気象庁地震カタログ08/" class="article-date">
-  <time datetime="2016-02-13T04:26:46.000Z" itemprop="datePublished">Feb 13 2016</time>
+  <time datetime="2016-02-13T04:58:00.000Z" itemprop="datePublished">Feb 13 2016</time>
 </a>
     
   <div class="article-category">
@@ -156,8 +156,8 @@
 <p>地図を描くコードの主な変更点</p>
 <h4 id="プロットする前に地図の範囲のデータを抽出した（サイズを適切にするため）">プロットする前に地図の範囲のデータを抽出した（サイズを適切にするため）</h4>
 <h5 id="attr(yurihama,”bb”)でget_map関数でゲットした地図の範囲を得ることができる。">attr(yurihama,”bb”)でget_map関数でゲットした地図の範囲を得ることができる。</h5>
-<p>eq&lt;-subset(eq,attr(yurihama,”bb”)$ll.lon&lt;=longitude &amp; longitude&lt;=attr(yurihama,”bb”)$ur.lon &amp;<br>    attr(yurihama,”bb”)$ll.lat&lt;=latitude &amp; latitude&lt;=attr(yurihama,”bb”)$ur.lat)</p>
-<p>eqdata4&lt;-subset(eqdata4,attr(yurihama,”bb”)$ll.lon&lt;=longitude &amp; longitude&lt;=attr(yurihama,”bb”)$ur.lon &amp;<br>    attr(yurihama,”bb”)$ll.lat&lt;=latitude &amp; latitude&lt;=attr(yurihama,”bb”)$ur.lat)</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">eq&lt;-subset(eq,attr(yurihama,<span class="string">"bb"</span>)<span class="variable">$ll</span>.lon&lt;=longitude & longitude&lt;=attr(yurihama,<span class="string">"bb"</span>)<span class="variable">$ur</span>.lon &</div><div class="line">	attr(yurihama,<span class="string">"bb"</span>)<span class="variable">$ll</span>.lat&lt;=latitude & latitude&lt;=attr(yurihama,<span class="string">"bb"</span>)<span class="variable">$ur</span>.lat)</div><div class="line"><span class="comment">#</span></div><div class="line">eqdata4&lt;-subset(eqdata4,attr(yurihama,<span class="string">"bb"</span>)<span class="variable">$ll</span>.lon&lt;=longitude & longitude&lt;=attr(yurihama,<span class="string">"bb"</span>)<span class="variable">$ur</span>.lon &</div><div class="line">	attr(yurihama,<span class="string">"bb"</span>)<span class="variable">$ll</span>.lat&lt;=latitude & latitude&lt;=attr(yurihama,<span class="string">"bb"</span>)<span class="variable">$ur</span>.lat)</div></pre></td></tr></table></figure>
+
 <h4 id="magの大きさに合わせてsizeを変更">magの大きさに合わせてsizeを変更</h4>
 <p>aes(x=longitude, y=latitude,color=Magnitude) を aes(x=longitude, y=latitude,color=Magnitude,size=mag) に</p>
 <h3 id="コード（地震の回数集計）">コード（地震の回数集計）</h3>
