@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Category: GMT | 統計ソフトRの備忘録２</title>
+  <title>気象庁地震カタログ(アニメーション） | 統計ソフトRの備忘録２</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="統計ソフトRの備忘録２">
-<meta property="og:url" content="http://yoursite.com/categories/GMT/">
+  <meta name="description" content="animation , mapdata , xts パッケージ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="気象庁地震カタログ(アニメーション）">
+<meta property="og:url" content="http://yoursite.com/2016/02/13/気象庁地震カタログ09/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
-<meta property="og:description">
+<meta property="og:description" content="animation , mapdata , xts パッケージ">
+<meta property="og:image" content="/images/eq2000_2015.gif">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="統計ソフトRの備忘録２">
-<meta name="twitter:description">
+<meta name="twitter:title" content="気象庁地震カタログ(アニメーション）">
+<meta name="twitter:description" content="animation , mapdata , xts パッケージ">
 
   
     <link rel="alternative" href="/atom.xml" title="統計ソフトRの備忘録２" type="application/atom+xml">
@@ -90,16 +91,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-震源地と原子力発電所2" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-気象庁地震カタログ09" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/04/05/震源地と原子力発電所2/" class="article-date">
-  <time datetime="2015-04-05T12:25:26.000Z" itemprop="datePublished">Apr 5 2015</time>
+    <a href="/2016/02/13/気象庁地震カタログ09/" class="article-date">
+  <time datetime="2016-02-13T09:37:40.000Z" itemprop="datePublished">Feb 13 2016</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/GMT/">GMT</a>
+    <a class="article-category-link" href="/categories/R/">R</a>
   </div>
 
   </div>
@@ -109,8 +108,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/05/震源地と原子力発電所2/">震源地と原子力発電所2</a>
+    <h1 class="article-title" itemprop="name">
+      気象庁地震カタログ(アニメーション）
     </h1>
   
 
@@ -118,35 +117,49 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="GMT(Generic_Mapping_Tools)_とRのgmt_パッケージ">GMT(Generic Mapping Tools) とRのgmt  パッケージ</h2>
+        <h2 id="animation_,_mapdata_,_xts_パッケージ">animation , mapdata , xts パッケージ</h2>
+<a id="more"></a>
 
-        
-          <p class="article-more-link">
-            <a href="/2015/04/05/震源地と原子力発電所2/#more">Read More</a>
-          </p>
-        
+<h4 id="２０００年から２０１５年までの鳥取県震源分布アニメーション">２０００年から２０１５年までの鳥取県震源分布アニメーション</h4>
+<p><img src="/images/eq2000_2015.gif" alt=""></p>
+<ul>
+<li>赤：極微小地震(マグニチュード1未満）</li>
+<li>緑：微小地震（マグニチュード1以上３未満）</li>
+<li>青：マグニチュード３以上4未満の地震</li>
+<li>黒：マグニチュード4以上の地震</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">library(xts)</div><div class="line">library(mapdata)</div><div class="line">library(animation)</div><div class="line"><span class="comment">#</span></div><div class="line">load(<span class="string">"2015.RData"</span>)</div><div class="line">eq2015&lt;-eqdata</div><div class="line">load(<span class="string">"tottori1998_2014.RData"</span>)</div><div class="line">eqdata&lt;-rbind(eqdata[,-<span class="number">6</span>],eq2015)</div><div class="line"><span class="comment">#重複した行を取り除く</span></div><div class="line">eqdata&lt;-unique(eqdata)</div><div class="line"><span class="comment">#</span></div><div class="line">lon1&lt;-c(<span class="number">133</span>,<span class="number">134.6</span>) ; lat1&lt;-c(<span class="number">35</span>,<span class="number">35.7</span>)</div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#期間を区切ったデータを扱いやすくするためにxtsオブジェクトにする</span></div><div class="line"><span class="comment">#年月日まで</span></div><div class="line">eq.xts&lt;-as.xts(read.zoo(eqdata))</div><div class="line"><span class="comment">#年月日時分秒（小数点以下切捨て）まで</span></div><div class="line"><span class="comment">#eq.xts&lt;-xts(eqdata[,2:5], strptime(eqdata$time, "%Y-%m-%d %H:%M:%S"))</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#指定した範囲のデータを抽出</span></div><div class="line">subeq1.xts&lt;-subset(eq.xts,lon1[<span class="number">1</span>]&lt;=longitude & longitude&lt;=lon1[<span class="number">2</span>] & lat1[<span class="number">1</span>]&lt;=latitude & latitude&lt;=lat1[<span class="number">2</span>] & mag&lt;<span class="number">1</span>)</div><div class="line">subeq2.xts&lt;-subset(eq.xts,lon1[<span class="number">1</span>]&lt;=longitude & longitude&lt;=lon1[<span class="number">2</span>] & lat1[<span class="number">1</span>]&lt;=latitude & latitude&lt;=lat1[<span class="number">2</span>] & mag&gt;=<span class="number">1</span> & mag&lt;<span class="number">3</span>)</div><div class="line">subeq3.xts&lt;-subset(eq.xts,lon1[<span class="number">1</span>]&lt;=longitude & longitude&lt;=lon1[<span class="number">2</span>] & lat1[<span class="number">1</span>]&lt;=latitude & latitude&lt;=lat1[<span class="number">2</span>] & mag&gt;=<span class="number">3</span> & mag&lt;<span class="number">4</span>)</div><div class="line">subeq4.xts&lt;-subset(eq.xts,lon1[<span class="number">1</span>]&lt;=longitude & longitude&lt;=lon1[<span class="number">2</span>] & lat1[<span class="number">1</span>]&lt;=latitude & latitude&lt;=lat1[<span class="number">2</span>] & mag&gt;=<span class="number">4</span>)</div><div class="line"><span class="comment">#</span></div><div class="line">time&lt;-seq(<span class="number">2000</span>,<span class="number">2015</span>)</div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#</span></div><div class="line">saveGIF({</div><div class="line">for ( i <span class="keyword">in</span> <span class="number">1</span>:<span class="number">16</span>) {</div><div class="line">date&lt;-as.character(time[i])</div><div class="line"><span class="built_in">map</span>(<span class="string">"japan"</span>,<span class="variable">xlim=</span>c(lon1[<span class="number">1</span>],lon1[<span class="number">2</span>]),<span class="variable">ylim=</span>c(lat1[<span class="number">1</span>],lat1[<span class="number">2</span>]),<span class="variable">fill=</span>T,<span class="variable">col=</span><span class="string">"gray90"</span>)</div><div class="line">points(coredata(subeq1.xts[date])[,<span class="number">1</span>],coredata(subeq1.xts[date])[,<span class="number">2</span>],<span class="variable">pch=</span><span class="number">20</span>,<span class="variable">col=</span>rgb(<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="variable">alpha=</span><span class="number">0.8</span>),<span class="variable">cex=</span><span class="number">0.5</span>)</div><div class="line">points(coredata(subeq2.xts[date])[,<span class="number">1</span>],coredata(subeq2.xts[date])[,<span class="number">2</span>],<span class="variable">pch=</span><span class="number">20</span>,<span class="variable">col=</span>rgb(<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="variable">alpha=</span><span class="number">0.8</span>),<span class="variable">cex=</span><span class="number">0.8</span>)</div><div class="line"><span class="keyword">if</span> (nrow(subeq3.xts[date])&gt;<span class="number">0</span>) {</div><div class="line">points(coredata(subeq3.xts[date])[,<span class="number">1</span>],coredata(subeq3.xts[date])[,<span class="number">2</span>],<span class="variable">pch=</span><span class="number">20</span>,<span class="variable">col=</span>rgb(<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="variable">alpha=</span><span class="number">0.8</span>),<span class="variable">cex=</span>coredata(subeq3.xts[date])[,<span class="number">4</span>]/<span class="number">2</span>)</div><div class="line">}</div><div class="line"><span class="comment">#マグニチュード4以上のデータはマグニチュードの昇順にする</span></div><div class="line">eq4&lt;-data.frame(coredata(subeq4.xts[date]))</div><div class="line"><span class="keyword">if</span> (length(eq4$mag&gt;<span class="number">0</span>)){</div><div class="line">sortlist &lt;- order(eq4$mag)</div><div class="line">eq4 &lt;- eq4[sortlist,] </div><div class="line">points(eq4$longitude ,eq4$latitude,<span class="variable">pch=</span><span class="number">21</span>,<span class="variable">col=</span><span class="string">"white"</span>,<span class="variable">bg=</span>rgb(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="variable">alpha=</span><span class="number">0.8</span>),<span class="variable">cex=</span>eq4$mag/<span class="number">2</span>)</div><div class="line">}</div><div class="line">title(paste0(<span class="string">"震源分布 "</span>,date),cex.<span class="variable">main=</span><span class="number">3</span>,font.<span class="variable">main=</span><span class="number">1</span>)</div><div class="line">}</div><div class="line">},movie.<span class="variable">name =</span> <span class="string">"eq2000_2015.gif"</span>, <span class="variable">interval =</span> <span class="number">1.5</span>,  ani.<span class="variable">width =</span> <span class="number">640</span>,ani.<span class="variable">height =</span> <span class="number">640</span>)</div></pre></td></tr></table></figure>
+
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/04/05/震源地と原子力発電所2/" data-id="3gbhyvqdi6a93vda" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/02/13/気象庁地震カタログ09/" data-id="tl9lfnwwm3g9ki1x" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/オープンデータ/">オープンデータ</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/気象庁地震カタログ/">気象庁地震カタログ</a></li></ul>
 
     </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/02/13/気象庁地震カタログ08/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">気象庁地震カタログ(地震の回数）</div>
+    </a>
+  
+</nav>
+
   
 </article>
 
 
 
-<a href="http://yoursite.com/2015/04/05/震源地と原子力発電所2/">
-  <img src="https://ga-beacon.appspot.com/UA-67242781-1/2015/04/05/震源地と原子力発電所2/?pixel" /></a>
-
-
-  
-  
-
+<a href="http://yoursite.com/2016/02/13/気象庁地震カタログ09/">
+  <img src="https://ga-beacon.appspot.com/UA-67242781-1/2016/02/13/気象庁地震カタログ09/?pixel" /></a>
 
 </section>
         
