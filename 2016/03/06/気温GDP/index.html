@@ -17,7 +17,7 @@
 <meta property="og:image" content="/images/kionsa_w2015.png">
 <meta property="og:image" content="/images/kc_w2015.png">
 <meta property="og:image" content="/images/kionsa_n2015.png">
-<meta property="og:image" content="/images/kc_2015.png">
+<meta property="og:image" content="/images/kc_n2015.png">
 <meta property="og:image" content="/images/kionsa_s2015.png">
 <meta property="og:image" content="/images/kc_s2015.png">
 <meta property="og:image" content="/images/DIk2015.png">
@@ -104,7 +104,7 @@
         <section id="main"><article id="post-気温GDP" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/03/06/気温GDP/" class="article-date">
-  <time datetime="2016-03-06T04:28:57.000Z" itemprop="datePublished">Mar 6 2016</time>
+  <time datetime="2016-03-06T04:34:26.000Z" itemprop="datePublished">Mar 6 2016</time>
 </a>
     
   <div class="article-category">
@@ -131,7 +131,8 @@
 <a id="more"></a>
 
 <p>(データ)<br>四半期別GDP速報 <a href="http://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2015/qe154/gdemenuja.html" target="_blank" rel="external">統計表一覧（2015年10-12月期 1次速報値） </a><br>四半期 増加率　<br><a href="http://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2015/qe154/__icsFiles/afieldfile/2016/02/12/ritu-jg1541.csv" target="_blank" rel="external">実質原系列(前年同期比)</a><br>から取り出した「家計最終消費支出」</p>
-<p>RData : ts クラス<br><a href="/data/Consumption_of_Households.RData"></a></p>
+<p>RData : ts クラス  </p>
+<p><a href="/data/Consumption_of_Households.RData">Consumption_of_Households.RData</a></p>
 <p><a href="http://www.data.jma.go.jp/gmd/cpd/cgi-bin/view/index.php" target="_blank" rel="external">過去の地域平均気象データ検索</a>から<br>もっとも人口の多い「東日本:関東甲信、北陸、東海地方」のデータを使用。</p>
 <h4 id="家計最終消費支出:実質原系列(前年同期比)">家計最終消費支出:実質原系列(前年同期比)</h4>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">library(XML)</div><div class="line">library(RCurl)</div><div class="line">library(ggplot2)</div><div class="line">library(ggfortify)</div><div class="line">library(ggrepel)</div><div class="line"><span class="preprocessor">#家計最終消費支出データの読み込み</span></div><div class="line">load(url(<span class="string">"http://statrstart.github.io/data/Consumption_of_Households.RData"</span>))</div><div class="line"><span class="preprocessor">#確認</span></div><div class="line">Consumption_of_Households</div><div class="line"><span class="preprocessor">#</span></div><div class="line"><span class="preprocessor">#     Qtr1 Qtr2 Qtr3 Qtr4</span></div><div class="line"><span class="preprocessor">#1995  0.8  2.4  0.8  2.6</span></div><div class="line"><span class="preprocessor">#1996  3.4  2.0  1.8  2.1</span></div><div class="line"><span class="preprocessor">#1997  4.0  0.0  0.5 -0.8</span></div><div class="line"><span class="preprocessor">#1998 -3.6 -0.2 -0.2  0.3</span></div><div class="line"><span class="preprocessor">#1999  1.1  1.8  0.7  0.6</span></div><div class="line"><span class="preprocessor">#2000  1.3  0.6  0.0  0.5</span></div><div class="line"><span class="preprocessor">#2001  1.3  2.1  1.7  1.4</span></div><div class="line"><span class="preprocessor">#2002  0.7  1.1  2.0  1.1</span></div><div class="line"><span class="preprocessor">#2003  0.8  0.6 -0.5  0.7</span></div><div class="line"><span class="preprocessor">#2004  1.9  1.5  1.5 -0.3</span></div><div class="line"><span class="preprocessor">#2005  0.5  1.3  1.6  2.6</span></div><div class="line"><span class="preprocessor">#2006  2.0  1.6 -0.1  0.8</span></div><div class="line"><span class="preprocessor">#2007  1.0  1.0  1.6  0.5</span></div><div class="line"><span class="preprocessor">#2008  0.6 -1.1 -0.9 -2.2</span></div><div class="line"><span class="preprocessor">#2009 -3.9 -0.8 -0.6  2.1</span></div><div class="line"><span class="preprocessor">#2010  3.7  2.0  3.5  1.6</span></div><div class="line"><span class="preprocessor">#2011 -1.1  0.0  0.2  1.1</span></div><div class="line"><span class="preprocessor">#2012  3.6  3.2  1.1  0.7</span></div><div class="line"><span class="preprocessor">#2013  1.2  1.3  1.9  1.9</span></div><div class="line"><span class="preprocessor">#2014  3.8 -2.4 -2.6 -2.0</span></div><div class="line"><span class="preprocessor">#2015 -4.1  0.0  0.3 -1.2</span></div><div class="line"><span class="preprocessor">#</span></div><div class="line"><span class="preprocessor">#棒グラフ</span></div><div class="line">yl&lt;-max(abs(range(Consumption_of_Households)))</div><div class="line"><span class="preprocessor">#png("CoH2015.png")</span></div><div class="line">autoplot(Consumption_of_Households,ts.geom=<span class="string">"bar"</span>,ylim = c(-yl,yl))+ggtitle(<span class="string">"家計最終消費支出 実質原系列(前年同期比)"</span>)</div><div class="line"><span class="preprocessor">#dev.off()</span></div></pre></td></tr></table></figure>
@@ -160,7 +161,7 @@
 <p><img src="/images/kc_w2015.png" alt=""></p>
 <h5 id="北日本">北日本</h5>
 <p><img src="/images/kionsa_n2015.png" alt=""></p>
-<p><img src="/images/kc_2015.png" alt=""></p>
+<p><img src="/images/kc_n2015.png" alt=""></p>
 <h5 id="沖縄・奄美">沖縄・奄美</h5>
 <p><img src="/images/kionsa_s2015.png" alt=""></p>
 <p><img src="/images/kc_s2015.png" alt=""></p>
