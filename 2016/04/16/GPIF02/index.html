@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ＧＰＩＦの運用（２０１５年度）（その２） | 統計ソフトRの備忘録２</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="XML ,xts  パッケージ 他">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ＧＰＩＦの運用（２０１５年度）（その２）">
+<meta property="og:url" content="http://yoursite.com/2016/04/16/GPIF02/">
+<meta property="og:site_name" content="統計ソフトRの備忘録２">
+<meta property="og:description" content="XML ,xts  パッケージ 他">
+<meta property="og:image" content="/images/GPIF003.png">
+<meta property="og:image" content="/images/GPIF001.png">
+<meta property="og:image" content="/images/GPIF002.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ＧＰＩＦの運用（２０１５年度）（その２）">
+<meta name="twitter:description" content="XML ,xts  パッケージ 他">
+
+  
+    <link rel="alternative" href="/atom.xml" title="統計ソフトRの備忘録２" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">統計ソフトRの備忘録２</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-GPIF02" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/16/GPIF02/" class="article-date">
+  <time datetime="2016-04-16T05:43:54.000Z" itemprop="datePublished">Apr 16 2016</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/plot/">plot</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ＧＰＩＦの運用（２０１５年度）（その２）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="XML_,xts_パッケージ_他">XML ,xts  パッケージ 他</h2>
+<a id="more"></a>
+
+<p><a href="http://statrstart.github.io/2016/04/16/GPIF01/#more" target="_blank" rel="external">前の記事 : ＧＰＩＦの運用</a>    </p>
+<p>説明変数に使う投信の月次データをyahoo ファイナンス Japan から取り込む。<br>説明変数に使う投信  </p>
+<ol>
+<li>SMT 国内債券インデックス･オープン  </li>
+<li>SMT TOPIXインデックス･オープン  </li>
+<li>SMT グローバル債券インデックス  </li>
+<li>SMTグローバル株式インデックス”<br>説明変数に使うデータを変更することによって国内株式の決定係数は上昇。外国株式は微減。<br>国内債券,外国債券は同じデータなので変わらず。国内債券 : ０．９８６、外国債券 : ０．９７４<br>国内株式 : ０．９６６ -&gt; １<br>外国株式 : ０．９８ -&gt; ０．９７３</li>
+</ol>
+<h2 id="今回はggplot2_パッケージは使いません。">今回はggplot2 パッケージは使いません。</h2>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">library(XML)</div><div class="line">library(xts)</div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#### GPIFのデータ</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#市場運用分の資産構成の推移（単位：億円）</span></div><div class="line">GPIF&lt;-data.frame(</div><div class="line">年度=c(<span class="string">"平成18年度"</span>,<span class="string">"平成19年度"</span>,<span class="string">"平成20年度"</span>,<span class="string">"平成21年度"</span>,<span class="string">"平成22年度"</span>,<span class="string">"平成23年度"</span>,<span class="string">"平成24年度"</span>,<span class="string">"平成25年度"</span>,<span class="string">"平成26年度"</span>),</div><div class="line">国内債券=c(<span class="number">441997</span>,<span class="number">569443</span>,<span class="number">618887</span>,<span class="number">623923</span>,<span class="number">592522</span>,<span class="number">584785</span>,<span class="number">637830</span>,<span class="number">620364</span>,<span class="number">516915</span>),</div><div class="line">国内株式=c(<span class="number">190676</span>,<span class="number">137923</span>,<span class="number">113986</span>,<span class="number">147497</span>,<span class="number">134154</span>,<span class="number">141992</span>,<span class="number">175575</span>,<span class="number">208466</span>,<span class="number">316704</span>),</div><div class="line">外国債券=c(<span class="number">90694</span>,<span class="number">96641</span>,<span class="number">100135</span>,<span class="number">101449</span>,<span class="number">94283</span>,<span class="number">99301</span>,<span class="number">117896</span>,<span class="number">139961</span>,<span class="number">181815</span>),</div><div class="line">外国株式=c(<span class="number">126376</span>,<span class="number">109057</span>,<span class="number">90781</span>,<span class="number">132523</span>,<span class="number">130919</span>,<span class="number">130205</span>,<span class="number">148758</span>,<span class="number">197326</span>,<span class="number">300772</span>)</div><div class="line">)</div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#png("GPIF003.png",width=640)</span></div><div class="line">options(<span class="variable">scipen=</span><span class="number">10</span>)</div><div class="line">par(<span class="variable">mar=</span>c(<span class="number">4</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">8</span>),<span class="variable">family =</span> <span class="string">"TakaoExMincho"</span>,<span class="variable">xpd=</span>T)</div><div class="line"><span class="comment">#yaxs="i"で０から下のブランクをなくす。</span></div><div class="line">matplot(<span class="number">1</span>:nrow(GPIF),GPIF[,-<span class="number">1</span>],<span class="variable">type=</span><span class="string">"o"</span>,<span class="variable">pch=</span><span class="number">20</span>,<span class="variable">lwd=</span><span class="number">2</span>,<span class="variable">cex=</span><span class="number">2</span>,<span class="variable">xaxt =</span> <span class="string">"n"</span>,<span class="variable">yaxt =</span> <span class="string">"n"</span>,<span class="variable">col=</span><span class="number">1</span>:<span class="number">4</span>,<span class="variable">lty=</span><span class="number">1</span>,<span class="variable">xlab=</span><span class="string">""</span>,<span class="variable">ylab=</span><span class="string">""</span>,<span class="variable">ylim=</span>c(<span class="number">0</span>,max(GPIF[,<span class="number">2</span>:<span class="number">4</span>])*<span class="number">1.05</span>),<span class="variable">yaxs=</span><span class="string">"i"</span>)</div><div class="line">axis(<span class="number">1</span>,<span class="number">1</span>:nrow(GPIF),<span class="variable">labels=</span>GPIF[,<span class="number">1</span>])</div><div class="line"><span class="comment">#コンマで３桁ごとに区切る</span></div><div class="line"><span class="variable">Y=</span>seq(<span class="number">0</span>,<span class="number">600000</span>,<span class="number">100000</span>)</div><div class="line">axis(<span class="number">2</span>, Y, <span class="variable">labels =</span> prettyNum(Y, big.<span class="variable">mark =</span> <span class="string">","</span>),<span class="variable">las=</span><span class="number">1</span>)</div><div class="line">legend(par(<span class="string">"usr"</span>)[<span class="number">2</span>]*<span class="number">1.01</span>,par(<span class="string">"usr"</span>)[<span class="number">3</span>]*<span class="number">0.2</span>+par(<span class="string">"usr"</span>)[<span class="number">4</span>]*<span class="number">0.8</span>,<span class="variable">legend=</span>colnames(GPIF[,-<span class="number">1</span>]),<span class="variable">pch=</span><span class="number">20</span>,<span class="variable">lty=</span><span class="number">1</span>,<span class="variable">col=</span><span class="number">1</span>:<span class="number">4</span>,<span class="variable">bty=</span><span class="string">"n"</span>,,<span class="variable">title=</span><span class="string">"資産"</span>)</div><div class="line">title(<span class="string">"市場運用分の資産構成の推移（単位：億円）"</span>)</div><div class="line">par(<span class="variable">xpd=</span>F)</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/GPIF003.png" alt=""></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#資産別収益率（四半期別）の状況 </span></div><div class="line"><span class="preprocessor">#2009年第１四半期から2015年第３四半期まで</span></div><div class="line">国内債券&lt;-c(<span class="number">0.62</span>,<span class="number">0.84</span>,<span class="number">0.58</span>,-<span class="number">0.07</span>,<span class="number">2.29</span>,<span class="number">1.1</span>,-<span class="number">0.81</span>,-<span class="number">0.61</span>,<span class="number">1.11</span>,<span class="number">1.06</span>,<span class="number">0.38</span>,<span class="number">0.34</span>,<span class="number">1.04</span>,<span class="number">0.49</span>,-<span class="number">0.06</span>,<span class="number">2.17</span>,-<span class="number">1.48</span>,<span class="number">1.18</span>,<span class="number">0.18</span>,<span class="number">0.74</span>,<span class="number">0.72</span>,<span class="number">0.53</span>,<span class="number">1.88</span>,-<span class="number">0.38</span>,-<span class="number">0.1</span>,<span class="number">0.6</span>,<span class="number">0.75</span>)</div><div class="line">国内株式&lt;-c(<span class="number">20.55</span>,-<span class="number">1.34</span>,-<span class="number">0.18</span>,<span class="number">8.99</span>,-<span class="number">13.93</span>,-<span class="number">0.63</span>,<span class="number">8.71</span>,-<span class="number">2.17</span>,-<span class="number">2.06</span>,-<span class="number">9.75</span>,-<span class="number">3.97</span>,<span class="number">18.49</span>,-<span class="number">9.83</span>,-<span class="number">3.43</span>,<span class="number">16.71</span>,<span class="number">21.42</span>,<span class="number">9.7</span>,<span class="number">6.07</span>,<span class="number">9.19</span>,-<span class="number">7.05</span>,<span class="number">5.11</span>,<span class="number">5.78</span>,<span class="number">6.2</span>,<span class="number">10.51</span>,<span class="number">5.89</span>,-<span class="number">12.78</span>,<span class="number">9.92</span>)</div><div class="line">外国債券&lt;-c(<span class="number">1.68</span>,-<span class="number">2.24</span>,<span class="number">2.91</span>,-<span class="number">0.95</span>,-<span class="number">7.51</span>,<span class="number">2.29</span>,-<span class="number">5.97</span>,<span class="number">4.47</span>,<span class="number">0.4</span>,-<span class="number">4.27</span>,-<span class="number">0.53</span>,<span class="number">9.58</span>,-<span class="number">3.46</span>,<span class="number">0.56</span>,<span class="number">13.62</span>,<span class="number">7.26</span>,<span class="number">4.01</span>,<span class="number">1.64</span>,<span class="number">8.16</span>,<span class="number">0.51</span>,<span class="number">0.55</span>,<span class="number">5.51</span>,<span class="number">9.36</span>,-<span class="number">2.86</span>,<span class="number">0.65</span>,-<span class="number">1.26</span>,-<span class="number">1.1</span>)</div><div class="line">外国株式&lt;-c(<span class="number">17.64</span>,<span class="number">10.32</span>,<span class="number">9.13</span>,<span class="number">3.16</span>,-<span class="number">17.43</span>,<span class="number">8.34</span>,<span class="number">5.55</span>,<span class="number">8.23</span>,-<span class="number">1.81</span>,-<span class="number">21.36</span>,<span class="number">8.76</span>,<span class="number">19.64</span>,-<span class="number">7.55</span>,<span class="number">4.87</span>,<span class="number">13.78</span>,<span class="number">16.87</span>,<span class="number">6.14</span>,<span class="number">7.13</span>,<span class="number">16.23</span>,-<span class="number">0.13</span>,<span class="number">3.06</span>,<span class="number">5.64</span>,<span class="number">10.32</span>,<span class="number">1.81</span>,<span class="number">2.38</span>,-<span class="number">10.97</span>,<span class="number">5.28</span>)</div><div class="line"><span class="type">GPIF2</span>&lt;-<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(国内債券,国内株式,外国債券,外国株式)</span></span></div><div class="line"><span class="title">gp</span>&lt;-<span class="keyword">as</span>.xts(ts(<span class="type">GPIF2</span>,start=c(<span class="number">2009</span>,<span class="number">1</span>),freq=<span class="number">4</span>))</div></pre></td></tr></table></figure>
+
+<h3 id="説明変数に使う投信の月次データをyahoo_ファイナンス_Japan_から取り込む。">説明変数に使う投信の月次データをyahoo ファイナンス Japan から取り込む。</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span>.<span class="property">year</span>&lt;-<span class="number">2008</span></div><div class="line"><span class="comment">#from.monthは 4 にする。四半期データに変換するため。(始まりは4月)</span></div><div class="line"><span class="keyword">from</span>.<span class="property">month</span>&lt;-<span class="number">4</span></div><div class="line"><span class="keyword">to</span>.<span class="property">year</span>&lt;-<span class="number">2016</span></div><div class="line"><span class="keyword">to</span>.<span class="property">month</span>&lt;-<span class="number">3</span></div><div class="line"><span class="comment">#</span></div><div class="line">assets&lt;-c(<span class="string">"国内債券"</span>,<span class="string">"国内株式"</span>,<span class="string">"外国債券"</span>,<span class="string">"外国株式"</span>)</div><div class="line"><span class="comment">#説明変数として用いるファンド名（これより当てはまりのよい投信が見つかったら変更）</span></div><div class="line">fundname&lt;-c(<span class="string">"SMT 国内債券インデックス･オープン"</span>,<span class="string">"SMT TOPIXインデックス･オープン"</span>,<span class="string">"SMT グローバル債券インデックス"</span>,<span class="string">"SMTグローバル株式インデックス"</span>)</div><div class="line"><span class="comment">#ファンドのコード（これより当てはまりのよい投信が見つかったら変更）</span></div><div class="line">explanatory&lt;-c(<span class="number">64315081</span>,<span class="number">64313081</span>,<span class="number">64316081</span>,<span class="number">64314081</span>)</div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#png("GPIF001.png",width=1280,height=640)</span></div><div class="line"><span class="comment">#linux</span></div><div class="line">par(mfcol=c(<span class="number">2</span>,<span class="number">4</span>),family = <span class="string">"TakaoExMincho"</span>)</div><div class="line"><span class="comment">#windows</span></div><div class="line"><span class="comment">#windowsFonts(MIN = windowsFont("MS Mincho"))</span></div><div class="line"><span class="comment">#par(mfcol=c(2,4),family = "MIN")</span></div><div class="line"><span class="comment">#算出した増減率を入れるベクトル</span></div><div class="line">zougen&lt;-rep(NA,<span class="number">4</span>)</div><div class="line"><span class="comment">#</span></div><div class="line"><span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1</span>:<span class="number">4</span>){</div><div class="line">data&lt;-<span class="command">read</span>.table(<span class="type">text</span> = <span class="string">""</span>,col.names =c(<span class="string">"date"</span>,<span class="string">"NAV"</span>))</div><div class="line">num&lt;-ceiling((<span class="number">12</span>*(<span class="keyword">to</span>.<span class="property">year</span>-<span class="keyword">from</span>.<span class="property">year</span>)+(<span class="keyword">to</span>.<span class="property">month</span>-<span class="keyword">from</span>.<span class="property">month</span>+<span class="number">1</span>))/<span class="number">20</span>)</div><div class="line"><span class="keyword">for</span> (j <span class="keyword">in</span> <span class="number">1</span>:num){</div><div class="line">read2 &lt;- </div><div class="line">readHTMLTable(paste0(<span class="string">"http://info.finance.yahoo.co.jp/history/?code="</span>,explanatory[i],<span class="string">"&sy="</span>,<span class="keyword">from</span>.<span class="property">year</span>,<span class="string">"&sm="</span>,<span class="keyword">from</span>.<span class="property">month</span>,<span class="string">"&ey="</span>,<span class="keyword">to</span>.<span class="property">year</span>,<span class="string">"&em="</span>,<span class="keyword">to</span>.<span class="property">month</span>,<span class="string">"&tm=m&p="</span>,j))</div><div class="line"><span class="comment">#</span></div><div class="line">temp&lt;- data.frame(<span class="type">date</span>=paste0(gsub(<span class="string">"月"</span>,<span class="string">""</span>,chartr(<span class="string">"年"</span>,<span class="string">"-"</span>,read2[[<span class="number">2</span>]][,<span class="number">1</span>])),<span class="string">"-01"</span>),</div><div class="line">		   NAV=<span class="keyword">as</span>.numeric(gsub(<span class="string">","</span>,<span class="string">""</span>,read2[[<span class="number">2</span>]][,<span class="number">2</span>])))</div><div class="line">data&lt;-rbind(data,temp)</div><div class="line">}</div><div class="line">names(data)&lt;-c(<span class="string">"date"</span>,assets[i])</div><div class="line">x&lt;-coredata(xts(<span class="command">read</span>.zoo(data))[,<span class="number">1</span>])</div><div class="line"><span class="keyword">if</span> (i==<span class="number">1</span>) {</div><div class="line">	funddata&lt;-<span class="keyword">as</span>.xts(<span class="command">read</span>.zoo(data))</div><div class="line">	names(funddata)&lt;-assets[i]</div><div class="line"> } <span class="keyword">else</span> {</div><div class="line">fundtemp&lt;-<span class="keyword">as</span>.xts(<span class="command">read</span>.zoo(data)) ; names(fundtemp)&lt;-assets[i]</div><div class="line">funddata&lt;-merge(funddata,fundtemp)</div><div class="line"> }</div><div class="line"><span class="comment">#</span></div><div class="line">plot(ts(x,start=c(<span class="keyword">from</span>.<span class="property">year</span>,<span class="keyword">from</span>.<span class="property">month</span>),freq=<span class="number">12</span>),lwd=<span class="number">2</span>,xlab=<span class="string">""</span>,ylab=<span class="string">""</span>,las=<span class="number">1</span>)</div><div class="line"><span class="comment">#構成割合の目標値の変更が行われた2014年10月31日の指数水準を青の破線で示す。</span></div><div class="line">abline(h=coredata(xts(<span class="command">read</span>.zoo(data))[<span class="string">"2014-10"</span>]),col=<span class="string">"blue"</span>,lty=<span class="number">2</span>)</div><div class="line"><span class="type">text</span>(par(<span class="string">"usr"</span>)[<span class="number">1</span>] * <span class="number">0.6</span> + par(<span class="string">"usr"</span>)[<span class="number">2</span>]*<span class="number">0.4</span> ,coredata(xts(<span class="command">read</span>.zoo(data))[<span class="string">"2014-10"</span>]),<span class="string">"2014年10月末基準価額"</span>,pos=<span class="number">3</span>,col=<span class="string">"blue"</span>)</div><div class="line">title(fundname[i])</div><div class="line"><span class="comment">#title(paste0(fundname[i],"(",from.year,"/",from.month,"～",to.year,"/",to.month,")"))</span></div><div class="line"><span class="comment">#</span></div><div class="line">index.quarterlast&lt;-endpoints(<span class="keyword">as</span>.xts(ts(x,start=c(<span class="keyword">from</span>.<span class="property">year</span>,<span class="keyword">from</span>.<span class="property">month</span>),freq=<span class="number">12</span>)),<span class="function_start"><span class="keyword">on</span></span>=<span class="string">"quarters"</span>)</div><div class="line">SMT&lt;-ts(coredata(<span class="keyword">as</span>.xts(ts(x,start=c(<span class="keyword">from</span>.<span class="property">year</span>,<span class="keyword">from</span>.<span class="property">month</span>),freq=<span class="number">12</span>))[index.quarterlast]),start=c(<span class="keyword">from</span>.<span class="property">year</span>,<span class="number">1</span>),freq=<span class="number">4</span>)</div><div class="line"><span class="comment">#</span></div><div class="line">dat&lt;-<span class="keyword">as</span>.vector(window(SMT,start=c(<span class="number">2008</span>,<span class="number">4</span>),<span class="keyword">end</span>=c(<span class="number">2015</span>,<span class="number">3</span>)))</div><div class="line"><span class="comment">#前期比増減率</span></div><div class="line">growth.SMT&lt;-(dat[<span class="number">2</span>:<span class="property">length</span>(dat)]-dat[<span class="number">1</span>:<span class="property">length</span>(dat)-<span class="number">1</span>])/dat[<span class="number">1</span>:<span class="property">length</span>(dat)-<span class="number">1</span>]*<span class="number">100</span></div><div class="line"><span class="comment">#切片０</span></div><div class="line">res&lt;-lm(GPIF2[,assets[i]]~growth.SMT + <span class="number">0</span>) </div><div class="line">res$coefficients</div><div class="line">summary(res)$r.squared</div><div class="line"><span class="comment">#</span></div><div class="line">plot(growth.SMT,GPIF2[,assets[i]],pch=<span class="number">20</span>,xlab=fundname[i],ylab=assets[i],las=<span class="number">1</span>)</div><div class="line">tx &lt;- par(<span class="string">"usr"</span>)[<span class="number">1</span>] * <span class="number">0.925</span> + par(<span class="string">"usr"</span>)[<span class="number">2</span>]*<span class="number">0.075</span>  </div><div class="line">ty &lt;- par(<span class="string">"usr"</span>)[<span class="number">3</span>] * <span class="number">0.1</span> + par(<span class="string">"usr"</span>)[<span class="number">4</span>]*<span class="number">0.9</span> </div><div class="line">abline(<span class="number">0</span>,res$coefficients,col=<span class="string">"red"</span>,lwd=<span class="number">2</span>)</div><div class="line">title(paste0(<span class="string">"前期比増減率("</span>,assets[i],<span class="string">")"</span>))</div><div class="line"><span class="type">text</span>(tx,ty,substitute(italic(y) == a %.% italic(x)*<span class="string">" , "</span>~~italic(R)^<span class="number">2</span>~<span class="string">"="</span>~r2, </div><div class="line">                    <span class="type">list</span>(a = signif(coef(res),<span class="number">3</span>),r2 = signif(summary(res)$r.squared,<span class="number">3</span>))),pos=<span class="number">4</span>,cex=<span class="number">1.8</span>)</div><div class="line"><span class="comment">#</span></div><div class="line">dat&lt;-<span class="keyword">as</span>.vector(window(SMT,start=c(<span class="number">2015</span>,<span class="number">3</span>),<span class="keyword">end</span>=c(<span class="number">2015</span>,<span class="number">4</span>)))</div><div class="line"><span class="comment">#（今期－前期）÷前期 ×１００</span></div><div class="line">( zougen[i]&lt;-(dat[<span class="number">2</span>]-dat[<span class="number">1</span>])/dat[<span class="number">1</span>] *<span class="number">100</span> )</div><div class="line"><span class="comment">#前期比増減率</span></div><div class="line">( zougen[i]&lt;-zougen[i] * res$coefficients ) </div><div class="line">}</div><div class="line">par(mfrow=c(<span class="number">1</span>,<span class="number">1</span>))</div><div class="line"><span class="comment">#dev.off()</span></div><div class="line"><span class="comment">#save(funddata,file="funddata.RData")</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/GPIF001.png" alt=""></p>
+<ul>
+<li>「2014年10月31日から構成割合の目標値を国内債券35%、国内株式25%、外国債券15%、外国株式25%に変更」</li>
+</ul>
+<p>（試算１） 平成27年度(2015)には資産の売買をしていないと仮定する</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#</span></div><div class="line"><span class="preprocessor">#平成26年度(2014年度)末の各資産の残高</span></div><div class="line">( g2014&lt;-tail(GPIF,<span class="number">1</span>)[<span class="number">2</span>:<span class="number">5</span>] )</div><div class="line"><span class="preprocessor">#２０１５年度第１から第３四半期の増減率</span></div><div class="line">( z2015&lt;-data.frame(coredata(gp[<span class="string">"2015"</span>])) )</div><div class="line"><span class="preprocessor">#</span></div><div class="line">g2015&lt;-rep(NA,<span class="number">4</span>)</div><div class="line"><span class="preprocessor">#</span></div><div class="line"><span class="preprocessor">#国内債券</span></div><div class="line">( g2015[<span class="number">1</span>]&lt;-as.vector(as.matrix((((g2014[<span class="number">1</span>]*(<span class="number">1</span>+z2015[<span class="number">1</span>,<span class="number">1</span>]/<span class="number">100</span>)*(<span class="number">1</span>+z2015[<span class="number">2</span>,<span class="number">1</span>]/<span class="number">100</span>))*(<span class="number">1</span>+z2015[<span class="number">3</span>,<span class="number">1</span>]/<span class="number">100</span>)))*(<span class="number">1</span>+zougen[<span class="number">1</span>]/<span class="number">100</span>))) )</div><div class="line"><span class="preprocessor">#</span></div><div class="line"><span class="preprocessor">#国内株式</span></div><div class="line">( g2015[<span class="number">2</span>]&lt;-as.vector(as.matrix((((g2014[<span class="number">2</span>]*(<span class="number">1</span>+z2015[<span class="number">1</span>,<span class="number">2</span>]/<span class="number">100</span>)*(<span class="number">1</span>+z2015[<span class="number">2</span>,<span class="number">2</span>]/<span class="number">100</span>))*(<span class="number">1</span>+z2015[<span class="number">3</span>,<span class="number">2</span>]/<span class="number">100</span>)))*(<span class="number">1</span>+zougen[<span class="number">2</span>]/<span class="number">100</span>)))  )</div><div class="line"><span class="preprocessor">#</span></div><div class="line"><span class="preprocessor">#外国債券</span></div><div class="line">( g2015[<span class="number">3</span>]&lt;-as.vector(as.matrix((((g2014[<span class="number">3</span>]*(<span class="number">1</span>+z2015[<span class="number">1</span>,<span class="number">3</span>]/<span class="number">100</span>)*(<span class="number">1</span>+z2015[<span class="number">2</span>,<span class="number">3</span>]/<span class="number">100</span>))*(<span class="number">1</span>+z2015[<span class="number">3</span>,<span class="number">3</span>]/<span class="number">100</span>)))*(<span class="number">1</span>+zougen[<span class="number">3</span>]/<span class="number">100</span>)))  )</div><div class="line"><span class="preprocessor">#</span></div><div class="line"><span class="preprocessor">#外国株式</span></div><div class="line">( g2015[<span class="number">4</span>]&lt;-as.vector(as.matrix((((g2014[<span class="number">4</span>]*(<span class="number">1</span>+z2015[<span class="number">1</span>,<span class="number">4</span>]/<span class="number">100</span>)*(<span class="number">1</span>+z2015[<span class="number">2</span>,<span class="number">4</span>]/<span class="number">100</span>))*(<span class="number">1</span>+z2015[<span class="number">3</span>,<span class="number">4</span>]/<span class="number">100</span>)))*(<span class="number">1</span>+zougen[<span class="number">4</span>]/<span class="number">100</span>)))  )</div><div class="line"><span class="preprocessor">#</span></div><div class="line">g2015</div><div class="line"><span class="preprocessor"># 542891.2 281951.8 175239.6 267235.2</span></div><div class="line"><span class="preprocessor">#</span></div><div class="line"><span class="preprocessor">##平成27年度(2015)の増減額は</span></div><div class="line">g2015-g2014</div><div class="line"><span class="preprocessor">#  国内債券 国内株式  外国債券  外国株式</span></div><div class="line"><span class="preprocessor"># 25976.18 -34752.2 -6575.358 -33536.79</span></div><div class="line"><span class="preprocessor">#資産全体の増減額は</span></div><div class="line">sum(g2015-g2014)</div><div class="line"><span class="preprocessor"># -48888.16</span></div></pre></td></tr></table></figure>
+
+<h3 id="約４兆８８８８億円の損失">約４兆８８８８億円の損失</h3>
+<p>（試算２） 平成27年度(2015)第４四半期には資産の売買をしていないと仮定する</p>
+<p>第１四半期から第３四半期までの増減額は公表済み  </p>
+<p>運用資産額(平成27年度第３四半期末現在）<br>1398249        </p>
+<p>運用資産別の構成割合（年金積立金全体）<br>国内債券    37.76%    527979(=1398249<em>37.76/100)<br>国内株式    23.35%    326491(=1398249</em>23.35/100)<br>外国債券    13.50%    188764(=1398249<em>13.50/100)<br>外国株式    22.82%    319080(=1398249</em>22.82/100)  </p>
+<p>資産全体の増減額は、第１四半期から第３四半期までの増減額に第４四半期の増減額を加えればよい</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#第１四半期 + 第２四半期 + 第３四半期</span></div><div class="line"><span class="number">26489</span> + (-<span class="number">78899</span>) + <span class="number">47302</span></div><div class="line"><span class="preprocessor"># -5108</span></div><div class="line"><span class="preprocessor">#</span></div><div class="line"><span class="preprocessor">#第４四半期の増減額</span></div><div class="line">( dai4&lt;-<span class="number">527979</span> * zougen[<span class="number">1</span>]/<span class="number">100</span> + <span class="number">326491</span> * zougen[<span class="number">2</span>]/<span class="number">100</span> + <span class="number">188764</span> * zougen[<span class="number">3</span>]/<span class="number">100</span> + <span class="number">319080</span> * zougen[<span class="number">4</span>]/<span class="number">100</span> )</div><div class="line"><span class="preprocessor">#  -47812.35</span></div><div class="line"><span class="preprocessor">#</span></div><div class="line"><span class="preprocessor">#平成２７年度の試算全体の増減額は</span></div><div class="line">-<span class="number">5108</span> + dai4</div><div class="line"><span class="preprocessor">#  -52920.35</span></div></pre></td></tr></table></figure>
+
+<h3 id="約５兆２９２０億円の損失">約５兆２９２０億円の損失</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">gp&lt;-as.xts(ts(rbind(data.frame(国内債券,国内株式,外国債券,外国株式),zougen),<span class="variable">start=</span>c(<span class="number">2009</span>,<span class="number">1</span>),<span class="variable">freq=</span><span class="number">4</span>)) </div><div class="line">yl&lt;-max(max(gp),abs(min(gp)))</div><div class="line"><span class="comment">#png("GPIF002.png")</span></div><div class="line"><span class="comment">#linux</span></div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">4</span>,<span class="number">1</span>),<span class="variable">mar=</span>c(<span class="number">2</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>),<span class="variable">family =</span> <span class="string">"TakaoExMincho"</span>)</div><div class="line">plot.zoo(gp[,<span class="number">1</span>],<span class="variable">type=</span><span class="string">"h"</span>,<span class="variable">lend=</span><span class="number">1</span>,<span class="variable">lwd=</span><span class="number">15</span>,<span class="variable">ylim=</span>c(-yl,yl),<span class="variable">las=</span><span class="number">1</span>,<span class="variable">col=</span>c(rep(<span class="string">"gray30"</span>,<span class="number">24</span>),rep(<span class="string">"palegreen3"</span>,<span class="number">3</span>),<span class="string">"tomato"</span>),<span class="variable">xlab=</span><span class="string">""</span>,<span class="variable">ylab=</span><span class="string">""</span>)</div><div class="line">title(names(gp)[<span class="number">1</span>])</div><div class="line">plot.zoo(gp[,<span class="number">2</span>],<span class="variable">type=</span><span class="string">"h"</span>,<span class="variable">lend=</span><span class="number">1</span>,<span class="variable">lwd=</span><span class="number">15</span>,<span class="variable">ylim=</span>c(-yl,yl),<span class="variable">las=</span><span class="number">1</span>,<span class="variable">col=</span>c(rep(<span class="string">"gray30"</span>,<span class="number">24</span>),rep(<span class="string">"palegreen3"</span>,<span class="number">3</span>),<span class="string">"tomato"</span>),<span class="variable">xlab=</span><span class="string">""</span>,<span class="variable">ylab=</span><span class="string">""</span>)</div><div class="line">title(names(gp)[<span class="number">2</span>])</div><div class="line">plot.zoo(gp[,<span class="number">3</span>],<span class="variable">type=</span><span class="string">"h"</span>,<span class="variable">lend=</span><span class="number">1</span>,<span class="variable">lwd=</span><span class="number">15</span>,<span class="variable">ylim=</span>c(-yl,yl),<span class="variable">las=</span><span class="number">1</span>,<span class="variable">col=</span>c(rep(<span class="string">"gray30"</span>,<span class="number">24</span>),rep(<span class="string">"palegreen3"</span>,<span class="number">3</span>),<span class="string">"tomato"</span>),<span class="variable">xlab=</span><span class="string">""</span>,<span class="variable">ylab=</span><span class="string">""</span>)</div><div class="line">title(names(gp)[<span class="number">3</span>])</div><div class="line">plot.zoo(gp[,<span class="number">4</span>],<span class="variable">type=</span><span class="string">"h"</span>,<span class="variable">lend=</span><span class="number">1</span>,<span class="variable">lwd=</span><span class="number">15</span>,<span class="variable">ylim=</span>c(-yl,yl),<span class="variable">las=</span><span class="number">1</span>,<span class="variable">col=</span>c(rep(<span class="string">"gray30"</span>,<span class="number">24</span>),rep(<span class="string">"palegreen3"</span>,<span class="number">3</span>),<span class="string">"tomato"</span>),<span class="variable">xlab=</span><span class="string">""</span>,<span class="variable">ylab=</span><span class="string">""</span>)</div><div class="line">title(names(gp)[<span class="number">4</span>])</div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">1</span>,<span class="number">1</span>))</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/GPIF002.png" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/16/GPIF02/" data-id="nr25nl2qwo45j6qe" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/生活に関するデータ等/">生活に関するデータ等</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/04/16/GPIF01/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">ＧＰＩＦの運用（２０１５年度）(訂正)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+<a href="http://yoursite.com/2016/04/16/GPIF02/">
+  <img src="https://ga-beacon.appspot.com/UA-67242781-1/2016/04/16/GPIF02/?pixel" /></a>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CAD/">CAD</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/GMT/">GMT</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gambit/">Gambit</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gnumeric/">Gnumeric</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Graphviz/">Graphviz</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NetworkX/">NetworkX</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">74</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ggplot2/">ggplot2</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/plot/">plot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sqlite3/">sqlite3</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/グラフまとめ/">グラフまとめ</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/放送大学/">放送大学</a><span class="category-list-count">46</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/21世紀の資本/">21世紀の資本</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graphviz/">Graphviz</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenSCAD/">OpenSCAD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/オープンデータ/">オープンデータ</a><span class="tag-list-count">24</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/グラフ/">グラフ</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データベース/">データベース</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原因をさぐる統計学/">原因をさぐる統計学</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/因子分析＆確証的因子分析/">因子分析＆確証的因子分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/地図/">地図</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/成長曲線モデル/">成長曲線モデル</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/時系列解析/">時系列解析</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/気象庁地震カタログ/">気象庁地震カタログ</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/潜在変数間の因果関係/">潜在変数間の因果関係</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活に関するデータ等/">生活に関するデータ等</a><span class="tag-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/21世紀の資本/" style="font-size: 12.22px;">21世紀の資本</a><a href="/tags/Graphviz/" style="font-size: 10.00px;">Graphviz</a><a href="/tags/HEXO/" style="font-size: 11.11px;">HEXO</a><a href="/tags/OpenSCAD/" style="font-size: 10.00px;">OpenSCAD</a><a href="/tags/Rパッケージ/" style="font-size: 11.11px;">Rパッケージ</a><a href="/tags/オープンデータ/" style="font-size: 20.00px;">オープンデータ</a><a href="/tags/グラフ/" style="font-size: 17.78px;">グラフ</a><a href="/tags/データからの知識発見/" style="font-size: 15.56px;">データからの知識発見</a><a href="/tags/データベース/" style="font-size: 11.11px;">データベース</a><a href="/tags/原因をさぐる統計学/" style="font-size: 16.67px;">原因をさぐる統計学</a><a href="/tags/問題解決の数理/" style="font-size: 18.89px;">問題解決の数理</a><a href="/tags/因子分析＆確証的因子分析/" style="font-size: 10.00px;">因子分析＆確証的因子分析</a><a href="/tags/地図/" style="font-size: 18.89px;">地図</a><a href="/tags/心理・教育統計法特論/" style="font-size: 13.33px;">心理・教育統計法特論</a><a href="/tags/心理統計法/" style="font-size: 17.78px;">心理統計法</a><a href="/tags/成長曲線モデル/" style="font-size: 10.00px;">成長曲線モデル</a><a href="/tags/時系列解析/" style="font-size: 11.11px;">時系列解析</a><a href="/tags/気象庁地震カタログ/" style="font-size: 16.67px;">気象庁地震カタログ</a><a href="/tags/潜在変数間の因果関係/" style="font-size: 10.00px;">潜在変数間の因果関係</a><a href="/tags/生活に関するデータ等/" style="font-size: 14.44px;">生活に関するデータ等</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04">April 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03">March 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02">February 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01">January 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10">October 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09">September 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08">August 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07">July 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06">June 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05">May 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03">March 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">35</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">34</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/04/16/GPIF02/">ＧＰＩＦの運用（２０１５年度）（その２）</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/16/GPIF01/">ＧＰＩＦの運用（２０１５年度）(訂正)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/27/棒グラフ02/">棒グラフ02(家計調査)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/27/棒グラフ01/">棒グラフ01(家計調査)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/21/地震動のスペクトル03/">地震動のスペクトル ggplot2 (Hanningウィンドウ)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 統計ソフトRの備忘録２<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
