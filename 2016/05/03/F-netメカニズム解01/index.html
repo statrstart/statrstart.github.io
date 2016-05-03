@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>F-netメカニズム解01 | 統計ソフトRの備忘録２</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="GMT5.2.1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="F-netメカニズム解01">
+<meta property="og:url" content="http://yoursite.com/2016/05/03/F-netメカニズム解01/">
+<meta property="og:site_name" content="統計ソフトRの備忘録２">
+<meta property="og:description" content="GMT5.2.1">
+<meta property="og:image" content="/images/meca01.png">
+<meta property="og:image" content="/images/jpn_w.png">
+<meta property="og:image" content="/images/jpn_e.png">
+<meta property="og:image" content="/images/jpn_cmt03.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="F-netメカニズム解01">
+<meta name="twitter:description" content="GMT5.2.1">
+
+  
+    <link rel="alternative" href="/atom.xml" title="統計ソフトRの備忘録２" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">統計ソフトRの備忘録２</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-F-netメカニズム解01" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/03/F-netメカニズム解01/" class="article-date">
+  <time datetime="2016-05-03T01:39:34.000Z" itemprop="datePublished">May 3 2016</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/GMT/">GMT</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      F-netメカニズム解01
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="GMT5-2-1">GMT5.2.1</h2>
+<a id="more"></a>
+
+<p>(データ)<br><a href="http://www.fnet.bosai.go.jp/event/search.php?LANG=ja" target="_blank" rel="external">NIED F-net メカニズム解の検索</a><br>GMT フォーマット psmeca -Sc でダウンロード。<br>出力は GMT のパラメータが付加されたスクリプト形式になっているのでlinuxならそのまま使用すればよい。<br>しかし、メカニズム解の重なる部分がでてくるので多少の書き直しは必要。</p>
+<h3 id="GMT_(The_Generic_Mapping_Tools)_5-2-1">GMT (The Generic Mapping Tools) 5.2.1</h3>
+<p>（最近は使っていませんが）ノートパソコンにはGMT3を入れていました。SSDに交換したのを機にGMT5.2.1を入れました。<br>OSはZORIN 9lite -&gt; SolydX に変更。  </p>
+<p>GMT5 は，gmt set でのコマンドが GMT4 から（もちろんGMT3からも）変更されています。  </p>
+<p>例えば、gmtset MEASURE_UNIT inch   -&gt; gmtset PROJ_LENGTH_UNIT inch    </p>
+<p>「メカニズム解の検索」でダウンロードしたスクリプトは警告はでますが、作図はちゃんとできました。  </p>
+<h3 id="書き直したスクリプト（linux）">書き直したスクリプト（linux）</h3>
+<h2 id="GMTのスクリプトです。">GMTのスクリプトです。</h2>
+<h2 id="（注意）タイトルに日本語(Ryumin-Light-EUC-H)を使っているので、EUC-JPで保存しないと文字化けします。">（注意）タイトルに日本語(Ryumin-Light-EUC-H)を使っているので、EUC-JPで保存しないと文字化けします。</h2>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">gmtset<span class="constant"> PROJ_LENGTH_UNIT </span>inch  </div><div class="line">gmtset FONT_TITLE	= <span class="number">16</span>p,Ryumin-Light-EUC-H,black  </div><div class="line">pscoast -Jc137<span class="number">.7500</span>/<span class="number">35.0000</span>/<span class="number">1</span>:<span class="number">15000000</span> -R125/<span class="number">150.5</span>/<span class="number">23</span>/<span class="number">47</span> -B5 -BNSEW+t<span class="string">"震源メカニズム"</span> -Df -Na -W -L135/<span class="number">24</span>/<span class="number">24</span>/<span class="number">500</span> -P -K  -G204/<span class="number">255</span>/<span class="number">204</span> -S204/<span class="number">204</span>/<span class="number">255</span> -X0<span class="number">.9</span> &gt; out.ps</div><div class="line"><span class="preprocessor">#GMT psmeca  format -Sc  </span></div><div class="line"><span class="preprocessor">#longitude latitude depth strike1 dip1 rake1(slip1) strike2 dip2 rake2(slip2) "mo(Nm) * 10^7" X Y text(origin_time(JST))  </span></div><div class="line">psmeca &lt;&lt;<span class="constant"> END </span>-J -R -Sc0<span class="number">.2</span>/<span class="number">8</span> -C0<span class="number">.5</span>pP0<span class="number">.05</span> -G255/<span class="number">0</span>/<span class="number">0</span> -P -O &gt;&gt; out.ps  </div><div class="line"><span class="preprocessor">#[NIED F-net メカニズム解の検索](http://www.fnet.bosai.go.jp/event/search.php?LANG=ja)  </span></div><div class="line"><span class="preprocessor">#1997年（平成9年）5月13日 鹿児島県北西部地震  </span></div><div class="line"> <span class="number">130.3050</span>  <span class="number">31.9448</span> <span class="number">11</span> <span class="number">191</span> <span class="number">88</span> -<span class="number">175</span> <span class="number">101</span> <span class="number">85</span> -<span class="number">2</span> <span class="number">1.22</span> <span class="number">25</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1997</span>/<span class="number">05</span>/<span class="number">13</span>  </div><div class="line"><span class="preprocessor">#2000年（平成12年）10月6日 鳥取県西部地震  </span></div><div class="line"> <span class="number">133.3498</span>  <span class="number">35.2752</span> <span class="number">11</span> <span class="number">150</span> <span class="number">85</span> -<span class="number">9</span> <span class="number">241</span> <span class="number">81</span> -<span class="number">175</span> <span class="number">8.62</span> <span class="number">25</span> <span class="number">0</span> <span class="number">0</span> <span class="number">2000</span>/<span class="number">10</span>/<span class="number">06</span>  </div><div class="line"><span class="preprocessor">#2001年（平成13年）3月24日 芸予地震  </span></div><div class="line"> <span class="number">132.7087</span>  <span class="number">34.1200</span> <span class="number">50</span> <span class="number">188</span> <span class="number">59</span> -<span class="number">56</span> <span class="number">315</span> <span class="number">45</span> -<span class="number">133</span> <span class="number">1.51</span> <span class="number">26</span> <span class="number">0</span> <span class="number">0</span> <span class="number">2001</span>/<span class="number">03</span>/<span class="number">24</span>  </div><div class="line"><span class="preprocessor">#2003年（平成15年）9月26日 十勝沖地震</span></div><div class="line"> <span class="number">144.0785</span>  <span class="number">41.7797</span> <span class="number">23</span> <span class="number">31</span> <span class="number">78</span> <span class="number">81</span> <span class="number">249</span> <span class="number">15</span> <span class="number">127</span> <span class="number">8.21</span> <span class="number">27</span> <span class="number">0</span> <span class="number">0</span> <span class="number">2003</span>/<span class="number">09</span>/<span class="number">26</span></div><div class="line"><span class="preprocessor">#2004年（平成16年）10月23日 新潟県中越地震</span></div><div class="line"> <span class="number">138.8703</span>  <span class="number">37.2895</span> <span class="number">5</span> <span class="number">212</span> <span class="number">47</span> <span class="number">93</span> <span class="number">27</span> <span class="number">43</span> <span class="number">87</span> <span class="number">7.53</span> <span class="number">25</span> <span class="number">139.5</span> <span class="number">36</span> <span class="number">2004</span>/<span class="number">10</span>/<span class="number">23</span></div><div class="line"><span class="preprocessor">#2005年（平成17年）3月20日 福岡県西方沖地震</span></div><div class="line"> <span class="number">130.1763</span>  <span class="number">33.7392</span> <span class="number">11</span> <span class="number">122</span> <span class="number">87</span> -<span class="number">11</span> <span class="number">213</span> <span class="number">79</span> -<span class="number">177</span> <span class="number">7.80</span> <span class="number">25</span> <span class="number">0</span> <span class="number">0</span> <span class="number">2005</span>/<span class="number">03</span>/<span class="number">20</span></div><div class="line"><span class="preprocessor">#2007年（平成19年）3月25日 能登半島地震</span></div><div class="line"> <span class="number">136.6860</span>  <span class="number">37.2207</span> <span class="number">8</span> <span class="number">58</span> <span class="number">66</span> <span class="number">132</span> <span class="number">173</span> <span class="number">48</span> <span class="number">34</span> <span class="number">1.36</span> <span class="number">26</span> <span class="number">0</span> <span class="number">0</span> <span class="number">2007</span>/<span class="number">03</span>/<span class="number">25</span></div><div class="line"><span class="preprocessor">#2007年（平成19年）7月16日10時13分頃 新潟県中越沖地震</span></div><div class="line"> <span class="number">138.6095</span>  <span class="number">37.5568</span> <span class="number">8</span> <span class="number">215</span> <span class="number">49</span> <span class="number">80</span> <span class="number">49</span> <span class="number">42</span> <span class="number">101</span> <span class="number">9.30</span> <span class="number">25</span> <span class="number">138.6095</span> <span class="number">39</span> <span class="number">2007</span>/<span class="number">07</span>/<span class="number">16</span></div><div class="line"><span class="preprocessor">#2008年（平成20年）6月14日 岩手・宮城内陸地震 </span></div><div class="line"> <span class="number">140.8807</span>  <span class="number">39.0298</span> <span class="number">5</span> <span class="number">209</span> <span class="number">51</span> <span class="number">104</span> <span class="number">8</span> <span class="number">41</span> <span class="number">74</span> <span class="number">2.72</span> <span class="number">26</span> <span class="number">0</span> <span class="number">0</span> <span class="number">2008</span>/<span class="number">06</span>/<span class="number">14</span></div><div class="line"><span class="preprocessor">#2011年（平成23年） 3月11日 東北地方太平洋沖地震</span></div><div class="line"> <span class="number">142.8610</span>  <span class="number">38.1035</span> <span class="number">20</span> <span class="number">22</span> <span class="number">63</span> <span class="number">91</span> <span class="number">200</span> <span class="number">27</span> <span class="number">88</span> <span class="number">1.07</span> <span class="number">29</span> <span class="number">0</span> <span class="number">0</span> <span class="number">2011</span>/<span class="number">03</span>/<span class="number">11</span></div><div class="line"><span class="preprocessor">#2011/03/12 長野県北部で地震 </span></div><div class="line"> <span class="number">138.5978</span>  <span class="number">36.9860</span> <span class="number">5</span> <span class="number">29</span> <span class="number">56</span> <span class="number">70</span> <span class="number">242</span> <span class="number">38</span> <span class="number">117</span> <span class="number">2.13</span> <span class="number">25</span> <span class="number">138</span> <span class="number">35</span> <span class="number">2011</span>/<span class="number">03</span>/<span class="number">12</span></div><div class="line"><span class="preprocessor">#2011/04/11 福島県浜通り地震</span></div><div class="line"> <span class="number">140.6727</span>  <span class="number">36.9457</span> <span class="number">5</span> <span class="number">132</span> <span class="number">50</span> -<span class="number">82</span> <span class="number">301</span> <span class="number">41</span> -<span class="number">99</span> <span class="number">9.58</span> <span class="number">25</span> <span class="number">0</span> <span class="number">0</span> <span class="number">2011</span>/<span class="number">04</span>/<span class="number">11</span></div><div class="line"><span class="preprocessor">#2014/11/22 長野県北部で地震</span></div><div class="line"> <span class="number">137.8910</span>  <span class="number">36.6928</span> <span class="number">5</span> <span class="number">25</span> <span class="number">50</span> <span class="number">65</span> <span class="number">241</span> <span class="number">47</span> <span class="number">117</span> <span class="number">2.76</span> <span class="number">25</span> <span class="number">136.8</span> <span class="number">36.2</span> <span class="number">2014</span>/<span class="number">11</span>/<span class="number">22</span></div><div class="line"><span class="preprocessor">#2015/11/14 薩摩半島西方沖地震</span></div><div class="line"> <span class="number">128.5900</span>  <span class="number">30.9432</span> <span class="number">17</span> <span class="number">190</span> <span class="number">80</span> -<span class="number">161</span> <span class="number">96</span> <span class="number">71</span> -<span class="number">10</span> <span class="number">1.66</span> <span class="number">26</span> <span class="number">0</span> <span class="number">0</span> <span class="number">2015</span>/<span class="number">11</span>/<span class="number">14</span></div><div class="line"><span class="preprocessor">#2016年（平成28年）4月14日21時26分頃 熊本地震の前震</span></div><div class="line"> <span class="number">130.8087</span>  <span class="number">32.7417</span> <span class="number">17</span> <span class="number">122</span> <span class="number">74</span> -<span class="number">1</span> <span class="number">212</span> <span class="number">89</span> -<span class="number">164</span> <span class="number">1.74</span> <span class="number">25</span> <span class="number">135</span> <span class="number">32</span> <span class="number">2016</span>/<span class="number">04</span>/<span class="number">14</span></div><div class="line"><span class="preprocessor">#4月16日1時25分頃 熊本地震の本震</span></div><div class="line"> <span class="number">130.7630</span>  <span class="number">32.7545</span> <span class="number">11</span> <span class="number">131</span> <span class="number">53</span> -<span class="number">7</span> <span class="number">226</span> <span class="number">84</span> -<span class="number">142</span> <span class="number">4.42</span> <span class="number">26</span> <span class="number">133</span> <span class="number">30</span> <span class="number">2016</span>/<span class="number">04</span>/<span class="number">16</span></div><div class="line">END</div><div class="line"><span class="preprocessor">#pngファイルも作成するときは#をとる。</span></div><div class="line"><span class="preprocessor">#psconvert out.ps -Tg -E100</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/meca01.png" alt="">    </p>
+<h2 id="Rでメカニズム解を図示するにはRFOCが使えます。">Rでメカニズム解を図示するにはRFOCが使えます。</h2>
+<h2 id="しかし、地図上にプロットするのはGMTに限ります。">しかし、地図上にプロットするのはGMTに限ります。</h2>
+<h3 id="鳥取県の地図に鳥取県西部地震のメカニズム解を図示したスクリプト">鳥取県の地図に鳥取県西部地震のメカニズム解を図示したスクリプト</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">library(RFOC)</div><div class="line">library(mapdata)</div><div class="line">library(GEOmap)</div><div class="line"><span class="variable">tottori =</span><span class="built_in">map</span>(<span class="string">"japan"</span>,<span class="string">"tottori"</span>, <span class="variable">plot=</span>FALSE )</div><div class="line"><span class="variable">mlon =</span> mean(tottori$x, na.<span class="variable">rm=</span>TRUE)</div><div class="line"><span class="variable">mlat =</span> mean(tottori$y, na.<span class="variable">rm=</span>TRUE)</div><div class="line"><span class="variable">Gtottori=</span> maps2GEOmap(tottori)</div><div class="line"><span class="comment">############for mercator projection type = 1</span></div><div class="line"><span class="variable">PROJ =</span> GEOmap::setPROJ(<span class="variable">type =</span> <span class="number">1</span>, <span class="variable">LAT0 =</span> mlat , <span class="variable">LON0 =</span> mlon)</div><div class="line"><span class="variable">Glocs =</span> GEOmap::GLOB.XY(Locs$y, Locs$x, PROJ)</div><div class="line"><span class="variable">LIMlat =</span> expandbound(Gtottori$POINTS$lat)</div><div class="line"><span class="variable">LIMlon =</span> expandbound(Gtottori$POINTS$lon)</div><div class="line"><span class="variable">PLAT =</span> pretty(LIMlat)</div><div class="line"><span class="variable">PLON =</span> pretty(LIMlon)</div><div class="line"><span class="comment">###############plot the map</span></div><div class="line">plotGEOmapXY(Gtottori,<span class="variable">LIM =</span> c(min(PLON), min(PLAT) , max(PLON) , max(PLAT)) ,</div><div class="line"><span class="variable">PROJ=</span>PROJ, <span class="variable">axes=</span>FALSE, <span class="variable">xlab=</span><span class="string">""</span>, <span class="variable">ylab=</span><span class="string">""</span>,<span class="variable">MAPcol =</span><span class="string">"black"</span>)</div><div class="line"><span class="comment">#133.3498 , 35.2752 , 150 ,85, -9</span></div><div class="line"><span class="variable">MEC =</span> SDRfoc(<span class="number">150</span>,<span class="number">85</span>,-<span class="number">9</span>, <span class="variable">u=</span>FALSE, <span class="variable">ALIM=</span>c(-<span class="number">1</span>,-<span class="number">1</span>, +<span class="number">1</span>, +<span class="number">1</span>), <span class="variable">PLOT=</span>FALSE)</div><div class="line"><span class="variable">fcol =</span> foc.color(foc.icolor(-<span class="number">9</span>), <span class="variable">pal=</span><span class="number">1</span>)</div><div class="line"><span class="variable">XY =</span> GEOmap::GLOB.XY(<span class="number">35.2752</span>,<span class="number">133.3498</span> ,PROJ)</div><div class="line">justfocXY(MEC, <span class="variable">x=</span>XY$x, <span class="variable">y =</span>XY$y , <span class="variable">size =</span> c(<span class="number">5</span>,<span class="number">5</span>), <span class="variable">fcol =</span>fcol , <span class="variable">fcolback =</span> <span class="string">"white"</span>, <span class="variable">xpd =</span> TRUE)</div></pre></td></tr></table></figure>
+
+<p>(図は省略)  </p>
+<h2 id="RFOC_パッケージは_メカニズムを並べて比較したいときに便利">RFOC パッケージは  メカニズムを並べて比較したいときに便利</h2>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">library(RFOC)</div><div class="line"><span class="comment">#strike1 dip1 rake1(slip1)</span></div><div class="line">Z1&lt;-c(</div><div class="line"><span class="comment">#1997年（平成9年）5月13日 鹿児島県北西部地震</span></div><div class="line"><span class="number">191</span>, <span class="number">88</span> ,-<span class="number">175</span> ,</div><div class="line"><span class="comment">#2000年（平成12年）10月6日 鳥取県西部地震</span></div><div class="line"><span class="number">150</span> ,<span class="number">85</span>, -<span class="number">9</span>, </div><div class="line"><span class="comment">#2001年（平成13年）3月24日 芸予地震</span></div><div class="line"><span class="number">188</span> ,<span class="number">59</span> ,-<span class="number">56</span> ,</div><div class="line"><span class="comment">#2005年（平成17年）3月20日 福岡県西方沖地震</span></div><div class="line"><span class="number">122</span> ,<span class="number">87</span> ,-<span class="number">11</span> ,</div><div class="line"><span class="comment">#2016年（平成28年）4月14日21時26分頃 熊本地震の前震</span></div><div class="line"><span class="number">122</span>, <span class="number">74</span> ,-<span class="number">1</span>, </div><div class="line"><span class="comment">#4月16日1時25分頃 熊本地震の本震</span></div><div class="line"><span class="number">131</span> ,<span class="number">53</span> ,-<span class="number">7</span>)</div><div class="line"><span class="comment">#</span></div><div class="line"><span class="variable">MZ =</span> matrix(Z1, <span class="variable">ncol=</span><span class="number">3</span>, <span class="variable">byrow=</span>TRUE)</div><div class="line"><span class="comment">#</span></div><div class="line"><span class="variable">eqname=</span>c(<span class="string">"1997/5/13 鹿児島県北西部地震"</span>,<span class="string">"2000/10/6 鳥取県西部地震"</span>,<span class="string">"2001/3/24 芸予地震"</span>,<span class="string">"2005/3/20 福岡県西方沖地震"</span>,<span class="string">"2016/4/14 熊本地震の前震"</span>,<span class="string">"2016/416 熊本地震の本震"</span>)</div><div class="line"><span class="comment">#png("jpn_w.png",width=1000,height=800)</span></div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">2</span>,<span class="number">3</span>))</div><div class="line">par(<span class="variable">family =</span> <span class="string">"TakaoExMincho"</span>)</div><div class="line">for(i <span class="keyword">in</span> <span class="number">1</span>:length(MZ[,<span class="number">1</span>]))</div><div class="line">{</div><div class="line"><span class="variable">MEC =</span> SDRfoc(MZ[i,<span class="number">1</span>], MZ[i,<span class="number">2</span>], MZ[i,<span class="number">3</span>], <span class="variable">u=</span>FALSE, <span class="variable">ALIM=</span>c(-<span class="number">1</span>,-<span class="number">1</span>, +<span class="number">1</span>, +<span class="number">1</span>), <span class="variable">PLOT=</span>F)</div><div class="line"><span class="variable">fcol =</span> foc.color(foc.icolor(MEC$rake1), <span class="variable">pal=</span><span class="number">1</span>)</div><div class="line">Beachfoc(MEC, <span class="variable">fcol=</span>fcol, <span class="variable">fcolback=</span><span class="string">"white"</span>)</div><div class="line">addPTarrows(MEC)</div><div class="line">title(eqname[i],cex.<span class="variable">main =</span> <span class="number">2</span>)</div><div class="line">}</div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">1</span>,<span class="number">1</span>))</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/jpn_w.png" alt=""></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#strike1 dip1 rake1(slip1)</span></div><div class="line">Z1&lt;-c(</div><div class="line"><span class="comment">#2003年（平成15年）9月26日 十勝沖地震</span></div><div class="line"><span class="number">31</span>, <span class="number">78</span>, <span class="number">81</span>, </div><div class="line"><span class="comment">#2004年（平成16年）10月23日 新潟県中越地震</span></div><div class="line"><span class="number">212</span>, <span class="number">47</span>, <span class="number">93</span>,</div><div class="line"><span class="comment">#2007年（平成19年）3月25日 能登半島地震</span></div><div class="line"><span class="number">58</span> ,<span class="number">66</span> ,<span class="number">132</span> ,</div><div class="line"><span class="comment">#2007年（平成19年）7月16日10時13分頃 新潟県中越沖地震</span></div><div class="line"><span class="number">215</span> ,<span class="number">49</span> ,<span class="number">80</span> ,</div><div class="line"><span class="comment">#2008年（平成20年）6月14日 岩手・宮城内陸地震 </span></div><div class="line"><span class="number">209</span> ,<span class="number">51</span>, <span class="number">104</span>,</div><div class="line"><span class="comment">#2011年（平成23年） 3月11日 東北地方太平洋沖地震</span></div><div class="line"><span class="number">22</span> ,<span class="number">63</span>, <span class="number">91</span>)</div><div class="line"><span class="comment">#</span></div><div class="line"><span class="variable">MZ =</span> matrix(Z1, <span class="variable">ncol=</span><span class="number">3</span>, <span class="variable">byrow=</span>TRUE)</div><div class="line"><span class="comment">#</span></div><div class="line"><span class="variable">eqname=</span>c(<span class="string">"2003/9/26 十勝沖地震"</span>,<span class="string">"2004/10/23 新潟県中越地震"</span>,<span class="string">"2007/3/25 能登半島地震"</span>,<span class="string">"2007/7/16 新潟県中越沖地震"</span>,<span class="string">"2008/6/14 岩手・宮城内陸地震 "</span>,<span class="string">"2011/3/11 東北地方太平洋沖地震"</span>)</div><div class="line"><span class="comment">#png("jpn_e.png",width=1000,height=800)</span></div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">2</span>,<span class="number">3</span>))</div><div class="line">par(<span class="variable">family =</span> <span class="string">"TakaoExMincho"</span>)</div><div class="line">for(i <span class="keyword">in</span> <span class="number">1</span>:length(MZ[,<span class="number">1</span>]))</div><div class="line">{</div><div class="line"><span class="variable">MEC =</span> SDRfoc(MZ[i,<span class="number">1</span>], MZ[i,<span class="number">2</span>], MZ[i,<span class="number">3</span>], <span class="variable">u=</span>FALSE, <span class="variable">ALIM=</span>c(-<span class="number">1</span>,-<span class="number">1</span>, +<span class="number">1</span>, +<span class="number">1</span>), <span class="variable">PLOT=</span>F)</div><div class="line"><span class="variable">fcol =</span> foc.color(foc.icolor(MEC$rake1), <span class="variable">pal=</span><span class="number">1</span>)</div><div class="line">Beachfoc(MEC, <span class="variable">fcol=</span>fcol, <span class="variable">fcolback=</span><span class="string">"white"</span>)</div><div class="line">addPTarrows(MEC)</div><div class="line">title(eqname[i],cex.<span class="variable">main =</span> <span class="number">2</span>)</div><div class="line">}</div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">1</span>,<span class="number">1</span>))</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/jpn_e.png" alt=""></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">Z1&lt;-c(</div><div class="line"><span class="comment">#2011/03/12 長野県北部で地震 </span></div><div class="line"><span class="number">29</span>, <span class="number">56</span>, <span class="number">70</span>,</div><div class="line"><span class="comment">#2011/04/11 福島県浜通り地震</span></div><div class="line"><span class="number">132</span>, <span class="number">50</span>, -<span class="number">82</span>,</div><div class="line"><span class="comment">#2014/11/22 長野県北部で地震</span></div><div class="line"><span class="number">25</span>, <span class="number">50</span>, <span class="number">65</span>,</div><div class="line"><span class="comment">#2015/11/14 薩摩半島西方沖地震</span></div><div class="line"><span class="number">190</span>, <span class="number">80</span>, -<span class="number">161</span>)</div><div class="line"><span class="comment">#</span></div><div class="line"><span class="variable">MZ =</span> matrix(Z1, <span class="variable">ncol=</span><span class="number">3</span>, <span class="variable">byrow=</span>TRUE)</div><div class="line"><span class="comment">#</span></div><div class="line"><span class="variable">eqname=</span>c(<span class="string">"2011/03/12 長野県北部で地震"</span>,<span class="string">"2011/04/11 福島県浜通り地震"</span>,<span class="string">"2014/11/22 長野県北部で地震"</span>,<span class="string">"2015/11/14 薩摩半島西方沖地震"</span>)</div><div class="line"><span class="comment">#png("jpn_cmt03.png",width=1000,height=800)</span></div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">2</span>,<span class="number">3</span>))</div><div class="line">par(<span class="variable">family =</span> <span class="string">"TakaoExMincho"</span>)</div><div class="line">for(i <span class="keyword">in</span> <span class="number">1</span>:length(MZ[,<span class="number">1</span>]))</div><div class="line">{</div><div class="line"><span class="variable">MEC =</span> SDRfoc(MZ[i,<span class="number">1</span>], MZ[i,<span class="number">2</span>], MZ[i,<span class="number">3</span>], <span class="variable">u=</span>FALSE, <span class="variable">ALIM=</span>c(-<span class="number">1</span>,-<span class="number">1</span>, +<span class="number">1</span>, +<span class="number">1</span>), <span class="variable">PLOT=</span>F)</div><div class="line"><span class="variable">fcol =</span> foc.color(foc.icolor(MEC$rake1), <span class="variable">pal=</span><span class="number">1</span>)</div><div class="line">Beachfoc(MEC, <span class="variable">fcol=</span>fcol, <span class="variable">fcolback=</span><span class="string">"white"</span>)</div><div class="line">addPTarrows(MEC)</div><div class="line">title(eqname[i],cex.<span class="variable">main =</span> <span class="number">2</span>)</div><div class="line">}</div><div class="line">par(<span class="variable">mfrow=</span>c(<span class="number">1</span>,<span class="number">1</span>))</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/jpn_cmt03.png" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/03/F-netメカニズム解01/" data-id="vxtsiry77xuvaiwt" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/震源メカニズム/">震源メカニズム</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/04/30/気象庁震源リスト02/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">気象庁震源リスト02 ( 平成28年（2016年）熊本地震 )</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+<a href="http://yoursite.com/2016/05/03/F-netメカニズム解01/">
+  <img src="https://ga-beacon.appspot.com/UA-67242781-1/2016/05/03/F-netメカニズム解01/?pixel" /></a>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CAD/">CAD</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/GMT/">GMT</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gambit/">Gambit</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gnumeric/">Gnumeric</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Graphviz/">Graphviz</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NetworkX/">NetworkX</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">77</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ggplot2/">ggplot2</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/plot/">plot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sqlite3/">sqlite3</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/グラフまとめ/">グラフまとめ</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/放送大学/">放送大学</a><span class="category-list-count">46</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/21世紀の資本/">21世紀の資本</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graphviz/">Graphviz</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenSCAD/">OpenSCAD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/アメリカ地質調査所/">アメリカ地質調査所</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/オープンデータ/">オープンデータ</a><span class="tag-list-count">24</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/グラフ/">グラフ</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データベース/">データベース</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原因をさぐる統計学/">原因をさぐる統計学</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/因子分析＆確証的因子分析/">因子分析＆確証的因子分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/地図/">地図</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/成長曲線モデル/">成長曲線モデル</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/時系列解析/">時系列解析</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/気象庁地震カタログ/">気象庁地震カタログ</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/気象庁震源リスト/">気象庁震源リスト</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/潜在変数間の因果関係/">潜在変数間の因果関係</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活に関するデータ等/">生活に関するデータ等</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/震源メカニズム/">震源メカニズム</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/21世紀の資本/" style="font-size: 13.00px;">21世紀の資本</a><a href="/tags/Graphviz/" style="font-size: 10.00px;">Graphviz</a><a href="/tags/HEXO/" style="font-size: 11.00px;">HEXO</a><a href="/tags/OpenSCAD/" style="font-size: 10.00px;">OpenSCAD</a><a href="/tags/Rパッケージ/" style="font-size: 11.00px;">Rパッケージ</a><a href="/tags/アメリカ地質調査所/" style="font-size: 10.00px;">アメリカ地質調査所</a><a href="/tags/オープンデータ/" style="font-size: 20.00px;">オープンデータ</a><a href="/tags/グラフ/" style="font-size: 18.00px;">グラフ</a><a href="/tags/データからの知識発見/" style="font-size: 16.00px;">データからの知識発見</a><a href="/tags/データベース/" style="font-size: 12.00px;">データベース</a><a href="/tags/原因をさぐる統計学/" style="font-size: 17.00px;">原因をさぐる統計学</a><a href="/tags/問題解決の数理/" style="font-size: 19.00px;">問題解決の数理</a><a href="/tags/因子分析＆確証的因子分析/" style="font-size: 10.00px;">因子分析＆確証的因子分析</a><a href="/tags/地図/" style="font-size: 19.00px;">地図</a><a href="/tags/心理・教育統計法特論/" style="font-size: 14.00px;">心理・教育統計法特論</a><a href="/tags/心理統計法/" style="font-size: 18.00px;">心理統計法</a><a href="/tags/成長曲線モデル/" style="font-size: 10.00px;">成長曲線モデル</a><a href="/tags/時系列解析/" style="font-size: 11.00px;">時系列解析</a><a href="/tags/気象庁地震カタログ/" style="font-size: 17.00px;">気象庁地震カタログ</a><a href="/tags/気象庁震源リスト/" style="font-size: 11.00px;">気象庁震源リスト</a><a href="/tags/潜在変数間の因果関係/" style="font-size: 10.00px;">潜在変数間の因果関係</a><a href="/tags/生活に関するデータ等/" style="font-size: 15.00px;">生活に関するデータ等</a><a href="/tags/震源メカニズム/" style="font-size: 10.00px;">震源メカニズム</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04">April 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03">March 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02">February 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01">January 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10">October 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09">September 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08">August 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07">July 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06">June 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05">May 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03">March 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">35</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">34</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/05/03/F-netメカニズム解01/">F-netメカニズム解01</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/30/気象庁震源リスト02/">気象庁震源リスト02 ( 平成28年（2016年）熊本地震 )</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/23/データベース03/">データベース03</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/23/気象庁震源リスト01/">気象庁震源リスト01 ( 平成28年（2016年）熊本地震 )</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/17/アメリカ地質調査所01/">アメリカ地質調査所 ( 平成28年（2016年）熊本地震 )</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 統計ソフトRの備忘録２<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
