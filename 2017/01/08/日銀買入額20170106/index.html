@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>日銀買入額(2010-12-15～2017-01-07) | 統計ソフトRの備忘録２</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ggplot2,xts,Quandl,gdata パッケージ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="日銀買入額(2010-12-15～2017-01-07)">
+<meta property="og:url" content="http://yoursite.com/2017/01/08/日銀買入額20170106/">
+<meta property="og:site_name" content="統計ソフトRの備忘録２">
+<meta property="og:description" content="ggplot2,xts,Quandl,gdata パッケージ">
+<meta property="og:image" content="/images/boj20170106.png">
+<meta property="og:image" content="/images/boj20170106_02.png">
+<meta property="og:image" content="/images/boj20170106_03.png">
+<meta property="og:image" content="/images/boj20170106_04.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="日銀買入額(2010-12-15～2017-01-07)">
+<meta name="twitter:description" content="ggplot2,xts,Quandl,gdata パッケージ">
+
+  
+    <link rel="alternative" href="/atom.xml" title="統計ソフトRの備忘録２" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">統計ソフトRの備忘録２</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-日銀買入額20170106" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/08/日銀買入額20170106/" class="article-date">
+  <time datetime="2017-01-08T14:07:03.000Z" itemprop="datePublished">Jan 8 2017</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ggplot2/">ggplot2</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      日銀買入額(2010-12-15～2017-01-07)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="ggplot2,xts,Quandl,gdata_パッケージ">ggplot2,xts,Quandl,gdata パッケージ</h2>
+<a id="more"></a>
+
+<p>(過去の記事)<br><a href="http://statrstart.github.io/2015/02/14/%E6%97%A5%E9%8A%80%E8%B2%B7%E5%85%A5%E9%A1%8D/#more" target="_blank" rel="external">日銀買入額</a><br><a href="http://statrstart.github.io/2015/07/11/%E6%97%A5%E9%8A%80%E8%B2%B7%E5%85%A5%E9%A1%8D2/#more" target="_blank" rel="external">日銀買入額(2010-12-15～2015-07-09)</a><br><a href="http://statrstart.github.io/2016/02/28/%E6%97%A5%E9%8A%80%E8%B2%B7%E5%85%A5%E9%A1%8D3/#more" target="_blank" rel="external">日銀買入額(2010-12-15～2016-02-19)</a><br><a href="http://statrstart.github.io/2016/06/12/%E6%97%A5%E9%8A%80%E8%B2%B7%E5%85%A5%E9%A1%8D4/#more" target="_blank" rel="external">日銀買入額(2010-12-15～2016-06-10)</a>  </p>
+<p>(使用したデータ)  </p>
+<p>(作成したデータファイル)<br>データファイル:2010_2016 (コードの中で読み込む)<br><a href="/data/d2010_2016.RData">d2010_2016.RData</a></p>
+<h4 id="2016年4月以降の買入結果は、ETF_(1)_右記以外_(2)_設備投資および人材投資に積極的に取り組んでいる企業を支援するためのETFに分かれている。">2016年4月以降の買入結果は、ETF (1) 右記以外    (2) 設備投資および人材投資に積極的に取り組んでいる企業を支援するためのETFに分かれている。</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="title">library</span>(gdata)</div><div class="line"><span class="preprocessor">#http://www3.boj.or.jp/market/jp/pastetfreit.zip 解凍</span></div><div class="line"><span class="title">d201601_03</span> &lt;- read.xls(<span class="string">"2016 (Purchases until March).xls"</span>,header=<span class="type">F</span>,skip=<span class="number">8</span>)</div><div class="line"><span class="title">d201604_12</span> &lt;- read.xls(<span class="string">"2016 (Purchases from April).xls"</span>,header=<span class="type">F</span>,skip=<span class="number">7</span>)</div><div class="line"><span class="title">load</span>(url(<span class="string">"http://statrstart.github.io/data/d2010_2015.RData"</span>))</div><div class="line"><span class="preprocessor">#</span></div><div class="line"><span class="title">head</span>(d2010_2015);tail(d2010_2015)</div><div class="line"><span class="title">head</span>(d201601_03);tail(d201601_03)</div><div class="line"><span class="title">head</span>(d201604_12);tail(d201604_12)</div><div class="line"><span class="preprocessor">#</span></div><div class="line"><span class="preprocessor">#2016年3月以前の買入結果に変数ETF2を加える</span></div><div class="line"><span class="title">d2010_2016</span>&lt;-<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(<span class="title">date</span>=<span class="title">d2010_2015</span>[,1],<span class="type">ETF</span>=<span class="title">d2010_2015</span>[,2],<span class="type">ETF2</span>=<span class="title">rep</span>(<span class="type">NA</span>,<span class="title">nrow</span>(<span class="title">d2010_2015</span>)</span>),<span class="type">REIT</span>=d2010_2015[,3])</span></div><div class="line"><span class="title">head</span>(d2010_2016) ; tail(d2010_2016)</div><div class="line"><span class="title">d</span>&lt;-<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(<span class="title">date</span>=<span class="title">d201601_03</span>[,2],<span class="type">ETF</span>=<span class="title">d201601_03</span>[,3],<span class="type">ETF2</span>=<span class="title">rep</span>(<span class="type">NA</span>,<span class="title">nrow</span>(<span class="title">d201601_03</span>)</span>),<span class="type">REIT</span>=d201601_03[,4])</span></div><div class="line"><span class="title">d2010_2016</span>&lt;-rbind(d2010_2016,d)</div><div class="line"><span class="preprocessor">#</span></div><div class="line"><span class="title">d201604_12</span>&lt;-d201604_12[,<span class="number">2</span>:<span class="number">5</span>]</div><div class="line"><span class="title">names</span>(d201604_12)&lt;-c(<span class="string">"date"</span>,<span class="string">"ETF"</span>,<span class="string">"ETF2"</span>,<span class="string">"REIT"</span>)</div><div class="line"><span class="title">d2010_2016</span>&lt;-rbind(d2010_2016,d201604_12)</div><div class="line"><span class="preprocessor">#</span></div><div class="line"><span class="preprocessor">#nrow(d2010_2016)</span></div><div class="line"><span class="preprocessor">#nrow(unique(d2010_2016))</span></div><div class="line"><span class="preprocessor"># NAを0に置き換え</span></div><div class="line"><span class="title">d2010_2016</span>$<span class="type">ETF</span>[is.na(d2010_2016$<span class="type">ETF</span>)]&lt;-<span class="number">0</span></div><div class="line"><span class="title">d2010_2016</span>$<span class="type">ETF2</span>[is.na(d2010_2016$<span class="type">ETF2</span>)]&lt;-<span class="number">0</span></div><div class="line"><span class="title">d2010_2016</span>$<span class="type">REIT</span>[is.na(d2010_2016$<span class="type">REIT</span>)]&lt;-<span class="number">0</span></div><div class="line"><span class="preprocessor">#</span></div><div class="line"><span class="preprocessor">#save("d2010_2016", file="d2010_2016.RData")</span></div></pre></td></tr></table></figure>
+
+<p>(コードの中で読み込むデータ:2017年分)<br><a href="http://www3.boj.or.jp/market/jp/etfreit.zip" target="_blank" rel="external">2017年の買入結果</a></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line">library(xts)</div><div class="line">library(gdata)</div><div class="line">library(ggplot2)</div><div class="line">library(grid) </div><div class="line">library(Quandl)</div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#作成したデータファイル読み込み</span></div><div class="line"><span class="comment">#load("d2010_2016.RData")</span></div><div class="line">load(url(<span class="string">"http://statrstart.github.io/data/d2010_2016.RData"</span>))</div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#日銀のサイトからデータを取り込む</span></div><div class="line"><span class="comment">#2017年3月以前の買入結果</span></div><div class="line">temp &lt;- tempfile()</div><div class="line"><span class="comment">#download.file("http://www3.boj.or.jp/market/jp/pastetfreit.zip",temp)</span></div><div class="line">download.file(<span class="string">"http://www3.boj.or.jp/market/jp/etfreit.zip"</span>,temp)</div><div class="line">con &lt;- unzip(temp, <span class="string">"2017.xls"</span>)</div><div class="line">d201701_03 &lt;- read.xls(con,<span class="variable">header=</span>F,<span class="variable">skip=</span><span class="number">7</span>)</div><div class="line">unlink(temp)</div><div class="line"><span class="comment">#2017年4月以降の買入結果</span></div><div class="line"><span class="comment">#temp &lt;- tempfile()</span></div><div class="line"><span class="comment">#download.file("http://www3.boj.or.jp/market/jp/etfreit.zip",temp)</span></div><div class="line"><span class="comment">#con &lt;- unzip(temp, "2017.xls")</span></div><div class="line"><span class="comment">#d201704 &lt;- read.xls(con,header=F,skip=7)</span></div><div class="line"><span class="comment">#unlink(temp)</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#d2017&lt;-rbind(d201701_03[,2:5],d201604[,2:5]) </span></div><div class="line">d2017&lt;-d201701_03[,<span class="number">2</span>:<span class="number">5</span>]</div><div class="line">names(d2017)&lt;-c(<span class="string">"date"</span>,<span class="string">"ETF"</span>,<span class="string">"ETF2"</span>,<span class="string">"REIT"</span>)</div><div class="line"><span class="comment">#</span></div><div class="line">d2017$ETF[is.na(d2017$ETF)]&lt;-<span class="number">0</span></div><div class="line">d2017$ETF2[is.na(d2017$ETF2)]&lt;-<span class="number">0</span></div><div class="line">d2017$REIT[is.na(d2017$REIT)]&lt;-<span class="number">0</span></div><div class="line"><span class="comment">#</span></div><div class="line">head(d2017) ; tail(d2017)</div><div class="line"><span class="comment">#rbind</span></div><div class="line">d2010_2017&lt;-rbind(d2010_2016,d2017)</div><div class="line"><span class="comment">#</span></div><div class="line">x &lt;- read.zoo(d2010_2017)</div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#ETF累計</span></div><div class="line">a1&lt;-ggplot(<span class="variable">data =</span> fortify(cumsum(x[,<span class="number">1</span>]), <span class="variable">melt =</span> TRUE),aes(<span class="variable">x =</span> Index, <span class="variable">y =</span> Value) ) +</div><div class="line">geom_bar(<span class="variable">stat=</span><span class="string">"identity"</span>,<span class="variable">position=</span>position_dodge(),<span class="variable">fill=</span>rgb(<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="variable">alpha=</span><span class="number">0.7</span>)) +</div><div class="line">labs(<span class="variable">title=</span>paste(<span class="string">"日銀買い入れ:累計(ETF)  "</span>,d2010_2017[<span class="number">1</span>,<span class="string">"date"</span>],<span class="string">"_"</span>,d2010_2017[nrow(d2010_2017),<span class="string">"date"</span>]),</div><div class="line">    <span class="variable">subtitle =</span> <span class="string">"Purchases of ETFs other than those mentioned in ETF(2)"</span>, <span class="variable">x=</span><span class="string">""</span>, <span class="variable">y=</span><span class="string">""</span>)</div><div class="line">a1&lt;-a1 + theme_bw(<span class="variable">base_size =</span> <span class="number">11</span>, <span class="variable">base_family =</span> <span class="string">"IPAPMincho"</span>)</div><div class="line"><span class="comment">#</span></div><div class="line">a2&lt;-ggplot(<span class="variable">data =</span> fortify(cumsum(x[,<span class="number">2</span>]), <span class="variable">melt =</span> TRUE),aes(<span class="variable">x =</span> Index, <span class="variable">y =</span> Value) ) +</div><div class="line">geom_bar(<span class="variable">stat=</span><span class="string">"identity"</span>,<span class="variable">position=</span>position_dodge(),<span class="variable">fill=</span>rgb(<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="variable">alpha=</span><span class="number">0.7</span>)) +</div><div class="line">labs(<span class="variable">title=</span>paste(<span class="string">"日銀買い入れ:累計(ETF(2) )  "</span>,d2010_2017[<span class="number">1</span>,<span class="string">"date"</span>],<span class="string">"_"</span>,d2010_2017[nrow(d2010_2017),<span class="string">"date"</span>]), </div><div class="line">    <span class="variable">subtitle =</span> <span class="string">"Purchases of ETFs to support investment in physical and human capital"</span>,<span class="variable">x=</span><span class="string">""</span>, <span class="variable">y=</span><span class="string">""</span>)</div><div class="line">a2&lt;-a2 + theme_dark(<span class="variable">base_size =</span> <span class="number">11</span>, <span class="variable">base_family =</span> <span class="string">"IPAGothic"</span>)</div><div class="line"><span class="comment">#REIT累計</span></div><div class="line">b&lt;-ggplot(<span class="variable">data =</span> fortify(cumsum(x[,<span class="number">3</span>]), <span class="variable">melt =</span> TRUE),aes(<span class="variable">x =</span> Index, <span class="variable">y =</span> Value) ) +</div><div class="line">geom_bar(<span class="variable">stat=</span><span class="string">"identity"</span>,<span class="variable">position=</span>position_dodge(),<span class="variable">fill=</span>rgb(<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="variable">alpha=</span><span class="number">0.7</span>)) +</div><div class="line">labs(<span class="variable">title=</span>paste(<span class="string">"日銀買い入れ:累計(REIT)  "</span>,d2010_2017[<span class="number">1</span>,<span class="string">"date"</span>],<span class="string">"_"</span>,d2010_2017[nrow(d2010_2017),<span class="string">"date"</span>]), </div><div class="line">     <span class="variable">caption =</span> <span class="string">"(data : http://www3.boj.or.jp/market/jp/pastetfreit.zip & etfreit.zip )  "</span>,<span class="variable">x=</span><span class="string">""</span>, <span class="variable">y=</span><span class="string">""</span>)</div><div class="line">b&lt;-b + theme_light(<span class="variable">base_size =</span> <span class="number">11</span>, <span class="variable">base_family =</span> <span class="string">"TakaoMincho"</span>)</div><div class="line"><span class="comment">#png("boj20170106.png")</span></div><div class="line">grid.newpage() <span class="comment">#空の画面を作る</span></div><div class="line">pushViewport(viewport(<span class="variable">layout=</span>grid.layout(<span class="number">3</span>, <span class="number">1</span>))) <span class="comment">#画面を区切る</span></div><div class="line">print(a1, <span class="variable">vp=</span>viewport(layout.pos.<span class="variable">row=</span><span class="number">1</span>)) </div><div class="line">print(a2, <span class="variable">vp=</span>viewport(layout.pos.<span class="variable">row=</span><span class="number">2</span>)) </div><div class="line">print(b, <span class="variable">vp=</span>viewport(layout.pos.<span class="variable">row=</span><span class="number">3</span>)) </div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/boj20170106.png" alt=""></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#ETF累計(ETFとETF2の合計)</span></div><div class="line">x1&lt;-x[,<span class="number">1</span>]+x[,<span class="number">2</span>]</div><div class="line">a&lt;-ggplot(<span class="variable">data =</span> fortify(cumsum(x1[,<span class="number">1</span>]), <span class="variable">melt =</span> TRUE),aes(<span class="variable">x =</span> Index, <span class="variable">y =</span> Value) ) +</div><div class="line">geom_bar(<span class="variable">stat=</span><span class="string">"identity"</span>,<span class="variable">position=</span>position_dodge(),<span class="variable">fill=</span>rgb(<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="variable">alpha=</span><span class="number">0.7</span>)) +</div><div class="line">labs(<span class="variable">title=</span>paste(<span class="string">"日銀買い入れ:累計(ETF 総額 )  "</span>,d2010_2017[<span class="number">1</span>,<span class="string">"date"</span>],<span class="string">"_"</span>,d2010_2017[nrow(d2010_2017),<span class="string">"date"</span>]), </div><div class="line">    <span class="variable">x=</span><span class="string">""</span>, <span class="variable">y=</span><span class="string">""</span>)</div><div class="line">a&lt;-a + theme_classic(<span class="variable">base_size =</span> <span class="number">11</span>, <span class="variable">base_family =</span> <span class="string">"TakaoPMincho"</span>)</div><div class="line"><span class="comment">#</span></div><div class="line">b&lt;-ggplot(<span class="variable">data =</span> fortify(cumsum(x[,<span class="number">3</span>]), <span class="variable">melt =</span> TRUE),aes(<span class="variable">x =</span> Index, <span class="variable">y =</span> Value) ) +</div><div class="line">geom_bar(<span class="variable">stat=</span><span class="string">"identity"</span>,<span class="variable">position=</span>position_dodge(),<span class="variable">fill=</span>rgb(<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="variable">alpha=</span><span class="number">0.7</span>)) +</div><div class="line">labs(<span class="variable">title=</span>paste(<span class="string">"日銀買い入れ:累計(REIT)  "</span>,d2010_2017[<span class="number">1</span>,<span class="string">"date"</span>],<span class="string">"_"</span>,d2010_2017[nrow(d2010_2017),<span class="string">"date"</span>]), </div><div class="line">    <span class="variable">caption =</span> <span class="string">"(data : http://www3.boj.or.jp/market/jp/pastetfreit.zip & etfreit.zip )  "</span>,<span class="variable">x=</span><span class="string">""</span>, <span class="variable">y=</span><span class="string">""</span>)</div><div class="line">b&lt;-b + theme_minimal(<span class="variable">base_size =</span> <span class="number">11</span>, <span class="variable">base_family =</span> <span class="string">"TakaoExGothic"</span>)</div><div class="line"><span class="comment">#png("boj20170106_2.png")</span></div><div class="line">grid.newpage() <span class="comment">#空の画面を作る</span></div><div class="line">pushViewport(viewport(<span class="variable">layout=</span>grid.layout(<span class="number">2</span>, <span class="number">1</span>))) <span class="comment">#画面を区切る</span></div><div class="line">print(a, <span class="variable">vp=</span>viewport(layout.pos.<span class="variable">row=</span><span class="number">1</span>)) </div><div class="line">print(b, <span class="variable">vp=</span>viewport(layout.pos.<span class="variable">row=</span><span class="number">2</span>)) </div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/boj20170106_02.png" alt=""></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#日経平均株価</span></div><div class="line">N225=Quandl(<span class="string">"YAHOO/INDEX_N225"</span>, collapse=<span class="string">"daily"</span>, start_date=<span class="string">"2010-12-15"</span>, <span class="built_in">type</span>=<span class="string">"xts"</span>)</div><div class="line"><span class="comment">#買入日の株価指数の終値でETF(日経平均株価)の買入を行ったと仮定する</span></div><div class="line">dat&lt;-merge(d2010_2017,data.frame(date=index(N225),coredata(N225[,<span class="string">"Close"</span>])))</div><div class="line"><span class="comment">#</span></div><div class="line">( sum(dat<span class="variable">$ETF</span>) + sum(dat<span class="variable">$ETF2</span>))/sum(dat<span class="variable">$ETF</span>/dat<span class="variable">$Close</span>)</div></pre></td></tr></table></figure>
+
+<h2 id="15541-79">15541.79</h2>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#png("boj20170106_03.png",width=800,height=640)</span></div><div class="line">par(<span class="variable">mar=</span>c(<span class="number">5</span>,<span class="number">7</span>, <span class="number">3</span>,<span class="number">7</span>))  </div><div class="line">par(<span class="variable">family=</span><span class="string">"TakaoPMincho"</span>)</div><div class="line">plot.zoo(merge(N225[,<span class="string">"Close"</span>],cumsum(x1[,<span class="number">1</span>]))[,<span class="number">2</span>],<span class="variable">type=</span><span class="string">"h"</span>,<span class="variable">lend=</span><span class="number">1</span>,<span class="variable">col=</span><span class="string">"pink"</span>,<span class="variable">xlab=</span><span class="string">""</span>,<span class="variable">ylab=</span><span class="string">""</span>,<span class="variable">yaxt =</span> <span class="string">"n"</span>)</div><div class="line"><span class="comment"># 右の縦軸のラベル</span></div><div class="line">mtext(<span class="string">"日銀買い入れ:累計(ETF 総額 )"</span>,<span class="variable">side =</span> <span class="number">4</span>, <span class="variable">line =</span><span class="number">4</span>)  </div><div class="line"><span class="comment"># 右の縦軸を表示</span></div><div class="line">axis(<span class="number">4</span>,<span class="variable">las=</span><span class="number">1</span>)</div><div class="line">par(<span class="variable">new=</span>T)</div><div class="line">plot.zoo(merge(N225[,<span class="string">"Close"</span>],cumsum(x1[,<span class="number">1</span>]))[,<span class="number">1</span>],<span class="variable">xlab=</span><span class="string">""</span>,<span class="variable">ylab=</span><span class="string">""</span>,<span class="variable">xaxt =</span> <span class="string">"n"</span>,<span class="variable">las=</span><span class="number">1</span>,<span class="variable">lwd=</span><span class="number">1.5</span>)</div><div class="line">mtext(<span class="string">"N225(終値)"</span>,<span class="variable">side =</span> <span class="number">2</span>, <span class="variable">line =</span> <span class="number">4</span>) </div><div class="line">title(<span class="string">"N225(終値) & 日銀買い入れ:累計(ETF 総額 )"</span>)</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/boj20170106_03.png" alt=""></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#png("boj20170106_04.png",width=800,height=640)</span></div><div class="line">xx&lt;-merge(N225[,<span class="string">"Close"</span>],cumsum(x1[,<span class="number">1</span>]))</div><div class="line">par(<span class="variable">mar=</span>c(<span class="number">5</span>,<span class="number">7</span>, <span class="number">3</span>,<span class="number">7</span>))  </div><div class="line">par(<span class="variable">family=</span><span class="string">"TakaoPMincho"</span>)</div><div class="line">plot.zoo(xx[,<span class="number">2</span>],<span class="variable">type=</span><span class="string">"h"</span>,<span class="variable">lend=</span><span class="number">1</span>,<span class="variable">col=</span><span class="string">"pink"</span>,<span class="variable">xlab=</span><span class="string">""</span>,<span class="variable">ylab=</span><span class="string">""</span>,<span class="variable">yaxt =</span> <span class="string">"n"</span>)</div><div class="line"><span class="comment"># 右の縦軸のラベル</span></div><div class="line">mtext(<span class="string">"日銀買い入れ:累計(ETF 総額 )"</span>,<span class="variable">side =</span> <span class="number">4</span>, <span class="variable">line =</span><span class="number">4</span>)  </div><div class="line"><span class="comment"># 右の縦軸を表示</span></div><div class="line"><span class="comment">#axis(4,las=1)</span></div><div class="line">axis(<span class="number">4</span>,<span class="variable">at=</span>seq(<span class="number">0</span>,<span class="number">120000</span>,<span class="number">20000</span>),<span class="variable">labels=</span>c(<span class="number">0</span>,paste0(seq(<span class="number">2</span>,<span class="number">12</span>,<span class="number">2</span>),<span class="string">"兆円"</span>)),<span class="variable">las=</span><span class="number">1</span> )                      </div><div class="line">par(<span class="variable">new=</span>T)</div><div class="line">plot.zoo(xx[,<span class="number">1</span>],<span class="variable">xlab=</span><span class="string">""</span>,<span class="variable">ylab=</span><span class="string">""</span>,<span class="variable">xaxt =</span> <span class="string">"n"</span>,<span class="variable">las=</span><span class="number">1</span>,<span class="variable">lwd=</span><span class="number">1.5</span>)</div><div class="line">mtext(<span class="string">"N225(終値)"</span>,<span class="variable">side =</span> <span class="number">2</span>, <span class="variable">line =</span> <span class="number">4</span>) </div><div class="line">title(<span class="string">"N225(終値) & 日銀買い入れ:累計(ETF 総額 )"</span>)</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
+
+<p><img src="/images/boj20170106_04.png" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/01/08/日銀買入額20170106/" data-id="1chlv8fi48hayu8t" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/生活に関するデータ等/">生活に関するデータ等</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/11/26/震源地と原子力発電所09/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">震源地と原子力発電所(世界その５)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+<a href="http://yoursite.com/2017/01/08/日銀買入額20170106/">
+  <img src="https://ga-beacon.appspot.com/UA-67242781-1/2017/01/08/日銀買入額20170106/?pixel" /></a>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CAD/">CAD</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/GMT/">GMT</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gambit/">Gambit</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gnumeric/">Gnumeric</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Graphviz/">Graphviz</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NetworkX/">NetworkX</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">80</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ggplot2/">ggplot2</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/plot/">plot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sqlite3/">sqlite3</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/グラフまとめ/">グラフまとめ</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/地震/">地震</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/放送大学/">放送大学</a><span class="category-list-count">46</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/21世紀の資本/">21世紀の資本</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graphviz/">Graphviz</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenSCAD/">OpenSCAD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rパッケージ/">Rパッケージ</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/アメリカ地質調査所/">アメリカ地質調査所</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/オープンデータ/">オープンデータ</a><span class="tag-list-count">24</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/グラフ/">グラフ</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データからの知識発見/">データからの知識発見</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/データベース/">データベース</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原因をさぐる統計学/">原因をさぐる統計学</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/問題解決の数理/">問題解決の数理</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/因子分析＆確証的因子分析/">因子分析＆確証的因子分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/地図/">地図</a><span class="tag-list-count">24</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/地震の年表/">地震の年表</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理・教育統計法特論/">心理・教育統計法特論</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理統計法/">心理統計法</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/成長曲線モデル/">成長曲線モデル</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/時系列解析/">時系列解析</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/気象庁地震カタログ/">気象庁地震カタログ</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/気象庁地震情報/">気象庁地震情報</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/気象庁震源リスト/">気象庁震源リスト</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/潜在変数間の因果関係/">潜在変数間の因果関係</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活に関するデータ等/">生活に関するデータ等</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/震源メカニズム/">震源メカニズム</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/震源リスト/">震源リスト</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/21世紀の資本/" style="font-size: 12.50px;">21世紀の資本</a><a href="/tags/Graphviz/" style="font-size: 10.00px;">Graphviz</a><a href="/tags/HEXO/" style="font-size: 10.83px;">HEXO</a><a href="/tags/OpenSCAD/" style="font-size: 10.00px;">OpenSCAD</a><a href="/tags/Rパッケージ/" style="font-size: 10.83px;">Rパッケージ</a><a href="/tags/アメリカ地質調査所/" style="font-size: 14.17px;">アメリカ地質調査所</a><a href="/tags/オープンデータ/" style="font-size: 20.00px;">オープンデータ</a><a href="/tags/グラフ/" style="font-size: 17.50px;">グラフ</a><a href="/tags/データからの知識発見/" style="font-size: 15.00px;">データからの知識発見</a><a href="/tags/データベース/" style="font-size: 11.67px;">データベース</a><a href="/tags/原因をさぐる統計学/" style="font-size: 15.83px;">原因をさぐる統計学</a><a href="/tags/問題解決の数理/" style="font-size: 19.17px;">問題解決の数理</a><a href="/tags/因子分析＆確証的因子分析/" style="font-size: 10.00px;">因子分析＆確証的因子分析</a><a href="/tags/地図/" style="font-size: 20.00px;">地図</a><a href="/tags/地震の年表/" style="font-size: 10.00px;">地震の年表</a><a href="/tags/心理・教育統計法特論/" style="font-size: 13.33px;">心理・教育統計法特論</a><a href="/tags/心理統計法/" style="font-size: 17.50px;">心理統計法</a><a href="/tags/成長曲線モデル/" style="font-size: 10.00px;">成長曲線モデル</a><a href="/tags/時系列解析/" style="font-size: 10.83px;">時系列解析</a><a href="/tags/気象庁地震カタログ/" style="font-size: 16.67px;">気象庁地震カタログ</a><a href="/tags/気象庁地震情報/" style="font-size: 10.00px;">気象庁地震情報</a><a href="/tags/気象庁震源リスト/" style="font-size: 11.67px;">気象庁震源リスト</a><a href="/tags/潜在変数間の因果関係/" style="font-size: 10.00px;">潜在変数間の因果関係</a><a href="/tags/生活に関するデータ等/" style="font-size: 18.33px;">生活に関するデータ等</a><a href="/tags/震源メカニズム/" style="font-size: 10.00px;">震源メカニズム</a><a href="/tags/震源リスト/" style="font-size: 11.67px;">震源リスト</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01">January 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11">November 2016</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10">October 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09">September 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06">June 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05">May 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04">April 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03">March 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02">February 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01">January 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10">October 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09">September 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08">August 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07">July 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06">June 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05">May 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03">March 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02">February 2015</a><span class="archive-list-count">35</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">34</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/01/08/日銀買入額20170106/">日銀買入額(2010-12-15～2017-01-07)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/26/震源地と原子力発電所09/">震源地と原子力発電所(世界その５)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/26/震源地と原子力発電所08/">震源地と原子力発電所(世界その４)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/26/震源地と原子力発電所07/">震源地と原子力発電所(世界その３)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/26/震源地と原子力発電所06/">震源地と原子力発電所(世界その２)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 統計ソフトRの備忘録２<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
