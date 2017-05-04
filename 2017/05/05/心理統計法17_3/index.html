@@ -8,11 +8,11 @@
   <meta name="description" content="放送大学「心理統計法(‘17)」第5章 第6章 その2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="心理統計法('17) その3">
-<meta property="og:url" content="http://yoursite.com/2017/05/04/心理統計法17_3/">
+<meta property="og:url" content="http://yoursite.com/2017/05/05/心理統計法17_3/">
 <meta property="og:site_name" content="統計ソフトRの備忘録２">
 <meta property="og:description" content="放送大学「心理統計法(‘17)」第5章 第6章 その2">
 <meta property="og:image" content="/images/mcmchist6_3.png">
-<meta property="og:image" content="/images/mcmchist6_3.png">
+<meta property="og:image" content="/images/mcmchist6_4.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="心理統計法('17) その3">
 <meta name="twitter:description" content="放送大学「心理統計法(‘17)」第5章 第6章 その2">
@@ -94,8 +94,8 @@
       <div class="outer">
         <section id="main"><article id="post-心理統計法17_3" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/05/04/心理統計法17_3/" class="article-date">
-  <time datetime="2017-05-04T04:23:54.000Z" itemprop="datePublished">May 4 2017</time>
+    <a href="/2017/05/05/心理統計法17_3/" class="article-date">
+  <time datetime="2017-05-04T20:39:43.000Z" itemprop="datePublished">May 5 2017</time>
 </a>
     
   <div class="article-category">
@@ -134,8 +134,7 @@
 <p>Mean     SD Naive SE Time-series SE<br>[1,] 32.753 0.5897 0.001865       0.002524<br>[2,] 31.042 0.5163 0.001633       0.002219<br>[3,]  2.590 0.4612 0.001458       0.002287<br>[4,]  2.276 0.4054 0.001282       0.002013  </p>
 </li>
 <li><p>Quantiles for each variable:</p>
-<pre><code><span class="number">2.5</span><span class="var_expand">%    25%</span>    <span class="number">50</span><span class="var_expand">%    75%</span>  <span class="number">97.5</span><span class="var_expand">%  </span>
-</code></pre><p>[1,] 31.584 32.370 32.754 33.137 33.918<br>[2,] 30.024 30.707 31.040 31.376 32.067<br>[3,]  1.874  2.265  2.529  2.846  3.661<br>[4,]  1.643  1.989  2.221  2.503  3.221  </p>
+<p>2.5%    25%    50%    75%  97.5%<br>[1,] 31.584 32.370 32.754 33.137 33.918<br>[2,] 30.024 30.707 31.040 31.376 32.067<br>[3,]  1.874  2.265  2.529  2.846  3.661<br>[4,]  1.643  1.989  2.221  2.503  3.221  </p>
 </li>
 </ol>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gelman.diag(<span class="keyword">DEF</span>.mcmc)</div></pre></td></tr></table></figure>
@@ -147,7 +146,7 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">effectiveSize</span><span class="params">(<span class="variable">DEF</span>.mcmc)</span></span></div></pre></td></tr></table></figure>
 
 <p>   var1     var2     var3     var4<br>54612.12 54288.77 40756.98 40936.99   </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="title">df</span>&lt;-<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(<span class="title">mu1</span>=<span class="title">unlist</span>(<span class="type">DEF</span>.<span class="title">mcmc</span>[,1])</span>,mu2=unlist<span class="container">(<span class="type">DEF</span>.<span class="title">mcmc</span>[,2])</span>,</span></div><div class="line">	sigma1=unlist(<span class="type">DEF</span>.mcmc[,<span class="number">3</span>]) ,sigma2=unlist(<span class="type">DEF</span>.mcmc[,<span class="number">4</span>]) )</div><div class="line"><span class="preprocessor">#</span></div><div class="line"><span class="title">ryou</span>&lt;-<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(<span class="title">c</span>(<span class="title">round</span>(<span class="title">mean</span>(<span class="title">df</span>[,1])</span>,2) , round<span class="container">(<span class="title">sd</span>(<span class="title">df</span>[,1])</span>,2) ,</span></div><div class="line">	round(quantile(df[,<span class="number">1</span>],c(<span class="number">0.025</span>,<span class="number">0.05</span>,<span class="number">0.5</span>,<span class="number">0.95</span>,<span class="number">0.975</span>)),<span class="number">2</span>)))</div><div class="line"><span class="preprocessor">#</span></div><div class="line"><span class="title">for</span> (i <span class="keyword">in</span> <span class="number">2</span>:ncol(df) ){</div><div class="line"><span class="title">ryou</span>&lt;-cbind(ryou,<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(<span class="title">c</span>(<span class="title">round</span>(<span class="title">mean</span>(<span class="title">df</span>[,<span class="title">i</span>])</span>,2) , round<span class="container">(<span class="title">sd</span>(<span class="title">df</span>[,<span class="title">i</span>])</span>,2) ,</span></div><div class="line">	round(quantile(df[,i],c(<span class="number">0.025</span>,<span class="number">0.05</span>,<span class="number">0.5</span>,<span class="number">0.95</span>,<span class="number">0.975</span>)),<span class="number">2</span>))))</div><div class="line">}</div><div class="line"><span class="title">names</span>(ryou)&lt;-c(<span class="string">"x1"</span>,<span class="string">"x2"</span>,<span class="string">"sigma1"</span>,<span class="string">"sigma2"</span>)</div><div class="line"><span class="title">rownames</span>(ryou)&lt;-c(<span class="string">"EAP"</span>,<span class="string">"post.sd"</span>,<span class="string">"2.5%"</span>,<span class="string">"5%"</span>,<span class="string">"50%"</span>,<span class="string">"95%"</span>,<span class="string">"97.5%"</span>)</div><div class="line"><span class="title">mu1_mu2</span> &lt;- df$mu1 - df$mu2</div><div class="line"><span class="title">ryou</span>&lt;-cbind(ryou,<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(<span class="title">c</span>(<span class="title">round</span>(<span class="title">mean</span>(<span class="title">mu1_mu2</span>)</span>,2) , round<span class="container">(<span class="title">sd</span>(<span class="title">mu1_mu2</span>)</span>,2) ,</span></div><div class="line">	round(quantile(mu1_mu2,c(<span class="number">0.025</span>,<span class="number">0.05</span>,<span class="number">0.5</span>,<span class="number">0.95</span>,<span class="number">0.975</span>)),<span class="number">2</span>))))</div><div class="line"><span class="title">names</span>(ryou)&lt;-c(<span class="string">"x1"</span>,<span class="string">"x2"</span>,<span class="string">"sigma1"</span>,<span class="string">"sigma2"</span>,<span class="string">"mu1_mu2"</span>)</div><div class="line"><span class="preprocessor">#kable(t(ryou))</span></div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="title">df</span>&lt;-<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(<span class="title">mu1</span>=<span class="title">unlist</span>(<span class="type">DEF</span>.<span class="title">mcmc</span>[,1])</span>,mu2=unlist<span class="container">(<span class="type">DEF</span>.<span class="title">mcmc</span>[,2])</span>,</span></div><div class="line">	sigma1=unlist(<span class="type">DEF</span>.mcmc[,<span class="number">3</span>]) ,sigma2=unlist(<span class="type">DEF</span>.mcmc[,<span class="number">4</span>]) )</div><div class="line"><span class="preprocessor">#</span></div><div class="line"><span class="title">ryou</span>&lt;-<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(<span class="title">c</span>(<span class="title">round</span>(<span class="title">mean</span>(<span class="title">df</span>[,1])</span>,2) , round<span class="container">(<span class="title">sd</span>(<span class="title">df</span>[,1])</span>,2) ,</span></div><div class="line">	round(quantile(df[,<span class="number">1</span>],c(<span class="number">0.025</span>,<span class="number">0.05</span>,<span class="number">0.5</span>,<span class="number">0.95</span>,<span class="number">0.975</span>)),<span class="number">2</span>)))</div><div class="line"><span class="preprocessor">#</span></div><div class="line"><span class="title">for</span> (i <span class="keyword">in</span> <span class="number">2</span>:ncol(df) ){</div><div class="line"><span class="title">ryou</span>&lt;-cbind(ryou,<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(<span class="title">c</span>(<span class="title">round</span>(<span class="title">mean</span>(<span class="title">df</span>[,<span class="title">i</span>])</span>,2) , round<span class="container">(<span class="title">sd</span>(<span class="title">df</span>[,<span class="title">i</span>])</span>,2) ,</span></div><div class="line">	round(quantile(df[,i],c(<span class="number">0.025</span>,<span class="number">0.05</span>,<span class="number">0.5</span>,<span class="number">0.95</span>,<span class="number">0.975</span>)),<span class="number">2</span>))))</div><div class="line">}</div><div class="line"><span class="title">names</span>(ryou)&lt;-c(<span class="string">"mu1"</span>,<span class="string">"mu2"</span>,<span class="string">"sigma1"</span>,<span class="string">"sigma2"</span>)</div><div class="line"><span class="title">rownames</span>(ryou)&lt;-c(<span class="string">"EAP"</span>,<span class="string">"post.sd"</span>,<span class="string">"2.5%"</span>,<span class="string">"5%"</span>,<span class="string">"50%"</span>,<span class="string">"95%"</span>,<span class="string">"97.5%"</span>)</div><div class="line"><span class="title">mu1_mu2</span> &lt;- df$mu1 - df$mu2</div><div class="line"><span class="title">ryou</span>&lt;-cbind(ryou,<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(<span class="title">c</span>(<span class="title">round</span>(<span class="title">mean</span>(<span class="title">mu1_mu2</span>)</span>,2) , round<span class="container">(<span class="title">sd</span>(<span class="title">mu1_mu2</span>)</span>,2) ,</span></div><div class="line">	round(quantile(mu1_mu2,c(<span class="number">0.025</span>,<span class="number">0.05</span>,<span class="number">0.5</span>,<span class="number">0.95</span>,<span class="number">0.975</span>)),<span class="number">2</span>))))</div><div class="line"><span class="title">names</span>(ryou)&lt;-c(<span class="string">"x1"</span>,<span class="string">"x2"</span>,<span class="string">"sigma1"</span>,<span class="string">"sigma2"</span>,<span class="string">"mu1_mu2"</span>)</div><div class="line"><span class="preprocessor">#kable(t(ryou))</span></div></pre></td></tr></table></figure>
 
 
 
@@ -166,8 +165,8 @@
 <p><img src="/images/mcmchist6_3.png" alt=""></p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#png("mcmchist6_4.png")</span></div><div class="line">hist(mu1_mu2,<span class="variable">breaks=</span><span class="number">100</span>,<span class="variable">col=</span><span class="string">"lightgreen"</span>,<span class="variable">main=</span><span class="string">"母平均の差の事後分布（ DEF ）"</span>)</div><div class="line"><span class="comment">#abline(v=mean(mu1_mu2),lwd=2.5 , col="red")</span></div><div class="line">segments(mean(mu1_mu2),<span class="number">0</span>,mean(mu1_mu2),par(<span class="string">"usr"</span>)[<span class="number">4</span>],<span class="variable">lwd=</span><span class="number">2.5</span> ,<span class="variable">col=</span><span class="string">"red"</span>)</div><div class="line"><span class="comment">#dev.off()</span></div></pre></td></tr></table></figure>
 
-<p><img src="/images/mcmchist6_3.png" alt=""></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="title">x1aste</span>&lt;-rnorm(n = nrow(df), mean =df$mu1, sd = df$sigma1)</div><div class="line"><span class="title">x2aste</span>&lt;-rnorm(n = nrow(df), mean =df$mu2, sd = df$sigma2)</div><div class="line"><span class="preprocessor">#</span></div><div class="line"><span class="title">ryou</span>&lt;-cbind(ryou,<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(<span class="title">c</span>(<span class="title">round</span>(<span class="title">mean</span>(<span class="title">x1aste</span>)</span>,2) , round<span class="container">(<span class="title">sd</span>(<span class="title">x1aste</span>)</span>,2) ,</span></div><div class="line">	round(quantile(x1aste,c(<span class="number">0.025</span>,<span class="number">0.05</span>,<span class="number">0.5</span>,<span class="number">0.95</span>,<span class="number">0.975</span>)),<span class="number">2</span>))))</div><div class="line"><span class="title">ryou</span>&lt;-cbind(ryou,<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(<span class="title">c</span>(<span class="title">round</span>(<span class="title">mean</span>(<span class="title">x2aste</span>)</span>,2) , round<span class="container">(<span class="title">sd</span>(<span class="title">x2aste</span>)</span>,2) ,</span></div><div class="line">	round(quantile(x2aste,c(<span class="number">0.025</span>,<span class="number">0.05</span>,<span class="number">0.5</span>,<span class="number">0.95</span>,<span class="number">0.975</span>)),<span class="number">2</span>))))</div><div class="line"><span class="preprocessor">#</span></div><div class="line"><span class="title">names</span>(ryou)&lt;-c(<span class="string">"x1"</span>,<span class="string">"x2"</span>,<span class="string">"sigma1"</span>,<span class="string">"sigma2"</span>,<span class="string">"mu1_mu2"</span>,<span class="string">"x1aste"</span>,<span class="string">"x2aste"</span>)</div><div class="line"><span class="title">kable</span>(t(ryou))</div></pre></td></tr></table></figure>
+<p><img src="/images/mcmchist6_4.png" alt=""></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="title">x1aste</span>&lt;-rnorm(n = nrow(df), mean =df$mu1, sd = df$sigma1)</div><div class="line"><span class="title">x2aste</span>&lt;-rnorm(n = nrow(df), mean =df$mu2, sd = df$sigma2)</div><div class="line"><span class="preprocessor">#</span></div><div class="line"><span class="title">ryou</span>&lt;-cbind(ryou,<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(<span class="title">c</span>(<span class="title">round</span>(<span class="title">mean</span>(<span class="title">x1aste</span>)</span>,2) , round<span class="container">(<span class="title">sd</span>(<span class="title">x1aste</span>)</span>,2) ,</span></div><div class="line">	round(quantile(x1aste,c(<span class="number">0.025</span>,<span class="number">0.05</span>,<span class="number">0.5</span>,<span class="number">0.95</span>,<span class="number">0.975</span>)),<span class="number">2</span>))))</div><div class="line"><span class="title">ryou</span>&lt;-cbind(ryou,<span class="typedef"><span class="keyword">data</span>.frame<span class="container">(<span class="title">c</span>(<span class="title">round</span>(<span class="title">mean</span>(<span class="title">x2aste</span>)</span>,2) , round<span class="container">(<span class="title">sd</span>(<span class="title">x2aste</span>)</span>,2) ,</span></div><div class="line">	round(quantile(x2aste,c(<span class="number">0.025</span>,<span class="number">0.05</span>,<span class="number">0.5</span>,<span class="number">0.95</span>,<span class="number">0.975</span>)),<span class="number">2</span>))))</div><div class="line"><span class="preprocessor">#</span></div><div class="line"><span class="title">names</span>(ryou)&lt;-c(<span class="string">"mu1"</span>,<span class="string">"mu2"</span>,<span class="string">"sigma1"</span>,<span class="string">"sigma2"</span>,<span class="string">"mu1_mu2"</span>,<span class="string">"x1aste"</span>,<span class="string">"x2aste"</span>)</div><div class="line"><span class="title">kable</span>(t(ryou))</div></pre></td></tr></table></figure>
 
 <table>
 <thead>
@@ -184,7 +183,7 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">x1</td>
+<td style="text-align:left">mu1</td>
 <td style="text-align:right">32.75</td>
 <td style="text-align:right">0.59</td>
 <td style="text-align:right">31.58</td>
@@ -194,7 +193,7 @@
 <td style="text-align:right">33.92</td>
 </tr>
 <tr>
-<td style="text-align:left">x2</td>
+<td style="text-align:left">mu2</td>
 <td style="text-align:right">31.04</td>
 <td style="text-align:right">0.52</td>
 <td style="text-align:right">30.02</td>
@@ -313,7 +312,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/04/心理統計法17_3/" data-id="bt959bedysys71m0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/05/心理統計法17_3/" data-id="bt959bedysys71m0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心理統計法/">心理統計法</a></li></ul>
@@ -337,8 +336,8 @@
 
 
 
-<a href="http://yoursite.com/2017/05/04/心理統計法17_3/">
-  <img src="https://ga-beacon.appspot.com/UA-67242781-1/2017/05/04/心理統計法17_3/?pixel" /></a>
+<a href="http://yoursite.com/2017/05/05/心理統計法17_3/">
+  <img src="https://ga-beacon.appspot.com/UA-67242781-1/2017/05/05/心理統計法17_3/?pixel" /></a>
 
 </section>
         
@@ -387,7 +386,7 @@
       <ul>
         
           <li>
-            <a href="/2017/05/04/心理統計法17_3/">心理統計法(&#39;17) その3</a>
+            <a href="/2017/05/05/心理統計法17_3/">心理統計法(&#39;17) その3</a>
           </li>
         
           <li>
