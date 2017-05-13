@@ -94,7 +94,7 @@
         <section id="main"><article id="post-心理統計法17_4" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/05/13/心理統計法17_4/" class="article-date">
-  <time datetime="2017-05-13T02:56:32.000Z" itemprop="datePublished">May 13 2017</time>
+  <time datetime="2017-05-13T03:56:16.000Z" itemprop="datePublished">May 13 2017</time>
 </a>
     
   <div class="article-category">
@@ -121,7 +121,7 @@
 <a id="more"></a>
 
 <h4 id="授業ではrstanパッケージを使ってますが、MCMCpackパッケージを使ってみます。初学者ですので間違いが多々あると思います。">授業ではrstanパッケージを使ってますが、MCMCpackパッケージを使ってみます。初学者ですので間違いが多々あると思います。</h4>
-<h3 id="x1_,_x2_の求め方が間違っていました。rnorm_ではなく、mvtnorm::rmvnormを使います。">x1<em> , x2</em> の求め方が間違っていました。rnorm ではなく、mvtnorm::rmvnormを使います。</h3>
+<h3 id="x1aste_,_x2aste_の求め方が間違っていました。rnorm_ではなく、mvtnorm::rmvnormを使います。">x1aste , x2aste の求め方が間違っていました。rnorm ではなく、mvtnorm::rmvnormを使います。</h3>
 <p>（Rスクリプトはここ）<br><a href="http://www.waseda.jp/sem-toyoda-lab/" target="_blank" rel="external">早稲田大学文学部文学研究科 豊田研究室 </a> </p>
 <p> （参考）<br><a href="http://cse.ffpri.affrc.go.jp/hiroki/stat/mcmc_text.pdf" target="_blank" rel="external">ベイジアンMCMCによる統計モデル</a><br><a href="http://xavier-fim.net/packages/ggmcmc/" target="_blank" rel="external">Using the ggmcmc package</a><br><a href="http://rtokei.tech/stan/bayesian-inference-with-stan-%E7%95%AA%E5%A4%96%E7%B7%A8/" target="_blank" rel="external">Bayesian Inference With Stan ~番外編~ </a><br><a href="https://rstudio-pubs-static.s3.amazonaws.com/90036_f8a5dd14615b421b88e3ed49ecf745a9.html" target="_blank" rel="external">Exercise 2: Bayesian A/B testing using MCMC Metropolis-Hastings</a><br><a href="http://yukiyanai.github.io/jp/classes/rm1/contents/R/linear-regression-2.html" target="_blank" rel="external">政治学方法論 I</a></p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function">library</span>(MCMCpack)</div><div class="line"><span class="function">library</span>(loo) </div><div class="line"><span class="function">library</span>(knitr)</div><div class="line"><span class="function">library</span>(mvtnorm)</div><div class="line">#</div><div class="line">#    <span class="function">dnorm</span>() ― <span class="function">dmvnorm</span>()：確率密度を求める</div><div class="line">#    <span class="function">pnorm</span>() ― <span class="function">pmvnorm</span>()：累積密度を求める</div><div class="line">#    <span class="function">qnorm</span>() ― <span class="function">qmvnorm</span>()：累積密度から確率点を求める</div><div class="line">#    <span class="function">rnorm</span>() ― <span class="function">rmvnorm</span>()：乱数を生成する</div><div class="line">#</div><div class="line"><span class="function">library</span>(ggplot2)</div><div class="line"><span class="function">library</span>(ggExtra)</div><div class="line">#表7<span class="class">.1</span>の「パスタ」データ入力</div><div class="line">x1&lt;- <span class="function">c</span>(110,232,176,207,122,202,191,124,193,250); #目測群</div><div class="line">x2&lt;- <span class="function">c</span>(130,268,104,185,128,147,162, 68,142,175); #実測群</div></pre></td></tr></table></figure>
