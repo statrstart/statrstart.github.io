@@ -1,2 +1,3 @@
-title: テスト
-theme: jekyll-theme-architect
+markdown: kramdown
+pygments: true
+paginate: 3
